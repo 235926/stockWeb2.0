@@ -1,0 +1,115 @@
+/* 布局页面样式
+------------------------------- */
+.layout-container {
+	width: 100%;
+	height: 100%;
+
+	// 顶栏容器
+	.layout-header {
+		padding: 0;
+		height: auto !important;
+	}
+
+	// 侧边栏容器
+	.layout-aside {
+		width: var(--rh-aside-width);
+		background-color: var(--rh-aside-bg-color);
+		display: flex;
+		flex-direction: column;
+		overflow-x: hidden !important;
+		position: relative;
+		z-index: 1;
+		border-right: 1px solid var(--rh--border-color-light);
+
+		// el-menu 样式
+		.menu-style-one {
+			font-size: var(--rh-aside-font-size);
+			background-color: var(--rh-aside-bg-color);
+
+			// 字体大小/颜色
+			.el-menu-item,
+			.el-submenu__title {
+				color: var(--rh-aside-font-color);
+				font-size: var(--rh-aside-font-size);
+			}
+
+			// 一级菜单高度
+			> .el-menu-item,
+			> .el-submenu > .el-submenu__title {
+				height: 60px;
+				line-height: 60px;
+				border-bottom: 1px solid var(--rh--border-color-light);
+			}
+
+			// 二级菜单样式
+			.el-menu--inline {
+				background-color: var(--rh-aside-child-bg-color);
+
+				// 子级菜单样式
+				.el-submenu {
+					.el-submenu__title {
+						height: 50px;
+						line-height: 50px;
+						padding-left: 0 !important;
+						margin-left: 40px;
+						border-bottom: 1px solid var(--rh--border-color-light);
+					}
+				}
+
+				// 只有二级菜单，不在递归循环下去
+				.el-menu-item {
+					height: 50px;
+					line-height: 50px;
+					padding-left: 0 !important;
+					margin-left: 40px;
+					border-bottom: 1px solid var(--rh--border-color-light);
+					background-color: var(--rh-aside-child-bg-color);
+
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+
+			// 打开子级菜单样式
+			.el-submenu.is-opened {
+				.el-submenu__icon-arrow {
+					transform: rotateZ(0deg);
+				}
+			}
+
+			// 右侧箭头大小角度
+			.el-submenu__icon-arrow {
+				font-size: var(--rh-aside-font-size);
+				transform: rotate(270deg);
+			}
+
+			// 自定义图标样式
+			.el-icon-arrow-right {
+				position: absolute;
+				top: 50%;
+				right: 10px;
+				margin-top: -7px;
+				transition: transform 0.3s;
+				font-size: var(--rh-aside-font-size);
+			}
+
+			// 选中样式
+			.is-active {
+				color: var(--rh-color-primary);
+			}
+
+			&:last-child {
+				.el-menu--inline {
+					border-bottom: 1px solid var(--rh--border-color-light);
+				}
+			}
+		}
+	}
+
+	// 主要区域容器
+	.el-main {
+		padding: 0;
+		background: var(--rh--background-color-base);
+	}
+}
