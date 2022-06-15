@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:56:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 21:12:29
+ * @LastEditTime: 2022-06-16 00:06:04
 -->
 # 股权管理系统更新日志
 - 🌟 更新
@@ -15,6 +15,14 @@
 - 🌈 重构
 - ❄️ 删除
 - ⚠️ 警告
+
+## Version: "0.1.2"， Date: "2022.06.16"，Author: "cdl"
+
+- 🚧 调整 Dialog 对话框 头部文字大小
+- 🚧 调整 Dialog 对话框 高度自适应
+- 🚧 调整 Divider 分割线 分割线背景颜色
+
+
 
 ## Version: "0.1.1"， Date: "2022.06.15"，Author: "cdl"
 

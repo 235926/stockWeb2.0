@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:51:44
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 09:53:59
+ * @LastEditTime: 2022-06-15 23:33:17
 -->
 <template>
 	<div class="page-container">
@@ -12,6 +12,7 @@
 		<!-- 内容部分 -->
 		<div class="content padding20">
 			<el-table
+				ref="tableRef"
 				:data="tableData"
 				border
 				@selection-change="handleSelectionChange"
@@ -62,6 +63,13 @@
 				<el-button round @click="onDelete">删除</el-button>
 			</div>
 		</div>
+
+		<Add
+			ref="addRef"
+			:visible="dialogVisible"
+			title="新增"
+			@update:visible="dialogVisible = $event"
+		/>
 	</div>
 </template>
 
@@ -70,6 +78,7 @@ export default {
 	name: 'systemChangeType',
 	components: {
 		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
+		Add: () => import('./add.vue'), // 新增页面
 	},
 	data() {
 		return {
@@ -105,8 +114,10 @@ export default {
 					label: '变更角色2',
 				},
 			],
+			dialogVisible: false, // 添加页面状态
 		}
 	},
+	// 计算属性
 	computed: {},
 	created() {},
 	methods: {
@@ -124,7 +135,9 @@ export default {
 		 * @return {*}
 		 * @author: cdl
 		 */
-		onAdd() {},
+		onAdd() {
+			this.dialogVisible = true
+		},
 
 		/**
 		 * @description: 保存

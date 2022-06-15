@@ -1,35 +1,29 @@
-<!--
- * @Description: dialog - 模板
- * @Author: cdl
- * @Date: 2022-06-15 13:40:45
- * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 21:24:42
--->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :before-close="onCancel">
-		<span slot="title" class="dialog-header">
-			{{ title }}
-		</span>
+	<el-dialog
+		:visible.sync="visible"
+		:width="width + 'px'"
+		:style="{ height: height + 'px' }"
+		:destroy-on-close="true"
+		:before-close="onCancel"
+	>
+		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<!-- 带滚动条 二选一 -->
-		<el-scrollbar class="scrollbar-x">
-			<div class="dialog-main">123</div>
+		<el-scrollbar class="scrollbar-x" :style="{ height: height + 'px' }">
+			<div class="dialog-main" :style="{ height: height + 'px' }">
+				<el-form ref="form" :model="form" label-width="120px">
+					<el-form-item prop="region1" label="上级党组织">
+						<el-select v-model="form.region1" placeholder="请选择">
+							<el-option label="区域一" value="shanghai"></el-option>
+							<el-option label="区域二" value="beijing"></el-option>
+						</el-select>
+					</el-form-item>
+					<el-form-item prop="input" label="党组织名称">
+						<el-input v-model="form.input" placeholder="请输入"></el-input>
+					</el-form-item>
+				</el-form>
+			</div>
 		</el-scrollbar>
-
-		<!-- 不带滚动条，样式根据页面自定义，二选一 -->
-		<div class="dialog-main padding30 pr50">
-			<el-form ref="form" :model="form" label-width="120px">
-				<el-form-item prop="region1" label="上级党组织">
-					<el-select v-model="form.region1" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
-				</el-form-item>
-				<el-form-item prop="input" label="党组织名称">
-					<el-input v-model="form.input" placeholder="请输入"></el-input>
-				</el-form-item>
-			</el-form>
-		</div>
 
 		<span slot="footer" class="dialog-footer">
 			<el-button type="primary" round @click="onSubmit">确认</el-button>
@@ -61,6 +55,9 @@ export default {
 			type: Number,
 			default: 677,
 		},
+		height: {
+			default: '',
+		},
 	},
 	// 局部注册的组件
 	components: {},
@@ -83,6 +80,7 @@ export default {
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
+			this.$refs.form.resetFields()
 		},
 
 		/**

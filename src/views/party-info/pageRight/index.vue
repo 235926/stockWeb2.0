@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 14:30:53
+ * @LastEditTime: 2022-06-15 23:14:45
 -->
 <template>
 	<div class="right">
@@ -71,6 +71,7 @@ export default {
 			dialogVisible: false, // 添加页面状态
 		}
 	},
+	// 计算属性
 	computed: {},
 	created() {},
 	methods: {

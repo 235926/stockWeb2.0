@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 21:23:07
+ * @LastEditTime: 2022-06-15 23:47:49
  */
 @import '@/assets/scss/mixins.scss';
 /* Menu 菜单
@@ -114,6 +114,7 @@
 
 		.dialog-header {
 			font-weight: 400;
+			font-size: 20px;
 		}
 	}
 
@@ -123,7 +124,7 @@
 		max-height: calc(100vh - 30vh - 120px);
 
 		> .el-scrollbar {
-			height: calc(100vh - 30vh - 120px);
+			max-height: calc(100vh - 30vh - 120px);
 
 			.el-scrollbar__view {
 				padding: 20px;
@@ -268,4 +269,10 @@
 			margin-bottom: 0;
 		}
 	}
+}
+
+/* Divider 分割线
+------------------------------- */
+.el-divider {
+	background-color: var(--rh--border-color-light);
 }
