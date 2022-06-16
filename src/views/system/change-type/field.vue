@@ -1,3 +1,11 @@
+<!--
+ * @Description: 变更类型维护 - 可更新字段
+ * @Author: cdl
+ * @Date: 2022-06-16 21:02:56
+ * @LastEditors: cdl
+ * @LastEditTime: 2022-06-16 21:11:17
+-->
+
 <template>
 	<el-dialog
 		:visible.sync="visible"
@@ -8,17 +16,19 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar class="scrollbar-x">
-			<el-form ref="formRef" :model="form" label-width="120px">
-				<el-form-item prop="region1" label="上级党组织">
-					<el-select v-model="form.region1" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
-				</el-form-item>
-				<el-form-item prop="input" label="党组织名称">
-					<el-input v-model="form.input" placeholder="请输入"></el-input>
-				</el-form-item>
-			</el-form>
+			<div class="dialog-main">
+				<el-table
+					:data="tableData"
+					border
+					:header-cell-style="{ 'text-align': 'center' }"
+					:cell-style="{ 'text-align': 'center' }"
+					@selection-change="handleSelectionChange"
+				>
+					<el-table-column type="selection" width="55" />
+					<el-table-column label="序号" type="index" width="55" />
+					<el-table-column prop="name" label="可更新字段" />
+				</el-table>
+			</div>
 		</el-scrollbar>
 
 		<span slot="footer" class="dialog-footer">
@@ -31,7 +41,7 @@
 <script>
 export default {
 	// 组件名称
-	name: '',
+	name: 'partyInfoRightField',
 	model: {
 		// v-model 绑定的值
 		prop: 'visible',
@@ -60,7 +70,13 @@ export default {
 	// 组件状态值
 	data() {
 		return {
-			form: {}, // 表单
+			tableData: [
+				{ name: '公司名称' },
+				{ name: '经营范围' },
+				{ name: '法定代表人' },
+				{ name: '董监事变更' },
+			],
+			selection: [], // 选择的内容
 		}
 	},
 	// 计算属性
@@ -70,13 +86,22 @@ export default {
 	// 组件方法
 	methods: {
 		/**
+		 * @description: 选中内容
+		 * @param {*} val
+		 * @return {*}
+		 * @author: cdl
+		 */
+		handleSelectionChange(val) {
+			this.selection = val
+		},
+
+		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
 		 * @author: cdl
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
-			this.$refs.form.resetFields()
 		},
 
 		/**

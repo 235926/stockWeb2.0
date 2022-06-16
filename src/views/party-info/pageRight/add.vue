@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 13:28:02
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 00:04:31
+ * @LastEditTime: 2022-06-16 21:13:34
 -->
 <template>
 	<el-dialog
@@ -14,8 +14,8 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar class="scrollbar-x" :style="{ height: height + 'px' }">
-			<div class="dialog-main" :style="{ height: height + 'px' }">
+		<el-scrollbar class="scrollbar-x">
+			<div class="dialog-main">
 				<el-form ref="form" :model="form" label-width="120px" class="pr50">
 					<el-form-item prop="region1" label="上级党组织">
 						<el-select v-model="form.region1" placeholder="请选择">

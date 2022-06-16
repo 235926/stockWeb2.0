@@ -14,15 +14,21 @@ ol li {
 	clear: both;
 }
 
+// 滚动条凹槽的颜色，还可以设置边框属性
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+}
+// 滚动条的宽度
 ::-webkit-scrollbar {
-	width: 4px;
-	height: 10px;
+	width: 7px;
+	height: 7px;
 }
-
+// 滚动条的设置
 ::-webkit-scrollbar-thumb {
-	background-color: rgba(144, 147, 153, 0.3);
+	background-color: var(--rh-color-primary);
+	background-clip: padding-box;
+	border-radius: 20px;
 }
-
-::-webkit-scrollbar-track {
-	background: transparent;
+::-webkit-scrollbar-thumb:hover {
+	// background-color: #bbb;
 }

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 23:00:02
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 17:33:13
+ * @LastEditTime: 2022-06-16 21:09:31
 -->
 <template>
 	<el-dialog
@@ -14,8 +14,8 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar class="scrollbar-x" :style="{ height: height + 'px' }">
-			<div class="dialog-main" :style="{ height: height + 'px' }">
+		<el-scrollbar class="scrollbar-x">
+			<div class="dialog-main">
 				<el-form ref="form" :model="form" label-width="120px" class="pr50">
 					<el-form-item prop="input1" label="企业变更类型">
 						<el-input v-model="form.input1" placeholder="请输入"></el-input>
@@ -100,7 +100,6 @@ export default {
 		 * @author: cdl
 		 */
 		onSubmit() {
-			console.log(this.form)
 			this.onCancel()
 		},
 	},

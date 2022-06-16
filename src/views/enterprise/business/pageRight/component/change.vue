@@ -1,3 +1,10 @@
+<!--
+ * @Description: 变更页面
+ * @Author: cdl
+ * @Date: 2022-06-16 21:22:46
+ * @LastEditors: cdl
+ * @LastEditTime: 2022-06-16 21:40:39
+-->
 <template>
 	<el-dialog
 		:visible.sync="visible"
@@ -8,15 +15,24 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar class="scrollbar-x">
-			<el-form ref="formRef" :model="form" label-width="120px">
-				<el-form-item prop="region1" label="上级党组织">
-					<el-select v-model="form.region1" placeholder="请选择">
+			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
+				<el-form-item prop="input1" label="任务类型">
+					<el-select v-model="form.input1" placeholder="请选择">
 						<el-option label="区域一" value="shanghai"></el-option>
 						<el-option label="区域二" value="beijing"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item prop="input" label="党组织名称">
-					<el-input v-model="form.input" placeholder="请输入"></el-input>
+				<el-form-item prop="input2" label="变更机构">
+					<el-select v-model="form.input2" placeholder="请选择">
+						<el-option label="区域一" value="shanghai"></el-option>
+						<el-option label="区域二" value="beijing"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item prop="input3" label="处理角色">
+					<el-select v-model="form.input3" placeholder="请选择">
+						<el-option label="区域一" value="shanghai"></el-option>
+						<el-option label="区域二" value="beijing"></el-option>
+					</el-select>
 				</el-form-item>
 			</el-form>
 		</el-scrollbar>
@@ -31,7 +47,7 @@
 <script>
 export default {
 	// 组件名称
-	name: '',
+	name: 'enterpriseBusinessChange',
 	model: {
 		// v-model 绑定的值
 		prop: 'visible',
@@ -76,7 +92,7 @@ export default {
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
-			this.$refs.form.resetFields()
+			this.$refs.formRef.resetFields()
 		},
 
 		/**

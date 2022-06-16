@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 23:14:45
+ * @LastEditTime: 2022-06-16 21:13:22
 -->
 <template>
 	<div class="right">
@@ -39,7 +39,7 @@
 		</div>
 
 		<!-- 添加页面 -->
-		<Add :visible="dialogVisible" title="新增" @update:visible="dialogVisible = $event" />
+		<Add :visible="dialogVisible" title="添加" @update:visible="dialogVisible = $event" />
 	</div>
 </template>
 

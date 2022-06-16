@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 11:46:17
+ * @LastEditTime: 2022-06-16 20:08:58
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -16,6 +16,7 @@ import store from './store'
 
 // ElementUI 组件库
 import ElementUI from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/scss/element-variables.scss'
 
 // icons

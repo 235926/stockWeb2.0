@@ -3,10 +3,15 @@
  * @Author: cdl
  * @Date: 2022-06-15 18:11:26
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 23:57:39
+ * @LastEditTime: 2022-06-16 22:59:01
 -->
 <template>
-	<div></div>
+	<div class="page-container">
+		<PageHeader />
+
+		<!-- 内容部分 -->
+		<div class="content padding20">test</div>
+	</div>
 </template>
 
 <script>
@@ -16,7 +21,9 @@ export default {
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 局部注册的组件
-	components: {},
+	components: {
+		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
+	},
 	// 组件状态值
 	data() {
 		return {}

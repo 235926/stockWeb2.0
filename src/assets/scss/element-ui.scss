@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 18:17:21
+ * @LastEditTime: 2022-06-16 23:26:28
  */
 @import '@/assets/scss/mixins.scss';
 /* Menu 菜单
@@ -17,9 +17,9 @@
 /* Scrollbar 滚动条
 ------------------------------- */
 .el-scrollbar {
-	overflow: hidden;
 	position: relative;
 	height: 100%;
+	width: 100%;
 
 	.el-scrollbar__bar {
 		.el-scrollbar__thumb {
@@ -37,7 +37,7 @@
 }
 .el-scrollbar__wrap {
 	overflow: auto !important;
-	overflow-x: hidden !important;
+	// overflow-x: hidden !important;
 	max-height: 100%; /*防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度）*/
 }
 
@@ -60,17 +60,25 @@
 .el-table {
 	font-size: 14px;
 
+	div.cell {
+		line-height: 50px;
+	}
+
 	// 表头
 	.el-table__header {
 		th {
 			padding: 13px 0;
 			font-weight: 500;
+			padding: 0;
+			height: 50px;
 		}
 	}
 
 	.el-table__body {
 		td {
 			font-weight: 400;
+			padding: 0;
+			height: 50px;
 		}
 	}
 
@@ -130,7 +138,8 @@
 		max-height: calc(100vh - 30vh - 120px);
 
 		> .el-scrollbar {
-			max-height: calc(100vh - 30vh - 120px);
+			height: calc(100vh - 30vh - 120px);
+			max-height: 360px;
 
 			.el-scrollbar__view {
 				padding: 30px 20px;
@@ -304,4 +313,12 @@
 		padding: 0;
 		overflow: hidden;
 	}
+}
+
+/* Tabs 标签页
+------------------------------- */
+.el-tabs--border-card,
+.el-tabs--border-card > .el-tabs__header,
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+	border-color: var(--rh-border-color-light);
 }

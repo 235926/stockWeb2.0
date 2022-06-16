@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 20:40:28
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 22:47:03
+ * @LastEditTime: 2022-06-16 20:13:05
 -->
 <template>
 	<div class="icons-container">
@@ -16,7 +16,7 @@
 						@click="handleClipboard(generateIconCode(item), $event)"
 					>
 						<div class="icon-item">
-							<SvgIcon :name="item" class="disabled" />
+							<SvgIcon :name="item" class="disabled font30" />
 							<span>{{ item }}</span>
 						</div>
 					</div>

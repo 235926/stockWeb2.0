@@ -21,6 +21,7 @@ specifiers:
   sass: ^1.52.3
   sass-loader: ^13.0.0
   svg-sprite-loader: ^6.0.11
+  v-fit-columns: ^0.2.0
   vue: ^2.6.14
   vue-router: ^3.5.1
   vue-template-compiler: ^2.6.14
@@ -35,6 +36,7 @@ dependencies:
   js-cookie: 3.0.1
   normalize.css: 8.0.1
   nprogress: 0.2.0
+  v-fit-columns: 0.2.0
   vue: 2.6.14
   vue-router: 3.5.4
   vuex: 3.6.2_vue@2.6.14
@@ -7374,6 +7376,10 @@ packages:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
     dev: true
+
+  /v-fit-columns/0.2.0:
+    resolution: {integrity: sha512-xR0jIFmTyJeg4VZgEx7z8BIijZnHQegtbwAhG3L3TmyAoq/TXk7H6vzFLNxAVzOj9pSpO/0B2mf7jmuO2nE4Ag==}
+    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
