@@ -51,14 +51,14 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 	/* 边框颜色
 	------------------------------- */
-	--rh--border-color: #{$--border-color-base};
-	--rh--border-color-light: #{$--border-color-light};
-	--rh--border-color-lighter: #{$--border-color-lighter};
-	--rh--border-color-extra-light: #{$--border-color-extra-light};
+	--rh-border-color: #{$--border-color-base};
+	--rh-border-color-light: #{$--border-color-light};
+	--rh-border-color-lighter: #{$--border-color-lighter};
+	--rh-border-color-extra-light: #{$--border-color-extra-light};
 
 	/* 背景颜色
 	------------------------------- */
 	--rh-color-white: #{$--color-white};
 	--rh-color-black: #{$--color-black};
-	--rh--background-color-base: #{$--background-color-base};
+	--rh-background-color-base: #{$--background-color-base};
 }

@@ -8,6 +8,26 @@
 	.layout-header {
 		padding: 0;
 		height: auto !important;
+
+		// 图标背景
+		.svg-icon-container {
+			height: var(--rh-header-height);
+			line-height: var(--rh-header-height);
+			padding: 0 12px;
+			font-size: 16px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:hover {
+				background-color: var(--rh-svg-bg-color);
+
+				.svg-icon {
+					animation: logoAnimation 0.3s ease-in-out;
+				}
+			}
+		}
 	}
 
 	// 侧边栏容器
@@ -19,7 +39,7 @@
 		overflow-x: hidden !important;
 		position: relative;
 		z-index: 1;
-		border-right: 1px solid var(--rh--border-color-light);
+		border-right: 1px solid var(--rh-border-color-light);
 
 		// el-menu 样式
 		.menu-style-one {
@@ -38,7 +58,7 @@
 			> .el-submenu > .el-submenu__title {
 				height: 60px;
 				line-height: 60px;
-				border-bottom: 1px solid var(--rh--border-color-light);
+				border-bottom: 1px solid var(--rh-border-color-light);
 			}
 
 			// 二级菜单样式
@@ -52,7 +72,7 @@
 						line-height: 50px;
 						padding-left: 0 !important;
 						margin-left: 40px;
-						border-bottom: 1px solid var(--rh--border-color-light);
+						border-bottom: 1px solid var(--rh-border-color-light);
 					}
 				}
 
@@ -62,7 +82,7 @@
 					line-height: 50px;
 					padding-left: 0 !important;
 					margin-left: 40px;
-					border-bottom: 1px solid var(--rh--border-color-light);
+					border-bottom: 1px solid var(--rh-border-color-light);
 					background-color: var(--rh-aside-child-bg-color);
 
 					&:last-child {
@@ -101,7 +121,7 @@
 
 			&:last-child {
 				.el-menu--inline {
-					border-bottom: 1px solid var(--rh--border-color-light);
+					border-bottom: 1px solid var(--rh-border-color-light);
 				}
 			}
 		}
@@ -110,6 +130,6 @@
 	// 主要区域容器
 	.el-main {
 		padding: 0;
-		background: var(--rh--background-color-base);
+		background: var(--rh-background-color-base);
 	}
 }

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 23:47:49
+ * @LastEditTime: 2022-06-16 18:17:21
  */
 @import '@/assets/scss/mixins.scss';
 /* Menu 菜单
@@ -17,22 +17,28 @@
 /* Scrollbar 滚动条
 ------------------------------- */
 .el-scrollbar {
-	width: 100%;
+	overflow: hidden;
+	position: relative;
 	height: 100%;
 
-	.el-scrollbar__wrap {
-		max-height: 100%; // 防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度）
-	}
-
 	.el-scrollbar__bar {
-		z-index: 5;
-
 		.el-scrollbar__thumb {
 			// 滚动条颜色跟随主题色，本地调试用
 			background: var(--rh-color-primary);
 			opacity: 1;
 		}
 	}
+
+	&.scrollbar-x {
+		.el-scrollbar__view {
+			overflow-x: hidden;
+		}
+	}
+}
+.el-scrollbar__wrap {
+	overflow: auto !important;
+	overflow-x: hidden !important;
+	max-height: 100%; /*防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度）*/
 }
 
 /* Button 按钮
@@ -106,7 +112,7 @@
 		padding: 0 20px;
 		height: 60px;
 		margin-right: 0;
-		border-bottom: 1px solid var(--rh--border-color-light);
+		border-bottom: 1px solid var(--rh-border-color-light);
 		border-radius: 10px 10px 0 0;
 		display: flex;
 		align-items: center;
@@ -127,7 +133,7 @@
 			max-height: calc(100vh - 30vh - 120px);
 
 			.el-scrollbar__view {
-				padding: 20px;
+				padding: 30px 20px;
 			}
 		}
 	}
@@ -136,8 +142,8 @@
 		padding: 0 20px;
 		height: 60px;
 		border-radius: 0 0 10px 10px;
-		border-top: 1px solid var(--rh--border-color-light);
-		background-color: var(--rh--background-color-base);
+		border-top: 1px solid var(--rh-border-color-light);
+		background-color: var(--rh-background-color-base);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -274,5 +280,28 @@
 /* Divider 分割线
 ------------------------------- */
 .el-divider {
-	background-color: var(--rh--border-color-light);
+	background-color: var(--rh-border-color-light);
+}
+
+/* Drawer 抽屉
+------------------------------- */
+.el-drawer__wrapper {
+	.el-drawer__header {
+		height: 50px;
+		margin-bottom: 0;
+		padding: 15px 20px;
+		border-bottom: 1px solid var(--rh-border-color-light);
+
+		> :first-child {
+			font-size: 16px;
+			line-height: 1;
+			color: var(--rh-text-color-primary);
+			font-weight: 500;
+		}
+	}
+
+	.el-drawer__body {
+		padding: 0;
+		overflow: hidden;
+	}
 }

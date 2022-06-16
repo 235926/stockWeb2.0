@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-09 16:55:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-09 17:08:09
+ * @LastEditTime: 2022-06-16 16:05:31
  */
 const useSystemConfig = {
 	namespaced: true,
@@ -33,8 +33,18 @@ const useSystemConfig = {
 			layout: 'classic',
 		},
 	},
-	mutations: {},
-	actions: {},
+	mutations: {
+		// 设置布局配置
+		SET_SYSTEM_CONFIG(state, data) {
+			state.systemConfig = data
+		},
+	},
+	actions: {
+		// 设置布局配置
+		setSystemConfig({ commit }, data) {
+			commit('SET_SYSTEM_CONFIG', data)
+		},
+	},
 }
 
 export default useSystemConfig

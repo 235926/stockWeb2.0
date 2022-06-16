@@ -8,7 +8,6 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<!-- 带滚动条 二选一 -->
 		<el-scrollbar class="scrollbar-x" :style="{ height: height + 'px' }">
 			<div class="dialog-main" :style="{ height: height + 'px' }">
 				<el-form ref="form" :model="form" label-width="120px">

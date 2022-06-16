@@ -90,7 +90,7 @@ export default {
 <style lang="scss" scoped>
 .btn {
 	background-color: var(--rh-table-header-bg-color);
-	border: 1px solid var(--rh--border-color-light);
+	border: 1px solid var(--rh-border-color-light);
 	border-top: none;
 }
 

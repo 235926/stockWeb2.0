@@ -3,13 +3,13 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:20:29
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-09 15:17:31
+ * @LastEditTime: 2022-06-16 15:59:11
 -->
 <template>
 	<el-container class="layout-container flex-column">
 		<Header />
 
-		<el-container class="layout-mian-height-60">
+		<el-container class="layout-main-height-60">
 			<Aside />
 
 			<div class="flex-column">
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout-mian-height-60 {
+.layout-main-height-60 {
 	height: calc(100vh - 60px);
 }
 </style>

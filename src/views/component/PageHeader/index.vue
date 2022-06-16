@@ -39,7 +39,7 @@ export default {
 	height: 50px;
 	padding: 0 20px;
 	background-color: #fafafa;
-	border-bottom: 1px solid var(--rh--border-color-light);
+	border-bottom: 1px solid var(--rh-border-color-light);
 	border-radius: 4px 4px 0px 0px;
 	display: flex;
 	align-items: center;

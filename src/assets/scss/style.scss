@@ -8,7 +8,7 @@
 
 // 主体内容边框
 .page-container {
-	border: 1px solid var(--rh--border-color-light);
+	border: 1px solid var(--rh-border-color-light);
 	border-radius: 4px;
 
 	// 内容部分
@@ -19,7 +19,7 @@
 		.left {
 			width: 300px;
 			padding: 20px;
-			border-right: 1px solid var(--rh--border-color-light);
+			border-right: 1px solid var(--rh-border-color-light);
 
 			.el-input .el-icon {
 				color: var(--el-color-primary);

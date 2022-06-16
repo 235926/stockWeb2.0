@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:15:57
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-10 14:19:59
+ * @LastEditTime: 2022-06-16 16:53:01
 -->
 <template>
 	<el-header class="layout-header">
@@ -14,6 +14,7 @@
 				<span class="title ml15">企业股权管理信息系统</span>
 			</div>
 			<div class="right flex-center mr30">
+				<Settings />
 				<span class="title mr15">系统管理员</span>
 				<el-avatar :size="40" :src="require('@/assets/images/userAvatar.png')" />
 			</div>
@@ -27,6 +28,9 @@
 <script>
 export default {
 	name: 'app',
+	components: {
+		Settings: () => import('./settings.vue'), // 系统配置
+	},
 	data() {
 		return {}
 	},
@@ -44,7 +48,6 @@ export default {
 	.left {
 		// 标题
 		.title {
-			font-family: PingFangSC-Regular, PingFang SC;
 			font-size: 22px;
 			font-weight: 400;
 			color: #454545;
@@ -54,7 +57,6 @@ export default {
 	.right {
 		.title {
 			font-size: 14px;
-			font-family: PingFangSC-Regular, PingFang SC;
 			font-weight: 400;
 			color: #494949;
 		}
