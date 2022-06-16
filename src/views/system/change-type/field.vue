@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:02:56
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 21:11:17
+ * @LastEditTime: 2022-06-17 00:59:12
 -->
 
 <template>
@@ -15,20 +15,18 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar class="scrollbar-x">
-			<div class="dialog-main">
-				<el-table
-					:data="tableData"
-					border
-					:header-cell-style="{ 'text-align': 'center' }"
-					:cell-style="{ 'text-align': 'center' }"
-					@selection-change="handleSelectionChange"
-				>
-					<el-table-column type="selection" width="55" />
-					<el-table-column label="序号" type="index" width="55" />
-					<el-table-column prop="name" label="可更新字段" />
-				</el-table>
-			</div>
+		<el-scrollbar>
+			<el-table
+				:data="tableData"
+				border
+				:header-cell-style="{ 'text-align': 'center' }"
+				:cell-style="{ 'text-align': 'center' }"
+				@selection-change="handleSelectionChange"
+			>
+				<el-table-column type="selection" width="55" />
+				<el-table-column label="序号" type="index" width="55" />
+				<el-table-column prop="name" label="可更新字段" />
+			</el-table>
 		</el-scrollbar>
 
 		<span slot="footer" class="dialog-footer">

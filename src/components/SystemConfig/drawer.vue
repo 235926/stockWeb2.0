@@ -3,23 +3,21 @@
  * @Author: cdl
  * @Date: 2022-06-15 18:13:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 18:35:04
+ * @LastEditTime: 2022-06-17 00:46:50
 -->
 <template>
-	<div>
-		<el-drawer
-			title="我是标题"
-			:visible.sync="drawer"
-			:destroy-on-close="true"
-			:direction="direction"
-		>
-			<el-scrollbar>
-				<!-- 界面设置 -->
-				<el-divider content-position="left">界面设置</el-divider>
-				<div style="height: 1000px"></div>
-			</el-scrollbar>
-		</el-drawer>
-	</div>
+	<el-drawer
+		title="我是标题"
+		:visible.sync="drawer"
+		:destroy-on-close="true"
+		:direction="direction"
+	>
+		<el-scrollbar>
+			<!-- 界面设置 -->
+			<el-divider content-position="left">界面设置</el-divider>
+			<div style="height: 1000px"></div>
+		</el-scrollbar>
+	</el-drawer>
 </template>
 
 <script>

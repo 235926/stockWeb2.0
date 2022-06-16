@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 23:24:04
+ * @LastEditTime: 2022-06-17 00:49:18
 -->
 <template>
 	<div class="right">
@@ -13,30 +13,35 @@
 			<el-button round @click="onOpenDialog('cancel')">注销</el-button>
 			<el-button round @click="onOpenDialog('edit')">编辑</el-button>
 		</div>
-		<!-- <el-scrollbar> -->
-		<el-table
-			ref="tableData"
-			:data="tableData"
-			border
-			@selection-change="handleSelectionChange"
-		>
-			<el-table-column type="selection" label="选择" align="center" width="55" />
-			<el-table-column type="index" label="序号" align="center" width="65" />
-			<el-table-column prop="data1" show-overflow-tooltip label="公司名称" width="250" />
-			<el-table-column prop="data2" show-overflow-tooltip label="产权层级" width="100" />
-			<el-table-column prop="data3" show-overflow-tooltip label="管理层级" width="100" />
-			<el-table-column
-				prop="data4"
-				show-overflow-tooltip
-				label="统一社会信息代码"
-				width="200"
-			/>
-			<el-table-column prop="data5" show-overflow-tooltip label="成立时间" width="150" />
-			<el-table-column prop="data6" show-overflow-tooltip label="注册资本金" width="150" />
-			<el-table-column prop="data7" show-overflow-tooltip label="法人" width="80" />
-			<el-table-column prop="data8" show-overflow-tooltip label="状态" width="80" />
-		</el-table>
-		<!-- </el-scrollbar> -->
+		<el-scrollbar class="horizontal">
+			<el-table
+				ref="tableData"
+				:data="tableData"
+				border
+				@selection-change="handleSelectionChange"
+			>
+				<el-table-column type="selection" label="选择" align="center" width="55" />
+				<el-table-column type="index" label="序号" align="center" width="65" />
+				<el-table-column prop="data1" show-overflow-tooltip label="公司名称" width="250" />
+				<el-table-column prop="data2" show-overflow-tooltip label="产权层级" width="100" />
+				<el-table-column prop="data3" show-overflow-tooltip label="管理层级" width="100" />
+				<el-table-column
+					prop="data4"
+					show-overflow-tooltip
+					label="统一社会信息代码"
+					width="200"
+				/>
+				<el-table-column prop="data5" show-overflow-tooltip label="成立时间" width="150" />
+				<el-table-column
+					prop="data6"
+					show-overflow-tooltip
+					label="注册资本金"
+					width="150"
+				/>
+				<el-table-column prop="data7" show-overflow-tooltip label="法人" width="80" />
+				<el-table-column prop="data8" show-overflow-tooltip label="状态" width="80" />
+			</el-table>
+		</el-scrollbar>
 
 		<Possession
 			title="占有"

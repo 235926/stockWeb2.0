@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 23:00:02
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 21:09:31
+ * @LastEditTime: 2022-06-17 00:59:04
 -->
 <template>
 	<el-dialog
@@ -14,26 +14,24 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar class="scrollbar-x">
-			<div class="dialog-main">
-				<el-form ref="form" :model="form" label-width="120px" class="pr50">
-					<el-form-item prop="input1" label="企业变更类型">
-						<el-input v-model="form.input1" placeholder="请输入"></el-input>
-					</el-form-item>
-					<el-form-item prop="input2" label="可更新字段">
-						<el-select v-model="form.input2" placeholder="请选择">
-							<el-option label="区域一" value="shanghai"></el-option>
-							<el-option label="区域二" value="beijing"></el-option>
-						</el-select>
-					</el-form-item>
-					<el-form-item prop="input3" label="变更角色">
-						<el-select v-model="form.input3" placeholder="请选择">
-							<el-option label="区域一" value="shanghai"></el-option>
-							<el-option label="区域二" value="beijing"></el-option>
-						</el-select>
-					</el-form-item>
-				</el-form>
-			</div>
+		<el-scrollbar>
+			<el-form ref="form" :model="form" label-width="120px" class="pr50">
+				<el-form-item prop="input1" label="企业变更类型">
+					<el-input v-model="form.input1" placeholder="请输入"></el-input>
+				</el-form-item>
+				<el-form-item prop="input2" label="可更新字段">
+					<el-select v-model="form.input2" placeholder="请选择">
+						<el-option label="区域一" value="shanghai"></el-option>
+						<el-option label="区域二" value="beijing"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item prop="input3" label="变更角色">
+					<el-select v-model="form.input3" placeholder="请选择">
+						<el-option label="区域一" value="shanghai"></el-option>
+						<el-option label="区域二" value="beijing"></el-option>
+					</el-select>
+				</el-form-item>
+			</el-form>
 		</el-scrollbar>
 
 		<span slot="footer" class="dialog-footer">

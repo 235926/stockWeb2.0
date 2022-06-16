@@ -14,7 +14,7 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar class="scrollbar-x">
+		<el-scrollbar>
 			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
 				<el-form-item prop="input1" label="任务类型">
 					<el-select v-model="form.input1" placeholder="请选择">

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 23:26:28
+ * @LastEditTime: 2022-06-17 00:54:23
  */
 @import '@/assets/scss/mixins.scss';
 /* Menu 菜单
@@ -17,9 +17,8 @@
 /* Scrollbar 滚动条
 ------------------------------- */
 .el-scrollbar {
+	overflow: hidden;
 	position: relative;
-	height: 100%;
-	width: 100%;
 
 	.el-scrollbar__bar {
 		.el-scrollbar__thumb {
@@ -29,15 +28,28 @@
 		}
 	}
 
-	&.scrollbar-x {
-		.el-scrollbar__view {
+	// x轴滚动条
+	.horizontal {
+		.el-scrollbar__wrap {
+			overflow-x: auto !important;
+			height: calc(100% + 20px); // 多出来的20px是横向滚动条默认的样式
+
+			.el-scrollbar__view {
+				white-space: nowrap;
+				display: inline-block;
+			}
+		}
+
+		// 解决 table 中滚动去不起作用的问题
+		.el-table--scrollable-x .el-table__body-wrapper {
 			overflow-x: hidden;
 		}
 	}
 }
+// 这个只有单独写出来，元素滚动条才不会生效 src/components/SystemConfig/drawer.vue 中
 .el-scrollbar__wrap {
 	overflow: auto !important;
-	// overflow-x: hidden !important;
+	overflow-x: hidden !important;
 	max-height: 100%; /*防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度）*/
 }
 
