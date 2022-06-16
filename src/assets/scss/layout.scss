@@ -109,14 +109,22 @@
 				position: absolute;
 				top: 50%;
 				right: 10px;
-				margin-top: -7px;
-				transition: transform 0.3s;
+				transform: translateY(-50%);
 				font-size: var(--rh-aside-font-size);
+				border: 1px solid transparent;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
 			}
 
 			// 选中样式
-			.is-active {
+			.el-menu-item.is-active {
 				color: var(--rh-color-primary);
+				transition: none;
+
+				.el-icon-arrow-right {
+					border-color: var(--rh-color-primary);
+				}
 			}
 
 			&:last-child {

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:56:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 17:15:04
+ * @LastEditTime: 2022-06-16 19:00:21
 -->
 # 股权管理系统更新日志
 - 🌟 更新
@@ -15,6 +15,12 @@
 - 🌈 重构
 - ❄️ 删除
 - ⚠️ 警告
+
+## Version: "0.1.4"， Date: "2022.06.16"，Author: "cdl"
+
+- 🎯 优化 菜单列表选中样式
+
+
 
 ## Version: "0.1.3"， Date: "2022.06.16"，Author: "cdl"
 

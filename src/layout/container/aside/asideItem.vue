@@ -3,12 +3,12 @@
  * @Author: cdl
  * @Date: 2022-06-10 13:05:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 18:53:21
+ * @LastEditTime: 2022-06-16 18:54:34
 -->
 <template>
 	<el-menu-item v-if="!item.children" :index="`${item.path}`" @click="jumpRouterView(item)">
 		{{ item.meta.title }}
-		<i class="el-icon-arrow-right"></i>
+		<i class="el-icon-arrow-right flex-center"></i>
 	</el-menu-item>
 
 	<el-submenu v-else :index="`${item.path}`">
@@ -21,7 +21,7 @@
 
 			<el-menu-item v-else :index="`${child.path}`" @click="jumpRouterView(child)">
 				{{ child.meta.title }}
-				<i class="el-icon-arrow-right"></i>
+				<i class="el-icon-arrow-right flex-center"></i>
 			</el-menu-item>
 		</template>
 	</el-submenu>
