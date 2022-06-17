@@ -26,8 +26,9 @@ export default {
 	data() {
 		return {}
 	},
+	// 计算属性
 	computed: {
-		// 获取系统配置信息
+		// 获取系统配置
 		getSystemConfig() {
 			return this.$store.state.systemConfig.systemConfig
 		},

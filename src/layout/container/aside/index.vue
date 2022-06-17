@@ -3,44 +3,65 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:16:31
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 18:54:09
+ * @LastEditTime: 2022-06-17 15:53:02
 -->
 <template>
 	<el-aside class="layout-aside">
 		<el-scrollbar class="flex-auto">
-			<el-menu :default-active="defaultActive" class="menu-style-one">
-				<AsideItem v-for="route in menuList" :key="route.path" :item="route" />
+			<el-menu router :default-active="activeMenu" class="menu-style-one">
+				<template v-for="val in menuList">
+					<el-submenu
+						:index="val.path"
+						v-if="!val.hidden && val.children && val.children.length > 0"
+						:key="val.path"
+					>
+						<template slot="title">
+							<SvgIcon :name="val.meta.icon" />
+							<span class="title ml15">{{ val.meta.title }}</span>
+						</template>
+						<SubItem :child="val.children" />
+					</el-submenu>
+
+					<template v-else-if="!val.hidden">
+						<el-menu-item :index="val.path" :key="val.path">
+							<template slot="title">
+								<SvgIcon :name="val.meta.icon" />
+								<span class="title ml15">{{ val.meta.title }}</span>
+								<i class="el-icon-arrow-right flex-center"></i>
+							</template>
+						</el-menu-item>
+					</template>
+				</template>
 			</el-menu>
 		</el-scrollbar>
 	</el-aside>
 </template>
 
 <script>
-import AsideItem from '@/layout/container/aside/asideItem.vue' // 菜单列表子级
 export default {
 	name: 'layoutAside',
 	components: {
-		AsideItem,
+		SubItem: () => import('./subItem.vue'), // 菜单列表子级
 	},
 	data() {
-		return {
-			defaultActive: this.$route.path, // el-menu 默认高亮
-		}
+		return {}
 	},
 	computed: {
 		menuList() {
 			return this.$router.options.routes[0].children
 		},
-	},
-	watch: {
-		// 监听路由的变化
-		$route: {
-			handler(to) {
-				this.defaultActive = to.path
-			},
-			deep: true,
+		// el-menu 默认高亮
+		activeMenu() {
+			const route = this.$route
+			const { meta, path } = route
+			// 如果设置了path，侧边栏将突出显示您设置的路径
+			if (meta.activeMenu) {
+				return meta.activeMenu
+			}
+			return path
 		},
 	},
+	watch: {},
 	created() {},
 	methods: {},
 }

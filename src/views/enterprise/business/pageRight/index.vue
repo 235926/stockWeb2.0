@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 00:49:18
+ * @LastEditTime: 2022-06-17 10:10:00
 -->
 <template>
 	<div class="right">
@@ -99,7 +99,6 @@ export default {
 			changeVisible: false,
 			cancelVisible: false,
 			editVisible: false,
-			tableDataWidth: 0, // table 容器宽度
 		}
 	},
 	// 计算属性
@@ -109,12 +108,7 @@ export default {
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {},
 	// 组件挂载后，此方法执行后，页面显示
-	mounted() {
-		this.$nextTick(function () {
-			this.tableDataWidth = this.$refs.tableData.bodyWidth
-		})
-		console.log(this.$refs.tableData.bodyWidth)
-	},
+	mounted() {},
 	// 组件方法
 	methods: {
 		/**

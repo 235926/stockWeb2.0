@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 14:03:11
+ * @LastEditTime: 2022-06-17 15:41:10
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -31,6 +31,7 @@ export const routes = [
 			{
 				path: '/enterprise',
 				name: 'enterprise',
+				hidden: false,
 				component: () => import('@/layout/openWay/routerView.vue'),
 				meta: {
 					title: '企业信息管理',
@@ -45,6 +46,18 @@ export const routes = [
 						meta: {
 							title: '业务办理',
 						},
+						hidden: false,
+					},
+					{
+						path: '/enterprise/business/details',
+						name: 'enterpriseBusinessDetails',
+						component: () =>
+							import('@/views/enterprise/business/pageRight/details/index.vue'),
+						meta: {
+							title: '内容预览',
+							activeMenu: '/enterprise/business',
+						},
+						hidden: true,
 					},
 					{
 						path: '/enterprise/task-list',
@@ -53,6 +66,7 @@ export const routes = [
 						meta: {
 							title: '任务列表',
 						},
+						hidden: false,
 					},
 					{
 						path: '/enterprise/verification',
@@ -61,6 +75,7 @@ export const routes = [
 						meta: {
 							title: '信息核查',
 						},
+						hidden: false,
 					},
 				],
 			},
@@ -72,6 +87,7 @@ export const routes = [
 					title: '党组织信息管理',
 					icon: 'tree',
 				},
+				hidden: false,
 			},
 			{
 				path: '/parameter',
@@ -81,6 +97,7 @@ export const routes = [
 					title: '台账查询报表',
 					icon: 'money',
 				},
+				hidden: false,
 				redirect: '/parameter/custom',
 				children: [
 					{
@@ -90,6 +107,7 @@ export const routes = [
 						meta: {
 							title: '自定义报表',
 						},
+						hidden: false,
 					},
 					{
 						path: '/parameter/organization',
@@ -98,6 +116,7 @@ export const routes = [
 						meta: {
 							title: '党组织台账查询',
 						},
+						hidden: false,
 					},
 					{
 						path: '/parameter/executives',
@@ -106,6 +125,7 @@ export const routes = [
 						meta: {
 							title: '董监高台账查询',
 						},
+						hidden: false,
 					},
 					{
 						path: '/parameter/state-owned',
@@ -114,6 +134,7 @@ export const routes = [
 						meta: {
 							title: '国资监管企业报表',
 						},
+						hidden: false,
 					},
 					{
 						path: '/parameter/state-owned-not',
@@ -122,6 +143,7 @@ export const routes = [
 						meta: {
 							title: '非国资监管企业报表',
 						},
+						hidden: false,
 					},
 				],
 			},
@@ -133,6 +155,7 @@ export const routes = [
 					title: '系统设置',
 					icon: 'settings',
 				},
+				hidden: false,
 				redirect: '/system/basic-info',
 				children: [
 					{
@@ -142,6 +165,7 @@ export const routes = [
 						meta: {
 							title: '基础信息维护',
 						},
+						hidden: false,
 					},
 					{
 						path: '/system/permissions',
@@ -150,6 +174,7 @@ export const routes = [
 						meta: {
 							title: '企业信息更新权限',
 						},
+						hidden: false,
 					},
 					{
 						path: '/system/change-type',
@@ -158,6 +183,7 @@ export const routes = [
 						meta: {
 							title: '变更类型维护',
 						},
+						hidden: false,
 					},
 				],
 			},
@@ -169,6 +195,7 @@ export const routes = [
 					title: 'icons',
 					icon: 'icons',
 				},
+				hidden: false,
 			},
 			{
 				path: '/test',
@@ -178,6 +205,58 @@ export const routes = [
 					title: '测试页面',
 					icon: 'test',
 				},
+				hidden: false,
+			},
+			{
+				path: '/nested',
+				name: 'nested',
+				component: () => import('@/layout/openWay/routerView.vue'),
+				meta: {
+					title: '嵌套组件',
+					icon: 'nested',
+				},
+				hidden: false,
+				redirect: '/nested/menu1',
+				children: [
+					{
+						path: '/nested/menu1',
+						name: 'nestedMenu1',
+						component: () => import('@/layout/openWay/routerView.vue'),
+						meta: {
+							title: 'menu1',
+						},
+						hidden: false,
+						children: [
+							{
+								path: '/nested/menu1/menu1-1',
+								name: 'menu1-1',
+								component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
+								meta: {
+									title: 'menu1-1',
+								},
+								hidden: true,
+							},
+							{
+								path: '/nested/menu1/menu1-2',
+								name: 'menu1-2',
+								component: () => import('@/views/nested/menu1/menu1-2/index.vue'),
+								meta: {
+									title: 'menu1-2',
+								},
+								hidden: false,
+							},
+						],
+					},
+					{
+						path: '/nested/menu2',
+						name: 'nestedMenu2',
+						component: () => import('@/views/nested/menu2/index.vue'),
+						meta: {
+							title: 'menu2',
+						},
+						hidden: false,
+					},
+				],
 			},
 		],
 	},
