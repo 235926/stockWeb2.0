@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-10 13:05:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 15:48:51
+ * @LastEditTime: 2022-06-18 01:04:29
 -->
 <template>
 	<div class="child-wrap">
@@ -15,7 +15,7 @@
 			>
 				<template slot="title">
 					<SvgIcon :name="val.meta.icon" />
-					<span class="title ml15">{{ val.meta.title }}</span>
+					<span class="title ml10">{{ val.meta.title }}</span>
 				</template>
 				<sub-item :child="val.children" />
 			</el-submenu>
@@ -23,7 +23,7 @@
 			<template v-else-if="!val.hidden">
 				<el-menu-item :index="val.path" :key="val.path">
 					<SvgIcon :name="val.meta.icon" />
-					<span class="title ml15">{{ val.meta.title }}</span>
+					<span class="title ml10">{{ val.meta.title }}</span>
 					<i class="el-icon-arrow-right flex-center"></i>
 				</el-menu-item>
 			</template>

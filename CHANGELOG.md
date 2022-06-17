@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:56:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 14:19:13
+ * @LastEditTime: 2022-06-18 01:03:37
 -->
 # 股权管理系统更新日志
 - 🌟 更新
@@ -15,6 +15,13 @@
 - 🌈 重构
 - ❄️ 删除
 - ⚠️ 警告
+
+## Version: "0.1.8"， Date: "2022.06.18"，Author: "cdl"
+
+- 🌈 重构 ElementUI 引入方式改为按需引入，以减少项目大小
+- 🎯 优化 Tabs 标签页 选项卡样式样式调整
+
+
 
 ## Version: "0.1.7"， Date: "2022.06.17"，Author: "cdl"
 

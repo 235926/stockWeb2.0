@@ -4,6 +4,7 @@
         "$--color-text-primary": "#383838",
         "$--border-color-base": "#B2B2B2",
         "$--border-color-light": "#E2E2E2",
+        "$--border-color-lighter": "#E2E2E2",
         "$--background-color-base": "#F5F5F5",
         "$--color-text-regular": "#606266"
     },

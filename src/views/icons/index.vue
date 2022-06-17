@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 20:40:28
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 20:13:05
+ * @LastEditTime: 2022-06-18 00:39:12
 -->
 <template>
 	<div class="icons-container">
@@ -68,7 +68,6 @@ export default {
 
 <style lang="scss" scoped>
 .icons-container {
-	margin: 10px 20px 0;
 	overflow: hidden;
 
 	.grid {

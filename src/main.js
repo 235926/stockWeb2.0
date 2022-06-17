@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 20:08:58
+ * @LastEditTime: 2022-06-18 01:06:17
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -14,9 +14,8 @@ import router from './router'
 // 页面共享状态 vuex
 import store from './store'
 
-// ElementUI 组件库
-import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
+// ElementUI 组件库 - 按需引入方式
+import element from '@/plugin/element.js'
 import '@/assets/scss/element-variables.scss'
 
 // icons
@@ -36,7 +35,9 @@ import ElementTreeLine from 'element-tree-line'
 import 'element-tree-line/dist/style.css'
 Vue.component(ElementTreeLine.name, ElementTreeLine)
 
-Vue.use(ElementUI, { size: 'small', zIndex: 3000 })
+// Vue.use(ElementUI, { size: 'small', zIndex: 3000 })
+Vue.use(element)
+Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
 Vue.config.productionTip = false
 Vue.prototype.bus = new Vue() // 事件总线
 

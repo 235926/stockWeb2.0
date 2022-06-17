@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 15:41:10
+ * @LastEditTime: 2022-06-18 00:35:14
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -107,7 +107,7 @@ export const routes = [
 						meta: {
 							title: '自定义报表',
 						},
-						hidden: false,
+						hidden: true,
 					},
 					{
 						path: '/parameter/organization',
