@@ -1,18 +1,18 @@
 <!--
- * @Description: 
+ * @Description: 基本信息
  * @Author: cdl
- * @Date: 2022-06-17 12:30:59
+ * @Date: 2022-06-17 21:19:30
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 12:31:09
+ * @LastEditTime: 2022-06-17 21:19:44
 -->
 <template>
-	<div>123</div>
+	<div>基本信息</div>
 </template>
 
 <script>
 export default {
 	// 组件名称
-	name: '',
+	name: 'basicInfo',
 	// 局部注册的组件
 	components: {},
 	// 组件参数 接收来自父组件的数据

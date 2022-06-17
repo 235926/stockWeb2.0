@@ -7,10 +7,13 @@
 -->
 <template>
 	<el-table
+		ref="table"
 		:data="tableData"
-		border
+		:border="true"
 		:header-cell-style="{ 'text-align': 'center' }"
 		:cell-style="{ 'text-align': 'center' }"
+		@selection-change="handleSelectionChange"
+		@row-click="handleRowClick"
 	>
 		<el-table-column type="selection" width="55" />
 		<el-table-column label="序号" type="index" width="55" />
@@ -60,7 +63,27 @@ export default {
 	},
 	computed: {},
 	created() {},
-	methods: {},
+	methods: {
+
+		/**
+		 * @description: 选中的数据
+		 * @return {*}
+		 * @author: cdl
+		 */
+		handleSelectionChange(val) {
+			// console.log(val)
+		},
+
+		/**
+		 * @description: table 当某一行被点击时会触发该事件
+		 * @param {*} row
+		 * @return {*}
+		 * @author: cdl
+		 */
+		handleSelectionChange(row) {
+			this.router.push('/enterprise/business/details')
+		},
+	},
 }
 </script>
 

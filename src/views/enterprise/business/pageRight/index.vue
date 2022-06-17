@@ -15,10 +15,12 @@
 		</div>
 		<el-scrollbar class="horizontal">
 			<el-table
-				ref="tableData"
+				ref="table"
+				class="cursor"
 				:data="tableData"
-				border
+				:border="true"
 				@selection-change="handleSelectionChange"
+				@row-click="handleRowClick"
 			>
 				<el-table-column type="selection" label="选择" align="center" width="55" />
 				<el-table-column type="index" label="序号" align="center" width="65" />
@@ -141,6 +143,16 @@ export default {
 		 */
 		handleSelectionChange(val) {
 			// console.log(val)
+		},
+
+		/**
+		 * @description: table 当某一行被点击时会触发该事件
+		 * @param {*} row
+		 * @return {*}
+		 * @author: cdl
+		 */
+		handleRowClick(row) {
+			this.$router.push('/enterprise/business/details')
 		},
 	},
 }

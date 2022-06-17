@@ -6,7 +6,21 @@
  * @LastEditTime: 2022-06-17 10:28:55
 -->
 <template>
-	<div>企业信息内容 - 详情</div>
+	<div class="page-container">
+		<PageHeader />
+
+		<!-- 内容部分 -->
+		<div class="content pt20 pb20">
+			<el-tabs v-model="activeName" type="card" class="tabs-style-one">
+				<el-tab-pane label="基本信息" name="basicInfo">
+					<BasicInfo />
+				</el-tab-pane>
+				<el-tab-pane label="Config" name="second">Config</el-tab-pane>
+				<el-tab-pane label="Role" name="third">Role</el-tab-pane>
+				<el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+			</el-tabs>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -14,12 +28,17 @@ export default {
 	// 组件名称
 	name: 'enterpriseBusinessDetails',
 	// 局部注册的组件
-	components: {},
+	components: {
+		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
+		BasicInfo: () => import('./basic-info.vue'), // 基本信息
+	},
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 组件状态值
 	data() {
-		return {}
+		return {
+			activeName: 'basicInfo', // tabs 默认展示
+		}
 	},
 	// 计算属性
 	computed: {},

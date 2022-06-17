@@ -197,9 +197,18 @@
         }
     }
 
+    // 修改间距，让多选框居中
     &.el-table--border .el-table__cell:first-child .cell {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding: 0;
+    }
+
+    // 鼠标样式
+    &.cursor {
+        .el-table__body {
+            td {
+                cursor: pointer;
+            }
+        }
     }
 }
 
@@ -434,8 +443,38 @@
 
 /* Tabs 标签页
 ------------------------------- */
-.el-tabs--border-card,
-.el-tabs--border-card>.el-tabs__header,
-.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
-    border-color: var(--rh-border-color-light);
+.el-tabs {
+    &.el-tabs--card.el-tabs--top.tabs-style-one {
+        .el-tabs__nav-wrap {
+            padding: 0 50px;
+        }
+
+        .el-tabs__nav {
+            border: none;
+        }
+
+        .el-tabs__item {
+            min-width: 135px;
+            text-align: center;
+            border: 1px solid var(--rh-color-white);
+            border-bottom-color: var(--rh-border-color-light);
+        }
+
+        .el-tabs__item.is-active{
+            border: 1px solid var(--rh-border-color-light);
+            border-bottom-color: var(--rh-color-white);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+    }
 }
+
+/* Breadcrumb 面包屑
+------------------------------- */
+.el-breadcrumb {
+    display: flex;
+    align-items: center;
+}
+
+
+
