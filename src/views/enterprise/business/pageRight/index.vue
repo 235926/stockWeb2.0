@@ -152,7 +152,12 @@ export default {
 		 * @author: cdl
 		 */
 		handleRowClick(row) {
-			this.$router.push('/enterprise/business/details')
+			this.$router.push({
+				path: '/enterprise/business/details',
+				query: {
+					item: JSON.stringify(row),
+				},
+			})
 		},
 	},
 }

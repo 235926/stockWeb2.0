@@ -3,11 +3,11 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:16:31
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 15:53:02
+ * @LastEditTime: 2022-06-18 20:24:17
 -->
 <template>
 	<el-aside class="layout-aside">
-		<el-scrollbar class="flex-auto">
+		<el-scrollbar>
 			<el-menu router :default-active="activeMenu" class="menu-style-one">
 				<template v-for="val in menuList">
 					<el-submenu

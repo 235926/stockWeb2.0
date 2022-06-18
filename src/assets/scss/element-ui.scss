@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 16:39:46
+ * @LastEditTime: 2022-06-18 19:53:20
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -151,13 +151,11 @@
 		}
 	}
 }
-
-// 这个只有单独写出来，元素滚动条才不会生效 src/components/SystemConfig/drawer.vue 中
+// 这个只有单独写出来，原生滚动条才会隐藏 src/components/SystemConfig/drawer.vue 中
 .el-scrollbar__wrap {
 	overflow: auto !important;
 	overflow-x: hidden !important;
-	max-height: 100%;
-	/*防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度）*/
+	max-height: 100%; // 防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度
 }
 
 /* Button 按钮

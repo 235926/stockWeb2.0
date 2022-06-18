@@ -3,13 +3,13 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:20:29
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 15:00:15
+ * @LastEditTime: 2022-06-18 20:28:33
 -->
 <template>
 	<el-container class="layout-container is-vertical">
 		<Header />
 
-		<el-container class="layout-main-height-60">
+		<el-container class="layout-main-height-65">
 			<Aside />
 
 			<Main />
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout-main-height-60 {
-	height: calc(100vh - 60px);
+.layout-main-height-65 {
+	height: calc(100vh - 65px);
 }
 </style>

@@ -1,3 +1,16 @@
+/*
+ * @Description: css 系统变量
+ * @Author: cdl
+ * @Date: 2022-06-15 18:11:26
+ * @LastEditors: cdl
+ * @LastEditTime: 2022-06-18 19:42:02
+ */
+
+/* 字体
+------------------------------- */
+$--font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+	'微软雅黑', Arial, sans-serif;
+
 /* 主题色
 ------------------------------- */
 $--color-primary: #c01330; // 主题色
@@ -34,6 +47,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 /* 赋值给:root
 ------------------------------- */
 :root {
+	/* 字体
+	------------------------------- */
+	--rh-font-family: #{$--font-family};
+
 	/* 主题色
 	------------------------------- */
 	--rh-color-primary: #{$--color-primary};

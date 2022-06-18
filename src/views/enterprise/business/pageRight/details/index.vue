@@ -58,7 +58,9 @@ export default {
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {},
+	created() {
+		console.log(JSON.parse(this.$route.query.item))
+	},
 	// 组件挂载后，此方法执行后，页面显示
 	mounted() {},
 	// 组件方法

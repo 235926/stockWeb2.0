@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-10 22:23:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 16:08:42
+ * @LastEditTime: 2022-06-18 20:04:54
 -->
 <template>
 	<transition :name="getSystemConfig.animation" mode="out-in">
