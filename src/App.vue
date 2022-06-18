@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 14:40:08
+ * @LastEditTime: 2022-06-19 01:27:54
 -->
 <template>
 	<div id="app">
@@ -45,8 +45,8 @@ export default {
 					document.title = `${webTitle} - ${globalTitle}` || globalTitle
 				})
 			},
-			deep: true,
-			immediate: true,
+			deep: true, // 深度监听
+			immediate: true, // 不管数据是否发生变化都监听一次
 		},
 	},
 	created() {

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 19:53:20
+ * @LastEditTime: 2022-06-19 01:57:21
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -519,46 +519,34 @@
 	&.form-style-one {
 		display: flex;
 		flex-wrap: wrap;
+		border-top: 1px solid var(--rh-border-color-light);
+		border-left: 1px solid var(--rh-border-color-light);
 
 		.el-form-item {
-			width: 50%;
+			width: 100%;
 			margin-bottom: 0;
-
-			// 除了第一个和第二个 label 和 input 去除上边框，解决边框重叠的问题
-			&:nth-child(n + 3) {
-				.el-form-item__label,
-				.el-input__inner {
-					border-top: none;
-				}
-			}
-
-			// 双数的去掉左侧边框
-			&:nth-child(even) {
-				.el-form-item__label {
-					border-left: none;
-				}
-			}
+			display: flex;
 		}
 
 		// 给 label 增加边框
 		.el-form-item__label {
-			height: 40px;
-			line-height: 38px;
-			border: 1px solid var(--rh-border-color-light);
-			border-right: none;
+			border-right: 1px solid var(--rh-border-color-light);
+			border-bottom: 1px solid var(--rh-border-color-light);
 		}
 
-		// input 去除边框圆角
-		.el-input__inner {
-			height: 40px;
-			line-height: 40px;
+		.el-form-item__content {
+			flex: 1;
+			margin-left: 0 !important;
+		}
+
+		// input textarea 去除边框圆角
+		.el-input__inner,
+		.el-textarea__inner {
+			height: auto;
+			border: none;
 			border-radius: 0;
-		}
-
-		// 禁用样式修改
-		.el-input.is-disabled .el-input__inner {
-			background-color: var(--rh-color-white);
-			cursor: auto;
+			border-right: 1px solid var(--rh-border-color-light);
+			border-bottom: 1px solid var(--rh-border-color-light);
 		}
 	}
 }
