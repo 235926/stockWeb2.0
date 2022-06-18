@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 10:28:55
+ * @LastEditTime: 2022-06-18 12:16:59
 -->
 <template>
 	<div class="page-container">
@@ -15,9 +15,18 @@
 				<el-tab-pane label="基本信息" name="basicInfo">
 					<BasicInfo />
 				</el-tab-pane>
-				<el-tab-pane label="Config" name="second">Config</el-tab-pane>
-				<el-tab-pane label="Role" name="third">Role</el-tab-pane>
-				<el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+				<el-tab-pane label="主要人员" name="mainStaff">
+					<MainStaff />
+				</el-tab-pane>
+				<el-tab-pane label="投资企业" name="investment">
+					<Investment />
+				</el-tab-pane>
+				<el-tab-pane label="企业图谱" name="enterpriseMap">
+					<EnterpriseMap />
+				</el-tab-pane>
+				<el-tab-pane label="变更记录" name="changeRecord">
+					<ChangeRecord />
+				</el-tab-pane>
 			</el-tabs>
 		</div>
 	</div>
@@ -31,6 +40,10 @@ export default {
 	components: {
 		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
 		BasicInfo: () => import('./basic-info.vue'), // 基本信息
+		MainStaff: () => import('./main-staff.vue'), // 主要人员
+		Investment: () => import('./investment.vue'), // 投资企业
+		EnterpriseMap: () => import('./enterprise-map.vue'), // 企业图谱
+		ChangeRecord: () => import('./change-record.vue'), // 变更记录
 	},
 	// 组件参数 接收来自父组件的数据
 	props: {},

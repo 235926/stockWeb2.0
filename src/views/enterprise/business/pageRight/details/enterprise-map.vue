@@ -1,24 +1,20 @@
 <!--
- * @Description: 基本信息
+ * @Description: 企业图谱
  * @Author: cdl
- * @Date: 2022-06-17 21:19:30
+ * @Date: 2022-06-18 12:09:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 16:46:55
+ * @LastEditTime: 2022-06-18 12:12:44
 -->
 <template>
-	<div class="basic-info">
-		<ItemList />
-	</div>
+	<div>企业图谱</div>
 </template>
 
 <script>
 export default {
 	// 组件名称
-	name: 'basicInfo',
+	name: 'enterpriseMap',
 	// 局部注册的组件
-	components: {
-		ItemList: () => import('./component/item-list.vue'), // 基本信息列表
-	},
+	components: {},
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 组件状态值

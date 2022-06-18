@@ -3,18 +3,16 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:20:29
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 15:59:11
+ * @LastEditTime: 2022-06-18 15:00:15
 -->
 <template>
-	<el-container class="layout-container flex-column">
+	<el-container class="layout-container is-vertical">
 		<Header />
 
 		<el-container class="layout-main-height-60">
 			<Aside />
 
-			<div class="flex-column">
-				<Main />
-			</div>
+			<Main />
 		</el-container>
 	</el-container>
 </template>

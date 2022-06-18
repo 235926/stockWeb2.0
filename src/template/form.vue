@@ -1,24 +1,20 @@
 <!--
- * @Description: 基本信息
+ * @Description: form 模板
  * @Author: cdl
- * @Date: 2022-06-17 21:19:30
+ * @Date: 2022-06-18 15:18:15
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 16:46:55
+ * @LastEditTime: 2022-06-18 15:18:19
 -->
 <template>
-	<div class="basic-info">
-		<ItemList />
-	</div>
+	<div></div>
 </template>
 
 <script>
 export default {
 	// 组件名称
-	name: 'basicInfo',
+	name: '',
 	// 局部注册的组件
-	components: {
-		ItemList: () => import('./component/item-list.vue'), // 基本信息列表
-	},
+	components: {},
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 组件状态值

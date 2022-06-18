@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-09 16:55:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 16:05:31
+ * @LastEditTime: 2022-06-18 14:37:40
  */
 const useSystemConfig = {
 	namespaced: true,
@@ -18,7 +18,7 @@ const useSystemConfig = {
 			/**
 			 * @description 网站主标题（菜单导航、浏览器当前网页标题）
 			 */
-			globalTitle: '企业股权管理信息系统',
+			globalTitle: '管理系统',
 
 			/**
 			 * @description 主页面切换动画

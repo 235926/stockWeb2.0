@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-13 16:44:45
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 15:20:18
+ * @LastEditTime: 2022-06-18 15:13:30
  */
 html,
 body,
@@ -17,6 +17,24 @@ body,
 	font-size: 14px;
 	overflow: hidden;
 	position: relative;
+}
+
+/* 颜色
+ ------------------------------- */
+.color-primary {
+	color: var(--rh-color-primary);
+}
+.color-success {
+	color: var(--rh-color-success);
+}
+.color-warning {
+	color: var(--rh-color-warning);
+}
+.color-danger {
+	color: var(--rh-color-danger);
+}
+.color-info {
+	color: var(--rh-color-info);
 }
 
 /* 鼠标样式
@@ -75,37 +93,41 @@ body,
 	overflow: hidden;
 }
 
-.flex-column-center {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	@extend .flex-auto;
-}
-
-.flex-column {
-	@extend .flex;
-	flex-direction: column;
-	width: 100%;
-	overflow: hidden;
-}
-
+// 上下左右居中
 .flex-center {
 	@extend .flex;
 	justify-content: center;
 	align-items: center;
 }
 
+// 两端对齐并垂直居中 - 内联模块
 .flex-center-inline {
 	@extend .flex-inline;
 	justify-content: center;
 	align-items: center;
 }
 
+// 两端对齐并垂直居中
 .flex-between-center {
 	@extend .flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+// 列布局
+.flex-column {
+	@extend .flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+// 列布局 - 上下左右居中
+.flex-column-center {
+	@extend .flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@extend .flex-auto;
 }
 
 .flex-margin {

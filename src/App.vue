@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 18:21:20
+ * @LastEditTime: 2022-06-18 14:40:08
 -->
 <template>
 	<div id="app">
@@ -18,6 +18,7 @@
 <script>
 import { login } from '@/api/index.js' // api
 import { Local } from '@/utils/storage.js' // 浏览器存储
+import { useTitle } from '@/utils/tools.js' // 工具方法
 export default {
 	name: 'app',
 	components: {
@@ -31,6 +32,21 @@ export default {
 		// 获取系统配置
 		getSystemConfig() {
 			return this.$store.state.systemConfig.systemConfig
+		},
+	},
+	// 侦听器
+	watch: {
+		// 监听路由的变化
+		$route: {
+			handler(to) {
+				this.$nextTick(() => {
+					let webTitle = to.meta.title
+					let { globalTitle } = this.$store.state.systemConfig.systemConfig
+					document.title = `${webTitle} - ${globalTitle}` || globalTitle
+				})
+			},
+			deep: true,
+			immediate: true,
 		},
 	},
 	created() {
