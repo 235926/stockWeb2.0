@@ -17,7 +17,7 @@ export default {
 	name: 'basicInfo',
 	// 局部注册的组件
 	components: {
-		ItemList: () => import('./component/item-list.vue'), // 基本信息列表
+		ItemList: () => import('../component/item-list.vue'), // 基本信息列表
 	},
 	// 组件参数 接收来自父组件的数据
 	props: {},

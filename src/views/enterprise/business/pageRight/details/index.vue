@@ -39,11 +39,11 @@ export default {
 	// 局部注册的组件
 	components: {
 		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
-		BasicInfo: () => import('./basic-info.vue'), // 基本信息
-		MainStaff: () => import('./main-staff.vue'), // 主要人员
-		Investment: () => import('./investment.vue'), // 投资企业
-		EnterpriseMap: () => import('./enterprise-map.vue'), // 企业图谱
-		ChangeRecord: () => import('./change-record.vue'), // 变更记录
+		BasicInfo: () => import('./basic-info/index.vue'), // 基本信息
+		MainStaff: () => import('./main-staff/index.vue'), // 主要人员
+		Investment: () => import('./investment/index.vue'), // 投资企业
+		EnterpriseMap: () => import('./enterprise-map/index.vue'), // 企业图谱
+		ChangeRecord: () => import('./change-record/index.vue'), // 变更记录
 	},
 	// 组件参数 接收来自父组件的数据
 	props: {},

@@ -77,6 +77,7 @@
 		.el-submenu__icon-arrow {
 			font-size: var(--rh-aside-font-size);
 			transform: rotate(270deg);
+			color: var(--rh-text-color-primary);
 		}
 
 		// 自定义图标样式
@@ -90,6 +91,7 @@
 			width: 16px;
 			height: 16px;
 			border-radius: 50%;
+			color: var(--rh-text-color-primary);
 		}
 
 		// 选中样式
@@ -98,6 +100,7 @@
 			transition: none;
 
 			.el-icon-arrow-right {
+				color: var(--rh-color-primary);
 				border-color: var(--rh-color-primary);
 			}
 		}
@@ -488,6 +491,32 @@
 /* Form 表单
 ------------------------------- */
 .el-form {
+	.el-form-item {
+		.el-form-item__label {
+			font-size: 14px;
+			font-weight: 400;
+			color: var(--rh-text-color-primary);
+		}
+
+		.el-input__inner {
+			font-size: 14px;
+			font-weight: 400;
+			color: var(--rh-text-color-primary);
+		}
+
+		.el-form-item__content {
+			.el-input,
+			.el-select,
+			.el-input-number {
+				flex: 1;
+			}
+		}
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
 	// form 样式一
 	&.form-style-one {
 		display: flex;
@@ -519,9 +548,6 @@
 			line-height: 38px;
 			border: 1px solid var(--rh-border-color-light);
 			border-right: none;
-			color: var(--rh-text-color-primary);
-			font-weight: 400;
-			font-size: 14px;
 		}
 
 		// input 去除边框圆角
@@ -534,9 +560,6 @@
 		// 禁用样式修改
 		.el-input.is-disabled .el-input__inner {
 			background-color: var(--rh-color-white);
-			color: var(--rh-text-color-primary);
-			font-weight: 400;
-			font-size: 14px;
 			cursor: auto;
 		}
 	}
