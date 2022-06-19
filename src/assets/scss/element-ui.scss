@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 01:57:21
+ * @LastEditTime: 2022-06-19 14:34:43
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -200,7 +200,7 @@
 	}
 
 	// 修改间距，让多选框居中
-	&.el-table--border .el-table__cell:first-child .cell {
+	.el-table-column--selection.el-table__cell .cell {
 		padding: 0;
 	}
 

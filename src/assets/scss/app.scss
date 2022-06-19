@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-13 16:44:45
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 19:41:11
+ * @LastEditTime: 2022-06-19 13:44:30
  */
 html,
 body,
@@ -177,6 +177,16 @@ body,
 		margin-left: #{$i}px !important;
 	}
 
+	.mlr#{$i} {
+		margin-left: #{$i}px !important;
+		margin-right: #{$i}px !important;
+	}
+
+	.mtb#{$i} {
+		margin-top: #{$i}px !important;
+		margin-bottom: #{$i}px !important;
+	}
+
 	.margin#{$i} {
 		margin: #{$i}px !important;
 	}
@@ -195,6 +205,16 @@ body,
 
 	.pl#{$i} {
 		padding-left: #{$i}px !important;
+	}
+
+	.plr#{$i} {
+		padding-left: #{$i}px !important;
+		padding-right: #{$i}px !important;
+	}
+
+	.ptb#{$i} {
+		padding-top: #{$i}px !important;
+		padding-bottom: #{$i}px !important;
 	}
 
 	.padding#{$i} {

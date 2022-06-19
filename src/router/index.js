@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 00:35:14
+ * @LastEditTime: 2022-06-19 12:05:09
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -51,8 +51,7 @@ export const routes = [
 					{
 						path: '/enterprise/business/details',
 						name: 'enterpriseBusinessDetails',
-						component: () =>
-							import('@/views/enterprise/business/pageRight/details/index.vue'),
+						component: () => import('@/views/enterprise/business/pageRight/details/index.vue'),
 						meta: {
 							title: '内容预览',
 							activeMenu: '/enterprise/business',

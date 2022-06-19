@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 12:16:59
+ * @LastEditTime: 2022-06-19 12:12:15
 -->
 <template>
 	<div class="page-container">
@@ -39,11 +39,11 @@ export default {
 	// 局部注册的组件
 	components: {
 		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
-		BasicInfo: () => import('./basic-info/index.vue'), // 基本信息
-		MainStaff: () => import('./main-staff/index.vue'), // 主要人员
-		Investment: () => import('./investment/index.vue'), // 投资企业
-		EnterpriseMap: () => import('./enterprise-map/index.vue'), // 企业图谱
-		ChangeRecord: () => import('./change-record/index.vue'), // 变更记录
+		BasicInfo: () => import('./component/basic-info.vue'), // 基本信息
+		MainStaff: () => import('./component/main-staff.vue'), // 主要人员
+		Investment: () => import('./component/investment.vue'), // 投资企业
+		EnterpriseMap: () => import('./component/enterprise-map.vue'), // 企业图谱
+		ChangeRecord: () => import('./component/change-record.vue'), // 变更记录
 	},
 	// 组件参数 接收来自父组件的数据
 	props: {},
