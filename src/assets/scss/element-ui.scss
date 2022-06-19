@@ -59,10 +59,6 @@
 				// margin-left: 40px;
 				border-bottom: 1px solid var(--rh-border-color-light);
 				background-color: var(--rh-aside-child-bg-color);
-
-				&:last-child {
-					border-bottom: none;
-				}
 			}
 		}
 
@@ -102,12 +98,6 @@
 			.el-icon-arrow-right {
 				color: var(--rh-color-primary);
 				border-color: var(--rh-color-primary);
-			}
-		}
-
-		&:last-child {
-			.el-menu--inline {
-				border-bottom: 1px solid var(--rh-border-color-light);
 			}
 		}
 
@@ -389,28 +379,6 @@
 	}
 }
 
-/* Form 表单
-------------------------------- */
-.el-form {
-	.el-form-item {
-		.el-form-item__label {
-			font-weight: 400;
-			color: var(--rh-text-color-primary);
-		}
-
-		.el-form-item__content {
-			.el-input,
-			.el-select,
-			.el-input-number {
-				flex: 1;
-			}
-		}
-
-		&:last-of-type {
-			margin-bottom: 0;
-		}
-	}
-}
 
 /* Divider 分割线
 ------------------------------- */
@@ -502,14 +470,6 @@
 			color: var(--rh-text-color-primary);
 		}
 
-		.el-form-item__content {
-			.el-input,
-			.el-select,
-			.el-input-number {
-				flex: 1;
-			}
-		}
-
 		&:last-of-type {
 			margin-bottom: 0;
 		}
@@ -519,34 +479,28 @@
 	&.form-style-one {
 		display: flex;
 		flex-wrap: wrap;
-		border-top: 1px solid var(--rh-border-color-light);
-		border-left: 1px solid var(--rh-border-color-light);
+		border-top: 1px solid var(--el-border-color-light);
+		border-left: 1px solid var(--el-border-color-light);
 
 		.el-form-item {
 			width: 100%;
 			margin-bottom: 0;
-			display: flex;
-		}
 
-		// 给 label 增加边框
-		.el-form-item__label {
-			border-right: 1px solid var(--rh-border-color-light);
-			border-bottom: 1px solid var(--rh-border-color-light);
-		}
+			// 给 label 增加边框
+			.el-form-item__label {
+				height: auto;
+				border-right: 1px solid var(--el-border-color-light);
+				border-bottom: 1px solid var(--el-border-color-light);
+			}
 
-		.el-form-item__content {
-			flex: 1;
-			margin-left: 0 !important;
-		}
-
-		// input textarea 去除边框圆角
-		.el-input__inner,
-		.el-textarea__inner {
-			height: auto;
-			border: none;
-			border-radius: 0;
-			border-right: 1px solid var(--rh-border-color-light);
-			border-bottom: 1px solid var(--rh-border-color-light);
+			// input textarea 去除边框圆角，加边框
+			.el-input__wrapper,
+			.el-textarea__inner {
+				box-shadow: none;
+				border-radius: 0;
+				border-right: 1px solid var(--el-border-color-light);
+				border-bottom: 1px solid var(--el-border-color-light);
+			}
 		}
 	}
 }

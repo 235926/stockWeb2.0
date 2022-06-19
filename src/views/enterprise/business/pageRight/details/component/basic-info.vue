@@ -15,9 +15,8 @@
 			<BusinessListHeader :data="data.shareholders[0]" />
 			<div class="mlr20">
 				<el-table :data="data.shareholders[0].tableData" border class="mt20">
-					<el-table-column type="selection" width="55" align="center" />
+					<el-table-column label="序号" type="index" align="center" width="50" />
 
-					<!-- 设置表头数据源，并循环渲染出来，property 对应列内容的字段名 -->
 					<el-table-column
 						v-for="item in data.shareholders[0].tableHeader"
 						:key="item.key"
@@ -27,7 +26,6 @@
 						:align="item.align"
 					>
 						<template slot-scope="scope">
-							<!-- 渲染对应表格里面的内容 -->
 							{{ scope.row[scope.column.property] }}
 						</template>
 					</el-table-column>

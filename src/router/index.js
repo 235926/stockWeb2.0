@@ -31,12 +31,12 @@ export const routes = [
 			{
 				path: '/enterprise',
 				name: 'enterprise',
-				hidden: false,
 				component: () => import('@/layout/openWay/routerView.vue'),
 				meta: {
 					title: '企业信息管理',
 					icon: 'message',
 				},
+				hidden: false,
 				redirect: '/enterprise/business',
 				children: [
 					{

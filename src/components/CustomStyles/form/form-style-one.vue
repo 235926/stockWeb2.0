@@ -39,6 +39,16 @@ export default {
 			type: Array,
 		},
 	},
+	// 侦听器
+	watch: {
+		// 监听 form 表单变化
+		data: {
+			handler(val) {
+				console.log(val)
+			},
+			deep: true, // 深度监听
+		},
+	},
 }
 </script>
 

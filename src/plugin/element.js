@@ -38,10 +38,12 @@ import {
 	Checkbox,
 	Row,
 	Col,
+	Alert
 } from 'element-ui'
 
 const element = {
 	install: function (Vue) {
+		Vue.use(Alert)
 		Vue.use(Row)
 		Vue.use(Col)
 		Vue.use(Checkbox)

@@ -35,9 +35,10 @@ import ElementTreeLine from 'element-tree-line'
 import 'element-tree-line/dist/style.css'
 Vue.component(ElementTreeLine.name, ElementTreeLine)
 
-// Vue.use(ElementUI, { size: 'small', zIndex: 3000 })
+// element ui 设置按需引入
 Vue.use(element)
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
+
 Vue.config.productionTip = false
 Vue.prototype.bus = new Vue() // 事件总线
 
