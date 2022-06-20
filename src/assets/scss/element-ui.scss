@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 14:34:43
+ * @LastEditTime: 2022-06-20 15:21:33
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -379,7 +379,6 @@
 	}
 }
 
-
 /* Divider 分割线
 ------------------------------- */
 .el-divider {
@@ -470,6 +469,19 @@
 			color: var(--rh-text-color-primary);
 		}
 
+		.el-form-item__content {
+			.el-input,
+			.el-select,
+			.el-input-number,
+			.el-radio-group {
+				flex: 1;
+			}
+
+			.el-radio-group {
+				padding: 0 11px;
+			}
+		}
+
 		&:last-of-type {
 			margin-bottom: 0;
 		}
@@ -479,27 +491,59 @@
 	&.form-style-one {
 		display: flex;
 		flex-wrap: wrap;
-		border-top: 1px solid var(--el-border-color-light);
-		border-left: 1px solid var(--el-border-color-light);
+		border-top: 1px solid var(--rh-border-color-light);
+		border-left: 1px solid var(--rh-border-color-light);
 
 		.el-form-item {
 			width: 100%;
 			margin-bottom: 0;
+			display: flex;
 
 			// 给 label 增加边框
 			.el-form-item__label {
 				height: auto;
-				border-right: 1px solid var(--el-border-color-light);
-				border-bottom: 1px solid var(--el-border-color-light);
+				line-height: 16px;
+				padding: 10px 12px;
+				border-right: 1px solid var(--rh-border-color-light);
+				border-bottom: 1px solid var(--rh-border-color-light);
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				justify-content: center;
+				text-align: right;
 			}
 
-			// input textarea 去除边框圆角，加边框
-			.el-input__wrapper,
-			.el-textarea__inner {
-				box-shadow: none;
-				border-radius: 0;
-				border-right: 1px solid var(--el-border-color-light);
-				border-bottom: 1px solid var(--el-border-color-light);
+			.el-form-item__content {
+				margin-left: 0 !important;
+				flex: 1;
+				line-height: 1;
+
+				.el-input {
+					height: 100%;
+				}
+
+				// input textarea 去除边框圆角，加边框
+				.el-input__inner,
+				.el-textarea__inner {
+					height: 100%;
+					border: none;
+					border-radius: 0;
+					border-right: 1px solid var(--rh-border-color-light);
+					border-bottom: 1px solid var(--rh-border-color-light);
+				}
+
+				.el-textarea__inner {
+					padding: 10px 15px;
+					font-size: 14px;
+				}
+			}
+
+			// textarea 样式单独设置
+			&.textarea {
+				.el-form-item__label {
+					justify-content: flex-start;
+					padding-top: 12px;
+				}
 			}
 		}
 	}

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 14:43:25
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 15:13:41
+ * @LastEditTime: 2022-06-20 15:28:27
 -->
 <template>
 	<div class="business-list-header flex-column plr20" :class="{ background: background }">

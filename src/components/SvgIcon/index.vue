@@ -3,10 +3,10 @@
  * @Author: cdl
  * @Date: 2022-06-14 19:42:08
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 23:13:32
+ * @LastEditTime: 2022-06-20 15:32:35
 -->
 <template>
-	<svg class="svg-icon" aria-hidden="true" :class="`font${size}`">
+	<svg class="svg-icon" aria-hidden="true">
 		<use :xlink:href="symbolId" :fill="color" />
 	</svg>
 </template>
@@ -23,11 +23,6 @@ export default {
 		// svg 图标组件名字
 		name: {
 			type: String,
-		},
-		// svg 大小
-		size: {
-			type: Number,
-			default: () => 16,
 		},
 		// svg 颜色
 		color: {
@@ -47,6 +42,7 @@ export default {
 	width: 1em;
 	height: 1em;
 	fill: currentColor;
+	font-size: 16px;
 	vertical-align: -0.15em;
 	overflow: hidden;
 	cursor: pointer;

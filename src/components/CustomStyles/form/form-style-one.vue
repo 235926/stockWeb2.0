@@ -3,14 +3,15 @@
  * @Author: cdl
  * @Date: 2022-06-19 12:07:39
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 14:41:45
+ * @LastEditTime: 2022-06-20 15:22:01
 -->
 <template>
-	<el-form label-width="150px" size="medium" class="form-style-one mlr20">
+	<el-form label-width="150px" class="form-style-one mlr20">
 		<el-form-item
 			:label="item.label"
 			v-for="(item, index) in data"
 			:key="index"
+			:class="{ textarea: item.type === 'textarea' }"
 			:style="{ width: item.type === 'textarea' ? '100%' : '50%' }"
 		>
 			<el-input v-if="item.type === 'input'" v-model="item.name" :readonly="item.readonly"></el-input>
