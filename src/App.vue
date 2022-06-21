@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 01:27:54
+ * @LastEditTime: 2022-06-21 19:11:24
 -->
 <template>
 	<div id="app">
@@ -18,7 +18,6 @@
 <script>
 import { login } from '@/api/index.js' // api
 import { Local } from '@/utils/storage.js' // 浏览器存储
-import { useTitle } from '@/utils/tools.js' // 工具方法
 export default {
 	name: 'app',
 	components: {
