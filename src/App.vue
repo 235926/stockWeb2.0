@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-21 19:11:24
+ * @LastEditTime: 2022-06-22 00:10:15
 -->
 <template>
 	<div id="app">
@@ -50,7 +50,7 @@ export default {
 	},
 	created() {
 		// 登录接口
-		// this.onLogin()
+		this.onLogin()
 	},
 	mounted() {
 		this.getLayoutSystemConfig()
@@ -83,11 +83,7 @@ export default {
 		 * @author: cdl
 		 */
 		onLogin() {
-			let params = {
-				loginName: 'admin_exexm',
-				password: '123Qwe',
-			}
-			login(params).then((res) => {
+			login().then((res) => {
 				Local.set('token', res.USER_TOKEN)
 			})
 		},

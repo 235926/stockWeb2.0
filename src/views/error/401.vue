@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-21 15:06:35
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-21 15:06:39
+ * @LastEditTime: 2022-06-22 00:40:32
 -->
 <template>
 	<div>401</div>
@@ -12,7 +12,7 @@
 <script>
 export default {
 	// 组件名称
-	name: '401',
+	name: 'noPower',
 	// 局部注册的组件
 	components: {},
 	// 组件参数 接收来自父组件的数据

@@ -3,52 +3,39 @@
  * @Author: cdl
  * @Date: 2022-06-15 10:29:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 13:42:37
+ * @LastEditTime: 2022-06-22 00:31:03
 -->
 <template>
-	<div class="search mb20">
-		<el-input v-model="filterText" placeholder="请输入关键词" />
-		<el-divider direction="vertical" />
-		<span class="btn">搜索</span>
-	</div>
+	<div>
+		<div class="search mb20">
+			<el-input v-model="filterText" placeholder="请输入关键词" />
+			<el-divider direction="vertical" />
+			<span class="btn">搜索</span>
+		</div>
 
-	<el-tree
-		ref="tree"
-		:data="data"
-		:props="defaultProps"
-		:indent="30"
-		:filter-node-method="filterNode"
-	>
-		<template v-slot:default="{ node }">
-			<element-tree-line
-				class="custom-tree-node"
-				:node="node"
-				:indent="30"
-				:showLabelLine="false"
-			>
-				<template v-slot:node-label>
-					<SvgIcon
-						v-if="node.expanded !== true && node.isLeaf === false"
-						name="folder"
-						class="folder"
-					/>
-					<SvgIcon
-						v-if="node.expanded === true && node.isLeaf === false"
-						name="folder-open"
-						class="folder-open"
-					/>
-					<el-tooltip :content="node.label" :disabled="isShowTooltip" placement="right">
-						<span
-							class="label"
-							@mouseenter="onMouseenter($event)"
-							@mouseleave="isShowTooltip = false"
-							>{{ node.label }}</span
-						>
-					</el-tooltip>
-				</template>
-			</element-tree-line>
-		</template>
-	</el-tree>
+		<el-tree ref="tree" :data="data" :props="defaultProps" :indent="30" :filter-node-method="filterNode">
+			<template v-slot:default="{ node }">
+				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
+					<template v-slot:node-label>
+						<SvgIcon v-if="node.expanded !== true && node.isLeaf === false" name="folder" class="folder" />
+						<SvgIcon
+							v-if="node.expanded === true && node.isLeaf === false"
+							name="folder-open"
+							class="folder-open"
+						/>
+						<el-tooltip :content="node.label" :disabled="isShowTooltip" placement="right">
+							<span
+								class="label"
+								@mouseenter="onMouseenter($event)"
+								@mouseleave="isShowTooltip = false"
+								>{{ node.label }}</span
+							>
+						</el-tooltip>
+					</template>
+				</element-tree-line>
+			</template>
+		</el-tree>
+	</div>
 </template>
 
 <script>

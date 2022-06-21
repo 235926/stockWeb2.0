@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-21 15:06:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-21 15:06:24
+ * @LastEditTime: 2022-06-22 00:40:26
 -->
 <template>
 	<div>404</div>
@@ -12,7 +12,7 @@
 <script>
 export default {
 	// 组件名称
-	name: '404',
+	name: 'notFound',
 	// 局部注册的组件
 	components: {},
 	// 组件参数 接收来自父组件的数据
