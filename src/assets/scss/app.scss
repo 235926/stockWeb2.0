@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-13 16:44:45
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-20 10:11:10
+ * @LastEditTime: 2022-06-23 11:09:54
  */
 html,
 body,
@@ -40,6 +40,15 @@ body,
 // 去除边框
 .border-none {
 	border: none !important;
+}
+
+/* 文字超出...
+------------------------------- */
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
 }
 
 /* 鼠标样式

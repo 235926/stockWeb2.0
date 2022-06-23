@@ -3,13 +3,14 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:02:56
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 00:59:12
+ * @LastEditTime: 2022-06-23 11:57:44
 -->
 
 <template>
 	<el-dialog
 		:visible.sync="visible"
 		:width="width + 'px'"
+		:close-on-click-modal="false"
 		:destroy-on-close="true"
 		:before-close="onCancel"
 	>
@@ -17,15 +18,16 @@
 
 		<el-scrollbar>
 			<el-table
-				:data="tableData"
-				border
+				ref="tableRef"
+				:data="fieldData"
+				:border="true"
 				:header-cell-style="{ 'text-align': 'center' }"
 				:cell-style="{ 'text-align': 'center' }"
 				@selection-change="handleSelectionChange"
 			>
 				<el-table-column type="selection" width="55" />
 				<el-table-column label="序号" type="index" width="55" />
-				<el-table-column prop="name" label="可更新字段" />
+				<el-table-column prop="CMPY_FIELD_NAME" label="可更新字段" />
 			</el-table>
 		</el-scrollbar>
 
@@ -37,6 +39,7 @@
 </template>
 
 <script>
+import { getChangeTypeField } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'partyInfoRightField',
@@ -59,8 +62,9 @@ export default {
 			type: Number,
 			default: 677,
 		},
-		height: {
-			default: '',
+		// 父组件点击传递过来的值
+		scope: {
+			type: Object,
 		},
 	},
 	// 局部注册的组件
@@ -68,12 +72,7 @@ export default {
 	// 组件状态值
 	data() {
 		return {
-			tableData: [
-				{ name: '公司名称' },
-				{ name: '经营范围' },
-				{ name: '法定代表人' },
-				{ name: '董监事变更' },
-			],
+			fieldData: [], // 可更新字段
 			selection: [], // 选择的内容
 		}
 	},
@@ -83,6 +82,32 @@ export default {
 	watch: {},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 获取可更新字段
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onGetChangeTypeField() {
+			this.loading = true
+			getChangeTypeField().then((res) => {
+				this.fieldData = res.data
+
+				// 设置默认选中
+				let EDIT_FIELD_NAME = this.scope.EDIT_FIELD_NAME.split(',')
+				EDIT_FIELD_NAME.forEach((item) => {
+					res.data.forEach((val) => {
+						if (`'${val.CMPY_FIELD_CODE}'` == item) {
+							this.$nextTick(() => {
+								this.$refs.tableRef.toggleRowSelection(val, true)
+							})
+						}
+					})
+				})
+
+				this.loading = false
+			})
+		},
+
 		/**
 		 * @description: 选中内容
 		 * @param {*} val
@@ -108,6 +133,15 @@ export default {
 		 * @author: cdl
 		 */
 		onSubmit() {
+			let CMPY_FIELD_CODE = [] // id
+			let CMPY_FIELD_NAME = [] // name
+			this.selection.forEach((item) => {
+				CMPY_FIELD_CODE.push(item.CMPY_FIELD_CODE)
+				CMPY_FIELD_NAME.push(item.CMPY_FIELD_NAME)
+			})
+			this.scope.EDIT_FIELD_NAME = CMPY_FIELD_CODE.join()
+			this.scope.CMPY_FIELD_NAME = CMPY_FIELD_NAME.join()
+			this.$emit('update:scope', this.scope)
 			this.onCancel()
 		},
 	},

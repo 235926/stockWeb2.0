@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 00:04:49
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 00:36:04
+ * @LastEditTime: 2022-06-23 11:01:01
  */
 import {
 	Button,
@@ -38,7 +38,9 @@ import {
 	Checkbox,
 	Row,
 	Col,
-	Alert
+	Alert,
+	Loading,
+	Message,
 } from 'element-ui'
 
 const element = {
@@ -76,6 +78,11 @@ const element = {
 		Vue.use(BreadcrumbItem)
 		Vue.use(Option)
 		Vue.use(OptionGroup)
+
+		Vue.use(Loading.directive)
+
+		Vue.prototype.$loading = Loading.service
+		Vue.prototype.$message = Message
 	},
 }
 

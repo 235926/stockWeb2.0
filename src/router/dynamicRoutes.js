@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-21 15:09:21
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-22 02:24:24
+ * @LastEditTime: 2022-06-23 10:51:14
  */
 export const dynamicRoutes = [
 	{
@@ -11,7 +11,8 @@ export const dynamicRoutes = [
 		name: '/',
 		component: 'layout/index',
 		meta: {
-			title: '布局页面',
+			title: '首页',
+			icon: 'home_fill',
 		},
 		redirect: '/enterprise',
 		children: [],

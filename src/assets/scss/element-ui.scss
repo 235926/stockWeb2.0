@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-20 15:21:33
+ * @LastEditTime: 2022-06-23 14:43:34
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -145,7 +145,6 @@
 .el-scrollbar__wrap {
 	overflow: auto !important;
 	overflow-x: hidden !important;
-	max-height: 100%; // 防止页面切换时，滚动条高度不变的问题（滚动条高度非滚动条滚动高度
 }
 
 /* Button 按钮
@@ -179,6 +178,17 @@
 			padding: 0;
 			height: 50px;
 		}
+
+		// 自定义 selection 模式标题，需要设置 el-table-column 的为 class-name="custom-label"
+		.custom-label {
+			.el-checkbox {
+				display: none;
+			}
+
+			> .cell:before {
+				content: '选择';
+			}
+		}
 	}
 
 	.el-table__body {
@@ -195,7 +205,7 @@
 	}
 
 	// 鼠标样式
-	&.cursor {
+	&.c-pointer {
 		.el-table__body {
 			td {
 				cursor: pointer;
@@ -251,11 +261,13 @@
 	.el-dialog__body {
 		padding: 0;
 		overflow: hidden;
-		max-height: calc(100vh - 30vh - 120px);
 
 		> .el-scrollbar {
-			height: calc(100vh - 30vh - 120px);
-			max-height: 360px;
+			max-height: 400px;
+
+			.el-scrollbar__wrap {
+				max-height: 400px;
+			}
 
 			.el-scrollbar__view {
 				padding: 30px 20px;

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-20 15:34:53
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-20 15:35:00
+ * @LastEditTime: 2022-06-23 15:33:11
 -->
 <template>
 	<div class="table-render-loop">
@@ -49,17 +49,6 @@ export default {
 	},
 	// 计算属性
 	computed: {},
-	// 侦听器
-	watch: {
-		// 监听路由的变化
-		route: {
-			handler(to) {
-				console.log(to)
-			},
-			deep: true, // 深度监听
-			immediate: true, // 不管数据是否发生变化都监听一次
-		},
-	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {},
 	// 组件挂载后，此方法执行后，页面显示

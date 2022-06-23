@@ -3,11 +3,11 @@
  * @Author: cdl
  * @Date: 2022-06-10 22:23:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 01:14:26
+ * @LastEditTime: 2022-06-23 10:39:22
 -->
 <template>
 	<transition :name="getSystemConfig.animation" mode="out-in">
-		<router-view />
+		<router-view :key="$route.path" />
 	</transition>
 </template>
 

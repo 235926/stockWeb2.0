@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-19 12:12:15
+ * @LastEditTime: 2022-06-23 15:06:29
 -->
 <template>
 	<div class="page-container">
@@ -58,9 +58,7 @@ export default {
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {
-		console.log(JSON.parse(this.$route.query.item))
-	},
+	created() {},
 	// 组件挂载后，此方法执行后，页面显示
 	mounted() {},
 	// 组件方法

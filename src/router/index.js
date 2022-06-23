@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-22 02:25:30
+ * @LastEditTime: 2022-06-23 12:09:14
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -51,26 +51,6 @@ export function dynamicRouter(routes) {
  * @author: cdl
  */
 export function filterEndMyField(routes) {
-	// const res = []
-	// routes.forEach((item) => {
-	// 	res.push({
-	// 		component: item.TIP,
-	// 		path: item.INFO,
-	// 		meta: {
-	// 			title: item.NAME,
-	// 			icon: item.ICON,
-	// 			isHidden: item.MENU_NODE_VIRTUAL === '1' ? true : false,
-	// 		},
-	// 		children: item.CHILD,
-	// 		redirect: item.BASE_MENU_ID,
-	// 	})
-
-	// 	if (item.CHILD && item.CHILD.length > 0) {
-	// 		item.children = filterEndMyField(item.CHILD)
-	// 	}
-	// 	return res
-	// })
-	// return res
 	routes.forEach((item) => {
 		item.component = item.TIP
 		item.path = item.INFO
@@ -78,6 +58,7 @@ export function filterEndMyField(routes) {
 			title: item.NAME,
 			icon: item.ICON,
 			isHidden: item.MENU_NODE_VIRTUAL === '1' ? true : false,
+			activeMenu: item.COMPONENT,
 		}
 		item.children = item.CHILD
 		item.redirect = item.BASE_MENU_ID
@@ -102,29 +83,11 @@ export function getRouterList(router, to, next) {
 		store.dispatch('routesList/setOldRoutesList', newRoute)
 		dynamicRoutes[0].children = newRoute
 
-		// const obj = [
-		// 	{
-		// 		path: '/',
-		// 		name: '/',
-		// 		component: 'layout/index',
-		// 		redirect: '/enterprise',
-		// 		children: newRoute,
-		// 	},
-		// ]
-
 		const awaitRoute = await dynamicRouter(dynamicRoutes)
 		for (let i = 0; i < awaitRoute.length; i++) {
 			router.addRoute(awaitRoute[i])
 		}
-		// for (let i = 0; i < awaitRoute.length; i++) {
-		// 	router.addRoute(awaitRoute[i])
 
-		// 	if (awaitRoute[i].children && awaitRoute[i].length > 0) {
-		// 		for (let j = 0; j < awaitRoute[i].children.length; j++) {
-		// 			router.addRoute(awaitRoute[i].children[j])
-		// 		}
-		// 	}
-		// }
 		// router.addRoute({ path: '*', redirect: '/404' })
 		next({ ...to, replace: true })
 	})

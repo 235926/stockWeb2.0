@@ -1,10 +1,5 @@
 <template>
-	<el-dialog
-		:visible.sync="visible"
-		:width="width + 'px'"
-		:destroy-on-close="true"
-		:before-close="onCancel"
-	>
+	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -50,9 +45,6 @@ export default {
 		width: {
 			type: Number,
 			default: 677,
-		},
-		height: {
-			default: '',
 		},
 	},
 	// 局部注册的组件
