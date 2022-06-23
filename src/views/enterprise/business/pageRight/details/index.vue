@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 15:06:29
+ * @LastEditTime: 2022-06-23 21:14:49
 -->
 <template>
 	<div class="page-container">
@@ -39,18 +39,18 @@ export default {
 	// 局部注册的组件
 	components: {
 		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
-		BasicInfo: () => import('./component/basic-info.vue'), // 基本信息
-		MainStaff: () => import('./component/main-staff.vue'), // 主要人员
-		Investment: () => import('./component/investment.vue'), // 投资企业
-		EnterpriseMap: () => import('./component/enterprise-map.vue'), // 企业图谱
-		ChangeRecord: () => import('./component/change-record.vue'), // 变更记录
+		BasicInfo: () => import('./basic-info/index.vue'), // 基本信息
+		MainStaff: () => import('./main-staff/index.vue'), // 主要人员
+		Investment: () => import('./investment/index.vue'), // 投资企业
+		EnterpriseMap: () => import('./enterprise-map/index.vue'), // 企业图谱
+		ChangeRecord: () => import('./change-record/index.vue'), // 变更记录
 	},
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 组件状态值
 	data() {
 		return {
-			activeName: 'basicInfo', // tabs 默认展示
+			activeName: 'mainStaff', // tabs 默认展示
 		}
 	},
 	// 计算属性

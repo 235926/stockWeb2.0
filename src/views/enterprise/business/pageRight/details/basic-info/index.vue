@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 21:19:30
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 15:02:21
+ * @LastEditTime: 2022-06-23 21:11:27
 -->
 <template>
 	<div class="basic-info">

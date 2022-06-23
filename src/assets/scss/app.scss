@@ -114,17 +114,23 @@ body,
 	align-items: center;
 }
 
-// 两端对齐并垂直居中 - 内联模块
-.flex-center-inline {
-	@extend .flex-inline;
-	justify-content: center;
+// 垂直居中
+.flex-row-center {
+	@extend .flex;
 	align-items: center;
 }
 
-// 两端对齐并垂直居中
+// 两端对齐并垂直居中 - 内联模块
 .flex-between-center {
 	@extend .flex;
 	justify-content: space-between;
+	align-items: center;
+}
+
+// 上下左右居中 - 内联模块
+.flex-center-inline {
+	@extend .flex-inline;
+	justify-content: center;
 	align-items: center;
 }
 

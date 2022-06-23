@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 15:27:23
+ * @LastEditTime: 2022-06-23 20:25:50
 -->
 <template>
 	<div class="right">
@@ -19,8 +19,7 @@
 				class="c-pointer"
 				:data="tableData"
 				:border="true"
-				@select="handleSelectClick"
-				@selection-change="handleSelectionChange"
+				@select="handleSelectionRow"
 				@row-click="handleRowClick"
 			>
 				<el-table-column class-name="custom-label" type="selection" align="center" width="55">
@@ -138,19 +137,10 @@ export default {
 		 * @return {*}
 		 * @author: cdl
 		 */
-		handleSelectClick(selection, row) {
+		handleSelectionRow(selection, row) {
 			this.selectionRow = row
 			this.$refs.tableRef.clearSelection()
 			this.$refs.tableRef.toggleRowSelection(row)
-		},
-
-		/**
-		 * @description: 当选择项发生变化时会触发该事件
-		 * @return {*}
-		 * @author: cdl
-		 */
-		handleSelectionChange(val) {
-			// console.log(val)
 		},
 
 		/**

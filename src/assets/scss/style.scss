@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 13:10:53
+ * @LastEditTime: 2022-06-23 21:16:59
  */
 
 // 主体内容边框
@@ -62,9 +62,102 @@
 			overflow: hidden;
 		}
 
-		.btn {
+		div.btn {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			background-color: var(--rh-table-header-bg-color);
+			border: 1px solid var(--rh-border-color-light);
+			border-top: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
 			.el-button {
 				min-width: 100px;
+			}
+		}
+
+		// table 表格 操作/删除部分
+		.flex-center-inline {
+			& + .flex-center-inline {
+				margin-left: 20px;
+			}
+
+			.span-svg-icon {
+				width: 16px;
+				height: 16px;
+				padding: 3px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				margin-right: 5px;
+
+				.svg-color {
+					color: #fff;
+				}
+
+				&.edit {
+					background: #67b5ff;
+				}
+
+				&.close {
+					background: #f3737e;
+				}
+			}
+		}
+
+		// 业务办理-详情部分
+		.business-details {
+			.business-details-item {
+				.business-list-header {
+					margin-bottom: 20px;
+				}
+
+				.form-style-one {
+					margin-left: 20px;
+					margin-right: 20px;
+				}
+
+				.table-render-loop {
+					margin-left: 20px;
+					margin-right: 20px;
+				}
+
+				.el-divider {
+					margin-bottom: 0;
+				}
+
+				.file {
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+
+					.item {
+						padding: 0 5px 0 15px;
+						height: 32px;
+						background: #fafafa;
+						border-radius: 16px;
+						border: 1px solid #e8e8e8;
+						color: var(--rh-text-color-primary);
+						font-size: 14px;
+						font-weight: 400;
+
+						.svg-icon {
+							margin-right: 5px;
+							font-size: 20px;
+						}
+
+						.close {
+							margin-left: 15px;
+							background-color: #f3737e;
+							border-radius: 50%;
+							color: #fff;
+							padding: 2px;
+							font-size: 16px;
+						}
+					}
+				}
 			}
 		}
 	}

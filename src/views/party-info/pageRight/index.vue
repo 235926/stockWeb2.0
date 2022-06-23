@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 21:13:22
+ * @LastEditTime: 2022-06-23 21:23:20
 -->
 <template>
 	<div class="right">
@@ -18,28 +18,41 @@
 			<el-table-column prop="level" label="级别" width="80" />
 			<el-table-column label="操作" width="180">
 				<template #default="scope">
-					<div class="flex-center-inline">
+					<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
 						<span class="span-svg-icon edit">
-							<SvgIcon name="edit" :size="12" color="#fff" />
+							<SvgIcon name="edit" color="#fff" />
 						</span>
-						<el-button type="text">修改</el-button>
+						<span>修改</span>
 					</div>
-					<div class="flex-center-inline ml20">
-						<span class="span-svg-icon close">
-							<SvgIcon name="close" :size="12" color="#fff" />
-						</span>
-						<el-button type="text">删除</el-button>
+					<div class="flex-center-inline c-pointer">
+						<el-popconfirm
+							confirm-button-text="确定"
+							cancel-button-text="取消"
+							title="你确定要删除这个吗?"
+							placement="left"
+							@confirm="onDelete(scope)"
+						>
+							<template slot="reference">
+								<div class="flex-row-center">
+									<span class="span-svg-icon close">
+										<SvgIcon name="close" color="#fff" />
+									</span>
+									<span>删除</span>
+								</div>
+							</template>
+						</el-popconfirm>
 					</div>
 				</template>
 			</el-table-column>
 		</el-table>
 
-		<div class="btn pt10 pb10 flex-center">
+		<div class="btn">
 			<el-button round @click="onAdd">添加</el-button>
 		</div>
 
-		<!-- 添加页面 -->
-		<Add :visible="dialogVisible" title="添加" @update:visible="dialogVisible = $event" />
+		<!-- 添加/修改页面 -->
+		<Add :visible="addVisible" title="添加" @update:visible="addVisible = $event" />
+		<Edit :visible="editVisible" title="修改" @update:visible="editVisible = $event" />
 	</div>
 </template>
 
@@ -48,6 +61,7 @@ export default {
 	name: 'partyInfoRight',
 	components: {
 		Add: () => import('./add.vue'), // 添加页面
+		Edit: () => import('./edit.vue'), // 添加页面
 	},
 	data() {
 		return {
@@ -68,7 +82,8 @@ export default {
 					level: 3,
 				},
 			],
-			dialogVisible: false, // 添加页面状态
+			addVisible: false, // 添加页面状态
+			editVisible: false, // 修改页面状态
 		}
 	},
 	// 计算属性
@@ -81,39 +96,28 @@ export default {
 		 * @author: cdl
 		 */
 		onAdd() {
-			this.dialogVisible = true
+			this.addVisible = true
+		},
+
+		/**
+		 * @description: 修改
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onEdit() {
+			this.editVisible = true
+		},
+
+		/**
+		 * @description: 删除
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onDelete(scope) {
+			console.log(scope.row)
 		},
 	},
 }
 </script>
 
-<style lang="scss" scoped>
-.btn {
-	background-color: var(--rh-table-header-bg-color);
-	border: 1px solid var(--rh-border-color-light);
-	border-top: none;
-}
-
-.span-svg-icon {
-	width: 16px;
-	height: 16px;
-	padding: 3px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	margin-right: 5px;
-
-	.svg-color {
-		color: #fff;
-	}
-
-	&.edit {
-		background: #67b5ff;
-	}
-
-	&.close {
-		background: #f3737e;
-	}
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,18 +1,18 @@
 <!--
- * @Description: 投资企业
+ * @Description: 企业图谱
  * @Author: cdl
- * @Date: 2022-06-18 12:09:38
+ * @Date: 2022-06-18 12:09:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 12:11:58
+ * @LastEditTime: 2022-06-23 21:12:23
 -->
 <template>
-	<div>投资企业</div>
+	<div>企业图谱</div>
 </template>
 
 <script>
 export default {
 	// 组件名称
-	name: 'InvestmentEnterprise',
+	name: 'enterpriseMap',
 	// 局部注册的组件
 	components: {},
 	// 组件参数 接收来自父组件的数据

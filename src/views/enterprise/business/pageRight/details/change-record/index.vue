@@ -1,18 +1,18 @@
 <!--
- * @Description: 企业图谱
+ * @Description: 变更记录
  * @Author: cdl
- * @Date: 2022-06-18 12:09:58
+ * @Date: 2022-06-18 12:10:21
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 12:12:44
+ * @LastEditTime: 2022-06-23 21:12:04
 -->
 <template>
-	<div>企业图谱</div>
+	<div>变更记录</div>
 </template>
 
 <script>
 export default {
 	// 组件名称
-	name: 'enterpriseMap',
+	name: 'change-record',
 	// 局部注册的组件
 	components: {},
 	// 组件参数 接收来自父组件的数据
