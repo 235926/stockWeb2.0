@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:16:59
+ * @LastEditTime: 2022-06-23 21:35:58
  */
 
 // 主体内容边框
@@ -62,7 +62,11 @@
 			overflow: hidden;
 		}
 
-		div.btn {
+		.btn .el-button {
+			min-width: 100px;
+		}
+
+		div.table-btn {
 			padding-top: 10px;
 			padding-bottom: 10px;
 			background-color: var(--rh-table-header-bg-color);

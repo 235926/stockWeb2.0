@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:23:20
+ * @LastEditTime: 2022-06-23 21:34:36
 -->
 <template>
 	<div class="right">
@@ -46,7 +46,7 @@
 			</el-table-column>
 		</el-table>
 
-		<div class="btn">
+		<div class="table-btn">
 			<el-button round @click="onAdd">添加</el-button>
 		</div>
 

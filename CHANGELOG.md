@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:56:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:28:56
+ * @LastEditTime: 2022-06-23 21:36:41
 -->
 # 股权管理系统更新日志
 - 🌟 更新
@@ -15,6 +15,12 @@
 - 🌈 重构
 - ❄️ 删除
 - ⚠️ 警告
+
+## Version: "0.2.8"， Date: "2022.06.23"，Author: "cdl"
+
+- 🐞 修复 修复btn组件显示异常的问题
+
+
 
 ## Version: "0.2.8"， Date: "2022.06.23"，Author: "cdl"
 
