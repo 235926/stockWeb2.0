@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 00:04:49
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 20:47:38
+ * @LastEditTime: 2022-06-24 21:55:38
  */
 import {
 	Button,
@@ -42,10 +42,12 @@ import {
 	Loading,
 	Message,
 	Popconfirm,
+	Cascader,
 } from 'element-ui'
 
 const element = {
 	install: function (Vue) {
+		Vue.use(Cascader)
 		Vue.use(Popconfirm)
 		Vue.use(Alert)
 		Vue.use(Row)

@@ -3,22 +3,31 @@
  * @Author: cdl
  * @Date: 2022-06-23 21:08:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:18:26
+ * @LastEditTime: 2022-06-24 23:06:16
 -->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="form" :model="form" label-width="120px" class="pr50">
-				<el-form-item prop="region1" label="上级党组织">
-					<el-select v-model="form.region1" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
+			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
+				<el-form-item prop="INFO_PCODE" label="上级党组织">
+					<el-cascader
+						v-model="form.INFO_PCODE"
+						:options="INFO_PCODE"
+						:props="props"
+						:show-all-levels="false"
+						:clearable="true"
+						placeholder="不选择默认一级组织"
+					>
+						<template #default="{ node, data }">
+							<span>{{ data.INFO_NAME }}</span>
+							<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+						</template>
+					</el-cascader>
 				</el-form-item>
-				<el-form-item prop="input" label="党组织名称">
-					<el-input v-model="form.input" placeholder="请输入"></el-input>
+				<el-form-item label="党组织名称">
+					<el-input v-model="form.INFO_NAME" placeholder="请输入"></el-input>
 				</el-form-item>
 			</el-form>
 		</el-scrollbar>
@@ -31,21 +40,10 @@
 </template>
 
 <script>
+import { getPartyInfoTree, getPartyInfoAddEditDelete } from '@/api/index.js' // api
 export default {
-	// 组件名称
-	name: 'partyInfoRightEdit',
-	model: {
-		// v-model 绑定的值
-		prop: 'visible',
-		event: 'close',
-	},
 	// 组件参数 接收来自父组件的数据
 	props: {
-		// v-model 绑定的值
-		visible: {
-			type: Boolean,
-			default: false,
-		},
 		title: {
 			type: String,
 		},
@@ -53,32 +51,57 @@ export default {
 			type: Number,
 			default: 677,
 		},
-		height: {
-			default: '',
-		},
 	},
-	// 局部注册的组件
-	components: {},
 	// 组件状态值
 	data() {
 		return {
+			isShowDialog: false, // 弹窗状态
+			INFO_PCODE: [], // 上级党组织
 			form: {}, // 表单
+			props: {
+				// 配置选项
+				value: 'INFO_CODE',
+				label: 'INFO_NAME',
+				checkStrictly: true, // 单选，否则只能选择最后一级
+				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
 		}
 	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 获取上级党组织
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onGetPartyInfoTree() {
+			getPartyInfoTree().then((res) => {
+				this.INFO_PCODE = res.treeData
+			})
+		},
+
+		/**
+		 * @description: 打开弹窗
+		 * @return {*}
+		 * @author: cdl
+		 */
+		// 关闭弹窗
+		openDialog(row) {
+			this.isShowDialog = true
+			this.onGetPartyInfoTree()
+			this.$set(this.form, 'INFO_PCODE', row.INFO_PCODE)
+			this.$set(this.form, 'INFO_NAME', row.INFO_NAME)
+			this.$set(this.form, 'INFO_CODE', row.INFO_CODE)
+		},
+
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
 		 * @author: cdl
 		 */
 		onCancel() {
-			this.$emit('update:visible', false)
-			this.$refs.form.resetFields()
+			this.isShowDialog = false
+			this.$refs.formRef.resetFields()
 		},
 
 		/**
@@ -87,13 +110,15 @@ export default {
 		 * @author: cdl
 		 */
 		onSubmit() {
-			this.onCancel()
+			getPartyInfoAddEditDelete(this.form).then((res) => {
+				if (res._MSG_.includes('OK,')) {
+					this.$message.success('修改成功')
+					this.bus.$emit('getPartyInfoAddEditDelete')
+					this.onCancel()
+				}
+			})
 		},
 	},
-	/**
-	 * 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	 */
-	created() {},
 }
 </script>
 

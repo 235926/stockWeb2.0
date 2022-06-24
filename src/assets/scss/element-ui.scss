@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 14:30:47
+ * @LastEditTime: 2022-06-24 21:57:57
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -350,7 +350,7 @@
 		.el-tree-node__children {
 			.el-tree-node__expand-icon.is-leaf {
 				padding: 0;
-				margin-left: 16px;
+				margin-left: 23px;
 				margin-right: 6px;
 			}
 		}
@@ -478,9 +478,10 @@
 		.el-form-item__content {
 			.el-input,
 			.el-select,
+			.el-cascader,
 			.el-input-number,
 			.el-radio-group {
-				flex: 1;
+				width: 100%;
 			}
 
 			.el-radio-group {

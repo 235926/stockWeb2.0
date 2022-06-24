@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:35:58
+ * @LastEditTime: 2022-06-24 21:26:01
  */
 
 // 主体内容边框
@@ -83,6 +83,9 @@
 
 		// table 表格 操作/删除部分
 		.flex-center-inline {
+			position: relative;
+			top: 3px;
+
 			& + .flex-center-inline {
 				margin-left: 20px;
 			}
@@ -108,6 +111,10 @@
 				&.close {
 					background: #f3737e;
 				}
+			}
+
+			> span {
+				line-height: 1;
 			}
 		}
 

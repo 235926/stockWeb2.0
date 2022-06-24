@@ -3,16 +3,15 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:51:44
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 11:58:38
+ * @LastEditTime: 2022-06-24 22:51:52
 -->
 <template>
 	<div class="page-container">
 		<PageHeader />
 
 		<!-- 内容部分 -->
-		<div class="content padding20">
+		<div class="content padding20" v-loading="loading">
 			<el-table
-				v-loading="loading"
 				:data="tableData"
 				:border="true"
 				:header-cell-style="{ 'text-align': 'center' }"

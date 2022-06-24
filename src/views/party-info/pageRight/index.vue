@@ -3,26 +3,26 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 14:32:31
+ * @LastEditTime: 2022-06-24 22:52:49
 -->
 <template>
-	<div class="right">
+	<div class="right" v-loading="loading">
 		<el-table
 			:data="tableData"
-			border
+			:border="true"
+			empty-text="暂无下级党组织信息"
 			:header-cell-style="{ 'text-align': 'center' }"
 			:cell-style="{ 'text-align': 'center' }"
 		>
-			<el-table-column prop="organ" label="党组织名称" />
-			<!-- <el-table-column prop="team" label="团队名称" /> -->
-			<el-table-column prop="level" label="级别" width="80" />
+			<el-table-column prop="INFO_NAME" label="党组织名称" />
+			<el-table-column prop="INFO_LEVEL" label="级别" width="80" />
 			<el-table-column label="操作" width="180">
 				<template #default="scope">
 					<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
 						<span class="span-svg-icon edit">
 							<SvgIcon name="edit" color="#fff" />
 						</span>
-						<span>修改</span>
+						<span class="edit">修改</span>
 					</div>
 					<div class="flex-center-inline c-pointer">
 						<el-popconfirm
@@ -37,7 +37,7 @@
 									<span class="span-svg-icon close">
 										<SvgIcon name="close" color="#fff" />
 									</span>
-									<span>删除</span>
+									<span class="del">删除</span>
 								</div>
 							</template>
 						</el-popconfirm>
@@ -51,12 +51,13 @@
 		</div>
 
 		<!-- 添加/修改页面 -->
-		<Add :visible="addVisible" title="添加" @update:visible="addVisible = $event" />
-		<Edit :visible="editVisible" title="修改" @update:visible="editVisible = $event" />
+		<Add ref="addRef" title="添加" />
+		<Edit ref="editRef" title="修改" />
 	</div>
 </template>
 
 <script>
+import { getPartyInfoRightList, getPartyInfoAddEditDelete } from '@/api/index.js' // api
 export default {
 	name: 'partyInfoRight',
 	components: {
@@ -65,38 +66,39 @@ export default {
 	},
 	data() {
 		return {
-			tableData: [
-				{
-					organ: '总部第一党支部',
-					team: '置业公司',
-					level: 1,
-				},
-				{
-					organ: '总部第二党支部',
-					team: '置业公司',
-					level: 2,
-				},
-				{
-					organ: '北京公司党总支',
-					team: '北京公司',
-					level: 3,
-				},
-			],
-			addVisible: false, // 添加页面状态
-			editVisible: false, // 修改页面状态
+			tableData: [], // 数据列表
+			loading: false, // 加载状态
 		}
 	},
-	// 计算属性
-	computed: {},
-	created() {},
+	mounted() {
+		this.bus.$on('onGetPartyInfoRightList', (id) => {
+			this.onGetPartyInfoRightList(id)
+		})
+	},
 	methods: {
+		/**
+		 * @description: 获取数据列表
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onGetPartyInfoRightList(id) {
+			this.loading = true
+			let params = {
+				INFO_CODE: id,
+			}
+			getPartyInfoRightList(params).then((res) => {
+				this.tableData = res.listData
+				this.loading = false
+			})
+		},
+
 		/**
 		 * @description: 添加
 		 * @return {*}
 		 * @author: cdl
 		 */
 		onAdd() {
-			this.addVisible = true
+			this.$refs.addRef.openDialog()
 		},
 
 		/**
@@ -104,8 +106,8 @@ export default {
 		 * @return {*}
 		 * @author: cdl
 		 */
-		onEdit() {
-			this.editVisible = true
+		onEdit(scope) {
+			this.$refs.editRef.openDialog(scope.row)
 		},
 
 		/**
@@ -114,8 +116,21 @@ export default {
 		 * @author: cdl
 		 */
 		onDelete(scope) {
-			console.log(scope.row)
+			let params = {
+				INFO_CODE: scope.row.INFO_CODE,
+				S_FLAG: 2,
+			}
+			getPartyInfoAddEditDelete(params).then((res) => {
+				if (res._MSG_.includes('OK,')) {
+					this.$message.success('删除成功')
+					this.bus.$emit('getPartyInfoAddEditDelete')
+				}
+			})
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('onGetPartyInfoRightList')
 	},
 }
 </script>

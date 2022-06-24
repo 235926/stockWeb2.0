@@ -3,14 +3,14 @@
  * @Author: cdl
  * @Date: 2022-06-23 21:14:29
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:18:11
+ * @LastEditTime: 2022-06-24 22:47:35
 -->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="form" :model="form" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
 				<el-form-item prop="region1" label="上级党组织">
 					<el-select v-model="form.region1" placeholder="请选择">
 						<el-option label="区域一" value="shanghai"></el-option>
@@ -32,20 +32,8 @@
 
 <script>
 export default {
-	// 组件名称
-	name: 'partyInfoRightEdit',
-	model: {
-		// v-model 绑定的值
-		prop: 'visible',
-		event: 'close',
-	},
 	// 组件参数 接收来自父组件的数据
 	props: {
-		// v-model 绑定的值
-		visible: {
-			type: Boolean,
-			default: false,
-		},
 		title: {
 			type: String,
 		},
@@ -53,15 +41,13 @@ export default {
 			type: Number,
 			default: 677,
 		},
-		height: {
-			default: '',
-		},
 	},
 	// 局部注册的组件
 	components: {},
 	// 组件状态值
 	data() {
 		return {
+			isShowDialog: false, // 弹窗状态
 			form: {}, // 表单
 		}
 	},
@@ -72,13 +58,22 @@ export default {
 	// 组件方法
 	methods: {
 		/**
+		 * @description: 打开弹窗
+		 * @return {*}
+		 * @author: cdl
+		 */
+		openDialog() {
+			this.isShowDialog = true
+		},
+
+		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
 		 * @author: cdl
 		 */
 		onCancel() {
-			this.$emit('update:visible', false)
-			this.$refs.form.resetFields()
+			this.isShowDialog = false
+			this.$refs.formRef.resetFields()
 		},
 
 		/**

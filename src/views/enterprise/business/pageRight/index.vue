@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 20:25:50
+ * @LastEditTime: 2022-06-24 21:21:24
 -->
 <template>
 	<div class="right">
@@ -43,9 +43,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Plugin from 'v-fit-columns'
-Vue.use(Plugin)
 export default {
 	// 组件名称
 	name: 'enterpriseBusinessRight',

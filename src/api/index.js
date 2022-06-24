@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-06 06:05:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 10:44:11
+ * @LastEditTime: 2022-06-24 21:24:19
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -111,5 +111,44 @@ export const deleteChangeTypeList = (data) => {
 			// 传递数组需要JSON.stringify转换
 			data: JSON.stringify(data),
 		},
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 左侧导航栏
+ * @param {*} data
+ * @author: cdl
+ */
+export const getPartyInfoTree = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.selectDictValByKey.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 右侧列表
+ * @param {*} data
+ * @author: cdl
+ */
+export const getPartyInfoRightList = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.lookPartyOrgInfo.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 新增/编辑/删除
+ * @param {*} data
+ * @author: cdl
+ */
+export const getPartyInfoAddEditDelete = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.updateData.do',
+		method: 'get',
+		params: data,
 	})
 }

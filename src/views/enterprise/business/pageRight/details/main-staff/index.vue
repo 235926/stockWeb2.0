@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 12:06:57
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 12:58:39
+ * @LastEditTime: 2022-06-24 22:46:18
 -->
 <template>
 	<div class="business-details">
@@ -18,7 +18,6 @@
 				>
 					<el-table-column label="序号" type="index" align="center" width="55" />
 
-					<!-- 设置表头数据源，并循环渲染出来，自定义绑定  property 对应列内容的字段名 -->
 					<el-table-column
 						v-for="item in registered[0].tableHeader"
 						:key="item.key"
@@ -38,7 +37,7 @@
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>
-								<span>修改</span>
+								<span class="edit">修改</span>
 							</div>
 							<div class="flex-center-inline c-pointer">
 								<el-popconfirm
@@ -53,7 +52,7 @@
 											<span class="span-svg-icon close">
 												<SvgIcon name="close" color="#fff" />
 											</span>
-											<span>删除</span>
+											<span class="del">删除</span>
 										</div>
 									</template>
 								</el-popconfirm>
@@ -79,7 +78,6 @@
 				>
 					<el-table-column label="序号" type="index" align="center" width="55" />
 
-					<!-- 设置表头数据源，并循环渲染出来，自定义绑定  property 对应列内容的字段名 -->
 					<el-table-column
 						v-for="item in approval[0].tableHeader"
 						:key="item.key"
@@ -99,7 +97,7 @@
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>
-								<span>修改</span>
+								<span class="edit">修改</span>
 							</div>
 							<div class="flex-center-inline c-pointer">
 								<el-popconfirm
@@ -114,7 +112,7 @@
 											<span class="span-svg-icon close">
 												<SvgIcon name="close" color="#fff" />
 											</span>
-											<span>删除</span>
+											<span class="del">删除</span>
 										</div>
 									</template>
 								</el-popconfirm>
@@ -130,8 +128,8 @@
 		</div>
 
 		<!-- 添加/修改页面 -->
-		<Add :visible="addVisible" title="添加" @update:visible="addVisible = $event" />
-		<Edit :visible="editVisible" title="修改" @update:visible="editVisible = $event" />
+		<Add ref="addRef" title="添加" />
+		<Edit ref="editRef" title="修改" />
 	</div>
 </template>
 
@@ -219,8 +217,6 @@ export default {
 					],
 				},
 			],
-			addVisible: false, // 添加页面状态
-			editVisible: false, // 修改页面状态
 		}
 	},
 	// 计算属性
@@ -245,7 +241,7 @@ export default {
 		 * @author: cdl
 		 */
 		onAdd() {
-			this.addVisible = true
+			this.$refs.addRef.openDialog()
 		},
 
 		/**
@@ -254,7 +250,7 @@ export default {
 		 * @author: cdl
 		 */
 		onEdit() {
-			this.editVisible = true
+			this.$refs.editRef.openDialog()
 		},
 
 		/**

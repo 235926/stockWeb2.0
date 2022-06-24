@@ -3,46 +3,35 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:28:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 18:40:18
+ * @LastEditTime: 2022-06-24 21:47:09
 -->
 <template>
 	<div class="left">
-		<!-- <div class="search mb20">
+		<div class="search mb20" @keyup.enter="searchClick">
 			<el-input v-model="filterText" placeholder="请输入关键词" />
 			<el-divider direction="vertical" />
-			<span class="btn">搜索</span>
-		</div> -->
+			<span class="btn" @click="searchClick">搜索</span>
+		</div>
 
 		<el-tree
-			ref="tree"
-			:data="data"
+			ref="treeRef"
+			:data="treeData"
 			:props="defaultProps"
+			:expand-on-click-node="false"
 			:indent="30"
 			:filter-node-method="filterNode"
+			@node-click="treeNodeClick"
 		>
 			<template v-slot:default="{ node }">
-				<element-tree-line
-					class="custom-tree-node"
-					:node="node"
-					:indent="30"
-					:showLabelLine="false"
-				>
+				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
-						<SvgIcon
-							v-if="node.expanded !== true && node.isLeaf === false"
-							name="folder"
-							class="folder"
-						/>
+						<SvgIcon v-if="node.expanded !== true && node.isLeaf === false" name="folder" class="folder" />
 						<SvgIcon
 							v-if="node.expanded === true && node.isLeaf === false"
 							name="folder-open"
 							class="folder-open"
 						/>
-						<el-tooltip
-							:content="node.label"
-							:disabled="isShowTooltip"
-							placement="right"
-						>
+						<el-tooltip :content="node.label" :disabled="isShowTooltip" placement="right">
 							<span
 								class="label"
 								@mouseenter="onMouseenter($event)"
@@ -58,76 +47,53 @@
 </template>
 
 <script>
+import { getPartyInfoTree } from '@/api/index.js' // api
 export default {
 	name: 'partyInfoLeft',
 	data() {
 		return {
 			filterText: '', // 搜索
-			data: [
-				{
-					id: 1,
-					label: '一级 1',
-					children: [
-						{
-							id: 4,
-							label: '二级 1-1',
-							children: [
-								{
-									id: 9,
-									label: '三级 1-1-1',
-								},
-								{
-									id: 10,
-									label: '三级 1-1-2',
-								},
-							],
-						},
-					],
-				},
-				{
-					id: 2,
-					label: '一级 2',
-					children: [
-						{
-							id: 5,
-							label: '二级 2-1',
-						},
-						{
-							id: 6,
-							label: '二级 2-2',
-						},
-					],
-				},
-				{
-					id: 3,
-					label: '一级 3',
-					children: [
-						{
-							id: 7,
-							label: '二级 3-1',
-						},
-						{
-							id: 8,
-							label: '二级 3-2',
-						},
-					],
-				},
-			],
+			treeData: [], // 左侧导航栏
 			defaultProps: {
+				// 配置选项
 				children: 'children',
-				label: 'label',
+				label: 'INFO_NAME',
 			},
-			isShowTooltip: false, // el-tooltip
+			isShowTooltip: false, // Tooltip 文字提示状态
 		}
 	},
-	watch: {
-		filterText(val) {
-			this.$refs.tree.filter(val)
-		},
-	},
 	computed: {},
-	created() {},
+	created() {
+		this.onGetPartyInfoTree()
+	},
+	mounted() {
+		// 监听添加/修改成功后获取数据
+		this.bus.$on('getPartyInfoAddEditDelete', () => {
+			this.onGetPartyInfoTree()
+		})
+	},
 	methods: {
+		/**
+		 * @description: 获取导航栏数据
+		 * @return {*}
+		 * @author: cdl
+		 */
+		onGetPartyInfoTree() {
+			getPartyInfoTree().then((res) => {
+				this.treeData = res.treeData
+				this.bus.$emit('onGetPartyInfoRightList', '')
+			})
+		},
+
+		/**
+		 * @description: 搜索导航栏数据
+		 * @return {*}
+		 * @author: cdl
+		 */
+		searchClick() {
+			this.$refs.treeRef.filter(this.filterText)
+		},
+
 		/**
 		 * @description: 搜索过滤
 		 * @param {*} value
@@ -137,7 +103,16 @@ export default {
 		 */
 		filterNode(value, data) {
 			if (!value) return true
-			return data.label.indexOf(value) !== -1
+			return data.INFO_NAME.indexOf(value) !== -1
+		},
+
+		/**
+		 * @description: 当节点被点击的时候触发
+		 * @return {*}
+		 * @author: cdl
+		 */
+		treeNodeClick(node) {
+			this.bus.$emit('onGetPartyInfoRightList', node.INFO_CODE)
 		},
 
 		/**
@@ -149,6 +124,10 @@ export default {
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('getPartyInfoAddEditDelete')
 	},
 }
 </script>

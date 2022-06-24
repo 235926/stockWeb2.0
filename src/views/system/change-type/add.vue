@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 23:00:02
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 11:06:35
+ * @LastEditTime: 2022-06-24 22:49:55
 -->
 <template>
 	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
@@ -62,9 +62,6 @@ export default {
 		width: {
 			type: Number,
 			default: 677,
-		},
-		height: {
-			default: '',
 		},
 	},
 	// 局部注册的组件

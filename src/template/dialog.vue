@@ -1,5 +1,12 @@
+<!--
+ * @Description: dialog 模板
+ * @Author: cdl
+ * @Date: 2022-06-15 18:11:26
+ * @LastEditors: cdl
+ * @LastEditTime: 2022-06-24 22:43:50
+-->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -25,20 +32,8 @@
 
 <script>
 export default {
-	// 组件名称
-	name: '',
-	model: {
-		// v-model 绑定的值
-		prop: 'visible',
-		event: 'close',
-	},
 	// 组件参数 接收来自父组件的数据
 	props: {
-		// v-model 绑定的值
-		visible: {
-			type: Boolean,
-			default: false,
-		},
 		title: {
 			type: String,
 		},
@@ -52,6 +47,7 @@ export default {
 	// 组件状态值
 	data() {
 		return {
+			isShowDialog: false, // 弹窗状态
 			form: {}, // 表单
 		}
 	},
@@ -62,13 +58,23 @@ export default {
 	// 组件方法
 	methods: {
 		/**
+		 * @description: 打开弹窗
+		 * @return {*}
+		 * @author: cdl
+		 */
+		openDialog() {
+			this.isShowDialog = true
+			this.onGetPartyInfoTree()
+		},
+
+		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
 		 * @author: cdl
 		 */
 		onCancel() {
-			this.$emit('update:visible', false)
-			this.$refs.form.resetFields()
+			this.isShowDialog = false
+			this.$refs.formRef.resetFields()
 		},
 
 		/**
