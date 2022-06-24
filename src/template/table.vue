@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 11:47:25
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-15 13:42:30
+ * @LastEditTime: 2022-06-24 14:15:46
 -->
 <template>
 	<el-table
@@ -16,8 +16,8 @@
 		@row-click="handleRowClick"
 	>
 		<el-table-column type="selection" width="55" />
-		<el-table-column label="序号" type="index" width="55" />
-		<el-table-column prop="name" label="企业信息内容" />
+		<el-table-column label="序号" type="index" show-overflow-tooltip width="55" />
+		<el-table-column prop="name" label="企业信息内容" show-overflow-tooltip />
 		<el-table-column prop="isEdit" label="可编辑" width="180">
 			<template slot-scope="scope">
 				<el-checkbox v-model="scope.row.isEdit" label="可编辑" />
@@ -64,7 +64,6 @@ export default {
 	computed: {},
 	created() {},
 	methods: {
-
 		/**
 		 * @description: 选中的数据
 		 * @return {*}

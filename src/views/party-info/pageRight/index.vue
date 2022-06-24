@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:29:14
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:34:36
+ * @LastEditTime: 2022-06-24 14:32:31
 -->
 <template>
 	<div class="right">
@@ -14,7 +14,7 @@
 			:cell-style="{ 'text-align': 'center' }"
 		>
 			<el-table-column prop="organ" label="党组织名称" />
-			<el-table-column prop="team" label="团队名称" />
+			<!-- <el-table-column prop="team" label="团队名称" /> -->
 			<el-table-column prop="level" label="级别" width="80" />
 			<el-table-column label="操作" width="180">
 				<template #default="scope">

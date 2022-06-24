@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 21:19:30
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:11:27
+ * @LastEditTime: 2022-06-24 12:57:33
 -->
 <template>
 	<div class="basic-info">
@@ -23,7 +23,7 @@
 				<div class="item flex-center" v-for="(item, index) in attachment[0].file" :key="index">
 					<SvgIcon :name="item.type" :class="item.type" />
 					<span>{{ item.desc }}</span>
-					<SvgIcon name="close" class="close" />
+					<SvgIcon name="close" class="close" v-if="!readonly" />
 				</div>
 			</div>
 		</div>
@@ -126,7 +126,13 @@ export default {
 		}
 	},
 	// 计算属性
-	computed: {},
+	computed: {
+		// 是否只读
+		readonly() {
+			const isTrue = this.$route.query?.readonly
+			return isTrue ? false : true
+		},
+	},
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
@@ -165,7 +171,7 @@ export default {
 			flex-wrap: wrap;
 
 			.item {
-				padding: 0 5px 0 15px;
+				padding: 0 15px;
 				height: 32px;
 				background: #fafafa;
 				border-radius: 16px;

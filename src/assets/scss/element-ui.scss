@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:07:01
+ * @LastEditTime: 2022-06-24 14:30:47
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -166,19 +166,12 @@
 .el-table {
 	font-size: 14px;
 
-	div.cell {
-		height: 50px;
-		line-height: 50px;
-	}
-
 	// 表头
 	.el-table__header {
 		th {
 			padding: 13px 0;
 			font-weight: 500;
-			padding: 0;
 			height: 50px;
-			line-height: 50px;
 		}
 
 		// 自定义 selection 模式标题，需要设置 el-table-column 的为 class-name="custom-label"
@@ -196,9 +189,7 @@
 	.el-table__body {
 		td {
 			font-weight: 400;
-			padding: 0;
 			height: 50px;
-			line-height: 50px;
 		}
 	}
 

@@ -3,10 +3,36 @@
  * @Author: cdl
  * @Date: 2022-06-18 12:09:38
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:12:43
+ * @LastEditTime: 2022-06-24 14:15:50
 -->
 <template>
-	<div>投资企业</div>
+	<div class="business-details">
+		<div class="business-details-item mlr20">
+			<el-table
+				:data="tableData"
+				:border="true"
+				:header-cell-style="{ 'text-align': 'center' }"
+				:cell-style="{ 'text-align': 'center' }"
+			>
+				<el-table-column label="序号" type="index" align="center" width="55" />
+
+				<!-- 设置表头数据源，并循环渲染出来，自定义绑定  property 对应列内容的字段名 -->
+				<el-table-column
+					v-for="item in tableHeader"
+					:key="item.key"
+					:label="item.label"
+					:property="item.key"
+					:align="item.align"
+					:width="item.width"
+					show-overflow-tooltip
+				>
+					<template #default="scope">
+						{{ scope.row[scope.column.property] }}
+					</template>
+				</el-table-column>
+			</el-table>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -19,7 +45,42 @@ export default {
 	props: {},
 	// 组件状态值
 	data() {
-		return {}
+		return {
+			tableHeader: [
+				{ label: '被投资企业', key: 'data1', width: '220' },
+				{ label: '被投资企业法定代表人/负责人', key: 'data2', width: '220' },
+				{ label: '成立日期', key: 'data3' },
+				{ label: '投资占比', key: 'data4' },
+				{ label: '认缴金额', key: 'data5' },
+				{ label: '操作', key: 'data6' },
+			],
+			tableData: [
+				{
+					data1: '首经物业管理(上海)有限公司',
+					data2: '苏健',
+					data3: '2019-08-22',
+					data4: '100%',
+					data5: '100,000 万(元)',
+					data6: '开业',
+				},
+				{
+					data1: '首商物业管理(上海)有限公司',
+					data2: '谢弘毅',
+					data3: '2019-08-22',
+					data4: '100%',
+					data5: '100,000 万(元)',
+					data6: '开业',
+				},
+				{
+					data1: '北京首置健康管理有限公司',
+					data2: '孙宝杰',
+					data3: '2019-08-22',
+					data4: '100%',
+					data5: '100,000 万(元)',
+					data6: '开业',
+				},
+			],
+		}
 	},
 	// 计算属性
 	computed: {},

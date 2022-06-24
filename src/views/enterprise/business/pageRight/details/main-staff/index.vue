@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 12:06:57
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:34:48
+ * @LastEditTime: 2022-06-24 12:58:39
 -->
 <template>
 	<div class="business-details">
@@ -32,7 +32,7 @@
 						</template>
 					</el-table-column>
 
-					<el-table-column label="操作" width="180">
+					<el-table-column label="操作" v-if="!readonly">
 						<template #default="scope">
 							<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
 								<span class="span-svg-icon edit">
@@ -61,7 +61,7 @@
 						</template>
 					</el-table-column>
 				</el-table>
-				<div class="table-btn">
+				<div class="table-btn" v-if="!readonly">
 					<el-button round @click="onAdd">添加</el-button>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 						</template>
 					</el-table-column>
 
-					<el-table-column label="操作" width="180">
+					<el-table-column label="操作" v-if="!readonly">
 						<template #default="scope">
 							<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
 								<span class="span-svg-icon edit">
@@ -122,7 +122,7 @@
 						</template>
 					</el-table-column>
 				</el-table>
-				<div class="table-btn">
+				<div class="table-btn" v-if="!readonly">
 					<el-button round @click="onAdd">添加</el-button>
 				</div>
 			</div>
@@ -224,7 +224,13 @@ export default {
 		}
 	},
 	// 计算属性
-	computed: {},
+	computed: {
+		// 是否只读
+		readonly() {
+			const isTrue = this.$route.query?.readonly
+			return isTrue ? false : true
+		},
+	},
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在

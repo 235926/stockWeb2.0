@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 21:14:49
+ * @LastEditTime: 2022-06-24 14:31:17
 -->
 <template>
 	<div class="page-container">
@@ -18,13 +18,13 @@
 				<el-tab-pane label="主要人员" name="mainStaff">
 					<MainStaff />
 				</el-tab-pane>
-				<el-tab-pane label="投资企业" name="investment">
+				<el-tab-pane label="投资企业" name="investment" v-if="readonly">
 					<Investment />
 				</el-tab-pane>
-				<el-tab-pane label="企业图谱" name="enterpriseMap">
+				<el-tab-pane label="企业图谱" name="enterpriseMap" v-if="readonly">
 					<EnterpriseMap />
 				</el-tab-pane>
-				<el-tab-pane label="变更记录" name="changeRecord">
+				<el-tab-pane label="变更记录" name="changeRecord" v-if="readonly">
 					<ChangeRecord />
 				</el-tab-pane>
 			</el-tabs>
@@ -50,11 +50,17 @@ export default {
 	// 组件状态值
 	data() {
 		return {
-			activeName: 'mainStaff', // tabs 默认展示
+			activeName: 'basicInfo', // tabs 默认展示
 		}
 	},
 	// 计算属性
-	computed: {},
+	computed: {
+		// 是否只读
+		readonly() {
+			const isTrue = this.$route.query?.readonly
+			return isTrue ? false : true
+		},
+	},
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
