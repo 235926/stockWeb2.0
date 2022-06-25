@@ -10,7 +10,7 @@
 		<div class="search mb20">
 			<el-input v-model="filterText" placeholder="请输入关键词" />
 			<el-divider direction="vertical" />
-			<span class="btn">搜索</span>
+			<span class="search-btn">搜索</span>
 		</div>
 
 		<el-tree ref="tree" :data="data" :props="defaultProps" :indent="30" :filter-node-method="filterNode">

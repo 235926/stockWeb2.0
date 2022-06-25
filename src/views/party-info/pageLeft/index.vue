@@ -3,14 +3,14 @@
  * @Author: cdl
  * @Date: 2022-06-15 12:28:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 21:47:09
+ * @LastEditTime: 2022-06-25 18:49:20
 -->
 <template>
 	<div class="left">
 		<div class="search mb20" @keyup.enter="searchClick">
 			<el-input v-model="filterText" placeholder="请输入关键词" />
 			<el-divider direction="vertical" />
-			<span class="btn" @click="searchClick">搜索</span>
+			<span class="search-btn" @click="searchClick">搜索</span>
 		</div>
 
 		<el-tree

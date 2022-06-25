@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 21:26:01
+ * @LastEditTime: 2022-06-25 18:52:18
  */
 
 // 主体内容边框
@@ -24,36 +24,6 @@
 			.el-input .el-icon {
 				color: var(--el-color-primary);
 			}
-
-			.search {
-				position: relative;
-
-				.el-input {
-					.el-input__inner {
-						border-radius: 20px;
-						padding-right: 60px;
-					}
-				}
-
-				.el-divider {
-					position: absolute;
-					top: 50%;
-					right: 55px;
-					transform: translateY(-50%);
-				}
-
-				.btn {
-					width: max-content;
-					font-size: 14px;
-					font-weight: 400;
-					color: var(--el-text-color-primary);
-					position: absolute;
-					top: 50%;
-					right: 20px;
-					transform: translateY(-50%);
-					cursor: pointer;
-				}
-			}
 		}
 
 		.right {
@@ -62,10 +32,43 @@
 			overflow: hidden;
 		}
 
+		// 搜索部分
+		.search {
+			position: relative;
+
+			.el-input {
+				.el-input__inner {
+					border-radius: 20px;
+					padding-right: 60px;
+				}
+			}
+
+			.el-divider {
+				position: absolute;
+				top: 50%;
+				right: 55px;
+				transform: translateY(-50%);
+			}
+
+			.search-btn {
+				width: max-content;
+				font-size: 14px;
+				font-weight: 400;
+				color: var(--el-text-color-primary);
+				position: absolute;
+				top: 50%;
+				right: 20px;
+				transform: translateY(-50%);
+				cursor: pointer;
+			}
+		}
+
+		// 按钮组
 		.btn .el-button {
 			min-width: 100px;
 		}
 
+		// table 按钮行样式
 		div.table-btn {
 			padding-top: 10px;
 			padding-bottom: 10px;

@@ -10,39 +10,20 @@
 		<div class="search mb20">
 			<el-input v-model="filterText" placeholder="请输入关键词" />
 			<el-divider direction="vertical" />
-			<span class="btn">搜索</span>
+			<span class="search-btn">搜索</span>
 		</div>
 
-		<el-tree
-			ref="tree"
-			:data="data"
-			:props="defaultProps"
-			:indent="30"
-			:filter-node-method="filterNode"
-		>
+		<el-tree ref="tree" :data="data" :props="defaultProps" :indent="30" :filter-node-method="filterNode">
 			<template v-slot:default="{ node }">
-				<element-tree-line
-					class="custom-tree-node"
-					:node="node"
-					:indent="30"
-					:showLabelLine="false"
-				>
+				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
-						<SvgIcon
-							v-if="node.expanded !== true && node.isLeaf === false"
-							name="folder"
-							class="folder"
-						/>
+						<SvgIcon v-if="node.expanded !== true && node.isLeaf === false" name="folder" class="folder" />
 						<SvgIcon
 							v-if="node.expanded === true && node.isLeaf === false"
 							name="folder-open"
 							class="folder-open"
 						/>
-						<el-tooltip
-							:content="node.label"
-							:disabled="isShowTooltip"
-							placement="right"
-						>
+						<el-tooltip :content="node.label" :disabled="isShowTooltip" placement="right">
 							<span
 								class="label"
 								@mouseenter="onMouseenter($event)"
