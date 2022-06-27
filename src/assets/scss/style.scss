@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-25 18:52:18
+ * @LastEditTime: 2022-06-27 18:11:07
  */
 
 // 主体内容边框
@@ -172,6 +172,20 @@
 						}
 					}
 				}
+			}
+		}
+
+		// 查询按钮背景
+		.search-btn-wrap {
+			height: 65px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+			border-bottom: 1px solid var(--el-border-color-light);
+
+			.el-button {
+				width: 110px;
 			}
 		}
 	}

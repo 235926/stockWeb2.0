@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-13 16:44:45
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 11:09:54
+ * @LastEditTime: 2022-06-27 18:16:55
  */
 html,
 body,
@@ -245,14 +245,20 @@ body,
 
 	// 搭配 el-row 和 el-col 使用的
 	.gap#{$i} {
+		display: flex;
+		flex-wrap: wrap;
 		gap: #{$i}px #{$i}px !important;
 	}
 
 	.row-gap#{$i} {
+		display: flex;
+		flex-wrap: wrap;
 		row-gap: #{$i}px !important;
 	}
 
 	.column-gap#{$i} {
+		display: flex;
+		flex-wrap: wrap;
 		column-gap: #{$i}px !important;
 	}
 

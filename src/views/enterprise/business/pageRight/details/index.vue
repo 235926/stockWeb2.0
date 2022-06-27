@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-17 10:17:51
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 14:31:17
+ * @LastEditTime: 2022-06-27 14:55:24
 -->
 <template>
 	<div class="page-container">
@@ -50,7 +50,7 @@ export default {
 	// 组件状态值
 	data() {
 		return {
-			activeName: 'basicInfo', // tabs 默认展示
+			activeName: 'enterpriseMap', // tabs 默认展示
 		}
 	},
 	// 计算属性

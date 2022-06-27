@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 00:04:49
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 21:55:38
+ * @LastEditTime: 2022-06-27 18:13:04
  */
 import {
 	Button,
@@ -43,10 +43,12 @@ import {
 	Message,
 	Popconfirm,
 	Cascader,
+	DatePicker,
 } from 'element-ui'
 
 const element = {
 	install: function (Vue) {
+		Vue.use(DatePicker)
 		Vue.use(Cascader)
 		Vue.use(Popconfirm)
 		Vue.use(Alert)

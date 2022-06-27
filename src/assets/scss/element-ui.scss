@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 21:57:57
+ * @LastEditTime: 2022-06-27 18:48:57
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -428,6 +428,10 @@
 
 	// 选项卡样式 自定义样式一
 	&.el-tabs--card.el-tabs--top.tabs-style-one {
+		.el-tabs__header {
+			margin-bottom: 20px;
+		}
+
 		.el-tabs__nav-wrap {
 			padding: 0 40px;
 		}
@@ -476,12 +480,14 @@
 		}
 
 		.el-form-item__content {
+			display: flex;
+
 			.el-input,
 			.el-select,
 			.el-cascader,
 			.el-input-number,
 			.el-radio-group {
-				width: 100%;
+				flex: 1;
 			}
 
 			.el-radio-group {

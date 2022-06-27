@@ -3,15 +3,23 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:43:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 18:43:59
+ * @LastEditTime: 2022-06-27 17:51:22
 -->
 <template>
-	<div>信息核查</div>
+	<div class="page-container">
+		<PageHeader />
+
+		<!-- 内容部分 -->
+		<div class="content"></div>
+	</div>
 </template>
 
 <script>
 export default {
 	name: 'enterpriseVerification',
+	components: {
+		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
+	},
 	data() {
 		return {}
 	},

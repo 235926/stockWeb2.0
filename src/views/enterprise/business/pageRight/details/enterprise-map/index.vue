@@ -3,129 +3,57 @@
  * @Author: cdl
  * @Date: 2022-06-18 12:09:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 14:27:11
+ * @LastEditTime: 2022-06-27 15:53:28
 -->
 <template>
 	<div class="business-details enterprise-map">
-		<div class="business-details-item">
-			<div class="flex-center header">法定代表人 / 高管</div>
-			<ul>
-				<li v-for="(item, index) in tableData1" :key="index" v-html="filterTextWrap(item.name)"></li>
-			</ul>
-		</div>
-
-		<div class="business-details-item">
-			<div class="flex-center header">投资方</div>
-			<el-table
-				:data="tableData2.tableData"
-				:border="true"
-				:header-cell-style="{ 'text-align': 'center' }"
-				:cell-style="{ 'text-align': 'center' }"
-			>
-				<el-table-column label="序号" type="index" align="center" width="55" />
-
-				<el-table-column
-					v-for="item in tableData2.tableHeader"
-					:key="item.key"
-					:label="item.label"
-					:property="item.key"
-					:align="item.align"
-					:width="item.width"
-				>
-					<template #default="scope">
-						{{ scope.row[scope.column.property] }}
-					</template>
-				</el-table-column>
-			</el-table>
-		</div>
-
-		<div class="business-details-item">
-			<div class="flex-center header">对外投资</div>
-			<el-table
-				:data="tableData3.tableData"
-				:border="true"
-				:header-cell-style="{ 'text-align': 'center' }"
-				:cell-style="{ 'text-align': 'center' }"
-			>
-				<el-table-column label="序号" type="index" align="center" width="55" />
-
-				<el-table-column
-					v-for="item in tableData3.tableHeader"
-					:key="item.key"
-					:label="item.label"
-					:property="item.key"
-					:align="item.align"
-					:width="item.width"
-				>
-					<template #default="scope">
-						{{ scope.row[scope.column.property] }}
-					</template>
-				</el-table-column>
-			</el-table>
+		<div style="width: calc(100% - 10px); height: calc(100vh - 255px)">
+			<SeeksRelationGraph ref="seeksRelationGraph" :options="graphOptions" />
 		</div>
 	</div>
 </template>
 
 <script>
+import SeeksRelationGraph from 'relation-graph'
 export default {
 	// 组件名称
 	name: 'enterpriseMap',
 	// 局部注册的组件
-	components: {},
+	components: { SeeksRelationGraph },
 	// 组件参数 接收来自父组件的数据
 	props: {},
 	// 组件状态值
 	data() {
 		return {
-			tableData1: [
-				{ name: '李松平（法定代表人）' },
-				{ name: '李松平（董事长）' },
-				{ name: '邓文斌（董事）' },
-				{ name: '李章（董事会主席）' },
-				{ name: '黄自权（董事）' },
-				{ name: '孙宝杰（董事）' },
-				{ name: '杨亚楠（监事）' },
-				{ name: '张海滨（监事）' },
-				{ name: '李文（监事）' },
-				{ name: '万宝常（监事）' },
-			],
-			tableData2: {
-				tableHeader: [
-					{ label: '公司名称', key: 'data1' },
-					{ label: '投资占比', key: 'data2' },
-					{ label: '认缴金额', key: 'data3' },
-				],
-				tableData: [
+			graphOptions: {
+				layouts: [
 					{
-						data1: '北京首创城市发展集团有限公司',
-						data2: '90%',
-						data3: '50,000万(元)',
-					},
-					{
-						data1: '首都创业集团有限公司',
-						data2: '10%',
-						data3: '10,000万(元)',
+						label: '中心', // 布局描述
+						layoutName: 'tree', // 布局方式（tree树状布局/center中心布局/force自动布局）
+						layoutClassName: 'seeks-layout-center', // 当使用这个布局时，会将此样式添加到图谱上
+						defaultJunctionPoint: 'border', // 默认的连线与节点接触的方式
+						defaultNodeShape: 0, // 当 useLayoutStyleOptions=true 时有效，默认的节点形状，0:圆形；1:矩形
+						defaultLineShape: 1, // 当useLayoutStyleOptions=true时有效，默认的线条样式（1-6）
+						from: 'left', // left:从左到右/top:从上到下/right:从右到左/bottom:从下到上
+						max_per_width: '300', // 节点距离限制:节点之间横向距离最大值
+						min_per_height: '40', // 节点距离限制:节点之间纵向距离最小值
 					},
 				],
-			},
-			tableData3: {
-				tableHeader: [
-					{ label: '公司名称', key: 'data1' },
-					{ label: '投资占比', key: 'data2' },
-					{ label: '认缴金额', key: 'data3' },
-				],
-				tableData: [
-					{
-						data1: '北京首创城市发展集团有限公司',
-						data2: '90%',
-						data3: '50,000万(元)',
-					},
-					{
-						data1: '首都创业集团有限公司',
-						data2: '10%',
-						data3: '10,000万(元)',
-					},
-				],
+				// 默认的线条箭头样式
+				defaultLineMarker: {
+					markerWidth: 12, // 箭头宽度
+					markerHeight: 12, // 箭头高度
+					refX: 6, // X偏移
+					refY: 6, // Y偏移
+					data: 'M2,2 L10,6 L2,10 L6,6 L2,2', // 箭头形状
+				},
+				defaultNodeShape: 1, // 默认的节点形状，0:圆形；1:矩形
+				defaultNodeWidth: '100', // 默认的节点宽度
+				defaultLineShape: 4, // 默认的线条样式（1-6）
+				defaultJunctionPoint: 'lr', // 默认的连线与节点接触的方式
+				defaultNodeBorderWidth: 0, // 默认的节点边框粗细（像素）
+				defaultLineColor: 'rgba(0, 186, 189, 1)', // 默认的线条颜色
+				defaultNodeColor: 'rgba(0, 206, 209, 1)', // 默认的节点背景颜色
 			},
 		}
 	},
@@ -136,9 +64,84 @@ export default {
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {},
 	// 组件挂载后，此方法执行后，页面显示
-	mounted() {},
+	mounted() {
+		this.showSeeksGraph()
+	},
 	// 组件方法
 	methods: {
+		showSeeksGraph() {
+			const __graph_json_data = {
+				rootId: 'a',
+				nodes: [
+					// 根节点
+					// { id: 'a', text: '根节点a' },
+					// // 根节点左侧的数据：
+					// { id: 'l-b', text: '左1' },
+					// { id: 'l-c', text: '左2' },
+					// { id: 'l-d', text: '左3' },
+					// // 根节点右侧的数据：
+					// { id: 'b', text: '右1' },
+					// { id: 'c', text: '右2' },
+					// { id: 'd', text: '右3' },
+					{
+						id: 'a',
+						text: 'a',
+						children: [
+							{
+								id: 'b',
+								text: 'b',
+								children: [
+									{
+										id: 'b1',
+										text: 'b1',
+										children: [
+											{ id: 'b1-1', text: 'b1-1' },
+											{ id: 'b1-2', text: 'b1-2' },
+											{ id: 'b1-3', text: 'b1-3' },
+											{ id: 'b1-4', text: 'b1-4' },
+											{ id: 'b1-5', text: 'b1-5' },
+											{ id: 'b1-6', text: 'b1-6' },
+										],
+									},
+									{
+										id: 'b2',
+										text: 'b2',
+										children: [
+											{ id: 'b2-1', text: 'b2-1' },
+											{ id: 'b2-2', text: 'b2-2' },
+										],
+									},
+								],
+							},
+							{
+								id: 'c',
+								text: 'c',
+								children: [
+									{ id: 'c1', text: 'c1' },
+									{ id: 'c2', text: 'c2' },
+									{ id: 'c3', text: 'c3' },
+								],
+							},
+						],
+					},
+				],
+				links: [
+					// // 根节点左侧的数据：
+					// { from: 'l-b', to: 'a' },
+					// { from: 'l-c', to: 'a' },
+					// { from: 'l-d', to: 'a' },
+					// // 根节点右侧的数据：
+					// { from: 'a', to: 'b' },
+					// { from: 'a', to: 'c' },
+					// { from: 'a', to: 'd' },
+				],
+			}
+
+			this.$refs.seeksRelationGraph.setJsonData(__graph_json_data, (seeksRGGraph) => {
+				// 这些写上当图谱初始化完成后需要执行的代码
+			})
+		},
+
 		/**
 		 * @description: 过滤文字换行
 		 * @param {*} name
