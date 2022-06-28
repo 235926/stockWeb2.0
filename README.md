@@ -3,11 +3,15 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:06
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 20:24:03
+ * @LastEditTime: 2022-06-28 11:45:11
 -->
 
 # 股权管理系统
 - 以 Vue2.O 为主要版本
+- npm i 安装依赖
+- npm run dev 启动项目
+- npm run build 打包项目
+- npm run svgo 优化 svg 图标
 
 ### 系统配置
 - 在 src/pinia/systemConfig.js 中修改系统配置，如（布局方案，主题色等）
@@ -20,5 +24,5 @@
 - 在对应的目录下配置菜单的链接及其他配置
 
 ### SVG 图标优化冗余和无用的信息
-- 需要安装 svgo 插件 npm i svgo d
+- 需要安装 svgo 插件 npm i svgo d 或 npm -g install svgo
 - 执行 npm run svgo
