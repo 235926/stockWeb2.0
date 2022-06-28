@@ -3,18 +3,19 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-27 18:11:07
+ * @LastEditTime: 2022-06-28 11:10:15
  */
 
 // 主体内容边框
 .page-container {
 	border: 1px solid var(--rh-border-color-light);
 	border-radius: 4px;
+	background-color: var(--rh-color-white);
 
 	// 内容部分
 	.content {
 		border-radius: 0px 0px 4px 4px;
-		background-color: #fff;
+		background-color: var(--rh-color-white);
 
 		.left {
 			width: 300px;

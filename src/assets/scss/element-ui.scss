@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:31:41
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-27 18:48:57
+ * @LastEditTime: 2022-06-28 11:33:22
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -492,6 +492,8 @@
 
 			.el-radio-group {
 				padding: 0 11px;
+				display: flex;
+				align-items: center;
 			}
 		}
 
