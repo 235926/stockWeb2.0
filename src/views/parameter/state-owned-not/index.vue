@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:49:02
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-28 11:38:12
+ * @LastEditTime: 2022-06-28 15:27:32
 -->
 <template>
 	<div class="page-container">
@@ -61,22 +61,20 @@
 						empty-text="暂无数据"
 						:header-cell-style="{ 'text-align': 'center' }"
 						:cell-style="{ 'text-align': 'center' }"
-						class="c-pointer"
+						class="column-nowrap"
 					>
 						<el-table-column label="序号" type="index" align="center" width="55" />
 
-						<el-table-column
+						<af-table-column
 							v-for="item in tableHeader"
 							:key="item.key"
 							:label="item.label"
 							:property="item.key"
-							:align="item.align"
-							:width="item.width"
 						>
 							<template slot-scope="scope">
 								{{ scope.row[scope.column.property] }}
 							</template>
-						</el-table-column>
+						</af-table-column>
 					</el-table>
 				</el-scrollbar>
 			</div>
@@ -94,21 +92,21 @@ export default {
 		return {
 			form: {}, // 表单
 			tableHeader: [
-				{ label: '公司名称', key: 'data1', width: '150' },
-				{ label: '我方股东法人名称', key: 'data2', width: '200' },
-				{ label: '工商口径持股比例（我方股东）', key: 'data3', width: '250' },
-				{ label: '其他股东法人名称', key: 'data4', width: '150' },
-				{ label: '工商口径持股比例（其他股东）', key: 'data5', width: '250' },
-				{ label: '工商成立日期', key: 'data6', width: '150' },
-				{ label: '管理层级', key: 'data7', width: '100' },
-				{ label: '管理团队', key: 'data8', width: '100' },
-				{ label: '是否并表', key: 'data9', width: '100' },
-				{ label: '是否操盘', key: 'data10', width: '100' },
-				{ label: '注册资本币种', key: 'data11', width: '150' },
-				{ label: '注册资本金额（万元）', key: 'data12', width: '200' },
-				{ label: '实收资本金额（万元）', key: 'data13', width: '200' },
-				{ label: '地块名称', key: 'data14', width: '100' },
-				{ label: '公司属性（公司职能）', key: 'data15', width: '200' },
+				{ label: '公司名称', key: 'data1' },
+				{ label: '我方股东法人名称', key: 'data2' },
+				{ label: '工商口径持股比例（我方股东）', key: 'data3' },
+				{ label: '其他股东法人名称', key: 'data4' },
+				{ label: '工商口径持股比例（其他股东）', key: 'data5' },
+				{ label: '工商成立日期', key: 'data6' },
+				{ label: '管理层级', key: 'data7' },
+				{ label: '管理团队', key: 'data8' },
+				{ label: '是否并表', key: 'data9' },
+				{ label: '是否操盘', key: 'data10' },
+				{ label: '注册资本币种', key: 'data11' },
+				{ label: '注册资本金额（万元）', key: 'data12' },
+				{ label: '实收资本金额（万元）', key: 'data13' },
+				{ label: '地块名称', key: 'data14' },
+				{ label: '公司属性（公司职能）', key: 'data15' },
 			],
 			tableData: [
 				{

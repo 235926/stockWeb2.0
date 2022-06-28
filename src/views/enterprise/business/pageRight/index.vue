@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:33
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-24 21:21:24
+ * @LastEditTime: 2022-06-28 15:31:31
 -->
 <template>
 	<div class="right">
@@ -16,23 +16,23 @@
 		<el-scrollbar class="horizontal">
 			<el-table
 				ref="tableRef"
-				class="c-pointer"
 				:data="tableData"
 				:border="true"
+				:header-cell-style="{ 'text-align': 'center' }"
+				:cell-style="{ 'text-align': 'center' }"
 				@select="handleSelectionRow"
 				@row-click="handleRowClick"
+				class="column-nowrap c-pointer"
 			>
 				<el-table-column class-name="custom-label" type="selection" align="center" width="55">
 				</el-table-column>
 				<el-table-column type="index" label="序号" align="center" width="65" />
-				<el-table-column prop="data1" show-overflow-tooltip label="公司名称" width="250" />
-				<el-table-column prop="data2" show-overflow-tooltip label="产权层级" width="100" />
-				<el-table-column prop="data3" show-overflow-tooltip label="管理层级" width="100" />
-				<el-table-column prop="data4" show-overflow-tooltip label="统一社会信息代码" width="200" />
-				<el-table-column prop="data5" show-overflow-tooltip label="成立时间" width="150" />
-				<el-table-column prop="data6" show-overflow-tooltip label="注册资本金" width="150" />
-				<el-table-column prop="data7" show-overflow-tooltip label="法人" width="80" />
-				<el-table-column prop="data8" show-overflow-tooltip label="状态" width="80" />
+
+				<af-table-column v-for="item in tableHeader" :key="item.key" :label="item.label" :property="item.key">
+					<template slot-scope="scope">
+						{{ scope.row[scope.column.property] }}
+					</template>
+				</af-table-column>
 			</el-table>
 		</el-scrollbar>
 
@@ -57,6 +57,17 @@ export default {
 	// 组件状态值
 	data() {
 		return {
+			tableHeader: [
+				{ label: '公司名称', key: 'data1' },
+				{ label: '产权层级', key: 'data2' },
+				{ label: '管理层级', key: 'data3' },
+				{ label: '产权层级', key: 'data4' },
+				{ label: '统一社会信息代码', key: 'data5' },
+				{ label: '成立时间', key: 'data6' },
+				{ label: '注册资本金', key: 'data7' },
+				{ label: '法人', key: 'data8' },
+				{ label: '状态', key: 'data9' },
+			],
 			tableData: [
 				{
 					data1: '北京首创城市发展集团有限公司',

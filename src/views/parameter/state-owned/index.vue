@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:48:23
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-28 11:37:51
+ * @LastEditTime: 2022-06-28 15:27:12
 -->
 <template>
 	<div class="page-container">
@@ -61,22 +61,20 @@
 						empty-text="暂无数据"
 						:header-cell-style="{ 'text-align': 'center' }"
 						:cell-style="{ 'text-align': 'center' }"
-						class="c-pointer"
+						class="column-nowrap"
 					>
 						<el-table-column label="序号" type="index" align="center" width="55" />
 
-						<el-table-column
+						<af-table-column
 							v-for="item in tableHeader"
 							:key="item.key"
 							:label="item.label"
 							:property="item.key"
-							:align="item.align"
-							:width="item.width"
 						>
 							<template slot-scope="scope">
 								{{ scope.row[scope.column.property] }}
 							</template>
-						</el-table-column>
+						</af-table-column>
 					</el-table>
 				</el-scrollbar>
 			</div>

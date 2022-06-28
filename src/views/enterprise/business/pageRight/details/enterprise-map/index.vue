@@ -171,37 +171,37 @@ export default {
 			height: 50px;
 			font-size: 14px;
 			font-weight: 500;
-			color: var(--rh-color-black);
-			border: 1px solid var(--rh-border-color-light);
+			color: var(--el-color-black);
+			border: 1px solid var(--el-border-color-light);
 			border-bottom: none;
-			background: var(--rh-table-header-bg-color);
+			background: var(--el-table-header-bg-color);
 		}
 
 		ul {
 			display: flex;
 			margin: 0;
 			padding: 0;
-			border-top: 1px solid var(--rh-border-color-light);
-			border-left: 1px solid var(--rh-border-color-light);
+			border-top: 1px solid var(--el-border-color-light);
+			border-left: 1px solid var(--el-border-color-light);
 
 			li {
 				list-style: none;
 				height: 80px;
-				border-right: 1px solid var(--rh-border-color-light);
-				border-bottom: 1px solid var(--rh-border-color-light);
+				border-right: 1px solid var(--el-border-color-light);
+				border-bottom: 1px solid var(--el-border-color-light);
 				flex: 1;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: space-evenly;
-				color: var(--rh-text-color-primary);
+				color: var(--el-text-color-primary);
 			}
 		}
 
 		::v-deep .el-table th.el-table__cell {
 			background: none;
 			font-weight: normal;
-			color: var(--rh-text-color-primary);
+			color: var(--el-text-color-primary);
 		}
 	}
 }

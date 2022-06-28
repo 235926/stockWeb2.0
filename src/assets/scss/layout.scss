@@ -11,8 +11,8 @@
 
 		// 图标背景
 		.svg-icon-container {
-			height: var(--rh-header-height);
-			line-height: var(--rh-header-height);
+			height: var(--el-header-height);
+			line-height: var(--el-header-height);
 			padding: 0 12px;
 			font-size: 16px;
 			cursor: pointer;
@@ -21,7 +21,7 @@
 			justify-content: center;
 
 			&:hover {
-				background-color: var(--rh-svg-bg-color);
+				background-color: var(--el-svg-bg-color);
 
 				.svg-icon {
 					animation: logoAnimation 0.3s ease-in-out;
@@ -32,9 +32,9 @@
 
 	// 侧边栏容器
 	.layout-aside {
-		width: var(--rh-aside-width);
-		background-color: var(--rh-aside-bg-color);
-		border-right: 1px solid var(--rh-border-color-light);
+		width: var(--el-aside-width);
+		background-color: var(--el-aside-bg-color);
+		border-right: 1px solid var(--el-border-color-light);
 		display: flex;
 		flex-direction: column;
 		overflow-x: hidden !important;
@@ -43,7 +43,7 @@
 	// 主要区域容器
 	.el-main {
 		padding: 0;
-		background: var(--rh-background-color-base);
+		background: var(--el-background-color-base);
 		display: flex;
 		flex-direction: column;
 		overflow-x: hidden !important;

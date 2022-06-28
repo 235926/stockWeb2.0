@@ -66,6 +66,6 @@ export default {
 // 边框
 .border {
 	height: 5px;
-	background: var(--rh-color-primary);
+	background: var(--el-color-primary);
 }
 </style>

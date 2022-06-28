@@ -2,11 +2,11 @@
 ------------------------------- */
 #nprogress {
 	.bar {
-		background: var(--rh-color-primary) !important;
+		background: var(--el-color-primary) !important;
 		z-index: 9999999 !important;
 
 		.peg {
-			box-shadow: 0 0 10px var(--rh-color-primary), 0 0 5px var(--rh-color-primary) !important;
+			box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
 		}
 	}
 }

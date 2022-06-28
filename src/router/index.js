@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 12:09:14
+ * @LastEditTime: 2022-06-28 13:26:14
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -88,7 +88,7 @@ export function getRouterList(router, to, next) {
 			router.addRoute(awaitRoute[i])
 		}
 
-		// router.addRoute({ path: '*', redirect: '/404' })
+		router.addRoute({ path: '*', redirect: '/404' })
 		next({ ...to, replace: true })
 	})
 }

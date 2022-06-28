@@ -52,13 +52,13 @@ export default {
 		.title {
 			font-size: 24px;
 			font-weight: 400;
-			color: var(--rh-text-color-primary);
+			color: var(--el-text-color-primary);
 		}
 
 		.border {
 			width: 48px;
 			height: 5px;
-			background: var(--rh-color-primary);
+			background: var(--el-color-primary);
 			border-radius: 2px;
 		}
 	}
@@ -68,7 +68,7 @@ export default {
 		font-weight: 400;
 
 		.type {
-			color: var(--rh-color-primary);
+			color: var(--el-color-primary);
 		}
 	}
 }

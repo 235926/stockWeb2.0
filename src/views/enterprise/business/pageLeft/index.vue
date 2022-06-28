@@ -3,17 +3,25 @@
  * @Author: cdl
  * @Date: 2022-06-16 21:15:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 22:23:09
+ * @LastEditTime: 2022-06-28 15:37:12
 -->
 <template>
 	<div class="left">
-		<div class="search mb20">
+		<div class="search mb20" @keyup.enter="searchClick">
 			<el-input v-model="filterText" placeholder="请输入关键词" />
 			<el-divider direction="vertical" />
-			<span class="search-btn">搜索</span>
+			<span class="search-btn" @click="searchClick">搜索</span>
 		</div>
 
-		<el-tree ref="tree" :data="data" :props="defaultProps" :indent="30" :filter-node-method="filterNode">
+		<el-tree
+			ref="treeRef"
+			:data="treeData"
+			:props="defaultProps"
+			:expand-on-click-node="false"
+			:indent="30"
+			:filter-node-method="filterNode"
+			@node-click="treeNodeClick"
+		>
 			<template v-slot:default="{ node }">
 				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
@@ -50,7 +58,7 @@ export default {
 	data() {
 		return {
 			filterText: '', // 搜索
-			data: [
+			treeData: [
 				{
 					id: 1,
 					label: '一级 1',
@@ -109,18 +117,21 @@ export default {
 	},
 	// 计算属性
 	computed: {},
-	// 侦听器
-	watch: {
-		filterText(val) {
-			this.$refs.tree.filter(val)
-		},
-	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {},
 	// 组件挂载后，此方法执行后，页面显示
 	mounted() {},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 搜索导航栏数据
+		 * @return {*}
+		 * @author: cdl
+		 */
+		searchClick() {
+			this.$refs.treeRef.filter(this.filterText)
+		},
+
 		/**
 		 * @description: 搜索过滤
 		 * @param {*} value
@@ -131,6 +142,15 @@ export default {
 		filterNode(value, data) {
 			if (!value) return true
 			return data.label.indexOf(value) !== -1
+		},
+
+		/**
+		 * @description: 当节点被点击的时候触发
+		 * @return {*}
+		 * @author: cdl
+		 */
+		treeNodeClick(node) {
+			this.bus.$emit('onGetPartyInfoRightList', node.INFO_CODE)
 		},
 
 		/**

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-14 18:46:23
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-28 11:38:34
+ * @LastEditTime: 2022-06-28 15:26:33
 -->
 <template>
 	<div class="page-container">
@@ -106,29 +106,29 @@
 			</div>
 
 			<div class="padding30">
-				<el-table
-					:data="tableData"
-					:border="true"
-					empty-text="暂无数据"
-					:header-cell-style="{ 'text-align': 'center' }"
-					:cell-style="{ 'text-align': 'center' }"
-					class="c-pointer"
-				>
-					<el-table-column label="序号" type="index" align="center" width="55" />
-
-					<el-table-column
-						v-for="item in tableHeader"
-						:key="item.key"
-						:label="item.label"
-						:property="item.key"
-						:align="item.align"
-						:width="item.width"
+				<el-scrollbar class="horizontal">
+					<el-table
+						:data="tableData"
+						:border="true"
+						empty-text="暂无数据"
+						:header-cell-style="{ 'text-align': 'center' }"
+						:cell-style="{ 'text-align': 'center' }"
+						class="column-nowrap"
 					>
-						<template slot-scope="scope">
-							{{ scope.row[scope.column.property] }}
-						</template>
-					</el-table-column>
-				</el-table>
+						<el-table-column label="序号" type="index" align="center" width="55" />
+
+						<af-table-column
+							v-for="item in tableHeader"
+							:key="item.key"
+							:label="item.label"
+							:property="item.key"
+						>
+							<template slot-scope="scope">
+								{{ scope.row[scope.column.property] }}
+							</template>
+						</af-table-column>
+					</el-table>
+				</el-scrollbar>
 			</div>
 		</div>
 	</div>

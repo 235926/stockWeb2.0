@@ -3,24 +3,24 @@
  * @Author: cdl
  * @Date: 2022-06-11 14:12:03
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-28 11:10:15
+ * @LastEditTime: 2022-06-28 11:51:00
  */
 
 // 主体内容边框
 .page-container {
-	border: 1px solid var(--rh-border-color-light);
+	border: 1px solid var(--el-border-color-light);
 	border-radius: 4px;
-	background-color: var(--rh-color-white);
+	background-color: var(--el-color-white);
 
 	// 内容部分
 	.content {
 		border-radius: 0px 0px 4px 4px;
-		background-color: var(--rh-color-white);
+		background-color: var(--el-color-white);
 
 		.left {
 			width: 300px;
 			padding: 20px;
-			border-right: 1px solid var(--rh-border-color-light);
+			border-right: 1px solid var(--el-border-color-light);
 
 			.el-input .el-icon {
 				color: var(--el-color-primary);
@@ -73,8 +73,8 @@
 		div.table-btn {
 			padding-top: 10px;
 			padding-bottom: 10px;
-			background-color: var(--rh-table-header-bg-color);
-			border: 1px solid var(--rh-border-color-light);
+			background-color: var(--el-table-header-bg-color);
+			border: 1px solid var(--el-border-color-light);
 			border-top: none;
 			display: flex;
 			justify-content: center;
@@ -154,7 +154,7 @@
 						background: #fafafa;
 						border-radius: 16px;
 						border: 1px solid #e8e8e8;
-						color: var(--rh-text-color-primary);
+						color: var(--el-text-color-primary);
 						font-size: 14px;
 						font-weight: 400;
 

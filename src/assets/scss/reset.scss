@@ -24,7 +24,7 @@ li {
 }
 // 滚动条的设置
 ::-webkit-scrollbar-thumb {
-	background-color: var(--rh-color-primary);
+	background-color: var(--el-color-primary);
 	background-clip: padding-box;
 	border-radius: 20px;
 }

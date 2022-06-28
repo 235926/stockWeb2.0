@@ -10,11 +10,7 @@
 		<el-tabs type="border-card">
 			<el-tab-pane label="Icons">
 				<div class="grid">
-					<div
-						v-for="item of svgIcons"
-						:key="item"
-						@click="handleClipboard(generateIconCode(item), $event)"
-					>
+					<div v-for="item of svgIcons" :key="item" @click="handleClipboard(generateIconCode(item), $event)">
 						<div class="icon-item">
 							<SvgIcon :name="item" class="disabled font30" />
 							<span>{{ item }}</span>
@@ -87,7 +83,7 @@ export default {
 		cursor: pointer;
 
 		&:hover {
-			color: var(--rh-color-primary);
+			color: var(--el-color-primary);
 		}
 	}
 

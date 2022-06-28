@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 01:06:17
+ * @LastEditTime: 2022-06-28 15:06:46
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -34,6 +34,10 @@ import '@/plugin/nprogress.js'
 import ElementTreeLine from 'element-tree-line'
 import 'element-tree-line/dist/style.css'
 Vue.component(ElementTreeLine.name, ElementTreeLine)
+
+// el-table column 宽度自适应
+import AFTableColumn from 'af-table-column'
+Vue.use(AFTableColumn)
 
 // element ui 设置按需引入
 Vue.use(element)

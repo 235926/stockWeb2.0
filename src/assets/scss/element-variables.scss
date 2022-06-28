@@ -3,13 +3,13 @@
  * @Author: cdl
  * @Date: 2022-06-15 18:11:26
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 19:42:02
+ * @LastEditTime: 2022-06-28 13:14:38
  */
 
 /* 字体
 ------------------------------- */
-$--font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
-	'微软雅黑', Arial, sans-serif;
+$--font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,
+	sans-serif;
 
 /* 主题色
 ------------------------------- */
@@ -49,33 +49,33 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 :root {
 	/* 字体
 	------------------------------- */
-	--rh-font-family: #{$--font-family};
+	--el-font-family: #{$--font-family};
 
 	/* 主题色
 	------------------------------- */
-	--rh-color-primary: #{$--color-primary};
-	--rh-color-success: #{$--color-success};
-	--rh-color-warning: #{$--color-warning};
-	--rh-color-danger: #{$--color-danger};
-	--rh-color-info: #{$--color-info};
+	--el-color-primary: #{$--color-primary};
+	--el-color-success: #{$--color-success};
+	--el-color-warning: #{$--color-warning};
+	--el-color-danger: #{$--color-danger};
+	--el-color-info: #{$--color-info};
 
 	/* 字体颜色
 	------------------------------- */
-	--rh-text-color-primary: #{$--text-color-primary};
-	--rh-text-color-regular: #{$--text-color-regular};
-	--rh-text-color-secondary: #{$--text-color-secondary};
-	--rh-text-color-placeholder: #{$--text-color-placeholder};
+	--el-text-color-primary: #{$--text-color-primary};
+	--el-text-color-regular: #{$--text-color-regular};
+	--el-text-color-secondary: #{$--text-color-secondary};
+	--el-text-color-placeholder: #{$--text-color-placeholder};
 
 	/* 边框颜色
 	------------------------------- */
-	--rh-border-color: #{$--border-color-base};
-	--rh-border-color-light: #{$--border-color-light};
-	--rh-border-color-lighter: #{$--border-color-lighter};
-	--rh-border-color-extra-light: #{$--border-color-extra-light};
+	--el-border-color: #{$--border-color-base};
+	--el-border-color-light: #{$--border-color-light};
+	--el-border-color-lighter: #{$--border-color-lighter};
+	--el-border-color-extra-light: #{$--border-color-extra-light};
 
 	/* 背景颜色
 	------------------------------- */
-	--rh-color-white: #{$--color-white};
-	--rh-color-black: #{$--color-black};
-	--rh-background-color-base: #{$--background-color-base};
+	--el-color-white: #{$--color-white};
+	--el-color-black: #{$--color-black};
+	--el-background-color-base: #{$--background-color-base};
 }

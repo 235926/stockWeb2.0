@@ -10,11 +10,7 @@
 		<div class="title">{{ $route.meta.title }}</div>
 
 		<el-breadcrumb separator-class="el-icon-arrow-right">
-			<el-breadcrumb-item
-				v-for="item in $route.matched"
-				:key="item.name"
-				:to="{ path: item.path }"
-			>
+			<el-breadcrumb-item v-for="item in $route.matched" :key="item.name" :to="{ path: item.path }">
 				<SvgIcon v-if="item.name === '/'" :name="item.meta.icon" class="mr5" />
 				<span class="name">{{ item.meta.title }}</span>
 			</el-breadcrumb-item>
@@ -39,7 +35,7 @@ export default {
 	height: 50px;
 	padding: 0 20px;
 	background-color: #fafafa;
-	border-bottom: 1px solid var(--rh-border-color-light);
+	border-bottom: 1px solid var(--el-border-color-light);
 	border-radius: 4px 4px 0px 0px;
 	display: flex;
 	align-items: center;
@@ -47,12 +43,12 @@ export default {
 
 	.title {
 		font-weight: 600;
-		color: var(--rh-color-primary);
+		color: var(--el-color-primary);
 	}
 
 	.el-breadcrumb {
 		.svg-icon {
-			color: var(--rh-color-primary);
+			color: var(--el-color-primary);
 			margin-right: 5px;
 		}
 	}
