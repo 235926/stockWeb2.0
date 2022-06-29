@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-09 14:15:57
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-16 16:53:01
+ * @LastEditTime: 2022-06-28 15:59:41
 -->
 <template>
 	<el-header class="layout-header">
@@ -14,7 +14,7 @@
 				<span class="title ml15">企业股权管理信息系统</span>
 			</div>
 			<div class="right flex-center mr30">
-				<Settings />
+				<Settings v-if="getSystemConfig.isSystemConfig" />
 				<span class="title mr15">系统管理员</span>
 				<el-avatar :size="40" :src="require('@/assets/images/userAvatar.png')" />
 			</div>
@@ -34,7 +34,13 @@ export default {
 	data() {
 		return {}
 	},
-	computed: {},
+	// 计算属性
+	computed: {
+		// 获取系统配置
+		getSystemConfig() {
+			return this.$store.state.systemConfig.systemConfig
+		},
+	},
 	created() {},
 	methods: {},
 }

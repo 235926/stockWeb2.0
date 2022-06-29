@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-21 15:09:21
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-23 10:51:14
+ * @LastEditTime: 2022-06-29 16:35:29
  */
 export const dynamicRoutes = [
 	{

@@ -3,15 +3,10 @@
  * @Author: cdl
  * @Date: 2022-06-15 18:13:37
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-17 00:46:50
+ * @LastEditTime: 2022-06-28 16:10:33
 -->
 <template>
-	<el-drawer
-		title="我是标题"
-		:visible.sync="drawer"
-		:destroy-on-close="true"
-		:direction="direction"
-	>
+	<el-drawer title="我是标题" :visible.sync="drawer" :destroy-on-close="true" :direction="direction">
 		<el-scrollbar>
 			<!-- 界面设置 -->
 			<el-divider content-position="left">界面设置</el-divider>

@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-09 16:55:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-18 14:37:40
+ * @LastEditTime: 2022-06-28 16:02:15
  */
 const useSystemConfig = {
 	namespaced: true,
@@ -13,7 +13,7 @@ const useSystemConfig = {
 			 * @description 是否开启系统配置
 			 * @type {boolean} true | false
 			 */
-			isSystemConfig: true,
+			isSystemConfig: false,
 
 			/**
 			 * @description 网站主标题（菜单导航、浏览器当前网页标题）

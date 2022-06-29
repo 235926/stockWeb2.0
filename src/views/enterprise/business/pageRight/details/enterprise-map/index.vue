@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-18 12:09:58
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-27 15:53:28
+ * @LastEditTime: 2022-06-28 18:25:31
 -->
 <template>
 	<div class="business-details enterprise-map">
@@ -57,8 +57,6 @@ export default {
 			},
 		}
 	},
-	// 计算属性
-	computed: {},
 	// 侦听器
 	watch: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
@@ -73,16 +71,6 @@ export default {
 			const __graph_json_data = {
 				rootId: 'a',
 				nodes: [
-					// 根节点
-					// { id: 'a', text: '根节点a' },
-					// // 根节点左侧的数据：
-					// { id: 'l-b', text: '左1' },
-					// { id: 'l-c', text: '左2' },
-					// { id: 'l-d', text: '左3' },
-					// // 根节点右侧的数据：
-					// { id: 'b', text: '右1' },
-					// { id: 'c', text: '右2' },
-					// { id: 'd', text: '右3' },
 					{
 						id: 'a',
 						text: 'a',
@@ -125,16 +113,7 @@ export default {
 						],
 					},
 				],
-				links: [
-					// // 根节点左侧的数据：
-					// { from: 'l-b', to: 'a' },
-					// { from: 'l-c', to: 'a' },
-					// { from: 'l-d', to: 'a' },
-					// // 根节点右侧的数据：
-					// { from: 'a', to: 'b' },
-					// { from: 'a', to: 'c' },
-					// { from: 'a', to: 'd' },
-				],
+				links: [],
 			}
 
 			this.$refs.seeksRelationGraph.setJsonData(__graph_json_data, (seeksRGGraph) => {

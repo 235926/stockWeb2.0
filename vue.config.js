@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:44:01
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-14 22:32:43
+ * @LastEditTime: 2022-06-28 18:10:14
  */
 const path = require('path')
 function resolve(dir) {
@@ -12,6 +12,7 @@ function resolve(dir) {
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
 	publicPath: process.env.NODE_ENV === 'production' ? './' : './',
+	outputDir: 'portal', // 打包目录名称
 	lintOnSave: false, // https://cli.vuejs.org/zh/config/#lintonsave
 	transpileDependencies: true, // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件
 	productionSourceMap: false, // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建
@@ -22,7 +23,7 @@ module.exports = defineConfig({
 		open: false, // 启动服务时自动打开浏览器访问
 		proxy: {
 			// 开发环境代理配置
-			'/api': {
+			[process.env.VUE_APP_BASE_API]: {
 				target: process.env.VUE_APP_SERVICE_URL,
 				changeOrigin: true, // 开启代理服务器，
 				pathRewrite: {

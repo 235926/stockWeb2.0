@@ -3,7 +3,7 @@
  * @Author: cdl
  * @Date: 2022-06-08 14:56:16
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-28 15:08:07
+ * @LastEditTime: 2022-06-29 16:33:41
 -->
 # 股权管理系统更新日志
 - 🌟 更新
@@ -16,11 +16,12 @@
 - ❄️ 删除
 - ⚠️ 警告
 
-## Version: "0.3.6"， Date: "2022.06.27"，Author: "cdl"
+## Version: "0.3.6"， Date: "2022.06.29"，Author: "cdl"
 
 - 🚧 调整 修改 css 变量名称
 - 🎉 新增 添加 404 页面
 - 🌈 重构 结合 af-table-column 插件 重构 el-table 宽度自适应
+- 🚧 调整 系统地址变量
 
 
 
