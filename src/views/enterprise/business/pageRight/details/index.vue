@@ -21,7 +21,7 @@
 				<el-tab-pane label="投资企业" name="investment" v-if="readonly">
 					<Investment />
 				</el-tab-pane>
-				<el-tab-pane label="企业图谱" name="enterpriseMap" v-if="readonly">
+				<el-tab-pane :lazy="true" label="企业图谱" name="enterpriseMap" v-if="readonly">
 					<EnterpriseMap />
 				</el-tab-pane>
 				<el-tab-pane label="变更记录" name="changeRecord" v-if="readonly">
