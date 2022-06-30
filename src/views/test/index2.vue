@@ -1,32 +1,42 @@
 <!--
- * @Description: 企业图谱
+ * @Description: 测试页面
  * @Author: cdl
- * @Date: 2022-06-18 12:09:58
+ * @Date: 2022-06-15 18:11:26
  * @LastEditors: cdl
- * @LastEditTime: 2022-06-30 11:11:55
+ * @LastEditTime: 2022-06-30 10:35:37
 -->
 <template>
-	<div class="business-details enterprise-map">
-		<div id="container"></div>
+	<div class="page-container">
+		<PageHeader />
+
+		<!-- 内容部分 -->
+		<div class="content padding20">
+			<div id="container"></div>
+		</div>
 	</div>
 </template>
 
 <script>
 import G6 from '@antv/g6'
+import axios from 'axios'
 export default {
 	// 组件名称
-	name: 'enterpriseMap',
+	name: '',
 	// 组件参数 接收来自父组件的数据
 	props: {},
+	// 局部注册的组件
+	components: {
+		PageHeader: () => import('@/views/component/PageHeader/index.vue'), // main 头部
+	},
 	// 组件状态值
 	data() {
 		return {}
 	},
+	// 计算属性
+	computed: {},
 	// 侦听器
 	watch: {},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {},
-	// 组件挂载后，此方法执行后，页面显示
 	mounted() {
 		this.init()
 	},
@@ -50,6 +60,7 @@ export default {
 							name: 'rect-shape',
 						})
 						const content = cfg.label.replace(/(.{19})/g, '$1\n')
+						console.log(content)
 						const text = group.addShape('text', {
 							attrs: {
 								text: content,
@@ -57,7 +68,7 @@ export default {
 								y: 0,
 								textAlign: 'left',
 								textBaseline: 'middle',
-								// fill: '#383838',
+								fill: '#666',
 							},
 							name: 'text-shape',
 						})
@@ -100,6 +111,7 @@ export default {
 			const container = document.getElementById('container')
 			const width = container.scrollWidth
 			const height = container.scrollHeight || 600
+
 			const graph = new G6.TreeGraph({
 				container: 'container',
 				width,
@@ -128,6 +140,10 @@ export default {
 						[0, 0.5],
 						[1, 0.5],
 					],
+					size: 50,
+					labelCfg: {
+						fontSize: 25,
+					},
 				},
 				defaultEdge: {
 					// type: 'cubic-horizontal',
@@ -139,10 +155,9 @@ export default {
 				layout: {
 					type: 'compactBox',
 					direction: 'H',
-					// getId: function getId(d) {
-					// 	console.log(d)
-					// 	return d.id
-					// },
+					getId: function getId(d) {
+						return d.id
+					},
 					getHeight: function getHeight() {
 						return 16
 					},
@@ -155,14 +170,6 @@ export default {
 					getHGap: function getHGap() {
 						return 100
 					},
-					// 自定义子节点分布
-					// getSide: (d) => {
-					// 	console.log(d)
-					// 	if (d.id === 'right4' || d.id === 'right3') {
-					// 		return 'left'
-					// 	}
-					// 	return 'right'
-					// },
 				},
 			})
 
@@ -185,68 +192,8 @@ export default {
 					graph.changeSize(container.scrollWidth, container.scrollHeight)
 				}
 		},
-
-		/**
-		 * @description: 过滤文字换行
-		 * @param {*} name
-		 * @return {*}
-		 * @author: cdl
-		 */
-		filterTextWrap(name) {
-			let index = name.indexOf('（')
-			let prev = name.slice(0, index)
-			let next = name.slice(index)
-			let str = `
-				<div>${prev}</div>
-				<div>${next}</div>
-			`
-			return str
-		},
 	},
 }
 </script>
 
-<style lang="scss" scoped>
-.enterprise-map {
-	.business-details-item {
-		margin: 0 20px 30px;
-
-		.header {
-			height: 50px;
-			font-size: 14px;
-			font-weight: 500;
-			color: var(--el-color-black);
-			border: 1px solid var(--el-border-color-light);
-			border-bottom: none;
-			background: var(--el-table-header-bg-color);
-		}
-
-		ul {
-			display: flex;
-			margin: 0;
-			padding: 0;
-			border-top: 1px solid var(--el-border-color-light);
-			border-left: 1px solid var(--el-border-color-light);
-
-			li {
-				list-style: none;
-				height: 80px;
-				border-right: 1px solid var(--el-border-color-light);
-				border-bottom: 1px solid var(--el-border-color-light);
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: space-evenly;
-				color: var(--el-text-color-primary);
-			}
-		}
-
-		::v-deep .el-table th.el-table__cell {
-			background: none;
-			font-weight: normal;
-			color: var(--el-text-color-primary);
-		}
-	}
-}
-</style>
+<style lang="scss" scoped></style>
