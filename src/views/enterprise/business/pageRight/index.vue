@@ -1,7 +1,7 @@
 <!--
  * @Description: 业务办理 - 右侧内容
  * @Date: 2022-06-16 21:15:33
- * @LastEditTime: 2022-06-28 15:31:31
+ * @LastEditTime: 2022-07-06 10:23:19
 -->
 <template>
 	<div class="right">
@@ -122,16 +122,14 @@ export default {
 					break
 				case 'edit':
 					if (JSON.stringify(this.selectionRow) == '{}') {
-						this.$message.warning('请先勾选要删除的对象')
+						this.$message.warning('请先勾选要编辑的对象')
 					} else {
-						let routeUrl = this.$router.resolve({
+						this.$router.push({
 							path: '/enterprise/business/details',
 							query: {
-								item: JSON.stringify(this.selectionRow),
 								readonly: false,
 							},
 						})
-						window.open(routeUrl.href, '_blank')
 					}
 					break
 			}
@@ -156,7 +154,8 @@ export default {
 			let routeUrl = this.$router.resolve({
 				path: '/enterprise/business/details',
 				query: {
-					item: JSON.stringify(row),
+					title: '内容预览',
+					isAside: true,
 				},
 			})
 			window.open(routeUrl.href, '_blank')

@@ -1,7 +1,7 @@
 <!--
  * @Description: main 页面头部
  * @Date: 2022-06-14 19:03:23
- * @LastEditTime: 2022-06-29 11:14:20
+ * @LastEditTime: 2022-07-06 10:18:25
 -->
 <template>
 	<div class="page-header">
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-header ::v-deep {
+.page-header {
 	height: 50px;
 	padding: 0 20px;
 	background-color: #fafafa;

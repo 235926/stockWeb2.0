@@ -1,7 +1,7 @@
 /*
  * @Description: 系统配置
  * @Date: 2022-06-09 16:55:16
- * @LastEditTime: 2022-06-28 16:02:15
+ * @LastEditTime: 2022-07-06 10:29:12
  */
 const useSystemConfig = {
 	namespaced: true,
@@ -16,7 +16,7 @@ const useSystemConfig = {
 			/**
 			 * @description 网站主标题（菜单导航、浏览器当前网页标题）
 			 */
-			globalTitle: '管理系统',
+			globalTitle: '股权管理系统',
 
 			/**
 			 * @description 主页面切换动画

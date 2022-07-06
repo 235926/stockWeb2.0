@@ -1,10 +1,10 @@
 <!--
  * @Description: 变更类型维护 - 新增
  * @Date: 2022-06-15 23:00:02
- * @LastEditTime: 2022-06-24 22:49:55
+ * @LastEditTime: 2022-07-06 13:25:25
 -->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -42,18 +42,8 @@ import { addChangeType, getChangeTypeField } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'partyInfoRightAdd',
-	model: {
-		// v-model 绑定的值
-		prop: 'visible',
-		event: 'close',
-	},
 	// 组件参数 接收来自父组件的数据
 	props: {
-		// v-model 绑定的值
-		visible: {
-			type: Boolean,
-			default: false,
-		},
 		title: {
 			type: String,
 		},
@@ -62,22 +52,13 @@ export default {
 			default: 677,
 		},
 	},
-	// 局部注册的组件
-	components: {},
 	// 组件状态值
 	data() {
 		return {
+			isShowDialog: false, // 弹窗状态
 			form: {}, // 表单
 			fieldData: [], // 可更新字段
 		}
-	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {
-		this.onGetChangeTypeField()
 	},
 	// 组件方法
 	methods: {
@@ -96,7 +77,6 @@ export default {
 		 * @return {*}
 		 */
 		onCancel() {
-			this.$emit('update:visible', false)
 			this.$refs.form.resetFields()
 		},
 
@@ -112,6 +92,23 @@ export default {
 					this.onCancel()
 				}
 			})
+		},
+
+		/**
+		 * @description: 打开弹窗
+		 * @return {*}
+		 */
+		openDialog() {
+			this.isShowDialog = true
+			this.onGetChangeTypeField()
+		},
+
+		/**
+		 * @description: 关闭弹窗
+		 * @return {*}
+		 */
+		onCancel() {
+			this.isShowDialog = false
 		},
 	},
 }

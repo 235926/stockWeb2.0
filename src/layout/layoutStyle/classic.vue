@@ -1,14 +1,14 @@
 <!--
  * @Description: 经典布局
  * @Date: 2022-06-09 14:20:29
- * @LastEditTime: 2022-06-18 20:28:33
+ * @LastEditTime: 2022-07-06 10:24:02
 -->
 <template>
 	<el-container class="layout-container is-vertical">
 		<Header />
 
 		<el-container class="layout-main-height-65">
-			<Aside />
+			<Aside v-if="!$route.query.isAside" />
 
 			<Main />
 		</el-container>

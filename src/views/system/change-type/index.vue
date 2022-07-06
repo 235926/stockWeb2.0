@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护
  * @Date: 2022-06-14 18:51:44
- * @LastEditTime: 2022-06-24 22:51:52
+ * @LastEditTime: 2022-07-06 13:53:28
 -->
 <template>
 	<div class="page-container">
@@ -18,7 +18,15 @@
 			>
 				<el-table-column type="selection" width="55" />
 				<el-table-column type="index" label="序号" width="65" />
-				<el-table-column prop="EDIT_NAME" label="企业变更类型" />
+
+				<el-table-column label="企业变更类型">
+					<template slot-scope="scope">
+						<div @dblclick="dbEditName(scope)">
+							<el-input v-model="scope.row.EDIT_NAME" v-if="scope.row.edit" @blur="blurEditName(scope)" />
+							<span v-else>{{ scope.row.EDIT_NAME }}</span>
+						</div>
+					</template>
+				</el-table-column>
 
 				<el-table-column show-overflow-tooltip label="可更新字段">
 					<template slot-scope="scope">
@@ -51,14 +59,8 @@
 			</div>
 		</div>
 
-		<Add title="新增" :visible="addVisible" @update:visible="addVisible = $event" @childClick="onGetChangeType" />
-		<Field
-			ref="fieldRef"
-			title="可更新字段"
-			:visible="fieldVisible"
-			@update:visible="fieldVisible = $event"
-			:scope.sync="fieldScope"
-		/>
+		<Add ref="addRef" title="新增" @childClick="onGetChangeType" />
+		<Field ref="fieldRef" title="可更新字段" :scope.sync="fieldScope" />
 	</div>
 </template>
 
@@ -80,15 +82,11 @@ export default {
 					label: '变更角色1',
 				},
 			],
-			addVisible: false, // 添加页面状态
-			fieldVisible: false, // 可更新字段
 			selection: [], // 选中的数据
 			fieldScope: {}, // 选中传给子组件
 			loading: false, // 加载状态
 		}
 	},
-	// 计算属性
-	computed: {},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {
 		this.onGetChangeType()
@@ -102,8 +100,32 @@ export default {
 			this.loading = true
 			getChangeType().then((res) => {
 				this.tableData = res.data
-				this.loading = false
+				this.tableData.map((item) => {
+					this.$set(item, 'edit', false)
+				})
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
+		},
+
+		/**
+		 * @description: 双击 table 内编辑
+		 * @return {*}
+		 */
+		dbEditName(scope) {
+			this.tableData.map((item) => {
+				item.edit = false
+			})
+			scope.row.edit = true
+		},
+
+		/**
+		 * @description: table 内编辑 失去焦点
+		 * @return {*}
+		 */
+		blurEditName(scope) {
+			scope.row.edit = false
 		},
 
 		/**
@@ -120,8 +142,7 @@ export default {
 		 */
 		onField(scope) {
 			this.fieldScope = scope.row
-			this.fieldVisible = true
-			this.$refs.fieldRef.onGetChangeTypeField()
+			this.$refs.fieldRef.openDialog()
 		},
 
 		/**
@@ -129,7 +150,7 @@ export default {
 		 * @return {*}
 		 */
 		onAdd() {
-			this.addVisible = true
+			this.$refs.addRef.openDialog()
 		},
 
 		/**
@@ -162,12 +183,21 @@ export default {
 				this.selection.forEach((item) => {
 					params.EDIT_CODES.push(item.EDIT_CODE)
 				})
-				deleteChangeTypeList(params).then((res) => {
-					if (res._MSG_.includes('OK,')) {
-						this.onGetChangeType()
-						this.$message.success('删除成功')
-					}
+
+				this.$confirm('您确认要删除吗？', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning',
 				})
+					.then(() => {
+						deleteChangeTypeList(params).then((res) => {
+							if (res._MSG_.includes('OK,')) {
+								this.onGetChangeType()
+								this.$message.success('删除成功')
+							}
+						})
+					})
+					.catch(() => {})
 			}
 		},
 	},

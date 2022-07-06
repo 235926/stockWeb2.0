@@ -1,12 +1,12 @@
 <!--
  * @Description: 变更类型维护 - 可更新字段
  * @Date: 2022-06-16 21:02:56
- * @LastEditTime: 2022-06-23 11:57:44
+ * @LastEditTime: 2022-07-06 13:29:52
 -->
 
 <template>
 	<el-dialog
-		:visible.sync="visible"
+		:visible.sync="isShowDialog"
 		:width="width + 'px'"
 		:close-on-click-modal="false"
 		:destroy-on-close="true"
@@ -14,7 +14,7 @@
 	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
-		<el-scrollbar>
+		<el-scrollbar v-loading="loading">
 			<el-table
 				ref="tableRef"
 				:data="fieldData"
@@ -41,18 +41,8 @@ import { getChangeTypeField } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'partyInfoRightField',
-	model: {
-		// v-model 绑定的值
-		prop: 'visible',
-		event: 'close',
-	},
 	// 组件参数 接收来自父组件的数据
 	props: {
-		// v-model 绑定的值
-		visible: {
-			type: Boolean,
-			default: false,
-		},
 		title: {
 			type: String,
 		},
@@ -65,21 +55,34 @@ export default {
 			type: Object,
 		},
 	},
-	// 局部注册的组件
-	components: {},
 	// 组件状态值
 	data() {
 		return {
+			isShowDialog: false, // 弹窗状态
 			fieldData: [], // 可更新字段
 			selection: [], // 选择的内容
+			loading: false, // 加载状态
 		}
 	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 打开弹窗
+		 * @return {*}
+		 */
+		openDialog() {
+			this.isShowDialog = true
+			this.onGetChangeTypeField()
+		},
+
+		/**
+		 * @description: 关闭弹窗
+		 * @return {*}
+		 */
+		onCancel() {
+			this.isShowDialog = false
+		},
+
 		/**
 		 * @description: 获取可更新字段
 		 * @return {*}
@@ -101,7 +104,9 @@ export default {
 					})
 				})
 
-				this.loading = false
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
 		},
 
@@ -112,14 +117,6 @@ export default {
 		 */
 		handleSelectionChange(val) {
 			this.selection = val
-		},
-
-		/**
-		 * @description: 关闭弹窗
-		 * @return {*}
-		 */
-		onCancel() {
-			this.$emit('update:visible', false)
 		},
 
 		/**
@@ -135,14 +132,10 @@ export default {
 			})
 			this.scope.EDIT_FIELD_NAME = CMPY_FIELD_CODE.join()
 			this.scope.CMPY_FIELD_NAME = CMPY_FIELD_NAME.join()
-			this.$emit('update:scope', this.scope)
+			this.onCancel()
 			this.onCancel()
 		},
 	},
-	/**
-	 * 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	 */
-	created() {},
 }
 </script>
 

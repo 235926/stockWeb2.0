@@ -1,7 +1,7 @@
 <!--
  * @Description: 企业图谱
  * @Date: 2022-06-18 12:09:58
- * @LastEditTime: 2022-06-30 11:11:55
+ * @LastEditTime: 2022-07-06 10:19:09
 -->
 <template>
 	<div class="business-details enterprise-map">
@@ -203,47 +203,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.enterprise-map {
-	.business-details-item {
-		margin: 0 20px 30px;
-
-		.header {
-			height: 50px;
-			font-size: 14px;
-			font-weight: 500;
-			color: var(--el-color-black);
-			border: 1px solid var(--el-border-color-light);
-			border-bottom: none;
-			background: var(--el-table-header-bg-color);
-		}
-
-		ul {
-			display: flex;
-			margin: 0;
-			padding: 0;
-			border-top: 1px solid var(--el-border-color-light);
-			border-left: 1px solid var(--el-border-color-light);
-
-			li {
-				list-style: none;
-				height: 80px;
-				border-right: 1px solid var(--el-border-color-light);
-				border-bottom: 1px solid var(--el-border-color-light);
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: space-evenly;
-				color: var(--el-text-color-primary);
-			}
-		}
-
-		::v-deep .el-table th.el-table__cell {
-			background: none;
-			font-weight: normal;
-			color: var(--el-text-color-primary);
-		}
-	}
-}
-</style>
+<style lang="scss" scoped></style>

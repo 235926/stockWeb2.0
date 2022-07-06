@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-06-24 21:24:19
+ * @LastEditTime: 2022-07-06 10:12:08
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -15,8 +15,8 @@ export const login = (data) => {
 		url: '/SY_ORG_LOGIN.login.do',
 		method: 'get',
 		params: {
-			loginName: 'admin_exexm',
-			password: '123Qwe',
+			loginName: 'zhaoym',
+			password: '123456',
 		},
 	})
 }

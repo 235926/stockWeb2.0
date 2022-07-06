@@ -1,7 +1,7 @@
 <!--
  * @Description: 党组织信息管理 - 左侧内容
  * @Date: 2022-06-15 12:28:37
- * @LastEditTime: 2022-06-25 18:49:20
+ * @LastEditTime: 2022-07-06 10:27:30
 -->
 <template>
 	<div class="left">
@@ -18,6 +18,8 @@
 			:expand-on-click-node="false"
 			:indent="30"
 			:filter-node-method="filterNode"
+			node-key="ID"
+			:default-expanded-keys="defaultExpanded"
 			@node-click="treeNodeClick"
 		>
 			<template v-slot:default="{ node }">
@@ -57,6 +59,7 @@ export default {
 				children: 'children',
 				label: 'INFO_NAME',
 			},
+			defaultExpanded: [], // 默认展开
 			isShowTooltip: false, // Tooltip 文字提示状态
 		}
 	},
@@ -78,6 +81,7 @@ export default {
 		onGetPartyInfoTree() {
 			getPartyInfoTree().then((res) => {
 				this.treeData = res.treeData
+				this.defaultExpanded.push(res.treeData[0].ID)
 				this.bus.$emit('onGetPartyInfoRightList', '')
 			})
 		},

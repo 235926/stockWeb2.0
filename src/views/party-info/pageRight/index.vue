@@ -1,10 +1,14 @@
 <!--
  * @Description: 党组织信息管理 - 右侧内容
  * @Date: 2022-06-15 12:29:14
- * @LastEditTime: 2022-06-24 22:52:49
+ * @LastEditTime: 2022-07-06 12:27:50
 -->
 <template>
 	<div class="right" v-loading="loading">
+		<div class="btn mb10">
+			<el-button round @click="onAdd">添加</el-button>
+		</div>
+
 		<el-table
 			:data="tableData"
 			:border="true"
@@ -44,10 +48,6 @@
 			</el-table-column>
 		</el-table>
 
-		<div class="table-btn">
-			<el-button round @click="onAdd">添加</el-button>
-		</div>
-
 		<!-- 添加/修改页面 -->
 		<Add ref="addRef" title="添加" />
 		<Edit ref="editRef" title="修改" />
@@ -85,7 +85,9 @@ export default {
 			}
 			getPartyInfoRightList(params).then((res) => {
 				this.tableData = res.listData
-				this.loading = false
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
 		},
 

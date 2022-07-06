@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-06-18 00:04:49
- * @LastEditTime: 2022-06-28 11:31:27
+ * @LastEditTime: 2022-07-06 10:58:23
  */
 import {
 	Button,
@@ -44,6 +44,7 @@ import {
 	DatePicker,
 	Radio,
 	RadioGroup,
+	MessageBox,
 } from 'element-ui'
 
 const element = {
@@ -91,6 +92,8 @@ const element = {
 
 		Vue.prototype.$loading = Loading.service
 		Vue.prototype.$message = Message
+		Vue.prototype.$msgbox = MessageBox
+		Vue.prototype.$confirm = MessageBox.confirm
 	},
 }
 
