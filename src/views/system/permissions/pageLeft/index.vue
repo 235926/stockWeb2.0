@@ -1,36 +1,21 @@
 <!--
  * @Description: 企业信息更新权限 - 左侧页面
- * @Author: cdl
  * @Date: 2022-06-15 09:19:13
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-15 12:21:35
 -->
 <template>
 	<div class="left">
 		<el-tree :data="data" :props="defaultProps" :indent="30">
 			<template v-slot:default="{ node }">
-				<element-tree-line
-					class="custom-tree-node"
-					:node="node"
-					:indent="30"
-					:showLabelLine="false"
-				>
+				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
-						<SvgIcon
-							v-if="node.expanded !== true && node.isLeaf === false"
-							name="folder"
-							class="folder"
-						/>
+						<SvgIcon v-if="node.expanded !== true && node.isLeaf === false" name="folder" class="folder" />
 						<SvgIcon
 							v-if="node.expanded === true && node.isLeaf === false"
 							name="folder-open"
 							class="folder-open"
 						/>
-						<el-tooltip
-							:content="node.label"
-							:disabled="isShowTooltip"
-							placement="right"
-						>
+						<el-tooltip :content="node.label" :disabled="isShowTooltip" placement="right">
 							<span
 								class="label"
 								@mouseenter="onMouseenter($event)"
@@ -114,7 +99,6 @@ export default {
 		 * @description: 鼠标移入
 		 * @param {*} event
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth

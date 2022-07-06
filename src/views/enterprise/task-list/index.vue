@@ -1,8 +1,6 @@
 <!--
  * @Description: 任务列表
- * @Author: cdl
  * @Date: 2022-06-14 18:43:15
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-27 19:23:57
 -->
 <template>
@@ -140,7 +138,6 @@ export default {
 		/**
 		 * @description: 查询
 		 * @return {*}
-		 * @author: cdl
 		 */
 		searchClick() {
 			console.log(this.form)

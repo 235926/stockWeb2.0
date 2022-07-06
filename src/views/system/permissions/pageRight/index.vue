@@ -1,8 +1,6 @@
 <!--
  * @Description: 企业信息更新权限 - 右侧页面
- * @Author: cdl
  * @Date: 2022-06-15 09:19:42
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-15 18:20:34
 -->
 <template>
@@ -102,21 +100,18 @@ export default {
 		/**
 		 * @description: 新增
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onAdd() {},
 
 		/**
 		 * @description: 保存
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSave() {},
 
 		/**
 		 * @description: 删除
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onDelete() {},
 	},

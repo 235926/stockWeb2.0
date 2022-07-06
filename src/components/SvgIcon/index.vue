@@ -1,8 +1,6 @@
 <!--
  * @Description: svg 图标使用
- * @Author: cdl
  * @Date: 2022-06-14 19:42:08
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-20 15:32:35
 -->
 <template>

@@ -1,8 +1,6 @@
 <!--
  * @Description: 董监高台账查询
- * @Author: cdl
  * @Date: 2022-06-14 18:47:38
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:24:38
 -->
 <template>
@@ -131,7 +129,6 @@ export default {
 		/**
 		 * @description: 查询
 		 * @return {*}
-		 * @author: cdl
 		 */
 		searchClick() {
 			console.log(this.form)

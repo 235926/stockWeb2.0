@@ -1,8 +1,6 @@
 /*
  * @Description: 配置文件
- * @Author: cdl
  * @Date: 2022-06-08 14:44:01
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:06:46
  */
 import Vue from 'vue'

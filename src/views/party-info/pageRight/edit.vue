@@ -1,8 +1,6 @@
 <!--
  * @Description: 党组织信息管理 - 修改
- * @Author: cdl
  * @Date: 2022-06-23 21:08:01
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 23:06:16
 -->
 <template>
@@ -72,7 +70,6 @@ export default {
 		/**
 		 * @description: 获取上级党组织
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetPartyInfoTree() {
 			getPartyInfoTree().then((res) => {
@@ -83,7 +80,6 @@ export default {
 		/**
 		 * @description: 打开弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		// 关闭弹窗
 		openDialog(row) {
@@ -97,7 +93,6 @@ export default {
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onCancel() {
 			this.isShowDialog = false
@@ -107,7 +102,6 @@ export default {
 		/**
 		 * @description: 提交
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSubmit() {
 			getPartyInfoAddEditDelete(this.form).then((res) => {

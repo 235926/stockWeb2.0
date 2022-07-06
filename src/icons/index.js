@@ -1,8 +1,6 @@
 /*
  * @Description: 注册 SvgIcon
- * @Author: cdl
  * @Date: 2022-06-14 20:40:28
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-14 22:41:04
  */
 import Vue from 'vue'

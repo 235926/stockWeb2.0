@@ -1,8 +1,6 @@
 <!--
  * @Description: 党组织信息管理 - 右侧内容
- * @Author: cdl
  * @Date: 2022-06-15 12:29:14
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 22:52:49
 -->
 <template>
@@ -79,7 +77,6 @@ export default {
 		/**
 		 * @description: 获取数据列表
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetPartyInfoRightList(id) {
 			this.loading = true
@@ -95,7 +92,6 @@ export default {
 		/**
 		 * @description: 添加
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onAdd() {
 			this.$refs.addRef.openDialog()
@@ -104,7 +100,6 @@ export default {
 		/**
 		 * @description: 修改
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onEdit(scope) {
 			this.$refs.editRef.openDialog(scope.row)
@@ -113,7 +108,6 @@ export default {
 		/**
 		 * @description: 删除
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onDelete(scope) {
 			let params = {

@@ -1,8 +1,6 @@
 /*
  * @Description: ajax 请求接口
- * @Author: cdl
  * @Date: 2022-06-08 15:14:36
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-23 21:30:39
  */
 import axios from 'axios' // ajax 请求插件

@@ -1,8 +1,6 @@
 <!--
  * @Description: 信息核查
- * @Author: cdl
  * @Date: 2022-06-14 18:43:33
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 11:16:57
 -->
 <template>
@@ -92,7 +90,6 @@ export default {
 		 * @description: table 当某一行被点击时会触发该事件
 		 * @param {*} row
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleRowClick(row) {
 			let routeUrl = this.$router.resolve({

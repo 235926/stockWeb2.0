@@ -1,8 +1,6 @@
 /*
  * @Description: 接口文档
- * @Author: cdl
  * @Date: 2022-06-06 06:05:03
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 21:24:19
  */
 import request from '@/plugin/axios.js' // axios
@@ -11,7 +9,6 @@ import request from '@/plugin/axios.js' // axios
  * @description: 用户登录
  * @param {*} data
  * @return {*}
- * @author: cdl
  */
 export const login = (data) => {
 	return request({
@@ -28,7 +25,6 @@ export const login = (data) => {
  * @description: 获取菜单列表
  * @param {*} data
  * @return {*}
- * @author: cdl
  */
 export const getMenuList = (data) => {
 	return request({
@@ -43,7 +39,6 @@ export const getMenuList = (data) => {
 /**
  * @description: 企业变更类型 - 获取数据列表
  * @param {*} data
- * @author: cdl
  */
 export const getChangeType = (data) => {
 	return request({
@@ -56,7 +51,6 @@ export const getChangeType = (data) => {
 /**
  * @description: 企业变更类型 - 获取可更新字段
  * @param {*} data
- * @author: cdl
  */
 export const getChangeTypeField = (data) => {
 	return request({
@@ -69,7 +63,6 @@ export const getChangeTypeField = (data) => {
 /**
  * @description: 企业变更类型 - 新增
  * @param {*} data
- * @author: cdl
  */
 export const addChangeType = (data) => {
 	return request({
@@ -85,7 +78,6 @@ export const addChangeType = (data) => {
 /**
  * @description: 企业变更类型 - 保存
  * @param {*} data
- * @author: cdl
  */
 export const updateChangeType = (data) => {
 	return request({
@@ -101,7 +93,6 @@ export const updateChangeType = (data) => {
 /**
  * @description: 企业变更类型 - 删除
  * @param {*} data
- * @author: cdl
  */
 export const deleteChangeTypeList = (data) => {
 	return request({
@@ -117,7 +108,6 @@ export const deleteChangeTypeList = (data) => {
 /**
  * @description: 党组织信息管理 - 左侧导航栏
  * @param {*} data
- * @author: cdl
  */
 export const getPartyInfoTree = (data) => {
 	return request({
@@ -130,7 +120,6 @@ export const getPartyInfoTree = (data) => {
 /**
  * @description: 党组织信息管理 - 右侧列表
  * @param {*} data
- * @author: cdl
  */
 export const getPartyInfoRightList = (data) => {
 	return request({
@@ -143,7 +132,6 @@ export const getPartyInfoRightList = (data) => {
 /**
  * @description: 党组织信息管理 - 新增/编辑/删除
  * @param {*} data
- * @author: cdl
  */
 export const getPartyInfoAddEditDelete = (data) => {
 	return request({

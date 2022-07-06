@@ -1,8 +1,6 @@
 <!--
  * @Description: 头部页面
- * @Author: cdl
  * @Date: 2022-06-09 14:15:57
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:59:41
 -->
 <template>

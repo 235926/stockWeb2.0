@@ -1,8 +1,6 @@
 <!--
  * @Description: 主要人员
- * @Author: cdl
  * @Date: 2022-06-18 12:06:57
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 22:46:18
 -->
 <template>
@@ -238,7 +236,6 @@ export default {
 		/**
 		 * @description: 添加
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onAdd() {
 			this.$refs.addRef.openDialog()
@@ -247,7 +244,6 @@ export default {
 		/**
 		 * @description: 修改
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onEdit() {
 			this.$refs.editRef.openDialog()
@@ -256,7 +252,6 @@ export default {
 		/**
 		 * @description: 删除
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onDelete(scope) {
 			console.log(scope.row)

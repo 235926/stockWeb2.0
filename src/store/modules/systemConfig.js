@@ -1,8 +1,6 @@
 /*
  * @Description: 系统配置
- * @Author: cdl
  * @Date: 2022-06-09 16:55:16
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 16:02:15
  */
 const useSystemConfig = {

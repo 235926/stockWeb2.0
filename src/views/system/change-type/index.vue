@@ -1,8 +1,6 @@
 <!--
  * @Description: 变更类型维护
- * @Author: cdl
  * @Date: 2022-06-14 18:51:44
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 22:51:52
 -->
 <template>
@@ -99,7 +97,6 @@ export default {
 		/**
 		 * @description: 企业变更类型 - 获取数据列表
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetChangeType() {
 			this.loading = true
@@ -112,7 +109,6 @@ export default {
 		/**
 		 * @description: 选中的数据
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleSelectionChange(val) {
 			this.selection = val
@@ -121,7 +117,6 @@ export default {
 		/**
 		 * @description: 可更新字段
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onField(scope) {
 			this.fieldScope = scope.row
@@ -132,7 +127,6 @@ export default {
 		/**
 		 * @description: 新增
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onAdd() {
 			this.addVisible = true
@@ -141,7 +135,6 @@ export default {
 		/**
 		 * @description: 保存
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSave() {
 			let params = {
@@ -158,7 +151,6 @@ export default {
 		/**
 		 * @description: 删除
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onDelete() {
 			if (this.selection.length === 0) {

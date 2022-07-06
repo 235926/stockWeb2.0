@@ -1,8 +1,6 @@
 <!--
  * @Description: 经典布局
- * @Author: cdl
  * @Date: 2022-06-09 14:20:29
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-18 20:28:33
 -->
 <template>

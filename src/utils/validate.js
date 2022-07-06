@@ -1,8 +1,6 @@
 /*
  * @Description: validate 验证方法
- * @Author: cdl
  * @Date: 2022-06-14 20:42:53
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-14 20:43:02
  */
 

@@ -1,8 +1,6 @@
 <!--
  * @Description: table 模板
- * @Author: cdl
  * @Date: 2022-06-15 11:47:25
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 14:15:46
 -->
 <template>
@@ -67,7 +65,6 @@ export default {
 		/**
 		 * @description: 选中的数据
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleSelectionChange(val) {
 			// console.log(val)
@@ -77,7 +74,6 @@ export default {
 		 * @description: table 当某一行被点击时会触发该事件
 		 * @param {*} row
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleSelectionChange(row) {
 			this.router.push('/enterprise/business/details')

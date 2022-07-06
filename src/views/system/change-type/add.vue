@@ -1,8 +1,6 @@
 <!--
  * @Description: 变更类型维护 - 新增
- * @Author: cdl
  * @Date: 2022-06-15 23:00:02
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 22:49:55
 -->
 <template>
@@ -86,7 +84,6 @@ export default {
 		/**
 		 * @description: 获取可更新字段
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetChangeTypeField() {
 			getChangeTypeField().then((res) => {
@@ -97,7 +94,6 @@ export default {
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
@@ -107,7 +103,6 @@ export default {
 		/**
 		 * @description: 提交
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSubmit() {
 			addChangeType(this.form).then((res) => {

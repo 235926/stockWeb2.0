@@ -1,8 +1,6 @@
 /*
  * @Description: vuex
- * @Author: cdl
  * @Date: 2022-06-09 16:54:40
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-09 16:54:46
  */
 import Vue from 'vue'

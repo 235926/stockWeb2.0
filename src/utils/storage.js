@@ -1,8 +1,6 @@
 /*
  * @Description: 页面数据存储
- * @Author: cdl
  * @Date: 2022-06-08 15:40:56
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-08 15:41:21
  */
 import Cookies from 'js-cookie' // cookie 存储

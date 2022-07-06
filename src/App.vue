@@ -1,9 +1,7 @@
 <!--
  * @Description: 入口页面
- * @Author: cdl
  * @Date: 2022-06-08 14:44:01
- * @LastEditors: cdl
- * @LastEditTime: 2022-06-22 00:10:15
+ * @LastEditTime: 2022-07-06 10:08:20
 -->
 <template>
 	<div id="app">
@@ -59,7 +57,6 @@ export default {
 		/**
 		 * @description: 获取缓存中的布局配置
 		 * @return {*}
-		 * @author: cdl
 		 */
 		getLayoutSystemConfig() {
 			if (Local.get('systemConfig')) {
@@ -80,7 +77,6 @@ export default {
 		/**
 		 * @description: 登录接口
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onLogin() {
 			login().then((res) => {

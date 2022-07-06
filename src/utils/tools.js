@@ -1,15 +1,12 @@
 /*
  * @Description: 工具栏
- * @Author: cdl
  * @Date: 2022-06-07 17:06:52
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-18 14:39:08
  */
 
 /**
  * @description: 判断浏览器
  * @return {*}
- * @author: cdl
  */
 export function isBrowser() {
 	const userAgent = navigator.userAgent

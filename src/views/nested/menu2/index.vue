@@ -1,8 +1,6 @@
 <!--
  * @Description: menu2
- * @Author: cdl
  * @Date: 2022-06-17 12:50:30
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-17 13:49:58
 -->
 <template>

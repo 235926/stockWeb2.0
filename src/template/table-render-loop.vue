@@ -1,8 +1,6 @@
 <!--
  * @Description: table 循环渲染数据
- * @Author: cdl
  * @Date: 2022-06-20 15:34:53
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 14:02:45
 -->
 <template>

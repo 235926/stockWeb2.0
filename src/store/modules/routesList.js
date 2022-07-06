@@ -1,8 +1,6 @@
 /*
  * @Description:
- * @Author: cdl
  * @Date: 2022-06-21 15:34:35
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-21 15:45:16
  */
 const useRoutesList = {

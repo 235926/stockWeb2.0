@@ -1,8 +1,6 @@
 <!--
  * @Description: 主要人员 - 新增
- * @Author: cdl
  * @Date: 2022-06-23 21:14:24
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-24 22:43:58
 -->
 <template>
@@ -60,7 +58,6 @@ export default {
 		/**
 		 * @description: 打开弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		openDialog() {
 			this.isShowDialog = true
@@ -69,7 +66,6 @@ export default {
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onCancel() {
 			this.isShowDialog = false
@@ -79,7 +75,6 @@ export default {
 		/**
 		 * @description: 提交
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSubmit() {
 			this.onCancel()

@@ -1,8 +1,6 @@
 <!--
  * @Description: 业务办理 - 右侧内容
- * @Author: cdl
  * @Date: 2022-06-16 21:15:33
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:31:31
 -->
 <template>
@@ -110,7 +108,6 @@ export default {
 		 * @description: 打开弹窗组件
 		 * @param {*} item
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onOpenDialog(item) {
 			switch (item) {
@@ -143,7 +140,6 @@ export default {
 		/**
 		 * @description: 当用户手动勾选数据行的 Checkbox 时触发的事件
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleSelectionRow(selection, row) {
 			this.selectionRow = row
@@ -155,7 +151,6 @@ export default {
 		 * @description: table 当某一行被点击时会触发该事件
 		 * @param {*} row
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleRowClick(row) {
 			let routeUrl = this.$router.resolve({

@@ -1,17 +1,10 @@
 <!--
  * @Description: 占有页面
- * @Author: cdl
  * @Date: 2022-06-16 21:20:52
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-16 21:41:09
 -->
 <template>
-	<el-dialog
-		:visible.sync="visible"
-		:width="width + 'px'"
-		:destroy-on-close="true"
-		:before-close="onCancel"
-	>
+	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -94,7 +87,6 @@ export default {
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
@@ -104,7 +96,6 @@ export default {
 		/**
 		 * @description: 提交
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSubmit() {
 			this.onCancel()

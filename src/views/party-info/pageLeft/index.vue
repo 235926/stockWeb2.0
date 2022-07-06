@@ -1,8 +1,6 @@
 <!--
  * @Description: 党组织信息管理 - 左侧内容
- * @Author: cdl
  * @Date: 2022-06-15 12:28:37
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-25 18:49:20
 -->
 <template>
@@ -76,7 +74,6 @@ export default {
 		/**
 		 * @description: 获取导航栏数据
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetPartyInfoTree() {
 			getPartyInfoTree().then((res) => {
@@ -88,7 +85,6 @@ export default {
 		/**
 		 * @description: 搜索导航栏数据
 		 * @return {*}
-		 * @author: cdl
 		 */
 		searchClick() {
 			this.$refs.treeRef.filter(this.filterText)
@@ -99,7 +95,6 @@ export default {
 		 * @param {*} value
 		 * @param {*} data
 		 * @return {*}
-		 * @author: cdl
 		 */
 		filterNode(value, data) {
 			if (!value) return true
@@ -109,7 +104,6 @@ export default {
 		/**
 		 * @description: 当节点被点击的时候触发
 		 * @return {*}
-		 * @author: cdl
 		 */
 		treeNodeClick(node) {
 			this.bus.$emit('onGetPartyInfoRightList', node.INFO_CODE)
@@ -119,7 +113,6 @@ export default {
 		 * @description: 鼠标移入
 		 * @param {*} event
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth

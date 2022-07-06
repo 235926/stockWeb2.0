@@ -1,18 +1,12 @@
 <!--
  * @Description: 侧边栏子页面
- * @Author: cdl
  * @Date: 2022-06-10 13:05:58
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-18 01:04:29
 -->
 <template>
 	<div class="child-wrap">
 		<template v-for="val in child">
-			<el-submenu
-				:index="val.path"
-				:key="val.path"
-				v-if="!val.hidden && val.children && val.children.length > 0"
-			>
+			<el-submenu :index="val.path" :key="val.path" v-if="!val.hidden && val.children && val.children.length > 0">
 				<template slot="title">
 					<SvgIcon :name="val.meta.icon" />
 					<span class="title ml10">{{ val.meta.title }}</span>
@@ -52,7 +46,6 @@ export default {
 		 * @description: 跳转页面
 		 * @param {*} item
 		 * @return {*}
-		 * @author: cdl
 		 */
 		jumpRouterView(item) {
 			this.$router.push(item.path)

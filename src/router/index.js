@@ -1,8 +1,6 @@
 /*
  * @Description: 路由根文件
- * @Author: cdl
  * @Date: 2022-06-08 14:44:01
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-29 16:35:07
  */
 import Vue from 'vue'
@@ -48,7 +46,6 @@ export function dynamicRouter(routes) {
 /**
  * @description: 把后端传回来的字段处理成我们想要的字段
  * @return 处理后适合我们用的字段类型
- * @author: cdl
  */
 export function filterEndMyField(routes) {
 	routes.forEach((item) => {

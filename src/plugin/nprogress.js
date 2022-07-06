@@ -1,8 +1,6 @@
 /*
  * @Description: 进度条插件
- * @Author: cdl
  * @Date: 2022-06-08 15:15:41
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-08 15:17:58
  */
 import router from '@/router/index.js' // 引入路由

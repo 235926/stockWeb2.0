@@ -1,8 +1,6 @@
 <!--
  * @Description: 国资监管企业报表
- * @Author: cdl
  * @Date: 2022-06-14 18:48:23
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:27:12
 -->
 <template>
@@ -135,7 +133,6 @@ export default {
 		/**
 		 * @description: 查询
 		 * @return {*}
-		 * @author: cdl
 		 */
 		searchClick() {
 			console.log(this.form)

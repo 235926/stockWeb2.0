@@ -1,8 +1,6 @@
 <!--
  * @Description: 党组织台账查询
- * @Author: cdl
  * @Date: 2022-06-14 18:46:23
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 15:26:33
 -->
 <template>
@@ -193,7 +191,6 @@ export default {
 		/**
 		 * @description: 查询
 		 * @return {*}
-		 * @author: cdl
 		 */
 		searchClick() {
 			console.log(this.form)

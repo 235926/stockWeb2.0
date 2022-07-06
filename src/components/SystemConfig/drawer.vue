@@ -1,8 +1,6 @@
 <!--
  * @Description: 全局系统配置
- * @Author: cdl
  * @Date: 2022-06-15 18:13:37
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 16:10:33
 -->
 <template>

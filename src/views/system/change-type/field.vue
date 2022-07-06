@@ -1,8 +1,6 @@
 <!--
  * @Description: 变更类型维护 - 可更新字段
- * @Author: cdl
  * @Date: 2022-06-16 21:02:56
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-23 11:57:44
 -->
 
@@ -85,7 +83,6 @@ export default {
 		/**
 		 * @description: 获取可更新字段
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onGetChangeTypeField() {
 			this.loading = true
@@ -112,7 +109,6 @@ export default {
 		 * @description: 选中内容
 		 * @param {*} val
 		 * @return {*}
-		 * @author: cdl
 		 */
 		handleSelectionChange(val) {
 			this.selection = val
@@ -121,7 +117,6 @@ export default {
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onCancel() {
 			this.$emit('update:visible', false)
@@ -130,7 +125,6 @@ export default {
 		/**
 		 * @description: 提交
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onSubmit() {
 			let CMPY_FIELD_CODE = [] // id

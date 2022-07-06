@@ -1,8 +1,6 @@
 /*
  * @Description: 配置文件
- * @Author: cdl
  * @Date: 2022-06-08 14:44:01
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-28 18:10:14
  */
 const path = require('path')

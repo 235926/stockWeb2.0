@@ -1,8 +1,6 @@
 <!--
  * @Description: 企业图谱
- * @Author: cdl
  * @Date: 2022-06-18 12:09:58
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-30 11:11:55
 -->
 <template>
@@ -190,7 +188,6 @@ export default {
 		 * @description: 过滤文字换行
 		 * @param {*} name
 		 * @return {*}
-		 * @author: cdl
 		 */
 		filterTextWrap(name) {
 			let index = name.indexOf('（')

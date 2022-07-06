@@ -1,8 +1,6 @@
 /*
  * @Description: 剪切板
- * @Author: cdl
  * @Date: 2022-06-14 20:58:11
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-14 21:03:52
  */
 import Vue from 'vue'

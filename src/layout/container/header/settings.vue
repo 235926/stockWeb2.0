@@ -1,8 +1,6 @@
 <!--
  * @Description: 打开系统配置
- * @Author: cdl
  * @Date: 2022-06-16 16:45:39
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-16 16:53:30
 -->
 <template>
@@ -40,7 +38,6 @@ export default {
 		/**
 		 * @description: 打开布局设置抽屉
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onLayoutSettingClick() {
 			this.bus.$emit('openSystemConfig')

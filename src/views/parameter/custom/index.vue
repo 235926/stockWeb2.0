@@ -1,8 +1,6 @@
 <!--
  * @Description: 自定义报表
- * @Author: cdl
  * @Date: 2022-06-14 18:45:48
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-14 18:45:56
 -->
 <template>

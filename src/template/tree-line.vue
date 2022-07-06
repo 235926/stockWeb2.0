@@ -1,8 +1,6 @@
 <!--
  * @Description: tree-line 模板
- * @Author: cdl
  * @Date: 2022-06-15 10:29:51
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-22 00:31:03
 -->
 <template>
@@ -114,7 +112,6 @@ export default {
 		 * @param {*} value
 		 * @param {*} data
 		 * @return {*}
-		 * @author: cdl
 		 */
 		filterNode(value, data) {
 			if (!value) return true
@@ -125,7 +122,6 @@ export default {
 		 * @description: 鼠标移入
 		 * @param {*} event
 		 * @return {*}
-		 * @author: cdl
 		 */
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth

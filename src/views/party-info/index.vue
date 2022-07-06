@@ -1,8 +1,6 @@
 <!--
  * @Description: 党组织信息管理
- * @Author: cdl
  * @Date: 2022-06-14 18:44:56
- * @LastEditors: cdl
  * @LastEditTime: 2022-06-15 13:44:39
 -->
 <template>
