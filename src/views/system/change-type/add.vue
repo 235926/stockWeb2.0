@@ -8,7 +8,7 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="form" :model="form" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
 				<el-form-item prop="EDIT_NAME" label="企业变更类型">
 					<el-input v-model="form.EDIT_NAME" placeholder="请输入"></el-input>
 				</el-form-item>
@@ -58,6 +58,12 @@ export default {
 			isShowDialog: false, // 弹窗状态
 			form: {}, // 表单
 			fieldData: [], // 可更新字段
+			rules: {
+				// 表单验证
+				EDIT_NAME: [{ required: true, trigger: 'blur', message: '请输入企业变更类型' }],
+				EDIT_FIELD_NAME: [{ required: true, trigger: 'change', message: '请选择可更新字段' }],
+				LINK_ROLE: [{ required: true, trigger: 'change', message: '请选择变更角色' }],
+			},
 		}
 	},
 	// 组件方法
@@ -77,7 +83,7 @@ export default {
 		 * @return {*}
 		 */
 		onCancel() {
-			this.$refs.form.resetFields()
+			this.$refs.formRef.resetFields()
 		},
 
 		/**
@@ -85,11 +91,17 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			addChangeType(this.form).then((res) => {
-				if (res._MSG_.includes('OK,')) {
-					this.$message.success('新增成功')
-					this.$emit('childClick')
-					this.onCancel()
+			this.$refs.formRef.validate((valid) => {
+				if (valid) {
+					addChangeType(this.form).then((res) => {
+						if (res._MSG_.includes('OK,')) {
+							this.$message.success('新增成功')
+							this.$emit('childClick')
+							this.onCancel()
+						}
+					})
+				} else {
+					return false
 				}
 			})
 		},

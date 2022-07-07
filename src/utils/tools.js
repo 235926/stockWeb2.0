@@ -41,3 +41,16 @@ export function isBrowser() {
 		return 'Edge'
 	}
 }
+
+/**
+ * @description: 判断字符串是否为空
+ * @param {*} val
+ * @return {*}
+ */
+export function isStrEmpty(val) {
+	if (val === '' || val === null || val === undefined) {
+		return true
+	} else {
+		return false
+	}
+}

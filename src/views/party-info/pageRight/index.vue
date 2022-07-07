@@ -10,6 +10,7 @@
 		</div>
 
 		<el-table
+			ref="tableRef"
 			:data="tableData"
 			:border="true"
 			empty-text="暂无下级党组织信息"
@@ -55,7 +56,8 @@
 </template>
 
 <script>
-import { getPartyInfoRightList, getPartyInfoAddEditDelete } from '@/api/index.js' // api
+import { getPartyInfoRightList, getPartyInfoisHaveLower, getPartyInfoDelete } from '@/api/index.js' // api
+import Sortable from 'sortablejs' // 拖拽插件
 export default {
 	name: 'partyInfoRight',
 	components: {
@@ -72,6 +74,7 @@ export default {
 		this.bus.$on('onGetPartyInfoRightList', (id) => {
 			this.onGetPartyInfoRightList(id)
 		})
+		this.initSortable()
 	},
 	methods: {
 		/**
@@ -88,6 +91,17 @@ export default {
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
+			})
+		},
+
+		// 初始化拖拽
+		initSortable  ()  {
+			const tbody = this.tableRef.$el.querySelectorAll('.el-table__body-wrapper tbody')[0]
+			Sortable.create(tbody, {
+				onEnd({ newIndex, oldIndex }) {
+					this.tableData[oldIndex].S_SORT = newIndex
+					this.onGetPartyInfoRightList(state.leftId)
+				},
 			})
 		},
 
@@ -116,12 +130,20 @@ export default {
 				INFO_CODE: scope.row.INFO_CODE,
 				S_FLAG: 2,
 			}
-			getPartyInfoAddEditDelete(params).then((res) => {
-				if (res._MSG_.includes('OK,')) {
-					this.$message.success('删除成功')
-					this.bus.$emit('getPartyInfoAddEditDelete')
+			getPartyInfoisHaveLower({ INFO_CODE: scope.row.INFO_CODE }).then((res) => {
+				if (res.num === '0') {
+					getPartyInfoDelete(params).then((res) => {
+						if (res._MSG_.includes('OK,')) {
+							this.$message.success('删除成功')
+							this.bus.$emit('getPartyInfoAddEditDelete')
+						}
+					})
+				} else {
+					this.$message.error('请先删除子级，在删除当前级')
 				}
 			})
+
+
 		},
 	},
 	// 页面销毁

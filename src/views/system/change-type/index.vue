@@ -21,10 +21,11 @@
 
 				<el-table-column label="企业变更类型">
 					<template slot-scope="scope">
-						<div @dblclick="dbEditName(scope)">
+						<el-input v-model="scope.row.EDIT_NAME" />
+						<!-- <div @dblclick="dbEditName(scope)">
 							<el-input v-model="scope.row.EDIT_NAME" v-if="scope.row.edit" @blur="blurEditName(scope)" />
 							<span v-else>{{ scope.row.EDIT_NAME }}</span>
-						</div>
+						</div> -->
 					</template>
 				</el-table-column>
 
@@ -66,6 +67,7 @@
 
 <script>
 import { getChangeType, updateChangeType, deleteChangeTypeList } from '@/api/index.js' // api
+import { isStrEmpty } from '@/utils/tools.js' // 工具方法
 export default {
 	name: 'systemChangeType',
 	components: {
@@ -158,15 +160,28 @@ export default {
 		 * @return {*}
 		 */
 		onSave() {
-			let params = {
+			const params = {
 				updateKeys: this.tableData,
 			}
-			updateChangeType(params).then((res) => {
-				if (res._MSG_.includes('OK,')) {
-					this.onGetChangeType()
-					this.$message.success('更新成功')
+			// 判断是否为空，如果为空，把为空的序号报出来
+			const newArr = []
+			this.tableData.forEach((item, index) => {
+				if (isStrEmpty(item.EDIT_NAME)) {
+					newArr.push(index + 1)
 				}
 			})
+
+			// 判断是否为空，不为空进行更新操作
+			if (newArr.length > 0) {
+				this.$message.error(`序号为 ${[...newArr]}  的企业变更类型不能为空 `)
+			} else {
+				updateChangeType(params).then((res) => {
+					if (res._MSG_.includes('OK,')) {
+						this.onGetChangeType()
+						this.$message.success('更新成功')
+					}
+				})
+			}
 		},
 
 		/**

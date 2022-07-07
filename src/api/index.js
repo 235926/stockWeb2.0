@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-06 10:12:08
+ * @LastEditTime: 2022-07-07 08:55:50
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -130,12 +130,62 @@ export const getPartyInfoRightList = (data) => {
 }
 
 /**
- * @description: 党组织信息管理 - 新增/编辑/删除
+ * @description: 党组织信息管理 - 判断是否有下一级
+ * @description: 必选：INFO_CODE 党组织id，返回 num = 0，没有下一级，大于0有下一级
  * @param {*} data
  */
-export const getPartyInfoAddEditDelete = (data) => {
+export const getPartyInfoisHaveLower = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.isHaveLower.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 重名判断
+ * @description: 创建或修改前根据 INFO_NAME 查看是否有重名
+ * @param {*} data
+ */
+export const getPartyInfoRepeatName = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.repeatName.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 新增
+ * @param {*} data
+ */
+export const getPartyInfoAdd = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.addData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 编辑
+ * @param {*} data
+ */
+export const getPartyInfoUpdate = (data) => {
 	return request({
 		url: '/PARTY_ORG_INFO.updateData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 删除
+ * @param {*} data
+ */
+export const getPartyInfoDelete = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.deleteData.do',
 		method: 'get',
 		params: data,
 	})

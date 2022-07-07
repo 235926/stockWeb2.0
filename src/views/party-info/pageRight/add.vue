@@ -8,7 +8,7 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
 				<el-form-item prop="INFO_PCODE" label="上级党组织">
 					<el-cascader
 						v-model="form.INFO_PCODE"
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getPartyInfoTree, getPartyInfoAddEditDelete } from '@/api/index.js' // api
+import { getPartyInfoTree, getPartyInfoAdd } from '@/api/index.js' // api
 export default {
 	// 组件参数 接收来自父组件的数据
 	props: {
@@ -62,6 +62,10 @@ export default {
 				label: 'INFO_NAME',
 				checkStrictly: true, // 单选，否则只能选择最后一级
 				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
+			rules: {
+				// 表单验证
+				INFO_NAME: [{ required: true, trigger: 'blur', message: '请输入党组织名称' }],
 			},
 		}
 	},
@@ -100,7 +104,7 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			getPartyInfoAddEditDelete(this.form).then((res) => {
+			getPartyInfoAdd(this.form).then((res) => {
 				if (res._MSG_.includes('OK,')) {
 					this.$message.success('添加成功')
 					this.bus.$emit('getPartyInfoAddEditDelete')

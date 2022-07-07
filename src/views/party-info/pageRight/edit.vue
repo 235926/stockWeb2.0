@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getPartyInfoTree, getPartyInfoAddEditDelete } from '@/api/index.js' // api
+import { getPartyInfoTree, getPartyInfoUpdate } from '@/api/index.js' // api
 export default {
 	// 组件参数 接收来自父组件的数据
 	props: {
@@ -104,7 +104,7 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			getPartyInfoAddEditDelete(this.form).then((res) => {
+			getPartyInfoUpdate(this.form).then((res) => {
 				if (res._MSG_.includes('OK,')) {
 					this.$message.success('修改成功')
 					this.bus.$emit('getPartyInfoAddEditDelete')
