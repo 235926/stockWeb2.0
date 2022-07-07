@@ -16,7 +16,9 @@
 			empty-text="暂无下级党组织信息"
 			:header-cell-style="{ 'text-align': 'center' }"
 			:cell-style="{ 'text-align': 'center' }"
+			class="c-all-scroll"
 		>
+			<el-table-column label="序号" type="index" width="55" />
 			<el-table-column prop="INFO_NAME" label="党组织名称" />
 			<el-table-column prop="INFO_LEVEL" label="级别" width="80" />
 			<el-table-column label="操作" width="180">
@@ -56,7 +58,7 @@
 </template>
 
 <script>
-import { getPartyInfoRightList, getPartyInfoisHaveLower, getPartyInfoDelete } from '@/api/index.js' // api
+import { getPartyInfoRightList, getPartyInfoisHaveLower, getPartyInfoDelete, getPartyInfoUpdateSort } from '@/api/index.js' // api
 import Sortable from 'sortablejs' // 拖拽插件
 export default {
 	name: 'partyInfoRight',
@@ -68,13 +70,15 @@ export default {
 		return {
 			tableData: [], // 数据列表
 			loading: false, // 加载状态
+			leftId: '', // 点击左侧ID
+			sortable: null
 		}
 	},
 	mounted() {
 		this.bus.$on('onGetPartyInfoRightList', (id) => {
+			this.leftId = id
 			this.onGetPartyInfoRightList(id)
 		})
-		this.initSortable()
 	},
 	methods: {
 		/**
@@ -83,11 +87,18 @@ export default {
 		 */
 		onGetPartyInfoRightList(id) {
 			this.loading = true
+			this.tableData = []
+
 			let params = {
 				INFO_CODE: id,
 			}
 			getPartyInfoRightList(params).then((res) => {
 				this.tableData = res.listData
+
+				this.$nextTick(() => {
+	        		this.initSortable()
+	      		})
+
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
@@ -96,13 +107,33 @@ export default {
 
 		// 初始化拖拽
 		initSortable  ()  {
-			const tbody = this.tableRef.$el.querySelectorAll('.el-table__body-wrapper tbody')[0]
-			Sortable.create(tbody, {
-				onEnd({ newIndex, oldIndex }) {
-					this.tableData[oldIndex].S_SORT = newIndex
-					this.onGetPartyInfoRightList(state.leftId)
-				},
-			})
+			const tbody = this.$refs.tableRef.$el.querySelectorAll('.el-table__body-wrapper tbody')[0]
+		    Sortable.create(tbody, {
+		        onEnd: ({newIndex, oldIndex}) => {
+		          	// 当前拖拽的对象
+					const targetRow = this.tableData.splice(oldIndex, 1)[0]
+					this.tableData.splice(newIndex, 0, targetRow)
+
+					// 重新赋值排序字段
+					const newArr = []
+					this.tableData.forEach((item, index) => {
+						newArr.push({
+							INFO_CODE: item.INFO_CODE,
+							S_SORT: (item.S_SORT = index),
+						})
+					})
+
+					// 保存拖拽排序后的数据
+					const params = {
+						listData: newArr,
+					}
+					getPartyInfoUpdateSort(params).then((res) => {
+						if (res._MSG_.includes('OK,')) {
+							this.onGetPartyInfoRightList(this.leftId)
+						}
+					})
+		        }
+		      })
 		},
 
 		/**

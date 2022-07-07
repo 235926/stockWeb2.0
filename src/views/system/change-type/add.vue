@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-07-06 13:25:25
 -->
 <template>
-	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="false" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>

@@ -205,6 +205,16 @@
 		}
 	}
 
+
+	// 鼠标样式 - 拖拽
+	&.c-all-scroll {
+		.el-table__body {
+			td {
+				cursor: all-scroll;
+			}
+		}
+	}
+
 	// column 宽度自适应
 	&.column-nowrap {
 		.cell {
@@ -569,5 +579,17 @@
 				}
 			}
 		}
+	}
+}
+
+/* Cascader 级联选择器
+------------------------------- */
+.el-cascader__dropdown {
+	.el-cascader-menu__wrap.el-scrollbar__wrap {
+		height: 300px;
+	}
+
+	.el-cascader-menu {
+		min-width: 230px;
 	}
 }

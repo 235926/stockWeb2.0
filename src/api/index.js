@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-07 08:55:50
+ * @LastEditTime: 2022-07-07 14:05:52
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -33,6 +33,19 @@ export const getMenuList = (data) => {
 		params: {
 			DICT_ID: 'SY_COMM_MENU_USER',
 		},
+	})
+}
+
+/**
+ * @description: 获取 OA 角色
+ * @param {*} data
+ * @return {*}
+ */
+export const getOaData = (data) => {
+	return request({
+		url: '/GET_OA_DATA.getOaData.do',
+		method: 'get',
+		params: data,
 	})
 }
 
@@ -126,6 +139,21 @@ export const getPartyInfoRightList = (data) => {
 		url: '/PARTY_ORG_INFO.lookPartyOrgInfo.do',
 		method: 'get',
 		params: data,
+	})
+}
+
+/**
+ * @description: 党组织信息管理 - 拖拽保存
+ * @param {*} data
+ */
+export const getPartyInfoUpdateSort = (data) => {
+	return request({
+		url: '/PARTY_ORG_INFO.updateSort.do',
+		method: 'get',
+		params: {
+			// 传递数组需要JSON.stringify转换
+			data: JSON.stringify(data),
+		},
 	})
 }
 

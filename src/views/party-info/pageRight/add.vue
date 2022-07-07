@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-06-24 22:43:43
 -->
 <template>
-	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="false" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getPartyInfoTree, getPartyInfoAdd } from '@/api/index.js' // api
+import { getPartyInfoTree, getPartyInfoAdd, getPartyInfoRepeatName } from '@/api/index.js' // api
 export default {
 	// 组件参数 接收来自父组件的数据
 	props: {
@@ -104,11 +104,23 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			getPartyInfoAdd(this.form).then((res) => {
-				if (res._MSG_.includes('OK,')) {
-					this.$message.success('添加成功')
-					this.bus.$emit('getPartyInfoAddEditDelete')
-					this.onCancel()
+			this.$refs.formRef.validate(async (valid) => {
+				if (valid) {
+					// 重名判断
+					const { num } = await getPartyInfoRepeatName({ INFO_NAME: this.form.INFO_NAME })
+					if (num === '0') {
+						getPartyInfoAdd(this.form).then((res) => {
+							if (res._MSG_.includes('OK,')) {
+								this.$message.success('添加成功')
+								this.bus.$emit('getPartyInfoAddEditDelete')
+								this.onCancel()
+							}
+						})
+					} else {
+						this.$message.error('已有相同名党组织名称，请修改！')
+					}
+				} else {
+					return false
 				}
 			})
 		},
