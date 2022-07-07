@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-07 14:05:52
+ * @LastEditTime: 2022-07-07 17:44:40
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -44,6 +44,47 @@ export const getMenuList = (data) => {
 export const getOaData = (data) => {
 	return request({
 		url: '/GET_OA_DATA.getOaData.do',
+		method: 'get',
+		params: {
+			dictId: 'SY_ORG_ROLE_STOCK',
+		},
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 左侧导航树
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessLeftTree = (data) => {
+	return request({
+		url: '/CMPY_INFO.query.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 右侧列表
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessrightQuery = (data) => {
+	return request({
+		url: '/CMPY_INFO.rightQuery.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 获取详情
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessDetails = (data) => {
+	return request({
+		url: '/CMPY_INFO.details.do',
 		method: 'get',
 		params: data,
 	})

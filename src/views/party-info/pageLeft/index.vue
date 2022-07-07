@@ -72,17 +72,22 @@ export default {
 		this.bus.$on('getPartyInfoAddEditDelete', () => {
 			this.onGetPartyInfoTree()
 		})
+
+		//  监听右侧拖拽排序后，重新获取数据
+		this.bus.$on('partyInfoSortable', (id) => {
+			this.onGetPartyInfoTree(id)
+		})
 	},
 	methods: {
 		/**
 		 * @description: 获取导航栏数据
 		 * @return {*}
 		 */
-		onGetPartyInfoTree() {
+		onGetPartyInfoTree(id) {
 			getPartyInfoTree().then((res) => {
 				this.treeData = res.treeData
 				this.defaultExpanded.push(res.treeData[0].ID)
-				this.bus.$emit('onGetPartyInfoRightList', '')
+				this.bus.$emit('onGetPartyInfoRightList', id || '')
 			})
 		},
 
@@ -125,6 +130,7 @@ export default {
 	// 页面销毁
 	destroyed() {
 		this.bus.$off('getPartyInfoAddEditDelete')
+		this.bus.$off('partyInfoSortable')
 	},
 }
 </script>

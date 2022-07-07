@@ -14,6 +14,7 @@
 		<el-scrollbar class="horizontal">
 			<el-table
 				ref="tableRef"
+				v-loading="loading"
 				:data="tableData"
 				:border="true"
 				:header-cell-style="{ 'text-align': 'center' }"
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import { getBusinessrightQuery } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'enterpriseBusinessRight',
@@ -92,18 +94,35 @@ export default {
 			changeVisible: false, // 变更状态
 			cancelVisible: false, // 注销状态
 			selectionRow: {}, // 勾选的单条数据
+			loading: false, // 加载状态
 		}
 	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {},
-	// 组件挂载后，此方法执行后，页面显示
-	mounted() {},
+	mounted() {
+		this.bus.$on('onGetBusinessRightList', (id) => {
+			this.onGetBusinessrightQuery(id)
+		})
+	},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 获取右侧列表
+		 * @return {*}
+		 */
+		onGetBusinessrightQuery(id) {
+			this.loading = true
+		
+			const params = {
+				CMPY_BASE_CODE: id,
+			}
+			getBusinessrightQuery(params).then((res) => {
+				this.tableData = res.DATA
+		
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
+			})
+		},
+
 		/**
 		 * @description: 打开弹窗组件
 		 * @param {*} item
@@ -127,7 +146,7 @@ export default {
 						this.$router.push({
 							path: '/enterprise/business/details',
 							query: {
-								readonly: false,
+								title: '内容编辑',
 							},
 						})
 					}
@@ -155,11 +174,14 @@ export default {
 				path: '/enterprise/business/details',
 				query: {
 					title: '内容预览',
-					isAside: true,
 				},
 			})
 			window.open(routeUrl.href, '_blank')
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('onGetBusinessRightList')
 	},
 }
 </script>

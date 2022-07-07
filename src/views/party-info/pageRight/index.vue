@@ -4,13 +4,14 @@
  * @LastEditTime: 2022-07-06 12:27:50
 -->
 <template>
-	<div class="right" v-loading="loading">
+	<div class="right">
 		<div class="btn mb10">
 			<el-button round @click="onAdd">添加</el-button>
 		</div>
 
 		<el-table
 			ref="tableRef"
+			v-loading="loading"
 			:data="tableData"
 			:border="true"
 			empty-text="暂无下级党组织信息"
@@ -33,7 +34,7 @@
 						<el-popconfirm
 							confirm-button-text="确定"
 							cancel-button-text="取消"
-							title="你确定要删除这个吗?"
+							:title="`您确定要删除'${scope.row.INFO_NAME}'吗?`"
 							placement="left"
 							@confirm="onDelete(scope)"
 						>
@@ -129,7 +130,7 @@ export default {
 					}
 					getPartyInfoUpdateSort(params).then((res) => {
 						if (res._MSG_.includes('OK,')) {
-							this.onGetPartyInfoRightList(this.leftId)
+							this.bus.$emit('partyInfoSortable', this.leftId)
 						}
 					})
 		        }

@@ -43,9 +43,9 @@
 						<el-select v-model="scope.row.LINK_ROLE" placeholder="请选择" class="border-none">
 							<el-option
 								v-for="item in options"
-								:key="item.value"
-								:label="item.label"
-								:value="item.value"
+								:key="item.ID"
+								:label="item.NAME"
+								:value="item.ID"
 							>
 							</el-option>
 						</el-select>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { getChangeType, updateChangeType, deleteChangeTypeList } from '@/api/index.js' // api
+import { getChangeType, updateChangeType, deleteChangeTypeList, getOaData } from '@/api/index.js' // api
 import { isStrEmpty } from '@/utils/tools.js' // 工具方法
 export default {
 	name: 'systemChangeType',
@@ -78,12 +78,7 @@ export default {
 	data() {
 		return {
 			tableData: [],
-			options: [
-				{
-					value: 'role1',
-					label: '变更角色1',
-				},
-			],
+			options: [], // 变更角色
 			selection: [], // 选中的数据
 			fieldScope: {}, // 选中传给子组件
 			loading: false, // 加载状态
@@ -92,6 +87,7 @@ export default {
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {
 		this.onGetChangeType()
+		this.onGetOaData()
 	},
 	methods: {
 		/**
@@ -108,6 +104,16 @@ export default {
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
+			})
+		},
+
+		/**
+		 * @description: 获取 OA 角色
+		 * @return {*}
+		 */
+		 onGetOaData() {
+			getOaData().then((res) => {
+				this.options = res.bean._DATA_
 			})
 		},
 
