@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-08 14:58:01
+ * @LastEditTime: 2022-07-08 17:25:31
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -97,6 +97,42 @@ export const getBusinessDetails = (data) => {
 export const getPermissionsLeftTree = (data) => {
 	return request({
 		url: '/COMPAY_FIELD_EDIT.editQuery.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 系统设置 - 企业信息编辑权限 - 新增
+ * @param {*} data
+ */
+export const getPermissionsAdd = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.addData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 系统设置 - 企业信息编辑权限 - 修改
+ * @param {*} data
+ */
+export const getPermissionseUpdate = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.updateData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 系统设置 - 企业信息编辑权限 - 删除
+ * @param {*} data
+ */
+export const getPermissionsDelete = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.deleteData.do',
 		method: 'get',
 		params: data,
 	})
