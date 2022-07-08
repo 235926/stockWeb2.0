@@ -4,7 +4,13 @@
  * @LastEditTime: 2022-06-16 21:41:43
 -->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog
+		:visible.sync="visible"
+		:width="width + 'px'"
+		:destroy-on-close="true"
+		:close-on-click-modal="false"
+		:before-close="onCancel"
+	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>

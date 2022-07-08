@@ -4,7 +4,13 @@
  * @LastEditTime: 2022-06-24 23:06:16
 -->
 <template>
-	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="false" :before-close="onCancel">
+	<el-dialog
+		:visible.sync="isShowDialog"
+		:width="width + 'px'"
+		:destroy-on-close="true"
+		:close-on-click-modal="false"
+		:before-close="onCancel"
+	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -123,7 +129,6 @@ export default {
 					return false
 				}
 			})
-
 		},
 	},
 }

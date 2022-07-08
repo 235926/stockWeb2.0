@@ -1,10 +1,16 @@
 <!--
  * @Description: dialog 模板
  * @Date: 2022-06-15 18:11:26
- * @LastEditTime: 2022-06-24 22:43:50
+ * @LastEditTime: 2022-07-08 14:02:09
 -->
 <template>
-	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="false" :before-close="onCancel">
+	<el-dialog
+		:visible.sync="isShowDialog"
+		:width="width + 'px'"
+		:destroy-on-close="true"
+		:close-on-click-modal="false"
+		:before-close="onCancel"
+	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>

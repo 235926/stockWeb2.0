@@ -1,11 +1,19 @@
 <!--
  * @Description: 企业信息更新权限 - 左侧页面
  * @Date: 2022-06-15 09:19:13
- * @LastEditTime: 2022-06-15 12:21:35
+ * @LastEditTime: 2022-07-08 15:16:56
 -->
 <template>
 	<div class="left">
-		<el-tree :data="data" :props="defaultProps" :indent="30">
+		<el-tree
+			ref="treeRef"
+			:data="treeData"
+			:props="defaultProps"
+			:indent="30"
+			node-key="EDIT_CODE"
+			:default-expanded-keys="defaultExpanded"
+			@node-click="treeNodeClick"
+		>
 			<template v-slot:default="{ node }">
 				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
@@ -31,70 +39,45 @@
 </template>
 
 <script>
+import { getPermissionsLeftTree } from '@/api/index.js' // api
+
 export default {
 	name: 'systemPermissionsLeft',
 	data() {
 		return {
-			data: [
-				{
-					id: 1,
-					label: '一级 1',
-					children: [
-						{
-							id: 4,
-							label: '二级 1-1',
-							children: [
-								{
-									id: 9,
-									label: '三级 1-1-1',
-								},
-								{
-									id: 10,
-									label: '三级 1-1-2',
-								},
-							],
-						},
-					],
-				},
-				{
-					id: 2,
-					label: '一级 2',
-					children: [
-						{
-							id: 5,
-							label: '二级 2-1',
-						},
-						{
-							id: 6,
-							label: '二级 2-2',
-						},
-					],
-				},
-				{
-					id: 3,
-					label: '一级 3',
-					children: [
-						{
-							id: 7,
-							label: '二级 3-1',
-						},
-						{
-							id: 8,
-							label: '二级 3-2',
-						},
-					],
-				},
-			],
+			treeData: [], // 导航树
 			defaultProps: {
 				children: 'children',
-				label: 'label',
+				label: 'EDIT_NAME',
 			},
+			defaultExpanded: [], // 默认展开
 			isShowTooltip: false, // el-tooltip
 		}
 	},
-	computed: {},
-	created() {},
+	created() {
+		this.onGetPermissionsLeftTree()
+	},
 	methods: {
+		/**
+		 * @description: 获取导航树
+		 * @return {*}
+		 */
+		onGetPermissionsLeftTree(id) {
+			getPermissionsLeftTree().then((res) => {
+				this.treeData = res.data
+				this.defaultExpanded.push(res.data[0].ID)
+				this.bus.$emit('onGetPermissionsRightList', id || res.data[0].ID)
+			})
+		},
+
+		/**
+		 * @description: 当节点被点击的时候触发
+		 * @return {*}
+		 */
+		treeNodeClick(node) {
+			this.bus.$emit('onGetPermissionsRightList', node.EDIT_CODE)
+		},
+
 		/**
 		 * @description: 鼠标移入
 		 * @param {*} event

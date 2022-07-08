@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-07 17:44:40
+ * @LastEditTime: 2022-07-08 14:58:01
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -91,7 +91,31 @@ export const getBusinessDetails = (data) => {
 }
 
 /**
- * @description: 企业变更类型 - 获取数据列表
+ * @description: 系统设置 - 企业信息编辑权限 - 左侧导航树
+ * @param {*} data
+ */
+export const getPermissionsLeftTree = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.editQuery.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 系统设置 - 企业信息编辑权限 - 右侧列表
+ * @param {*} data
+ */
+export const getPermissionsRightList = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.query.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 系统设置 - 企业变更类型维护 - 获取数据列表
  * @param {*} data
  */
 export const getChangeType = (data) => {
@@ -103,7 +127,7 @@ export const getChangeType = (data) => {
 }
 
 /**
- * @description: 企业变更类型 - 获取可更新字段
+ * @description: 系统设置 - 企业变更类型维护 - 获取可更新字段
  * @param {*} data
  */
 export const getChangeTypeField = (data) => {
@@ -115,7 +139,7 @@ export const getChangeTypeField = (data) => {
 }
 
 /**
- * @description: 企业变更类型 - 新增
+ * @description: 系统设置 - 企业变更类型维护 - 新增
  * @param {*} data
  */
 export const addChangeType = (data) => {
@@ -130,7 +154,7 @@ export const addChangeType = (data) => {
 }
 
 /**
- * @description: 企业变更类型 - 保存
+ * @description: 系统设置 - 企业变更类型维护 - 保存
  * @param {*} data
  */
 export const updateChangeType = (data) => {
@@ -145,7 +169,7 @@ export const updateChangeType = (data) => {
 }
 
 /**
- * @description: 企业变更类型 - 删除
+ * @description: 系统设置 - 企业变更类型维护 - 删除
  * @param {*} data
  */
 export const deleteChangeTypeList = (data) => {

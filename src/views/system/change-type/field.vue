@@ -90,12 +90,12 @@ export default {
 		onGetChangeTypeField() {
 			this.loading = true
 			getChangeTypeField().then((res) => {
-				this.fieldData = res.data
+				this.fieldData = res.EDIT_DATA
 
 				// 设置默认选中
 				let EDIT_FIELD_NAME = this.scope.EDIT_FIELD_NAME.split(',')
 				EDIT_FIELD_NAME.forEach((item) => {
-					res.data.forEach((val) => {
+					res.EDIT_DATA.forEach((val) => {
 						if (`'${val.CMPY_FIELD_CODE}'` == item) {
 							this.$nextTick(() => {
 								this.$refs.tableRef.toggleRowSelection(val, true)

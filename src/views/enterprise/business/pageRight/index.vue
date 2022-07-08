@@ -57,39 +57,18 @@ export default {
 	// 组件状态值
 	data() {
 		return {
+			// table 表头
 			tableHeader: [
-				{ label: '公司名称', key: 'data1' },
-				{ label: '产权层级', key: 'data2' },
-				{ label: '管理层级', key: 'data3' },
-				{ label: '产权层级', key: 'data4' },
-				{ label: '统一社会信息代码', key: 'data5' },
-				{ label: '成立时间', key: 'data6' },
-				{ label: '注册资本金', key: 'data7' },
-				{ label: '法人', key: 'data8' },
-				{ label: '状态', key: 'data9' },
+				{ label: '公司名称', key: 'CMPY_NAME' },
+				{ label: '产权层级', key: 'RIGHT_LEVEL' },
+				{ label: '管理层级', key: 'MANAGE_LEVEL' },
+				{ label: '统一社会信息代码', key: 'CREDIT_CODE' },
+				{ label: '成立时间', key: 'BUSINESS_DATE' },
+				{ label: '注册资本金', key: 'LOG_MONEY' },
+				{ label: '法人', key: 'LEGAL_AGENT' },
+				{ label: '状态', key: 'CMPY_TYPE' },
 			],
-			tableData: [
-				{
-					data1: '北京首创城市发展集团有限公司',
-					data2: 1,
-					data3: 1,
-					data4: '91110115MA04BH9K88',
-					data5: '1990年11月',
-					data6: '330,000（万元）',
-					data7: '张三',
-					data8: '有效',
-				},
-				{
-					data1: '首创置业有限公司',
-					data2: 2,
-					data3: 2,
-					data4: '91110115MA04BH822M',
-					data5: '1990年11月',
-					data6: '436,294.1（万元）',
-					data7: '张三',
-					data8: '有效',
-				},
-			],
+			tableData: [], // 数据列表
 			possessionVisible: false, // 占有状态
 			changeVisible: false, // 变更状态
 			cancelVisible: false, // 注销状态

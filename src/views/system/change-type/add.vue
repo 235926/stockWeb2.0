@@ -4,7 +4,13 @@
  * @LastEditTime: 2022-07-06 13:25:25
 -->
 <template>
-	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="false" :before-close="onCancel">
+	<el-dialog
+		:visible.sync="isShowDialog"
+		:width="width + 'px'"
+		:destroy-on-close="true"
+		:close-on-click-modal="false"
+		:before-close="onCancel"
+	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -38,7 +44,7 @@
 </template>
 
 <script>
-import { addChangeType, getChangeTypeField } from '@/api/index.js' // api
+import { addChangeType, getChangeTypeField, getOaData } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'partyInfoRightAdd',
@@ -56,8 +62,11 @@ export default {
 	data() {
 		return {
 			isShowDialog: false, // 弹窗状态
-			form: {}, // 表单
+			form: { // 表单
+				EDIT_FIELD_NAME: [], // 需要设置为数组，否则表单验证的时候进入就提示
+			},
 			fieldData: [], // 可更新字段
+			options: [], // 变更角色
 			rules: {
 				// 表单验证
 				EDIT_NAME: [{ required: true, trigger: 'blur', message: '请输入企业变更类型' }],
@@ -74,7 +83,17 @@ export default {
 		 */
 		onGetChangeTypeField() {
 			getChangeTypeField().then((res) => {
-				this.fieldData = res.data
+				this.fieldData = res.EDIT_DATA
+			})
+		},
+
+		/**
+		 * @description: 获取 OA 角色
+		 * @return {*}
+		 */
+		onGetOaData() {
+			getOaData().then((res) => {
+				this.options = res.bean._DATA_
 			})
 		},
 

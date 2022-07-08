@@ -1,10 +1,16 @@
 <!--
  * @Description: 变更页面
  * @Date: 2022-06-16 21:22:46
- * @LastEditTime: 2022-06-16 21:40:39
+ * @LastEditTime: 2022-07-08 14:04:20
 -->
 <template>
-	<el-dialog :visible.sync="visible" :width="width + 'px'" :destroy-on-close="true" :before-close="onCancel">
+	<el-dialog
+		:visible.sync="visible"
+		:width="width + 'px'"
+		:destroy-on-close="true"
+		:close-on-click-modal="false"
+		:before-close="onCancel"
+	>
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -59,9 +65,6 @@ export default {
 		width: {
 			type: Number,
 			default: 677,
-		},
-		height: {
-			default: '',
 		},
 	},
 	// 局部注册的组件
