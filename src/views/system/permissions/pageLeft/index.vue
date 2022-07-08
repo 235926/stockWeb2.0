@@ -1,7 +1,7 @@
 <!--
  * @Description: 企业信息更新权限 - 左侧页面
  * @Date: 2022-06-15 09:19:13
- * @LastEditTime: 2022-07-08 15:16:56
+ * @LastEditTime: 2022-07-08 22:52:41
 -->
 <template>
 	<div class="left">
@@ -10,6 +10,7 @@
 			:data="treeData"
 			:props="defaultProps"
 			:indent="30"
+			:expand-on-click-node="false"
 			node-key="EDIT_CODE"
 			:default-expanded-keys="defaultExpanded"
 			@node-click="treeNodeClick"
@@ -57,6 +58,11 @@ export default {
 	created() {
 		this.onGetPermissionsLeftTree()
 	},
+	mounted() {
+		this.bus.$on('onGetPermissionsAddEditDel', () => {
+			this.onGetPermissionsLeftTree()
+		})
+	},
 	methods: {
 		/**
 		 * @description: 获取导航树
@@ -66,7 +72,6 @@ export default {
 			getPermissionsLeftTree().then((res) => {
 				this.treeData = res.data
 				this.defaultExpanded.push(res.data[0].ID)
-				this.bus.$emit('onGetPermissionsRightList', id || res.data[0].ID)
 			})
 		},
 
@@ -75,7 +80,10 @@ export default {
 		 * @return {*}
 		 */
 		treeNodeClick(node) {
-			this.bus.$emit('onGetPermissionsRightList', node.EDIT_CODE)
+			this.bus.$emit('onGetPermissionsRightList', {
+				EDIT_CODE: node.EDIT_CODE,
+				activeName: 'edit',
+			})
 		},
 
 		/**
@@ -86,6 +94,10 @@ export default {
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('onGetPermissionsAddEditDel')
 	},
 }
 </script>

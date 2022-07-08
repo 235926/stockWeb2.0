@@ -22,7 +22,7 @@
 			:default-expanded-keys="defaultExpanded"
 			@node-click="treeNodeClick"
 		>
-			<template v-slot:default="{ node }">
+			<template v-slot:default="{ node, data }">
 				<element-tree-line class="custom-tree-node" :node="node" :indent="30" :showLabelLine="false">
 					<template v-slot:node-label>
 						<SvgIcon v-if="node.expanded !== true && node.isLeaf === false" name="folder" class="folder" />
@@ -39,7 +39,7 @@
 								>{{ node.label }}</span
 							>
 						</el-tooltip>
-						<span class="note" v-if="node.CMPY_TYPE === '2'">（注销）</span>
+						<span class="note" v-if="data.CMPY_TYPE === '2'">（注销）</span>
 					</template>
 				</element-tree-line>
 			</template>
