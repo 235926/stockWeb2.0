@@ -7,6 +7,7 @@
 	<div class="left">
 		<el-tree
 			ref="treeRef"
+			v-loading="state.loading"
 			:data="treeData"
 			:props="defaultProps"
 			:indent="30"
@@ -53,6 +54,7 @@ export default {
 			},
 			defaultExpanded: [], // 默认展开
 			isShowTooltip: false, // el-tooltip
+			loading: false, // 加载状态
 		}
 	},
 	created() {
@@ -69,9 +71,15 @@ export default {
 		 * @return {*}
 		 */
 		onGetPermissionsLeftTree(id) {
+			this.loading = true
+
 			getPermissionsLeftTree().then((res) => {
 				this.treeData = res.data
 				this.defaultExpanded.push(res.data[0].ID)
+
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
 		},
 

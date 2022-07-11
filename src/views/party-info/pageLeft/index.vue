@@ -13,6 +13,7 @@
 
 		<el-tree
 			ref="treeRef"
+			v-loading="state.loading"
 			:data="treeData"
 			:props="defaultProps"
 			:expand-on-click-node="false"
@@ -61,6 +62,7 @@ export default {
 			},
 			defaultExpanded: [], // 默认展开
 			isShowTooltip: false, // Tooltip 文字提示状态
+			loading: false, // 加载状态
 		}
 	},
 	computed: {},
@@ -84,10 +86,16 @@ export default {
 		 * @return {*}
 		 */
 		onGetPartyInfoTree(id) {
+			this.loading = true
+
 			getPartyInfoTree().then((res) => {
 				this.treeData = res.treeData
 				this.defaultExpanded.push(res.treeData[0].ID)
 				this.bus.$emit('onGetPartyInfoRightList', id || '')
+
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
 		},
 
