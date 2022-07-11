@@ -1,7 +1,7 @@
 <!--
  * @Description: 党组织信息管理 - 添加
  * @Date: 2022-06-15 13:28:02
- * @LastEditTime: 2022-06-24 22:43:43
+ * @LastEditTime: 2022-07-11 11:10:19
 -->
 <template>
 	<el-dialog
@@ -31,7 +31,15 @@
 					</el-cascader>
 				</el-form-item>
 				<el-form-item prop="INFO_NAME" label="党组织名称">
-					<el-input v-model="form.INFO_NAME" placeholder="请输入"></el-input>
+					<el-input
+						v-model="form.INFO_NAME"
+						type="textarea"
+						placeholder="请输入"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					></el-input>
 				</el-form-item>
 			</el-form>
 		</el-scrollbar>

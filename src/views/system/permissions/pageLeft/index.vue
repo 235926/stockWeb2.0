@@ -1,13 +1,13 @@
 <!--
  * @Description: 企业信息更新权限 - 左侧页面
  * @Date: 2022-06-15 09:19:13
- * @LastEditTime: 2022-07-08 22:52:41
+ * @LastEditTime: 2022-07-11 11:14:49
 -->
 <template>
 	<div class="left">
 		<el-tree
 			ref="treeRef"
-			v-loading="state.loading"
+			v-loading="loading"
 			:data="treeData"
 			:props="defaultProps"
 			:indent="30"

@@ -1,7 +1,7 @@
 <!--
  * @Description: 党组织信息管理 - 左侧内容
  * @Date: 2022-06-15 12:28:37
- * @LastEditTime: 2022-07-06 10:27:30
+ * @LastEditTime: 2022-07-11 11:08:53
 -->
 <template>
 	<div class="left">
@@ -13,7 +13,7 @@
 
 		<el-tree
 			ref="treeRef"
-			v-loading="state.loading"
+			v-loading="loading"
 			:data="treeData"
 			:props="defaultProps"
 			:expand-on-click-node="false"

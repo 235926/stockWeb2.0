@@ -1,7 +1,7 @@
 <!--
  * @Description: 编辑
  * @Date: 2022-07-08 22:54:06
- * @LastEditTime: 2022-07-09 01:29:56
+ * @LastEditTime: 2022-07-11 11:07:18
 -->
 <template>
 	<div class="permissions-edit" v-loading="loading">
@@ -17,7 +17,15 @@
 			<el-row :gutter="20">
 				<el-col :span="12">
 					<el-form-item prop="EDIT_NAME" label="编辑权限标题">
-						<el-input v-model="form.EDIT_NAME" placeholder="请输入编辑权限标题" clearable />
+						<el-input
+							v-model="form.EDIT_NAME"
+							placeholder="请输入编辑权限标题"
+							type="textarea"
+							maxlength="40"
+							autosize
+							show-word-limit
+							resize="none"
+						/>
 					</el-form-item>
 				</el-col>
 				<el-col :span="12">

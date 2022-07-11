@@ -1,7 +1,7 @@
 <!--
  * @Description: 业务办理 - 左侧内容
  * @Date: 2022-06-16 21:15:37
- * @LastEditTime: 2022-06-28 15:37:12
+ * @LastEditTime: 2022-07-11 11:12:18
 -->
 <template>
 	<div class="left">
@@ -13,6 +13,7 @@
 
 		<el-tree
 			ref="treeRef"
+			v-loading="loading"
 			:data="treeData"
 			:props="defaultProps"
 			:expand-on-click-node="false"
@@ -62,6 +63,7 @@ export default {
 			},
 			defaultExpanded: [], // 默认展开
 			isShowTooltip: false, // el-tooltip
+			loading: false, // 加载状态
 		}
 	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
@@ -75,10 +77,16 @@ export default {
 		 * @return {*}
 		 */
 		onGetBusinessLeftTree() {
+			this.loading = true
+
 			getBusinessLeftTree().then((res) => {
 				this.treeData = res.treeData
 				this.defaultExpanded.push(res.treeData[0].CMPY_BASE_CODE)
 				this.bus.$emit('onGetBusinessRightList', res.treeData[0].CMPY_BASE_CODE)
+
+				setTimeout(() => {
+					this.loading = false
+				}, 500)
 			})
 		},
 

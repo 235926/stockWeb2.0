@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护 - 新增
  * @Date: 2022-06-15 23:00:02
- * @LastEditTime: 2022-07-06 13:25:25
+ * @LastEditTime: 2022-07-11 11:07:45
 -->
 <template>
 	<el-dialog
@@ -16,7 +16,15 @@
 		<el-scrollbar>
 			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
 				<el-form-item prop="EDIT_NAME" label="企业变更类型">
-					<el-input v-model="form.EDIT_NAME" placeholder="请输入"></el-input>
+					<el-input
+						v-model="form.EDIT_NAME"
+						type="textarea"
+						placeholder="请输入"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					></el-input>
 				</el-form-item>
 				<el-form-item prop="EDIT_FIELD_NAME" label="可更新字段">
 					<el-select v-model="form.EDIT_FIELD_NAME" :multiple="true" placeholder="请选择">
@@ -62,7 +70,8 @@ export default {
 	data() {
 		return {
 			isShowDialog: false, // 弹窗状态
-			form: { // 表单
+			form: {
+				// 表单
 				EDIT_FIELD_NAME: [], // 需要设置为数组，否则表单验证的时候进入就提示
 			},
 			fieldData: [], // 可更新字段

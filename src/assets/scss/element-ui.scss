@@ -1,7 +1,7 @@
 /*
  * @Description: element-ui 样修改
  * @Date: 2022-06-14 18:31:41
- * @LastEditTime: 2022-06-28 15:03:47
+ * @LastEditTime: 2022-07-11 11:19:30
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -205,7 +205,6 @@
 		}
 	}
 
-
 	// 鼠标样式 - 拖拽
 	&.c-all-scroll {
 		.el-table__body {
@@ -245,6 +244,10 @@
 ------------------------------- */
 .el-input {
 	font-size: 14px;
+}
+
+.el-textarea .el-input__count {
+	line-height: 1;
 }
 
 /* Dialog 对话框

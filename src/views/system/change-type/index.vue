@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护
  * @Date: 2022-06-14 18:51:44
- * @LastEditTime: 2022-07-06 13:53:28
+ * @LastEditTime: 2022-07-11 11:07:49
 -->
 <template>
 	<div class="page-container">
@@ -21,7 +21,15 @@
 
 				<el-table-column label="企业变更类型">
 					<template slot-scope="scope">
-						<el-input v-model="scope.row.EDIT_NAME" />
+						<el-input
+							v-model="scope.row.EDIT_NAME"
+							type="textarea"
+							placeholder="请输入"
+							maxlength="40"
+							autosize
+							show-word-limit
+							resize="none"
+						/>
 						<!-- <div @dblclick="dbEditName(scope)">
 							<el-input v-model="scope.row.EDIT_NAME" v-if="scope.row.edit" @blur="blurEditName(scope)" />
 							<span v-else>{{ scope.row.EDIT_NAME }}</span>
@@ -41,12 +49,7 @@
 				<el-table-column prop="LINK_ROLE" label="变更角色" width="200">
 					<template slot-scope="scope">
 						<el-select v-model="scope.row.LINK_ROLE" placeholder="请选择" class="border-none">
-							<el-option
-								v-for="item in options"
-								:key="item.ID"
-								:label="item.NAME"
-								:value="item.ID"
-							>
+							<el-option v-for="item in options" :key="item.ID" :label="item.NAME" :value="item.ID">
 							</el-option>
 						</el-select>
 					</template>
@@ -111,7 +114,7 @@ export default {
 		 * @description: 获取 OA 角色
 		 * @return {*}
 		 */
-		 onGetOaData() {
+		onGetOaData() {
 			getOaData().then((res) => {
 				this.options = res.bean._DATA_
 			})
