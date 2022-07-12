@@ -1,7 +1,7 @@
 /*
  * @Description: 自定义样式
  * @Date: 2022-06-13 16:44:45
- * @LastEditTime: 2022-06-27 18:16:55
+ * @LastEditTime: 2022-07-12 14:09:56
  */
 html,
 body,
@@ -70,6 +70,10 @@ body,
 
 /* 宽高 100%
 ------------------------------- */
+.w50 {
+	width: 50% !important;
+}
+
 .w100 {
 	width: 100% !important;
 }

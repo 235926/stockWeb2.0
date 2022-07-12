@@ -1,7 +1,7 @@
 <!--
  * @Description: 企业信息内容 - 内容预览
  * @Date: 2022-06-17 10:17:51
- * @LastEditTime: 2022-06-30 11:14:34
+ * @LastEditTime: 2022-07-12 17:41:18
 -->
 <template>
 	<div class="page-container">
@@ -10,19 +10,19 @@
 		<!-- 内容部分 -->
 		<div class="content pt20 pb20">
 			<el-tabs v-model="activeName" type="card" class="tabs-style-one">
-				<el-tab-pane label="基本信息" name="basicInfo">
+				<el-tab-pane :lazy="true" label="基本信息" name="basicInfo">
 					<BasicInfo />
 				</el-tab-pane>
-				<el-tab-pane label="主要人员" name="mainStaff">
+				<el-tab-pane :lazy="true" label="主要人员" name="mainStaff">
 					<MainStaff />
 				</el-tab-pane>
-				<el-tab-pane label="投资企业" name="investment" v-if="readonly">
+				<el-tab-pane :lazy="true" label="投资企业" name="investment" v-if="readonly">
 					<Investment />
 				</el-tab-pane>
 				<el-tab-pane :lazy="true" label="企业图谱" name="enterpriseMap" v-if="readonly">
 					<EnterpriseMap />
 				</el-tab-pane>
-				<el-tab-pane label="变更记录" name="changeRecord" v-if="readonly">
+				<el-tab-pane :lazy="true" label="变更记录" name="changeRecord" v-if="readonly">
 					<ChangeRecord />
 				</el-tab-pane>
 			</el-tabs>
@@ -55,8 +55,8 @@ export default {
 	computed: {
 		// 是否只读
 		readonly() {
-			const isTrue = this.$route.query?.readonly
-			return isTrue ? false : true
+			const isTrue = this.$route.query?.isAside
+			return isTrue ? true : false
 		},
 	},
 	// 侦听器

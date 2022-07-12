@@ -1,7 +1,7 @@
 <!--
  * @Description: 业务办理 - 右侧内容
  * @Date: 2022-06-16 21:15:33
- * @LastEditTime: 2022-07-06 10:23:19
+ * @LastEditTime: 2022-07-12 17:39:40
 -->
 <template>
 	<div class="right">
@@ -89,13 +89,13 @@ export default {
 		 */
 		onGetBusinessrightQuery(id) {
 			this.loading = true
-		
+
 			const params = {
 				CMPY_BASE_CODE: id,
 			}
 			getBusinessrightQuery(params).then((res) => {
 				this.tableData = res.DATA
-		
+
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
@@ -125,7 +125,7 @@ export default {
 						this.$router.push({
 							path: '/enterprise/business/details',
 							query: {
-								title: '内容编辑',
+								id: this.selectionRow.CMPY_BASE_CODE,
 							},
 						})
 					}
@@ -152,7 +152,8 @@ export default {
 			let routeUrl = this.$router.resolve({
 				path: '/enterprise/business/details',
 				query: {
-					title: '内容预览',
+					isAside: true,
+					id: row.CMPY_BASE_CODE,
 				},
 			})
 			window.open(routeUrl.href, '_blank')

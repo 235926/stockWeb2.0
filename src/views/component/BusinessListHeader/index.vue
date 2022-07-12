@@ -1,18 +1,14 @@
 <!--
  * @Description: 业务办理 - 列表头部
  * @Date: 2022-06-18 14:43:25
- * @LastEditTime: 2022-06-20 15:28:27
+ * @LastEditTime: 2022-07-12 14:12:57
 -->
 <template>
 	<div class="business-list-header flex-column plr20" :class="{ background: background }">
 		<div class="flex">
 			<div class="name flex-column">
-				<span class="title">{{ data.title }}</span>
+				<span class="title">{{ title }}</span>
 				<span class="border mt10"></span>
-			</div>
-			<div class="desc pt5 ml30" v-if="data.type">
-				<span>占有类型：</span>
-				<span class="type">{{ data.type }}</span>
 			</div>
 		</div>
 	</div>
@@ -25,8 +21,9 @@ export default {
 	// 组件参数 接收来自父组件的数据
 	props: {
 		// 数据列表
-		data: {
-			type: Object,
+		title: {
+			type: String,
+			default: '标题',
 		},
 		// 背景显示
 		background: {

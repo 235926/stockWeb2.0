@@ -1,7 +1,7 @@
 /*
  * @Description: element-ui 样修改
  * @Date: 2022-06-14 18:31:41
- * @LastEditTime: 2022-07-11 11:19:30
+ * @LastEditTime: 2022-07-12 17:54:12
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -530,7 +530,7 @@
 		border-left: 1px solid var(--el-border-color-light);
 
 		.el-form-item {
-			width: 100%;
+			width: 50%;
 			margin-bottom: 0;
 			display: flex;
 
@@ -572,6 +572,11 @@
 					padding: 10px 15px;
 					font-size: 14px;
 				}
+
+				.el-input.is-disabled .el-input__inner,
+				.el-textarea.is-disabled .el-textarea__inner {
+					background: none;
+				}
 			}
 
 			// textarea 样式单独设置
@@ -579,6 +584,43 @@
 				.el-form-item__label {
 					justify-content: flex-start;
 					padding-top: 12px;
+				}
+			}
+		}
+	}
+
+	// form 样式二，编辑状态
+	&.form-style-two {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+
+		.el-form-item {
+			width: calc(50% - 20px);
+			margin-bottom: 0;
+
+			// 给 label 增加边框
+			.el-form-item__label {
+				height: auto;
+				line-height: 16px;
+				padding: 10px 12px;
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-end;
+				text-align: right;
+			}
+
+			.el-form-item__content {
+				.el-input,
+				.el-radio-group {
+					height: 100%;
+				}
+
+				.el-textarea__inner {
+					padding: 10px 15px;
+					font-size: 14px;
 				}
 			}
 		}

@@ -80,6 +80,7 @@ export default {
 			EDIT_FIELD_NAME: [], // 可编辑选中
 			rules: {
 				EDIT_NAME: [{ required: true, trigger: 'blur', message: '请输入编辑权限标题' }],
+				LINK_ROLE: [{ required: true, trigger: 'change', message: '请选择可维护的角色' }],
 			},
 			leftId: '', // 左侧ID
 			loading: false, // 加载状态
@@ -166,11 +167,20 @@ export default {
 					LINK_ROLE: this.form.LINK_ROLE,
 				},
 			}
-			console.log(params)
-			getPermissionseUpdate(params).then((res) => {
-				if (res._MSG_.includes('OK,')) {
-					this.$message.success('保存成功')
-					this.bus.$emit('onGetPermissionsAddEditDel')
+			this.$refs.formRef.validate((valid) => {
+				if (valid) {
+					if(this.EDIT_FIELD_NAME.length > 0){
+						getPermissionseUpdate(params).then((res) => {
+							if (res._MSG_.includes('OK,')) {
+								this.$message.success('保存成功')
+								this.bus.$emit('onGetPermissionsAddEditDel')
+							}
+						})
+					} else {
+						this.$message.error('可编辑权限不能为空')
+					}
+				} else {
+					return false
 				}
 			})
 		},

@@ -1,7 +1,7 @@
 /*
  * @Description: 页面通用样式
  * @Date: 2022-06-11 14:12:03
- * @LastEditTime: 2022-06-28 11:51:00
+ * @LastEditTime: 2022-07-12 17:22:34
  */
 
 // 主体内容边框
@@ -169,6 +169,13 @@
 							padding: 2px;
 							font-size: 16px;
 						}
+					}
+				}
+
+				// 第一个单独处理
+				&:first-child {
+					.business-list-header {
+						height: 45px;
 					}
 				}
 			}
