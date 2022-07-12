@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-12 17:52:41
+ * @LastEditTime: 2022-07-12 18:14:14
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -12,7 +12,7 @@
 				<el-form-item prop="CMPY_NAME" label="公司名称">
 					<el-input
 						v-model="form.CMPY_NAME"
-						placeholder="请输入"
+						:placeholder="isdisabled('COLLECTION_MONEY') ? '' : '请输入'"
 						:disabled="isdisabled('COLLECTION_MONEY')"
 					></el-input>
 				</el-form-item>
@@ -20,7 +20,7 @@
 				<el-form-item prop="CREDIT_CODE" label="统一信用代码">
 					<el-input
 						v-model="form.CREDIT_CODE"
-						placeholder="请输入"
+						:placeholder="isdisabled('CREDIT_CODE') ? '' : '请输入'"
 						:disabled="isdisabled('CREDIT_CODE')"
 					></el-input>
 				</el-form-item>
@@ -28,7 +28,7 @@
 				<el-form-item prop="LEGAL_AGENT" label="法定代表人">
 					<el-input
 						v-model="form.LEGAL_AGENT"
-						placeholder="请输入"
+						:placeholder="isdisabled('LEGAL_AGENT') ? '' : '请输入'"
 						:disabled="isdisabled('LEGAL_AGENT')"
 					></el-input>
 				</el-form-item>
@@ -36,7 +36,7 @@
 				<el-form-item prop="CMPY_TYPE" label="公司状况">
 					<el-input
 						v-model="form.CMPY_TYPE"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_TYPE') ? '' : '请输入'"
 						:disabled="isdisabled('CMPY_TYPE')"
 					></el-input>
 				</el-form-item>
@@ -44,7 +44,7 @@
 				<el-form-item prop="BUSINESS_DATE" label="工商成立日期">
 					<el-input
 						v-model="form.BUSINESS_DATE"
-						placeholder="请输入"
+						:placeholder="isdisabled('BUSINESS_DATE') ? '' : '请输入'"
 						:disabled="isdisabled('BUSINESS_DATE')"
 					></el-input>
 				</el-form-item>
@@ -52,7 +52,7 @@
 				<el-form-item prop="LOG_MONEY_TYPE" label="注册资本币种">
 					<el-input
 						v-model="form.LOG_MONEY_TYPE"
-						placeholder="请输入"
+						:placeholder="isdisabled('LOG_MONEY_TYPE') ? '' : '请输入'"
 						:disabled="isdisabled('LOG_MONEY_TYPE')"
 					></el-input>
 				</el-form-item>
@@ -60,7 +60,7 @@
 				<el-form-item prop="LOG_MONEY" label="注册资本(万元)">
 					<el-input
 						v-model="form.LOG_MONEY"
-						placeholder="请输入"
+						:placeholder="isdisabled('LOG_MONEY') ? '' : '请输入'"
 						:disabled="isdisabled('LOG_MONEY')"
 					></el-input>
 				</el-form-item>
@@ -68,7 +68,7 @@
 				<el-form-item prop="CMPY_BELONG" label="所属公司">
 					<el-input
 						v-model="form.CMPY_BELONG"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_BELONG') ? '' : '请输入'"
 						:disabled="isdisabled('CMPY_BELONG')"
 					></el-input>
 				</el-form-item>
@@ -76,7 +76,7 @@
 				<el-form-item prop="OPERATE_TERM" label="经营期限">
 					<el-input
 						v-model="form.OPERATE_TERM"
-						placeholder="请输入"
+						:placeholder="isdisabled('OPERATE_TERM') ? '' : '请输入'"
 						:disabled="isdisabled('OPERATE_TERM')"
 					></el-input>
 				</el-form-item>
@@ -84,7 +84,7 @@
 				<el-form-item prop="LOG_TYPE" label="登记注册类型">
 					<el-input
 						v-model="form.LOG_TYPE"
-						placeholder="请输入"
+						:placeholder="isdisabled('LOG_TYPE') ? '' : '请输入'"
 						:disabled="isdisabled('LOG_TYPE')"
 					></el-input>
 				</el-form-item>
@@ -92,7 +92,7 @@
 				<el-form-item prop="MANAGE_LEVEL" label="管理层级">
 					<el-input
 						v-model="form.MANAGE_LEVEL"
-						placeholder="请输入"
+						:placeholder="isdisabled('MANAGE_LEVEL') ? '' : '请输入'"
 						:disabled="isdisabled('MANAGE_LEVEL')"
 					></el-input>
 				</el-form-item>
@@ -100,7 +100,7 @@
 				<el-form-item prop="RIGHT_LEVEL" label="产权层级">
 					<el-input
 						v-model="form.RIGHT_LEVEL"
-						placeholder="请输入"
+						:placeholder="isdisabled('RIGHT_LEVEL') ? '' : '请输入'"
 						:disabled="isdisabled('RIGHT_LEVEL')"
 					></el-input>
 				</el-form-item>
@@ -108,7 +108,7 @@
 				<el-form-item prop="MANAGE_TEAM" label="管理团队">
 					<el-input
 						v-model="form.MANAGE_TEAM"
-						placeholder="请输入"
+						:placeholder="isdisabled('MANAGE_TEAM') ? '' : '请输入'"
 						:disabled="isdisabled('MANAGE_TEAM')"
 					></el-input>
 				</el-form-item>
@@ -116,7 +116,7 @@
 				<el-form-item prop="S_SUPERVISION" label="国资监管范围">
 					<el-input
 						v-model="form.S_SUPERVISION"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_SUPERVISION') ? '' : '请输入'"
 						:disabled="isdisabled('S_SUPERVISION')"
 					></el-input>
 				</el-form-item>
@@ -124,7 +124,7 @@
 				<el-form-item prop="S_CHENGFA" label="是否城发体系">
 					<el-input
 						v-model="form.S_CHENGFA"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_CHENGFA') ? '' : '请输入'"
 						:disabled="isdisabled('S_CHENGFA')"
 					></el-input>
 				</el-form-item>
@@ -132,7 +132,7 @@
 				<el-form-item prop="CMPY_URL" label="注册地址(详)">
 					<el-input
 						v-model="form.CMPY_URL"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_URL') ? '' : '请输入'"
 						:disabled="isdisabled('CMPY_URL')"
 					></el-input>
 				</el-form-item>
@@ -140,7 +140,7 @@
 				<el-form-item prop="CMPY_URL_MPH" label="注册地街道门牌号">
 					<el-input
 						v-model="form.CMPY_URL_MPH"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_URL_MPH') ? '' : '请输入'"
 						:disabled="isdisabled('CMPY_URL_MPH')"
 					></el-input>
 				</el-form-item>
@@ -148,7 +148,7 @@
 				<el-form-item prop="CMPY_ATTRIBUTE" label="公司属性(公司职能)">
 					<el-input
 						v-model="form.CMPY_ATTRIBUTE"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_ATTRIBUTE') ? '' : '请输入'"
 						:disabled="isdisabled('COLLECTION_MONEY')"
 					></el-input>
 				</el-form-item>
@@ -156,14 +156,14 @@
 				<el-form-item
 					prop="OPERATE_SCOPE"
 					label="经营范围"
-					:style="!$route.query.isAside ? 'width: calc(100% - 20px)' : 'width:100%'"
+					:style="$route.query.isAside ? 'width: 100%' : 'width: calc(100% - 20px)'"
 				>
 					<el-input
 						v-model="form.OPERATE_SCOPE"
 						type="textarea"
 						:rows="3"
 						resize="none"
-						placeholder="请输入"
+						:placeholder="isdisabled('OPERATE_SCOPE') ? '' : '请输入'"
 						:disabled="isdisabled('OPERATE_SCOPE')"
 					></el-input>
 				</el-form-item>
@@ -171,7 +171,7 @@
 				<el-form-item prop="LAND_NAME" label="地块名称">
 					<el-input
 						v-model="form.LAND_NAME"
-						placeholder="请输入"
+						:placeholder="isdisabled('LAND_NAME') ? '' : '请输入'"
 						:disabled="isdisabled('LAND_NAME')"
 					></el-input>
 				</el-form-item>
@@ -179,19 +179,23 @@
 				<el-form-item prop="CMPY_USE" label="公司用途">
 					<el-input
 						v-model="form.CMPY_USE"
-						placeholder="请输入"
+						:placeholder="isdisabled('CMPY_USE') ? '' : '请输入'"
 						:disabled="isdisabled('CMPY_USE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="S_SHARE" label="是否分红">
-					<el-input v-model="form.S_SHARE" placeholder="请输入" :disabled="isdisabled('S_SHARE')"></el-input>
+					<el-input
+						v-model="form.S_SHARE"
+						:placeholder="isdisabled('S_SHARE') ? '' : '请输入'"
+						:disabled="isdisabled('S_SHARE')"
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="S_OPERATE" label="是否操盘">
 					<el-input
 						v-model="form.S_OPERATE"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_OPERATE') ? '' : '请输入'"
 						:disabled="isdisabled('S_OPERATE')"
 					></el-input>
 				</el-form-item>
@@ -224,6 +228,7 @@
 								autosize
 								show-word-limit
 								resize="none"
+								:placeholder="isdisabled('GD_NAME') ? '' : '请输入'"
 								:disabled="isdisabled('GD_NAME')"
 							/>
 						</template>
@@ -239,6 +244,7 @@
 								autosize
 								show-word-limit
 								resize="none"
+								:placeholder="isdisabled('GD_TYPE') ? '' : '请输入'"
 								:disabled="isdisabled('GD_TYPE')"
 							/>
 						</template>
@@ -254,6 +260,7 @@
 								autosize
 								show-word-limit
 								resize="none"
+								:placeholder="isdisabled('GS_CG_RATIO') ? '' : '请输入'"
 								:disabled="isdisabled('GS_CG_RATIO')"
 							/>
 						</template>
@@ -269,6 +276,7 @@
 								autosize
 								show-word-limit
 								resize="none"
+								:placeholder="isdisabled('HJ_CG_RATIO') ? '' : '请输入'"
 								:disabled="isdisabled('HJ_CG_RATIO')"
 							/>
 						</template>
@@ -285,15 +293,15 @@
 				<el-form-item prop="COLLECTION_MONEY" label="实收资本(万元)">
 					<el-input
 						v-model="form.COLLECTION_MONEY"
+						:placeholder="isdisabled('COLLECTION_MONEY') ? '' : '请输入'"
 						:disabled="isdisabled('COLLECTION_MONEY')"
-						placeholder="请输入"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PAY_TAXES_LEVEL" label="纳税人资质">
 					<el-input
 						v-model="form.PAY_TAXES_LEVEL"
-						placeholder="请输入"
+						:placeholder="isdisabled('PAY_TAXES_LEVEL') ? '' : '请输入'"
 						:disabled="isdisabled('PAY_TAXES_LEVEL')"
 					></el-input>
 				</el-form-item>
@@ -301,7 +309,7 @@
 				<el-form-item prop="FCR_TYPE" label="税控机类型">
 					<el-input
 						v-model="form.FCR_TYPE"
-						placeholder="请输入"
+						:placeholder="isdisabled('FCR_TYPE') ? '' : '请输入'"
 						:disabled="isdisabled('FCR_TYPE')"
 					></el-input>
 				</el-form-item>
@@ -309,7 +317,7 @@
 				<el-form-item prop="CPMY_TELEPHONE" label="电话">
 					<el-input
 						v-model="form.CPMY_TELEPHONE"
-						placeholder="请输入"
+						:placeholder="isdisabled('CPMY_TELEPHONE') ? '' : '请输入'"
 						:disabled="isdisabled('CPMY_TELEPHONE')"
 					></el-input>
 				</el-form-item>
@@ -317,7 +325,7 @@
 				<el-form-item prop="MAX_QUOTA" label="增值税专用发票最高限额">
 					<el-input
 						v-model="form.MAX_QUOTA"
-						placeholder="请输入"
+						:placeholder="isdisabled('MAX_QUOTA') ? '' : '请输入'"
 						:disabled="isdisabled('MAX_QUOTA')"
 					></el-input>
 				</el-form-item>
@@ -325,19 +333,23 @@
 				<el-form-item prop="S_MERGE_CHART" label="是否并表">
 					<el-input
 						v-model="form.S_MERGE_CHART"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_MERGE_CHART') ? '' : '请输入'"
 						:disabled="isdisabled('S_MERGE_CHART')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PLEDGEE" label="是否并表">
-					<el-input v-model="form.PLEDGEE" placeholder="请输入" :disabled="isdisabled('PLEDGEE')"></el-input>
+					<el-input
+						v-model="form.PLEDGEE"
+						:placeholder="isdisabled('PLEDGEE') ? '' : '请输入'"
+						:disabled="isdisabled('PLEDGEE')"
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="YIELD_RATIO" label="出质比例">
 					<el-input
 						v-model="form.YIELD_RATIO"
-						placeholder="请输入"
+						:placeholder="isdisabled('YIELD_RATIO') ? '' : '请输入'"
 						:disabled="isdisabled('YIELD_RATIO')"
 					></el-input>
 				</el-form-item>
@@ -345,7 +357,7 @@
 				<el-form-item prop="WARRANT_BILIE" label="担保金额">
 					<el-input
 						v-model="form.WARRANT_BILIE"
-						placeholder="请输入"
+						:placeholder="isdisabled('WARRANT_BILIE') ? '' : '请输入'"
 						:disabled="isdisabled('WARRANT_BILIE')"
 					></el-input>
 				</el-form-item>
@@ -353,7 +365,7 @@
 				<el-form-item prop="PLEDGEE_DATE" label="质押设立时间">
 					<el-input
 						v-model="form.PLEDGEE_DATE"
-						placeholder="请输入"
+						:placeholder="isdisabled('PLEDGEE_DATE') ? '' : '请输入'"
 						:disabled="isdisabled('PLEDGEE_DATE')"
 					></el-input>
 				</el-form-item>
@@ -361,7 +373,7 @@
 				<el-form-item prop="PLEDGEE_LOGOUT_DATE" label="质押注销时间">
 					<el-input
 						v-model="form.PLEDGEE_LOGOUT_DATE"
-						placeholder="请输入"
+						:placeholder="isdisabled('PLEDGEE_LOGOUT_DATE') ? '' : '请输入'"
 						:disabled="isdisabled('PLEDGEE_LOGOUT_DATE')"
 					></el-input>
 				</el-form-item>
@@ -369,7 +381,7 @@
 				<el-form-item prop="S_STOCK_FROZEN" label="冻结标识">
 					<el-input
 						v-model="form.S_STOCK_FROZEN"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_STOCK_FROZEN') ? '' : '请输入'"
 						:disabled="isdisabled('S_STOCK_FROZEN')"
 					></el-input>
 				</el-form-item>
@@ -377,14 +389,14 @@
 				<el-form-item
 					prop="FROZEN_EXPLAIN"
 					label="司法冻结情况说明"
-					:style="!$route.query.isAside ? 'width: calc(100% - 20px)' : 'width:100%'"
+					:style="$route.query.isAside ? 'width: 100%' : 'width: calc(100% - 20px)'"
 				>
 					<el-input
 						v-model="form.FROZEN_EXPLAIN"
 						type="textarea"
 						:rows="3"
 						resize="none"
-						placeholder="请输入"
+						:placeholder="isdisabled('FROZEN_EXPLAIN') ? '' : '请输入'"
 						:disabled="isdisabled('FROZEN_EXPLAIN')"
 					></el-input>
 				</el-form-item>
@@ -399,7 +411,7 @@
 				<el-form-item prop="PARTY_NAME" label="党组织名称">
 					<el-input
 						v-model="form.PARTY_NAME"
-						placeholder="请输入"
+						:placeholder="isdisabled('PARTY_NAME') ? '' : '请输入'"
 						:disabled="isdisabled('PARTY_NAME')"
 					></el-input>
 				</el-form-item>
@@ -407,7 +419,7 @@
 				<el-form-item prop="STAY_PARTY_NAME" label="所属党组织名称">
 					<el-input
 						v-model="form.STAY_PARTY_NAME"
-						placeholder="请输入"
+						:placeholder="isdisabled('STAY_PARTY_NAME') ? '' : '请输入'"
 						:disabled="isdisabled('STAY_PARTY_NAME')"
 					></el-input>
 				</el-form-item>
@@ -415,7 +427,7 @@
 				<el-form-item prop="PRACTICE_NUM" label="从业人员数(劳动关系)">
 					<el-input
 						v-model="form.PRACTICE_NUM"
-						placeholder="请输入"
+						:placeholder="isdisabled('PRACTICE_NUM') ? '' : '请输入'"
 						:disabled="isdisabled('PRACTICE_NUM')"
 					></el-input>
 				</el-form-item>
@@ -423,7 +435,7 @@
 				<el-form-item prop="PARTY_NUM" label="党员人数">
 					<el-input
 						v-model="form.PARTY_NUM"
-						placeholder="请输入"
+						:placeholder="isdisabled('PARTY_NUM') ? '' : '请输入'"
 						:disabled="isdisabled('PARTY_NUM')"
 					></el-input>
 				</el-form-item>
@@ -431,7 +443,7 @@
 				<el-form-item prop="PARTY_CHAPTER" label="“党建入章”情况">
 					<el-input
 						v-model="form.PARTY_CHAPTER"
-						placeholder="请输入"
+						:placeholder="isdisabled('PARTY_CHAPTER') ? '' : '请输入'"
 						:disabled="isdisabled('PARTY_CHAPTER')"
 					></el-input>
 				</el-form-item>
@@ -446,7 +458,7 @@
 				<el-form-item prop="S_SET_DIRECTOR" label="是否建立董事会">
 					<el-input
 						v-model="form.S_SET_DIRECTOR"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_SET_DIRECTOR') ? '' : '请输入'"
 						:disabled="isdisabled('S_SET_DIRECTOR')"
 					></el-input>
 				</el-form-item>
@@ -454,19 +466,23 @@
 				<el-form-item prop="S_SET_RULE" label="是否建立《董事会议事规则》">
 					<el-input
 						v-model="form.S_SET_RULE"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_SET_RULE') ? '' : '请输入'"
 						:disabled="isdisabled('S_SET_RULE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="S_EQUAL" label="董事会设立情况是否与章程规定一致">
-					<el-input v-model="form.S_EQUAL" placeholder="请输入" :disabled="isdisabled('S_EQUAL')"></el-input>
+					<el-input
+						v-model="form.S_EQUAL"
+						:placeholder="isdisabled('S_EQUAL') ? '' : '请输入'"
+						:disabled="isdisabled('S_EQUAL')"
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="S_SIX_RULE" label="董事会议事规则是否明确六项职权">
 					<el-input
 						v-model="form.S_SIX_RULE"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_SIX_RULE') ? '' : '请输入'"
 						:disabled="isdisabled('S_SIX_RULE')"
 					></el-input>
 				</el-form-item>
@@ -474,7 +490,7 @@
 				<el-form-item prop="S_WORKABLE_SET" label="落实董事会六项职权">
 					<el-input
 						v-model="form.S_WORKABLE_SET"
-						placeholder="请输入"
+						:placeholder="isdisabled('S_WORKABLE_SET') ? '' : '请输入'"
 						:disabled="isdisabled('S_WORKABLE_SET')"
 					></el-input>
 				</el-form-item>
