@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-12 18:14:14
+ * @LastEditTime: 2022-07-13 10:12:30
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -34,11 +34,20 @@
 				</el-form-item>
 
 				<el-form-item prop="CMPY_TYPE" label="公司状况">
-					<el-input
+					<el-select
 						v-model="form.CMPY_TYPE"
-						:placeholder="isdisabled('CMPY_TYPE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('CMPY_TYPE') ? ' ' : '请选择'"
 						:disabled="isdisabled('CMPY_TYPE')"
-					></el-input>
+						@focus="onGetOaData('CMPY_TYPE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="BUSINESS_DATE" label="工商成立日期">
@@ -50,11 +59,20 @@
 				</el-form-item>
 
 				<el-form-item prop="LOG_MONEY_TYPE" label="注册资本币种">
-					<el-input
+					<el-select
 						v-model="form.LOG_MONEY_TYPE"
-						:placeholder="isdisabled('LOG_MONEY_TYPE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('LOG_MONEY_TYPE') ? ' ' : '请选择'"
 						:disabled="isdisabled('LOG_MONEY_TYPE')"
-					></el-input>
+						@focus="onGetOaData('LOG_MONEY_TYPE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="LOG_MONEY" label="注册资本(万元)">
@@ -74,62 +92,146 @@
 				</el-form-item>
 
 				<el-form-item prop="OPERATE_TERM" label="经营期限">
-					<el-input
+					<el-select
 						v-model="form.OPERATE_TERM"
-						:placeholder="isdisabled('OPERATE_TERM') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('OPERATE_TERM') ? ' ' : '请选择'"
 						:disabled="isdisabled('OPERATE_TERM')"
-					></el-input>
+						@focus="onGetOaData('OPERATE_TERM')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="LOG_TYPE" label="登记注册类型">
-					<el-input
+					<el-select
 						v-model="form.LOG_TYPE"
-						:placeholder="isdisabled('LOG_TYPE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('LOG_TYPE') ? ' ' : '请选择'"
 						:disabled="isdisabled('LOG_TYPE')"
-					></el-input>
+						@focus="onGetOaData('LOG_TYPE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="MANAGE_LEVEL" label="管理层级">
-					<el-input
+					<el-select
 						v-model="form.MANAGE_LEVEL"
-						:placeholder="isdisabled('MANAGE_LEVEL') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('MANAGE_LEVEL') ? ' ' : '请选择'"
 						:disabled="isdisabled('MANAGE_LEVEL')"
-					></el-input>
+						@focus="onGetOaData('MANAGE_LEVEL')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="RIGHT_LEVEL" label="产权层级">
-					<el-input
+					<el-select
 						v-model="form.RIGHT_LEVEL"
-						:placeholder="isdisabled('RIGHT_LEVEL') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('RIGHT_LEVEL') ? ' ' : '请选择'"
 						:disabled="isdisabled('RIGHT_LEVEL')"
-					></el-input>
+						@focus="onGetOaData('RIGHT_LEVEL')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="MANAGE_TEAM" label="管理团队">
-					<el-input
+					<el-select
 						v-model="form.MANAGE_TEAM"
-						:placeholder="isdisabled('MANAGE_TEAM') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('MANAGE_TEAM') ? ' ' : '请选择'"
 						:disabled="isdisabled('MANAGE_TEAM')"
-					></el-input>
+						@focus="onGetOaData('MANAGE_TEAM')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_SUPERVISION" label="国资监管范围">
-					<el-input
+					<el-select
 						v-model="form.S_SUPERVISION"
-						:placeholder="isdisabled('S_SUPERVISION') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_SUPERVISION') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_SUPERVISION')"
-					></el-input>
+						@focus="onGetOaData('S_SUPERVISION')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_CHENGFA" label="是否城发体系">
-					<el-input
+					<el-select
 						v-model="form.S_CHENGFA"
-						:placeholder="isdisabled('S_CHENGFA') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_CHENGFA') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_CHENGFA')"
-					></el-input>
+						@focus="onGetOaData('S_CHENGFA')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
-				<el-form-item prop="CMPY_URL" label="注册地址(详)">
+				<el-form-item prop="CMPY_ATTRIBUTE" label="公司属性(公司职能)">
+					<el-select
+						v-model="form.CMPY_ATTRIBUTE"
+						:clearable="true"
+						:placeholder="isdisabled('CMPY_ATTRIBUTE') ? ' ' : '请选择'"
+						:disabled="isdisabled('CMPY_ATTRIBUTE')"
+						@focus="onGetOaData('CMPY_ATTRIBUTE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
+				</el-form-item>
+
+				<el-form-item
+					prop="CMPY_URL"
+					label="注册地址(详)"
+					:style="$route.query.isAside ? 'width:100%' : 'width: calc(100% - 20px)'"
+				>
 					<el-input
 						v-model="form.CMPY_URL"
 						:placeholder="isdisabled('CMPY_URL') ? '' : '请输入'"
@@ -137,26 +239,10 @@
 					></el-input>
 				</el-form-item>
 
-				<el-form-item prop="CMPY_URL_MPH" label="注册地街道门牌号">
-					<el-input
-						v-model="form.CMPY_URL_MPH"
-						:placeholder="isdisabled('CMPY_URL_MPH') ? '' : '请输入'"
-						:disabled="isdisabled('CMPY_URL_MPH')"
-					></el-input>
-				</el-form-item>
-
-				<el-form-item prop="CMPY_ATTRIBUTE" label="公司属性(公司职能)">
-					<el-input
-						v-model="form.CMPY_ATTRIBUTE"
-						:placeholder="isdisabled('CMPY_ATTRIBUTE') ? '' : '请输入'"
-						:disabled="isdisabled('COLLECTION_MONEY')"
-					></el-input>
-				</el-form-item>
-
 				<el-form-item
 					prop="OPERATE_SCOPE"
 					label="经营范围"
-					:style="$route.query.isAside ? 'width: 100%' : 'width: calc(100% - 20px)'"
+					:style="$route.query.isAside ? 'width:100%' : 'width: calc(100% - 20px)'"
 				>
 					<el-input
 						v-model="form.OPERATE_SCOPE"
@@ -169,35 +255,71 @@
 				</el-form-item>
 
 				<el-form-item prop="LAND_NAME" label="地块名称">
-					<el-input
+					<el-select
 						v-model="form.LAND_NAME"
-						:placeholder="isdisabled('LAND_NAME') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('LAND_NAME') ? ' ' : '请选择'"
 						:disabled="isdisabled('LAND_NAME')"
-					></el-input>
+						@focus="onGetOaData('LAND_NAME')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="CMPY_USE" label="公司用途">
-					<el-input
+					<el-select
 						v-model="form.CMPY_USE"
-						:placeholder="isdisabled('CMPY_USE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('CMPY_USE') ? ' ' : '请选择'"
 						:disabled="isdisabled('CMPY_USE')"
-					></el-input>
+						@focus="onGetOaData('CMPY_USE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_SHARE" label="是否分红">
-					<el-input
+					<el-select
 						v-model="form.S_SHARE"
-						:placeholder="isdisabled('S_SHARE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_SHARE') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_SHARE')"
-					></el-input>
+						@focus="onGetOaData('S_SHARE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_OPERATE" label="是否操盘">
-					<el-input
+					<el-select
 						v-model="form.S_OPERATE"
-						:placeholder="isdisabled('S_OPERATE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_OPERATE') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_OPERATE')"
-					></el-input>
+						@focus="onGetOaData('S_OPERATE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 			</el-form>
 			<el-divider />
@@ -307,11 +429,20 @@
 				</el-form-item>
 
 				<el-form-item prop="FCR_TYPE" label="税控机类型">
-					<el-input
+					<el-select
 						v-model="form.FCR_TYPE"
-						:placeholder="isdisabled('FCR_TYPE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('FCR_TYPE') ? ' ' : '请选择'"
 						:disabled="isdisabled('FCR_TYPE')"
-					></el-input>
+						@focus="onGetOaData('FCR_TYPE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="CPMY_TELEPHONE" label="电话">
@@ -323,19 +454,37 @@
 				</el-form-item>
 
 				<el-form-item prop="MAX_QUOTA" label="增值税专用发票最高限额">
-					<el-input
+					<el-select
 						v-model="form.MAX_QUOTA"
-						:placeholder="isdisabled('MAX_QUOTA') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('MAX_QUOTA') ? ' ' : '请选择'"
 						:disabled="isdisabled('MAX_QUOTA')"
-					></el-input>
+						@focus="onGetOaData('MAX_QUOTA')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_MERGE_CHART" label="是否并表">
-					<el-input
+					<el-select
 						v-model="form.S_MERGE_CHART"
-						:placeholder="isdisabled('S_MERGE_CHART') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_MERGE_CHART') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_MERGE_CHART')"
-					></el-input>
+						@focus="onGetOaData('S_MERGE_CHART')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="PLEDGEE" label="是否并表">
@@ -379,17 +528,26 @@
 				</el-form-item>
 
 				<el-form-item prop="S_STOCK_FROZEN" label="冻结标识">
-					<el-input
+					<el-select
 						v-model="form.S_STOCK_FROZEN"
-						:placeholder="isdisabled('S_STOCK_FROZEN') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_STOCK_FROZEN') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_STOCK_FROZEN')"
-					></el-input>
+						@focus="onGetOaData('S_STOCK_FROZEN')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item
 					prop="FROZEN_EXPLAIN"
 					label="司法冻结情况说明"
-					:style="$route.query.isAside ? 'width: 100%' : 'width: calc(100% - 20px)'"
+					:style="$route.query.isAside ? 'width:100%' : 'width: calc(100% - 20px)'"
 				>
 					<el-input
 						v-model="form.FROZEN_EXPLAIN"
@@ -409,19 +567,37 @@
 			<BusinessListHeader title="党组织信息" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="PARTY_NAME" label="党组织名称">
-					<el-input
-						v-model="form.PARTY_NAME"
-						:placeholder="isdisabled('PARTY_NAME') ? '' : '请输入'"
+					<el-select
+						v-model="form.S_STOCK_FROZEN"
+						:clearable="true"
+						:placeholder="isdisabled('PARTY_NAME') ? ' ' : '请选择'"
 						:disabled="isdisabled('PARTY_NAME')"
-					></el-input>
+						@focus="onGetOaData('PARTY_NAME')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="STAY_PARTY_NAME" label="所属党组织名称">
-					<el-input
+					<el-select
 						v-model="form.STAY_PARTY_NAME"
-						:placeholder="isdisabled('STAY_PARTY_NAME') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('STAY_PARTY_NAME') ? ' ' : '请选择'"
 						:disabled="isdisabled('STAY_PARTY_NAME')"
-					></el-input>
+						@focus="onGetOaData('STAY_PARTY_NAME')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="PRACTICE_NUM" label="从业人员数(劳动关系)">
@@ -441,11 +617,20 @@
 				</el-form-item>
 
 				<el-form-item prop="PARTY_CHAPTER" label="“党建入章”情况">
-					<el-input
+					<el-select
 						v-model="form.PARTY_CHAPTER"
-						:placeholder="isdisabled('PARTY_CHAPTER') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('PARTY_CHAPTER') ? ' ' : '请选择'"
 						:disabled="isdisabled('PARTY_CHAPTER')"
-					></el-input>
+						@focus="onGetOaData('PARTY_CHAPTER')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 			</el-form>
 			<el-divider />
@@ -456,43 +641,88 @@
 			<BusinessListHeader title="董事会管理信息" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="S_SET_DIRECTOR" label="是否建立董事会">
-					<el-input
+					<el-select
 						v-model="form.S_SET_DIRECTOR"
-						:placeholder="isdisabled('S_SET_DIRECTOR') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_SET_DIRECTOR') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_SET_DIRECTOR')"
-					></el-input>
+						@focus="onGetOaData('S_SET_DIRECTOR')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_SET_RULE" label="是否建立《董事会议事规则》">
-					<el-input
+					<el-select
 						v-model="form.S_SET_RULE"
-						:placeholder="isdisabled('S_SET_RULE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_SET_RULE') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_SET_RULE')"
-					></el-input>
+						@focus="onGetOaData('S_SET_RULE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_EQUAL" label="董事会设立情况是否与章程规定一致">
-					<el-input
+					<el-select
 						v-model="form.S_EQUAL"
-						:placeholder="isdisabled('S_EQUAL') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_EQUAL') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_EQUAL')"
-					></el-input>
+						@focus="onGetOaData('S_EQUAL')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_SIX_RULE" label="董事会议事规则是否明确六项职权">
-					<el-input
+					<el-select
 						v-model="form.S_SIX_RULE"
-						:placeholder="isdisabled('S_SIX_RULE') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_SIX_RULE') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_SIX_RULE')"
-					></el-input>
+						@focus="onGetOaData('S_SIX_RULE')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_WORKABLE_SET" label="落实董事会六项职权">
-					<el-input
+					<el-select
 						v-model="form.S_WORKABLE_SET"
-						:placeholder="isdisabled('S_WORKABLE_SET') ? '' : '请输入'"
+						:clearable="true"
+						:placeholder="isdisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
 						:disabled="isdisabled('S_WORKABLE_SET')"
-					></el-input>
+						@focus="onGetOaData('S_WORKABLE_SET')"
+					>
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
+					</el-select>
 				</el-form-item>
 			</el-form>
 			<el-divider />
@@ -506,7 +736,7 @@
 </template>
 
 <script>
-import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData } from '@/api/index.js' // api
+import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'basicInfo',
@@ -523,6 +753,7 @@ export default {
 			tableData: [], // 股东信息
 			loading: false, // 加载状态
 			EDIT_WORD: [], // 可编辑字段
+			options: [], // OA 角色/字典
 		}
 	},
 	// 侦听器
@@ -571,6 +802,19 @@ export default {
 		onGetBusinessBasicInfoGetEditData() {
 			getBusinessBasicInfoGetEditData().then((res) => {
 				this.EDIT_WORD = res.EDIT_WORD
+			})
+		},
+
+		/**
+		 * @description: 获取 OA 角色/字典
+		 * @return {*}
+		 */
+		onGetOaData(id) {
+			const params = {
+				dictId: `STOCT_${id}`,
+			}
+			getOaData(params).then((res) => {
+				this.options = res.bean._DATA_
 			})
 		},
 

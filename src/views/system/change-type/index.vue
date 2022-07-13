@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护
  * @Date: 2022-06-14 18:51:44
- * @LastEditTime: 2022-07-11 11:07:49
+ * @LastEditTime: 2022-07-12 18:41:03
 -->
 <template>
 	<div class="page-container">
@@ -115,7 +115,10 @@ export default {
 		 * @return {*}
 		 */
 		onGetOaData() {
-			getOaData().then((res) => {
+			const params = {
+				dictId: 'SY_ORG_ROLE_STOCK',
+			}
+			getOaData(params).then((res) => {
 				this.options = res.bean._DATA_
 			})
 		},

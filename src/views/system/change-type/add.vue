@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护 - 新增
  * @Date: 2022-06-15 23:00:02
- * @LastEditTime: 2022-07-11 11:07:45
+ * @LastEditTime: 2022-07-12 18:40:36
 -->
 <template>
 	<el-dialog
@@ -101,7 +101,10 @@ export default {
 		 * @return {*}
 		 */
 		onGetOaData() {
-			getOaData().then((res) => {
+			const params = {
+				dictId: 'SY_ORG_ROLE_STOCK',
+			}
+			getOaData(params).then((res) => {
 				this.options = res.bean._DATA_
 			})
 		},

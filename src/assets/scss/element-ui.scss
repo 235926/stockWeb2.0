@@ -1,7 +1,7 @@
 /*
  * @Description: element-ui 样修改
  * @Date: 2022-06-14 18:31:41
- * @LastEditTime: 2022-07-12 17:54:12
+ * @LastEditTime: 2022-07-13 10:03:39
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -501,13 +501,16 @@
 
 		.el-form-item__content {
 			display: flex;
+			height: 100%;
 
 			.el-input,
+			.el-input .el-input__inner,
 			.el-select,
 			.el-cascader,
 			.el-input-number,
 			.el-radio-group {
 				flex: 1;
+				height: 100%;
 			}
 
 			.el-radio-group {

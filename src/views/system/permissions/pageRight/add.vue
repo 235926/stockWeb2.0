@@ -1,7 +1,7 @@
 <!--
  * @Description: 新增
  * @Date: 2022-07-08 22:53:53
- * @LastEditTime: 2022-07-11 11:07:12
+ * @LastEditTime: 2022-07-12 18:41:13
 -->
 <template>
 	<div class="permissions-add" v-loading="loading">
@@ -101,7 +101,10 @@ export default {
 		 * @return {*}
 		 */
 		onGetOaData() {
-			getOaData().then((res) => {
+			const params = {
+				dictId: 'SY_ORG_ROLE_STOCK',
+			}
+			getOaData(params).then((res) => {
 				this.ROLE_DATA = res.bean._DATA_
 			})
 		},
@@ -150,7 +153,7 @@ export default {
 
 			this.$refs.formRef.validate((valid) => {
 				if (valid) {
-					if(this.EDIT_FIELD_NAME.length > 0){
+					if (this.EDIT_FIELD_NAME.length > 0) {
 						getPermissionsAdd(params).then((res) => {
 							if (res._MSG_.includes('OK,')) {
 								this.form = {}

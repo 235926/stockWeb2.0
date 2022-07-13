@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-12 14:22:26
+ * @LastEditTime: 2022-07-12 18:40:13
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -37,7 +37,7 @@ export const getMenuList = (data) => {
 }
 
 /**
- * @description: 获取 OA 角色
+ * @description: 获取 OA 角色/字典
  * @param {*} data
  * @return {*}
  */
@@ -45,9 +45,7 @@ export const getOaData = (data) => {
 	return request({
 		url: '/GET_OA_DATA.getOaData.do',
 		method: 'get',
-		params: {
-			dictId: 'SY_ORG_ROLE_STOCK',
-		},
+		params: data,
 	})
 }
 
