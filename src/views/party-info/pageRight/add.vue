@@ -1,7 +1,7 @@
 <!--
  * @Description: 党组织信息管理 - 添加
  * @Date: 2022-06-15 13:28:02
- * @LastEditTime: 2022-07-11 11:10:19
+ * @LastEditTime: 2022-07-13 15:31:28
 -->
 <template>
 	<el-dialog
@@ -72,8 +72,9 @@ export default {
 			form: {}, // 表单
 			props: {
 				// 配置选项
-				value: 'INFO_CODE',
-				label: 'INFO_NAME',
+				value: 'INFO_CODE', // 绑定 ID
+				label: 'INFO_NAME', // 显示 label
+				children: 'children', // 指定选项的子选项为选项对象的某个属性值
 				checkStrictly: true, // 单选，否则只能选择最后一级
 				emitPath: false, // 只返回当前选中的节点，父级节点不返回
 			},

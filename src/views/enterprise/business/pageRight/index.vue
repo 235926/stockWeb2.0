@@ -1,15 +1,15 @@
 <!--
  * @Description: 业务办理 - 右侧内容
  * @Date: 2022-06-16 21:15:33
- * @LastEditTime: 2022-07-12 17:39:40
+ * @LastEditTime: 2022-07-13 14:04:24
 -->
 <template>
 	<div class="right">
 		<div class="btn mb20">
-			<el-button round @click="onOpenDialog('possession')">占有</el-button>
-			<el-button round @click="onOpenDialog('change')">变更</el-button>
-			<el-button round @click="onOpenDialog('cancel')">注销</el-button>
-			<el-button round @click="onOpenDialog('edit')">编辑</el-button>
+			<el-button round @click="onOpenDialog('possessionRef')">占有</el-button>
+			<el-button round @click="onOpenDialog('changeRef')">变更</el-button>
+			<el-button round @click="onOpenDialog('cancelRef')">注销</el-button>
+			<el-button round @click="onOpenDialog('editRef')">编辑</el-button>
 		</div>
 		<el-scrollbar class="horizontal">
 			<el-table
@@ -109,16 +109,15 @@ export default {
 		 */
 		onOpenDialog(item) {
 			switch (item) {
-				case 'possession':
-					this.possessionVisible = true
+				case 'possessionRef':
+					if (JSON.stringify(this.selectionRow) == '{}') {
+						this.$message.warning('请先勾选要占有的对象')
+					} else {
+						this.bus.$emit('possessionRef', this.selectionRow)
+						this.possessionVisible = true
+					}
 					break
-				case 'change':
-					this.changeVisible = true
-					break
-				case 'cancel':
-					this.cancelVisible = true
-					break
-				case 'edit':
+				case 'editRef':
 					if (JSON.stringify(this.selectionRow) == '{}') {
 						this.$message.warning('请先勾选要编辑的对象')
 					} else {

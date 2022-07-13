@@ -1,7 +1,7 @@
 <!--
  * @Description: 占有页面
  * @Date: 2022-06-16 21:20:52
- * @LastEditTime: 2022-06-16 21:41:09
+ * @LastEditTime: 2022-07-13 16:04:46
 -->
 <template>
 	<el-dialog
@@ -14,30 +14,48 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
-				<el-form-item prop="input1" label="任务类型">
-					<el-select v-model="form.input1" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
+				<el-form-item prop="FOUND_TYPE" label="任务类型">
+					<el-select v-model="form.FOUND_TYPE" placeholder="请选择">
+						<el-option
+							v-for="item in options"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
-				<el-form-item prop="input2" label="上级股权公司">
-					<el-select v-model="form.input2" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
+
+				<el-form-item prop="CMPY_NAME" label="占有公司名称">
+					<el-input
+						v-model="form.CMPY_NAME"
+						placeholder="请输入"
+						type="textarea"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					/>
 				</el-form-item>
-				<el-form-item prop="input3" label="管理团队">
-					<el-select v-model="form.input3" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
+
+				<el-form-item prop="CMPY_BELONG_NAME" label="上级股权公司">
+					<el-input v-model="form.CMPY_BELONG_NAME" :disabled="true" />
 				</el-form-item>
-				<el-form-item prop="input4" label="处理角色">
-					<el-select v-model="form.input4" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
+
+				<el-form-item prop="ODEPT_CODE" label="管理团队">
+					<el-cascader
+						v-model="form.ODEPT_CODE"
+						:options="team"
+						:props="props"
+						:show-all-levels="false"
+						:clearable="true"
+						placeholder="请选择"
+					>
+						<template #default="{ node, data }">
+							<span>{{ data.NAME }}</span>
+							<span v-if="!node.isLeaf"> ({{ data.CHILD.length }}) </span>
+						</template>
+					</el-cascader>
 				</el-form-item>
 			</el-form>
 		</el-scrollbar>
@@ -50,6 +68,8 @@
 </template>
 
 <script>
+import { getOaData, getBusinessSendOwn } from '@/api/index.js' // api
+
 export default {
 	// 组件名称
 	name: 'enterpriseBusinessPossession',
@@ -72,24 +92,57 @@ export default {
 			type: Number,
 			default: 677,
 		},
-		height: {
-			default: '',
-		},
 	},
-	// 局部注册的组件
-	components: {},
 	// 组件状态值
 	data() {
 		return {
 			form: {}, // 表单
+			options: [], // OA 角色/字典
+			team: [], // 管理团队
+			// cascader 配置选项
+			props: {
+				value: 'ID', // 绑定 ID
+				label: 'NAME', // 显示 label
+				children: 'CHILD', // 指定选项的子选项为选项对象的某个属性值
+				checkStrictly: true, // 单选，否则只能选择最后一级
+				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
+			// 表单验证
+			rules: {
+				FOUND_TYPE: [{ required: true, trigger: 'change', message: '请选择任务类型' }],
+				CMPY_NAME: [{ required: true, trigger: 'blur', message: '请输入占有公司名称' }],
+				CMPY_BELONG_NAME: [{ required: true, trigger: 'blur', message: '请输入上级股权公司' }],
+				ODEPT_CODE: [{ required: true, trigger: 'change', message: '请选择管理团队' }],
+			},
 		}
 	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
+	mounted() {
+		// 监听侧坐导航栏点击获取右侧列表数据
+		this.bus.$on('possessionRef', (data) => {
+			this.form.CMPY_BELONG = data.CMPY_BASE_CODE
+			this.form.CMPY_BELONG_NAME = data.CMPY_NAME
+			this.onGetOaData()
+		})
+	},
 	// 组件方法
 	methods: {
+		/**
+		 * @description: 获取 OA 角色/字典
+		 * @return {*}
+		 */
+		onGetOaData() {
+			getOaData({ dictId: 'STOCK_FOUND_TYPE' }).then((res) => {
+				if (res.bean._MSG_?.indexOf('ERROR,') == 0) {
+					this.$message.error(res.bean._MSG_)
+				} else {
+					this.options = res.bean._DATA_
+				}
+			})
+			getOaData({ dictId: 'SY_ORG_ODEPT_ALL' }).then((res) => {
+				this.team = res.bean._DATA_
+			})
+		},
+
 		/**
 		 * @description: 关闭弹窗
 		 * @return {*}
@@ -104,13 +157,19 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			this.onCancel()
+			this.$refs.formRef.validate((valid) => {
+				if (valid) {
+					// this.onCancel()
+				} else {
+					return false
+				}
+			})
 		},
 	},
-	/**
-	 * 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	 */
-	created() {},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('possessionRef')
+	},
 }
 </script>
 

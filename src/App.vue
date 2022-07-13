@@ -1,7 +1,7 @@
 <!--
  * @Description: 入口页面
  * @Date: 2022-06-08 14:44:01
- * @LastEditTime: 2022-07-06 10:08:20
+ * @LastEditTime: 2022-07-13 14:08:18
 -->
 <template>
 	<div id="app">
@@ -9,7 +9,7 @@
 		<router-view />
 
 		<!-- 系统配置 -->
-		<SystemConfig ref="systemConfig" />
+		<SystemConfig />
 	</div>
 </template>
 
@@ -65,13 +65,6 @@ export default {
 			} else {
 				Local.set('systemConfig', this.$store.state.systemConfig.systemConfig)
 			}
-		},
-
-		// 布局配置弹窗打开
-		openSystemConfigDrawer() {
-			this.bus.$on('openSystemConfig', () => {
-				this.$refs.systemConfig.openDrawer()
-			})
 		},
 
 		/**

@@ -1,7 +1,7 @@
 /*
  * @Description: 系统配置
  * @Date: 2022-06-09 16:55:16
- * @LastEditTime: 2022-07-06 10:29:12
+ * @LastEditTime: 2022-07-13 14:09:12
  */
 const useSystemConfig = {
 	namespaced: true,
