@@ -1,7 +1,7 @@
 <!--
  * @Description: 主要人员 - 修改
  * @Date: 2022-06-23 21:14:29
- * @LastEditTime: 2022-06-24 22:47:35
+ * @LastEditTime: 2022-07-14 17:04:38
 -->
 <template>
 	<el-dialog
@@ -14,15 +14,57 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
-				<el-form-item prop="region1" label="上级党组织">
-					<el-select v-model="form.region1" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
-						<el-option label="区域二" value="beijing"></el-option>
-					</el-select>
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
+				<el-form-item prop="USER_NAME" label="股东名称">
+					<el-input
+						v-model="form.USER_NAME"
+						type="textarea"
+						placeholder="请输入"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					></el-input>
 				</el-form-item>
-				<el-form-item prop="input" label="党组织名称">
-					<el-input v-model="form.input" placeholder="请输入"></el-input>
+
+				<el-form-item prop="USER_POST" label="职务">
+					<el-input
+						v-model="form.USER_POST"
+						type="textarea"
+						placeholder="请输入"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					></el-input>
+				</el-form-item>
+
+				<el-form-item prop="OUT_DEPT" label="派出单位">
+					<el-input
+						v-model="form.OUT_DEPT"
+						type="textarea"
+						placeholder="请输入"
+						maxlength="40"
+						autosize
+						show-word-limit
+						resize="none"
+					></el-input>
+				</el-form-item>
+
+				<el-form-item prop="START_TIME" label="任职时间">
+					<el-date-picker
+						v-model="form.START_TIME"
+						type="date"
+						value-format="YYYY-MM-DD"
+						placeholder="请选择"
+					/>
+				</el-form-item>
+
+				<el-form-item prop="S_DIR" label="是否是外部董事" v-if="type === 1">
+					<el-select v-model="form.S_DIR" placeholder="请选择">
+						<el-option label="是" value="1"></el-option>
+						<el-option label="不是" value="2"></el-option>
+					</el-select>
 				</el-form-item>
 			</el-form>
 		</el-scrollbar>
@@ -35,6 +77,8 @@
 </template>
 
 <script>
+import { getBusinessMainStaffEdit } from '@/api/index.js' // api
+
 export default {
 	// 组件参数 接收来自父组件的数据
 	props: {
@@ -46,26 +90,35 @@ export default {
 			default: 677,
 		},
 	},
-	// 局部注册的组件
-	components: {},
 	// 组件状态值
 	data() {
 		return {
 			isShowDialog: false, // 弹窗状态
-			form: {}, // 表单
+			type: '', // 工商/审批
+			// 表单
+			form: {
+				CMPY_ID: this.$route.query.id,
+			},
+			// 表单验证
+			rules: {
+				USER_NAME: [{ required: true, trigger: 'blur', message: '请输入用户名' }],
+				USER_POST: [{ required: true, trigger: 'blur', message: '请输入职务' }],
+				OUT_DEPT: [{ required: true, trigger: 'blur', message: '请输入派出单位' }],
+				START_TIME: [{ required: true, trigger: 'change', message: '请选择任职时间' }],
+				S_DIR: [{ required: true, trigger: 'change', message: '请选择是否是外部董事' }],
+			},
 		}
 	},
-	// 计算属性
-	computed: {},
-	// 侦听器
-	watch: {},
 	// 组件方法
 	methods: {
 		/**
 		 * @description: 打开弹窗
 		 * @return {*}
 		 */
-		openDialog() {
+		openDialog(scope, type) {
+			this.type = type
+			this.form = Object.assign({}, scope)
+			this.form.MAIN_TYPE = type
 			this.isShowDialog = true
 		},
 
@@ -83,13 +136,21 @@ export default {
 		 * @return {*}
 		 */
 		onSubmit() {
-			this.onCancel()
+			this.$refs.formRef.validate((valid) => {
+				if (valid) {
+					getBusinessMainStaffEdit(this.form).then((res) => {
+						if (res._MSG_.includes('OK,')) {
+							this.$message.success('修改成功')
+							this.bus.$emit('getBusinessMainStaffAddEditDel')
+							this.onCancel()
+						}
+					})
+				} else {
+					return false
+				}
+			})
 		},
 	},
-	/**
-	 * 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	 */
-	created() {},
 }
 </script>
 

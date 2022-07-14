@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护 - 新增
  * @Date: 2022-06-15 23:00:02
- * @LastEditTime: 2022-07-12 18:40:36
+ * @LastEditTime: 2022-07-14 17:01:38
 -->
 <template>
 	<el-dialog
@@ -14,7 +14,7 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
 				<el-form-item prop="EDIT_NAME" label="企业变更类型">
 					<el-input
 						v-model="form.EDIT_NAME"

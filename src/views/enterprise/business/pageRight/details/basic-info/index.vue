@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-13 16:59:36
+ * @LastEditTime: 2022-07-14 18:30:57
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -12,24 +12,24 @@
 				<el-form-item prop="CMPY_NAME" label="公司名称">
 					<el-input
 						v-model="form.CMPY_NAME"
-						:placeholder="!isdisabled('COLLECTION_MONEY') ? '' : '请输入'"
-						:disabled="!isdisabled('COLLECTION_MONEY')"
+						:placeholder="isDisabled('COLLECTION_MONEY') ? '' : '请输入'"
+						:disabled="isDisabled('COLLECTION_MONEY')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="CREDIT_CODE" label="统一信用代码">
 					<el-input
 						v-model="form.CREDIT_CODE"
-						:placeholder="!isdisabled('CREDIT_CODE') ? '' : '请输入'"
-						:disabled="!isdisabled('CREDIT_CODE')"
+						:placeholder="isDisabled('CREDIT_CODE') ? '' : '请输入'"
+						:disabled="isDisabled('CREDIT_CODE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="LEGAL_AGENT" label="法定代表人">
 					<el-input
 						v-model="form.LEGAL_AGENT"
-						:placeholder="!isdisabled('LEGAL_AGENT') ? '' : '请输入'"
-						:disabled="!isdisabled('LEGAL_AGENT')"
+						:placeholder="isDisabled('LEGAL_AGENT') ? '' : '请输入'"
+						:disabled="isDisabled('LEGAL_AGENT')"
 					></el-input>
 				</el-form-item>
 
@@ -37,8 +37,8 @@
 					<el-select
 						v-model="form.CMPY_TYPE"
 						:clearable="true"
-						:placeholder="!isdisabled('CMPY_TYPE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('CMPY_TYPE')"
+						:placeholder="isDisabled('CMPY_TYPE') ? ' ' : '请选择'"
+						:disabled="isDisabled('CMPY_TYPE')"
 						@visible-change="onGetOaData($event, 'CMPY_TYPE')"
 					>
 						<el-option
@@ -53,32 +53,32 @@
 				<el-form-item prop="BUSINESS_DATE" label="工商成立日期">
 					<el-input
 						v-model="form.BUSINESS_DATE"
-						:placeholder="!isdisabled('BUSINESS_DATE') ? '' : '请输入'"
-						:disabled="!isdisabled('BUSINESS_DATE')"
+						:placeholder="isDisabled('BUSINESS_DATE') ? '' : '请输入'"
+						:disabled="isDisabled('BUSINESS_DATE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="LOG_MONEY_TYPE" label="注册资本币种">
 					<el-input
 						v-model="form.LOG_MONEY_TYPE"
-						:placeholder="!isdisabled('LOG_MONEY_TYPE') ? '' : '请输入'"
-						:disabled="!isdisabled('LOG_MONEY_TYPE')"
+						:placeholder="isDisabled('LOG_MONEY_TYPE') ? '' : '请输入'"
+						:disabled="isDisabled('LOG_MONEY_TYPE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="LOG_MONEY" label="注册资本(万元)">
 					<el-input
 						v-model="form.LOG_MONEY"
-						:placeholder="!isdisabled('LOG_MONEY') ? '' : '请输入'"
-						:disabled="!isdisabled('LOG_MONEY')"
+						:placeholder="isDisabled('LOG_MONEY') ? '' : '请输入'"
+						:disabled="isDisabled('LOG_MONEY')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="CMPY_BELONG" label="所属公司">
 					<el-input
 						v-model="form.CMPY_BELONG"
-						:placeholder="!isdisabled('CMPY_BELONG') ? '' : '请输入'"
-						:disabled="!isdisabled('CMPY_BELONG')"
+						:placeholder="isDisabled('CMPY_BELONG') ? '' : '请输入'"
+						:disabled="isDisabled('CMPY_BELONG')"
 					></el-input>
 				</el-form-item>
 
@@ -86,8 +86,8 @@
 					<el-select
 						v-model="form.OPERATE_TERM"
 						:clearable="true"
-						:placeholder="!isdisabled('OPERATE_TERM') ? ' ' : '请选择'"
-						:disabled="!isdisabled('OPERATE_TERM')"
+						:placeholder="isDisabled('OPERATE_TERM') ? ' ' : '请选择'"
+						:disabled="isDisabled('OPERATE_TERM')"
 						@visible-change="onGetOaData($event, 'OPERATE_TERM')"
 					>
 						<el-option
@@ -103,8 +103,8 @@
 					<el-select
 						v-model="form.LOG_TYPE"
 						:clearable="true"
-						:placeholder="!isdisabled('LOG_TYPE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('LOG_TYPE')"
+						:placeholder="isDisabled('LOG_TYPE') ? ' ' : '请选择'"
+						:disabled="isDisabled('LOG_TYPE')"
 						@visible-change="onGetOaData($event, 'LOG_TYPE')"
 					>
 						<el-option
@@ -120,8 +120,8 @@
 					<el-select
 						v-model="form.MANAGE_LEVEL"
 						:clearable="true"
-						:placeholder="!isdisabled('MANAGE_LEVEL') ? ' ' : '请选择'"
-						:disabled="!isdisabled('MANAGE_LEVEL')"
+						:placeholder="isDisabled('MANAGE_LEVEL') ? ' ' : '请选择'"
+						:disabled="isDisabled('MANAGE_LEVEL')"
 						@visible-change="onGetOaData($event, 'MANAGE_LEVEL')"
 					>
 						<el-option
@@ -137,8 +137,8 @@
 					<el-select
 						v-model="form.RIGHT_LEVEL"
 						:clearable="true"
-						:placeholder="!isdisabled('RIGHT_LEVEL') ? ' ' : '请选择'"
-						:disabled="!isdisabled('RIGHT_LEVEL')"
+						:placeholder="isDisabled('RIGHT_LEVEL') ? ' ' : '请选择'"
+						:disabled="isDisabled('RIGHT_LEVEL')"
 						@visible-change="onGetOaData($event, 'RIGHT_LEVEL')"
 					>
 						<el-option
@@ -151,28 +151,28 @@
 				</el-form-item>
 
 				<el-form-item prop="MANAGE_TEAM" label="管理团队">
-					<el-select
+					<el-cascader
 						v-model="form.MANAGE_TEAM"
+						:options="options"
+						:props="props"
+						:show-all-levels="false"
 						:clearable="true"
-						:placeholder="!isdisabled('MANAGE_TEAM') ? ' ' : '请选择'"
-						:disabled="!isdisabled('MANAGE_TEAM')"
+						:placeholder="isDisabled('MANAGE_TEAM') ? ' ' : '请选择'"
 						@visible-change="onGetOaData($event, 'MANAGE_TEAM')"
 					>
-						<el-option
-							v-for="item in options"
-							:key="item.ITEM_CODE"
-							:label="item.ITEM_NAME"
-							:value="item.ITEM_CODE"
-						/>
-					</el-select>
+						<template #default="{ node, data }">
+							<span>{{ data.NAME }}</span>
+							<span v-if="!node.isLeaf"> ({{ data.CHILD.length }}) </span>
+						</template>
+					</el-cascader>
 				</el-form-item>
 
 				<el-form-item prop="S_SUPERVISION" label="国资监管范围">
 					<el-select
 						v-model="form.S_SUPERVISION"
 						:clearable="true"
-						:placeholder="!isdisabled('S_SUPERVISION') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_SUPERVISION')"
+						:placeholder="isDisabled('S_SUPERVISION') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_SUPERVISION')"
 						@visible-change="onGetOaData($event, 'S_SUPERVISION')"
 					>
 						<el-option
@@ -188,8 +188,8 @@
 					<el-select
 						v-model="form.S_CHENGFA"
 						:clearable="true"
-						:placeholder="!isdisabled('S_CHENGFA') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_CHENGFA')"
+						:placeholder="isDisabled('S_CHENGFA') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_CHENGFA')"
 						@visible-change="onGetOaData($event, 'S_CHENGFA')"
 					>
 						<el-option
@@ -205,8 +205,8 @@
 					<el-select
 						v-model="form.CMPY_ATTRIBUTE"
 						:clearable="true"
-						:placeholder="!isdisabled('CMPY_ATTRIBUTE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('CMPY_ATTRIBUTE')"
+						:placeholder="isDisabled('CMPY_ATTRIBUTE') ? ' ' : '请选择'"
+						:disabled="isDisabled('CMPY_ATTRIBUTE')"
 						@visible-change="onGetOaData($event, 'CMPY_ATTRIBUTE')"
 					>
 						<el-option
@@ -225,8 +225,8 @@
 				>
 					<el-input
 						v-model="form.CMPY_URL"
-						:placeholder="!isdisabled('CMPY_URL') ? '' : '请输入'"
-						:disabled="!isdisabled('CMPY_URL')"
+						:placeholder="isDisabled('CMPY_URL') ? '' : '请输入'"
+						:disabled="isDisabled('CMPY_URL')"
 					></el-input>
 				</el-form-item>
 
@@ -240,34 +240,25 @@
 						type="textarea"
 						:rows="3"
 						resize="none"
-						:placeholder="!isdisabled('OPERATE_SCOPE') ? '' : '请输入'"
-						:disabled="!isdisabled('OPERATE_SCOPE')"
+						:placeholder="isDisabled('OPERATE_SCOPE') ? '' : '请输入'"
+						:disabled="isDisabled('OPERATE_SCOPE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="LAND_NAME" label="地块名称">
-					<el-select
+					<el-input
 						v-model="form.LAND_NAME"
-						:clearable="true"
-						:placeholder="!isdisabled('LAND_NAME') ? ' ' : '请选择'"
-						:disabled="!isdisabled('LAND_NAME')"
-						@visible-change="onGetOaData($event, 'LAND_NAME')"
-					>
-						<el-option
-							v-for="item in options"
-							:key="item.ITEM_CODE"
-							:label="item.ITEM_NAME"
-							:value="item.ITEM_CODE"
-						/>
-					</el-select>
+						:placeholder="isDisabled('LAND_NAME') ? '' : '请输入'"
+						:disabled="isDisabled('LAND_NAME')"
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="CMPY_USE" label="公司用途">
 					<el-select
 						v-model="form.CMPY_USE"
 						:clearable="true"
-						:placeholder="!isdisabled('CMPY_USE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('CMPY_USE')"
+						:placeholder="isDisabled('CMPY_USE') ? ' ' : '请选择'"
+						:disabled="isDisabled('CMPY_USE')"
 						@visible-change="onGetOaData($event, 'CMPY_USE')"
 					>
 						<el-option
@@ -283,8 +274,8 @@
 					<el-select
 						v-model="form.S_SHARE"
 						:clearable="true"
-						:placeholder="!isdisabled('S_SHARE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_SHARE')"
+						:placeholder="isDisabled('S_SHARE') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_SHARE')"
 						@visible-change="onGetOaData($event, 'S_SHARE')"
 					>
 						<el-option
@@ -300,8 +291,8 @@
 					<el-select
 						v-model="form.S_OPERATE"
 						:clearable="true"
-						:placeholder="!isdisabled('S_OPERATE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_OPERATE')"
+						:placeholder="isDisabled('S_OPERATE') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_OPERATE')"
 						@visible-change="onGetOaData($event, 'S_OPERATE')"
 					>
 						<el-option
@@ -329,72 +320,45 @@
 					:cell-style="{ 'text-align': 'center' }"
 					class="white-space-nowrap"
 				>
-					<el-table-column label="序号" type="index" align="center" width="55" />
+					<el-table-column label="序号" type="index" width="55" />
+					<el-table-column :show-overflow-tooltip="true" prop="GD_NAME" label="股东名称" />
+					<el-table-column :show-overflow-tooltip="true" prop="GD_TYPE" label="股东类型" />
+					<el-table-column :show-overflow-tooltip="true" prop="GS_CG_RATIO" label="工商口径持股比例(%)" />
+					<el-table-column :show-overflow-tooltip="true" prop="HJ_CG_RATIO" label="会计口径持股比例(%)" />
+					<el-table-column :show-overflow-tooltip="true" prop="YS_CG_RATIO" label="预算口径持股比例(%)" />
 
-					<el-table-column label="股东名称">
+					<el-table-column label="操作" v-if="!$route.query?.isAside">
 						<template #default="scope">
-							<el-input
-								v-model.trim="scope.row.GD_NAME"
-								placeholder="股东名称内容不能为空"
-								type="textarea"
-								maxlength="40"
-								autosize
-								show-word-limit
-								resize="none"
-								:placeholder="!isdisabled('GD_NAME') ? '' : '请输入'"
-								:disabled="!isdisabled('GD_NAME')"
-							/>
-						</template>
-					</el-table-column>
-
-					<el-table-column label="股东类型">
-						<template #default="scope">
-							<el-input
-								v-model.trim="scope.row.GD_TYPE"
-								placeholder="股东类型内容不能为空"
-								type="textarea"
-								maxlength="40"
-								autosize
-								show-word-limit
-								resize="none"
-								:placeholder="!isdisabled('GD_TYPE') ? '' : '请输入'"
-								:disabled="!isdisabled('GD_TYPE')"
-							/>
-						</template>
-					</el-table-column>
-
-					<el-table-column label="工商口径持股比例">
-						<template #default="scope">
-							<el-input
-								v-model.trim="scope.row.GS_CG_RATIO"
-								placeholder="工商口径持股比例内容不能为空"
-								type="textarea"
-								maxlength="40"
-								autosize
-								show-word-limit
-								resize="none"
-								:placeholder="!isdisabled('GS_CG_RATIO') ? '' : '请输入'"
-								:disabled="!isdisabled('GS_CG_RATIO')"
-							/>
-						</template>
-					</el-table-column>
-
-					<el-table-column label="会计口径持股比例">
-						<template #default="scope">
-							<el-input
-								v-model.trim="scope.row.HJ_CG_RATIO"
-								placeholder="会计口径持股比例内容不能为空"
-								type="textarea"
-								maxlength="40"
-								autosize
-								show-word-limit
-								resize="none"
-								:placeholder="!isdisabled('HJ_CG_RATIO') ? '' : '请输入'"
-								:disabled="!isdisabled('HJ_CG_RATIO')"
-							/>
+							<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
+								<span class="span-svg-icon edit">
+									<SvgIcon name="edit" color="#fff" />
+								</span>
+								<span class="edit()">修改</span>
+							</div>
+							<div class="flex-center-inline c-pointer">
+								<el-popconfirm
+									confirm-button-text="确定"
+									cancel-button-text="取消"
+									:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
+									placement="left"
+									@confirm="onDelete(scope)"
+								>
+									<template slot="reference">
+										<div class="flex-row-center">
+											<span class="span-svg-icon close">
+												<SvgIcon name="close" color="#fff" />
+											</span>
+											<span class="del">删除</span>
+										</div>
+									</template>
+								</el-popconfirm>
+							</div>
 						</template>
 					</el-table-column>
 				</el-table>
+				<div class="table-btn" v-if="!$route.query?.isAside">
+					<el-button round @click="onAdd(2)">添加</el-button>
+				</div>
 			</div>
 			<el-divider />
 		</div>
@@ -406,16 +370,16 @@
 				<el-form-item prop="COLLECTION_MONEY" label="实收资本(万元)">
 					<el-input
 						v-model="form.COLLECTION_MONEY"
-						:placeholder="!isdisabled('COLLECTION_MONEY') ? '' : '请输入'"
-						:disabled="!isdisabled('COLLECTION_MONEY')"
+						:placeholder="isDisabled('COLLECTION_MONEY') ? '' : '请输入'"
+						:disabled="isDisabled('COLLECTION_MONEY')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PAY_TAXES_LEVEL" label="纳税人资质">
 					<el-input
 						v-model="form.PAY_TAXES_LEVEL"
-						:placeholder="!isdisabled('PAY_TAXES_LEVEL') ? '' : '请输入'"
-						:disabled="!isdisabled('PAY_TAXES_LEVEL')"
+						:placeholder="isDisabled('PAY_TAXES_LEVEL') ? '' : '请输入'"
+						:disabled="isDisabled('PAY_TAXES_LEVEL')"
 					></el-input>
 				</el-form-item>
 
@@ -423,8 +387,8 @@
 					<el-select
 						v-model="form.FCR_TYPE"
 						:clearable="true"
-						:placeholder="!isdisabled('FCR_TYPE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('FCR_TYPE')"
+						:placeholder="isDisabled('FCR_TYPE') ? ' ' : '请选择'"
+						:disabled="isDisabled('FCR_TYPE')"
 						@visible-change="onGetOaData($event, 'FCR_TYPE')"
 					>
 						<el-option
@@ -439,8 +403,8 @@
 				<el-form-item prop="CPMY_TELEPHONE" label="电话">
 					<el-input
 						v-model="form.CPMY_TELEPHONE"
-						:placeholder="!isdisabled('CPMY_TELEPHONE') ? '' : '请输入'"
-						:disabled="!isdisabled('CPMY_TELEPHONE')"
+						:placeholder="isDisabled('CPMY_TELEPHONE') ? '' : '请输入'"
+						:disabled="isDisabled('CPMY_TELEPHONE')"
 					></el-input>
 				</el-form-item>
 
@@ -448,8 +412,8 @@
 					<el-select
 						v-model="form.MAX_QUOTA"
 						:clearable="true"
-						:placeholder="!isdisabled('MAX_QUOTA') ? ' ' : '请选择'"
-						:disabled="!isdisabled('MAX_QUOTA')"
+						:placeholder="isDisabled('MAX_QUOTA') ? ' ' : '请选择'"
+						:disabled="isDisabled('MAX_QUOTA')"
 						@visible-change="onGetOaData($event, 'MAX_QUOTA')"
 					>
 						<el-option
@@ -465,8 +429,8 @@
 					<el-select
 						v-model="form.S_MERGE_CHART"
 						:clearable="true"
-						:placeholder="!isdisabled('S_MERGE_CHART') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_MERGE_CHART')"
+						:placeholder="isDisabled('S_MERGE_CHART') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_MERGE_CHART')"
 						@visible-change="onGetOaData($event, 'S_MERGE_CHART')"
 					>
 						<el-option
@@ -481,40 +445,40 @@
 				<el-form-item prop="PLEDGEE" label="是否并表">
 					<el-input
 						v-model="form.PLEDGEE"
-						:placeholder="!isdisabled('PLEDGEE') ? '' : '请输入'"
-						:disabled="!isdisabled('PLEDGEE')"
+						:placeholder="isDisabled('PLEDGEE') ? '' : '请输入'"
+						:disabled="isDisabled('PLEDGEE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="YIELD_RATIO" label="出质比例">
 					<el-input
 						v-model="form.YIELD_RATIO"
-						:placeholder="!isdisabled('YIELD_RATIO') ? '' : '请输入'"
-						:disabled="!isdisabled('YIELD_RATIO')"
+						:placeholder="isDisabled('YIELD_RATIO') ? '' : '请输入'"
+						:disabled="isDisabled('YIELD_RATIO')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="WARRANT_BILIE" label="担保金额">
 					<el-input
 						v-model="form.WARRANT_BILIE"
-						:placeholder="!isdisabled('WARRANT_BILIE') ? '' : '请输入'"
-						:disabled="!isdisabled('WARRANT_BILIE')"
+						:placeholder="isDisabled('WARRANT_BILIE') ? '' : '请输入'"
+						:disabled="isDisabled('WARRANT_BILIE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PLEDGEE_DATE" label="质押设立时间">
 					<el-input
 						v-model="form.PLEDGEE_DATE"
-						:placeholder="!isdisabled('PLEDGEE_DATE') ? '' : '请输入'"
-						:disabled="!isdisabled('PLEDGEE_DATE')"
+						:placeholder="isDisabled('PLEDGEE_DATE') ? '' : '请输入'"
+						:disabled="isDisabled('PLEDGEE_DATE')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PLEDGEE_LOGOUT_DATE" label="质押注销时间">
 					<el-input
 						v-model="form.PLEDGEE_LOGOUT_DATE"
-						:placeholder="!isdisabled('PLEDGEE_LOGOUT_DATE') ? '' : '请输入'"
-						:disabled="!isdisabled('PLEDGEE_LOGOUT_DATE')"
+						:placeholder="isDisabled('PLEDGEE_LOGOUT_DATE') ? '' : '请输入'"
+						:disabled="isDisabled('PLEDGEE_LOGOUT_DATE')"
 					></el-input>
 				</el-form-item>
 
@@ -522,8 +486,8 @@
 					<el-select
 						v-model="form.S_STOCK_FROZEN"
 						:clearable="true"
-						:placeholder="!isdisabled('S_STOCK_FROZEN') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_STOCK_FROZEN')"
+						:placeholder="isDisabled('S_STOCK_FROZEN') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_STOCK_FROZEN')"
 						@visible-change="onGetOaData($event, 'S_STOCK_FROZEN')"
 					>
 						<el-option
@@ -545,8 +509,8 @@
 						type="textarea"
 						:rows="3"
 						resize="none"
-						:placeholder="!isdisabled('FROZEN_EXPLAIN') ? '' : '请输入'"
-						:disabled="!isdisabled('FROZEN_EXPLAIN')"
+						:placeholder="isDisabled('FROZEN_EXPLAIN') ? '' : '请输入'"
+						:disabled="isDisabled('FROZEN_EXPLAIN')"
 					></el-input>
 				</el-form-item>
 			</el-form>
@@ -561,8 +525,8 @@
 					<el-select
 						v-model="form.S_STOCK_FROZEN"
 						:clearable="true"
-						:placeholder="!isdisabled('PARTY_NAME') ? ' ' : '请选择'"
-						:disabled="!isdisabled('PARTY_NAME')"
+						:placeholder="isDisabled('PARTY_NAME') ? ' ' : '请选择'"
+						:disabled="isDisabled('PARTY_NAME')"
 						@visible-change="onGetOaData($event, 'PARTY_NAME')"
 					>
 						<el-option
@@ -578,8 +542,8 @@
 					<el-select
 						v-model="form.STAY_PARTY_NAME"
 						:clearable="true"
-						:placeholder="!isdisabled('STAY_PARTY_NAME') ? ' ' : '请选择'"
-						:disabled="!isdisabled('STAY_PARTY_NAME')"
+						:placeholder="isDisabled('STAY_PARTY_NAME') ? ' ' : '请选择'"
+						:disabled="isDisabled('STAY_PARTY_NAME')"
 						@visible-change="onGetOaData($event, 'STAY_PARTY_NAME')"
 					>
 						<el-option
@@ -594,16 +558,16 @@
 				<el-form-item prop="PRACTICE_NUM" label="从业人员数(劳动关系)">
 					<el-input
 						v-model="form.PRACTICE_NUM"
-						:placeholder="!isdisabled('PRACTICE_NUM') ? '' : '请输入'"
-						:disabled="!isdisabled('PRACTICE_NUM')"
+						:placeholder="isDisabled('PRACTICE_NUM') ? '' : '请输入'"
+						:disabled="isDisabled('PRACTICE_NUM')"
 					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="PARTY_NUM" label="党员人数">
 					<el-input
 						v-model="form.PARTY_NUM"
-						:placeholder="!isdisabled('PARTY_NUM') ? '' : '请输入'"
-						:disabled="!isdisabled('PARTY_NUM')"
+						:placeholder="isDisabled('PARTY_NUM') ? '' : '请输入'"
+						:disabled="isDisabled('PARTY_NUM')"
 					></el-input>
 				</el-form-item>
 
@@ -611,8 +575,8 @@
 					<el-select
 						v-model="form.PARTY_CHAPTER"
 						:clearable="true"
-						:placeholder="!isdisabled('PARTY_CHAPTER') ? ' ' : '请选择'"
-						:disabled="!isdisabled('PARTY_CHAPTER')"
+						:placeholder="isDisabled('PARTY_CHAPTER') ? ' ' : '请选择'"
+						:disabled="isDisabled('PARTY_CHAPTER')"
 						@visible-change="onGetOaData($event, 'PARTY_CHAPTER')"
 					>
 						<el-option
@@ -635,8 +599,8 @@
 					<el-select
 						v-model="form.S_SET_DIRECTOR"
 						:clearable="true"
-						:placeholder="!isdisabled('S_SET_DIRECTOR') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_SET_DIRECTOR')"
+						:placeholder="isDisabled('S_SET_DIRECTOR') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_SET_DIRECTOR')"
 						@visible-change="onGetOaData($event, 'S_SET_DIRECTOR')"
 					>
 						<el-option
@@ -652,8 +616,8 @@
 					<el-select
 						v-model="form.S_SET_RULE"
 						:clearable="true"
-						:placeholder="!isdisabled('S_SET_RULE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_SET_RULE')"
+						:placeholder="isDisabled('S_SET_RULE') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_SET_RULE')"
 						@visible-change="onGetOaData($event, 'S_SET_RULE')"
 					>
 						<el-option
@@ -669,8 +633,8 @@
 					<el-select
 						v-model="form.S_EQUAL"
 						:clearable="true"
-						:placeholder="!isdisabled('S_EQUAL') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_EQUAL')"
+						:placeholder="isDisabled('S_EQUAL') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_EQUAL')"
 						@visible-change="onGetOaData($event, 'S_EQUAL')"
 					>
 						<el-option
@@ -686,8 +650,8 @@
 					<el-select
 						v-model="form.S_SIX_RULE"
 						:clearable="true"
-						:placeholder="!isdisabled('S_SIX_RULE') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_SIX_RULE')"
+						:placeholder="isDisabled('S_SIX_RULE') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_SIX_RULE')"
 						@visible-change="onGetOaData($event, 'S_SIX_RULE')"
 					>
 						<el-option
@@ -703,8 +667,8 @@
 					<el-select
 						v-model="form.S_WORKABLE_SET"
 						:clearable="true"
-						:placeholder="!isdisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
-						:disabled="!isdisabled('S_WORKABLE_SET')"
+						:placeholder="isDisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
+						:disabled="isDisabled('S_WORKABLE_SET')"
 						@visible-change="onGetOaData($event, 'S_WORKABLE_SET')"
 					>
 						<el-option
@@ -747,8 +711,16 @@ export default {
 			form: {}, // 表单对象
 			tableData: [], // 股东信息
 			loading: false, // 加载状态
-			EDIT_WORD: [], // 可编辑字段
+			EDIT_WORD: '', // 可编辑字段
 			options: [], // OA 角色/字典
+			// cascader 配置选项
+			props: {
+				value: 'ID', // 绑定 ID
+				label: 'NAME', // 显示 label
+				children: 'CHILD', // 指定选项的子选项为选项对象的某个属性值
+				checkStrictly: true, // 单选，否则只能选择最后一级
+				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
 		}
 	},
 	// 侦听器
@@ -824,16 +796,49 @@ export default {
 		 * @description: 判断是否可编辑
 		 * @return {*}
 		 */
-		isdisabled(code) {
-			if (this.EDIT_WORD != '' && !this.$route.query.isAside) {
+		isDisabled(code) {
+			if (this.EDIT_WORD !== '') {
 				const arr = this.EDIT_WORD?.split(',')
 				arr.pop() // 删除最后一个因为逗号转换的空字符串
-				return arr.some((item) => {
+				return !arr.some((item) => {
 					return code === item
 				})
 			} else {
 				return true
 			}
+		},
+
+		/**
+		 * @description: 股东信息添加
+		 * @return {*}
+		 */
+		onAdd(type) {
+			// this.$refs.addRef.openDialog(type)
+		},
+
+		/**
+		 * @description: 股东信息修改
+		 * @return {*}
+		 */
+		onEdit(scope) {
+			// this.$refs.editRef.openDialog(scope.row, type)
+		},
+
+		/**
+		 * @description: 股东信息删除
+		 * @return {*}
+		 */
+		onDelete(scope) {
+			// const params = {
+			// 	USER_CODE: scope.row.USER_CODE,
+			// 	S_FLAG: 2,
+			// }
+			// getBusinessMainStaffDel(params).then((res) => {
+			// 	if (res._MSG_.includes('OK,')) {
+			// 		this.$message.success('删除成功')
+			// 		this.onGetBusinessMainStaff()
+			// 	}
+			// })
 		},
 
 		/**

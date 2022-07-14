@@ -1,7 +1,7 @@
 /*
  * @Description: element-ui 样修改
  * @Date: 2022-06-14 18:31:41
- * @LastEditTime: 2022-07-13 15:27:20
+ * @LastEditTime: 2022-07-14 16:21:22
  */
 @import '@/assets/scss/mixins.scss';
 
@@ -43,8 +43,6 @@
 				.el-submenu__title {
 					height: 50px;
 					line-height: 50px;
-					// padding-left: 0 !important;
-					// margin-left: 40px;
 					border-bottom: 1px solid var(--el-border-color-light);
 				}
 			}
@@ -53,8 +51,6 @@
 			.el-menu-item {
 				height: 50px;
 				line-height: 50px;
-				// padding-left: 0 !important;
-				// margin-left: 40px;
 				border-bottom: 1px solid var(--el-border-color-light);
 				background-color: var(--el-aside-child-bg-color);
 			}
@@ -162,6 +158,7 @@
 /* Table 表格
 ------------------------------- */
 .el-table {
+	width: 100%;
 	font-size: 14px;
 
 	// 表头
@@ -274,17 +271,18 @@
 
 	.el-dialog__body {
 		padding: 0;
-		overflow: hidden;
 
 		> .el-scrollbar {
 			max-height: 400px;
 
 			.el-scrollbar__wrap {
 				max-height: 400px;
+				margin-bottom: 0 !important;
+				margin-right: 0 !important;
 			}
 
 			.el-scrollbar__view {
-				padding: 30px 20px;
+				padding: 30px;
 			}
 		}
 	}
@@ -641,4 +639,10 @@
 	.el-cascader-menu {
 		min-width: 230px;
 	}
+}
+
+/* Pagination 分页
+------------------------------- */
+.el-pagination {
+	margin-top: 20px;
 }

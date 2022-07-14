@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-12 18:40:13
+ * @LastEditTime: 2022-07-14 17:19:21
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -76,6 +76,19 @@ export const getBusinessrightQuery = (data) => {
 }
 
 /**
+ * @description: 企业信息管理 - 业务办理 - 占有派单
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessSendOwn = (data) => {
+	return request({
+		url: '/CMPY_BASE_INFO.own.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
  * @description: 企业信息管理 - 业务办理 - 基本信息获取详情
  * @param {*} data
  * @return {*}
@@ -96,6 +109,73 @@ export const getBusinessBasicInfoDetails = (data) => {
 export const getBusinessBasicInfoGetEditData = (data) => {
 	return request({
 		url: '/CMPY_BASE_INFO.getEditData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 主要人员查询
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessMainStaff = (data) => {
+	return request({
+		url: '/CMPY_MAIN_USER.query.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 主要人员添加
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessMainStaffAdd = (data) => {
+	return request({
+		url: '/CMPY_MAIN_USER.saveData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 主要人员修改
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessMainStaffEdit = (data) => {
+	return request({
+		url: '/CMPY_MAIN_USER.updateData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 主要人员删除
+ * @description: USER_CODE 需要删除的用户
+ * @description: S_FLAG = 2 固定,删除标识
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessMainStaffDel = (data) => {
+	return request({
+		url: '/CMPY_MAIN_USER.deleteData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 任务列表
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessTaskList = (data) => {
+	return request({
+		url: '/CMPY_TAST.query.do',
 		method: 'get',
 		params: data,
 	})

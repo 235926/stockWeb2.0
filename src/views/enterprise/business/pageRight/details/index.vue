@@ -1,7 +1,7 @@
 <!--
  * @Description: 企业信息内容 - 内容预览
  * @Date: 2022-06-17 10:17:51
- * @LastEditTime: 2022-07-12 17:41:18
+ * @LastEditTime: 2022-07-14 17:37:12
 -->
 <template>
 	<div class="page-container">
@@ -16,13 +16,13 @@
 				<el-tab-pane :lazy="true" label="主要人员" name="mainStaff">
 					<MainStaff />
 				</el-tab-pane>
-				<el-tab-pane :lazy="true" label="投资企业" name="investment" v-if="readonly">
+				<el-tab-pane :lazy="true" label="投资企业" name="investment" v-if="$route.query?.isAside">
 					<Investment />
 				</el-tab-pane>
-				<el-tab-pane :lazy="true" label="企业图谱" name="enterpriseMap" v-if="readonly">
+				<el-tab-pane :lazy="true" label="企业图谱" name="enterpriseMap" v-if="$route.query?.isAside">
 					<EnterpriseMap />
 				</el-tab-pane>
-				<el-tab-pane :lazy="true" label="变更记录" name="changeRecord" v-if="readonly">
+				<el-tab-pane :lazy="true" label="变更记录" name="changeRecord" v-if="$route.query?.isAside">
 					<ChangeRecord />
 				</el-tab-pane>
 			</el-tabs>
@@ -43,30 +43,12 @@ export default {
 		EnterpriseMap: () => import('./enterprise-map/index.vue'), // 企业图谱
 		ChangeRecord: () => import('./change-record/index.vue'), // 变更记录
 	},
-	// 组件参数 接收来自父组件的数据
-	props: {},
 	// 组件状态值
 	data() {
 		return {
 			activeName: 'basicInfo', // tabs 默认展示
 		}
 	},
-	// 计算属性
-	computed: {
-		// 是否只读
-		readonly() {
-			const isTrue = this.$route.query?.isAside
-			return isTrue ? true : false
-		},
-	},
-	// 侦听器
-	watch: {},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {},
-	// 组件挂载后，此方法执行后，页面显示
-	mounted() {},
-	// 组件方法
-	methods: {},
 }
 </script>
 

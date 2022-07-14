@@ -70,6 +70,12 @@ export default {
 	created() {
 		this.onGetBusinessLeftTree()
 	},
+	mounted() {
+		// 监听占有派单成功后刷新列表
+		this.bus.$on('possessionRefRefresh', () => {
+			this.onGetBusinessLeftTree()
+		})
+	},
 	// 组件方法
 	methods: {
 		/**
@@ -125,6 +131,10 @@ export default {
 		onMouseenter(event) {
 			this.isShowTooltip = event.currentTarget.scrollWidth <= event.currentTarget.clientWidth
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('possessionRefRefresh')
 	},
 }
 </script>

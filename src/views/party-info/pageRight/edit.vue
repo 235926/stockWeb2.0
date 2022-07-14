@@ -14,7 +14,7 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" label-width="120px">
 				<el-form-item prop="INFO_PCODE" label="上级党组织">
 					<el-cascader
 						v-model="form.INFO_PCODE"

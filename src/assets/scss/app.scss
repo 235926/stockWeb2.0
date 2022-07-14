@@ -1,7 +1,7 @@
 /*
  * @Description: 自定义样式
  * @Date: 2022-06-13 16:44:45
- * @LastEditTime: 2022-07-12 14:09:56
+ * @LastEditTime: 2022-07-14 11:21:07
  */
 html,
 body,
@@ -18,7 +18,7 @@ body,
 }
 
 /* 颜色
-------------------------------- */
+ ------------------------------- */
 .color-primary {
 	color: var(--el-color-primary);
 }
@@ -35,13 +35,14 @@ body,
 	color: var(--el-color-info);
 }
 
-// 去除边框
+/* 去除边框
+ ------------------------------- */
 .border-none {
 	border: none !important;
 }
 
 /* 文字超出...
-------------------------------- */
+ ------------------------------- */
 .ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -50,7 +51,7 @@ body,
 }
 
 /* 鼠标样式
-------------------------------- */
+ ------------------------------- */
 // 默认
 .c-default {
 	cursor: default !important;
@@ -69,7 +70,7 @@ body,
 }
 
 /* 宽高 100%
-------------------------------- */
+   ------------------------------- */
 .w50 {
 	width: 50% !important;
 }
@@ -95,7 +96,7 @@ body,
 }
 
 /* flex 弹性布局
-------------------------------- */
+ ------------------------------- */
 .flex {
 	display: flex;
 }
@@ -122,7 +123,7 @@ body,
 	align-items: center;
 }
 
-// 两端对齐并垂直居中 - 内联模块
+// 两端对齐并垂直居中
 .flex-between-center {
 	@extend .flex;
 	justify-content: space-between;
@@ -152,6 +153,11 @@ body,
 	@extend .flex-auto;
 }
 
+// 两端对齐
+.justify-content-between {
+	justify-content: space-between;
+}
+
 .flex-margin {
 	margin: auto;
 }
@@ -173,7 +179,7 @@ body,
 }
 
 /* 字体大小全局样式
-------------------------------- */
+ ------------------------------- */
 @for $i from 12 through 100 {
 	.font#{$i} {
 		font-size: #{$i}px !important;
@@ -181,9 +187,7 @@ body,
 }
 
 /* 外边距、内边距全局样式
-------------------------------- */
-/* 外边距、内边距全局样式
-------------------------------- */
+ ------------------------------- */
 @for $i from 0 through 1000 {
 	.margin#{$i} {
 		margin: #{$i}px !important;
@@ -247,20 +251,14 @@ body,
 
 	// 搭配 el-row 和 el-col 使用的
 	.gap#{$i} {
-		display: flex;
-		flex-wrap: wrap;
 		gap: #{$i}px #{$i}px !important;
 	}
 
 	.row-gap#{$i} {
-		display: flex;
-		flex-wrap: wrap;
 		row-gap: #{$i}px !important;
 	}
 
 	.column-gap#{$i} {
-		display: flex;
-		flex-wrap: wrap;
 		column-gap: #{$i}px !important;
 	}
 
@@ -279,7 +277,7 @@ body,
 }
 
 /* svg 默认颜色
-------------------------------- */
+ ------------------------------- */
 .svg-icon {
 	&.wps {
 		color: #3a80fc;

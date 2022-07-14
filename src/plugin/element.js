@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-06-18 00:04:49
- * @LastEditTime: 2022-07-06 10:58:23
+ * @LastEditTime: 2022-07-14 11:26:32
  */
 import {
 	Button,
@@ -45,10 +45,12 @@ import {
 	Radio,
 	RadioGroup,
 	MessageBox,
+	Pagination,
 } from 'element-ui'
 
 const element = {
 	install: function (Vue) {
+		Vue.use(Pagination)
 		Vue.use(Radio)
 		Vue.use(RadioGroup)
 		Vue.use(DatePicker)

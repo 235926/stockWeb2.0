@@ -14,7 +14,7 @@
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
-			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px" class="pr50">
+			<el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
 				<el-form-item prop="FOUND_TYPE" label="任务类型">
 					<el-select v-model="form.FOUND_TYPE" placeholder="请选择">
 						<el-option
@@ -61,7 +61,7 @@
 		</el-scrollbar>
 
 		<span slot="footer" class="dialog-footer">
-			<el-button type="primary" round @click="onSubmit">确认</el-button>
+			<el-button type="primary" round @click="onSubmit">派单</el-button>
 			<el-button round @click="onCancel">取消</el-button>
 		</span>
 	</el-dialog>
@@ -159,7 +159,13 @@ export default {
 		onSubmit() {
 			this.$refs.formRef.validate((valid) => {
 				if (valid) {
-					// this.onCancel()
+					getBusinessSendOwn(this.form).then((res) => {
+						if (res._MSG_.includes('OK,')) {
+							this.bus.$emit('possessionRefRefresh')
+							this.$message.success('派单成功')
+							this.onCancel()
+						}
+					})
 				} else {
 					return false
 				}
