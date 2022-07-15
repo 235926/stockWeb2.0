@@ -96,7 +96,7 @@ export default {
 				let EDIT_FIELD_NAME = this.scope.EDIT_FIELD_NAME.split(',')
 				EDIT_FIELD_NAME.forEach((item) => {
 					res.EDIT_DATA.forEach((val) => {
-						if (`'${val.CMPY_FIELD_CODE}'` == item) {
+						if (val.CMPY_FIELD_CODE === item) {
 							this.$nextTick(() => {
 								this.$refs.tableRef.toggleRowSelection(val, true)
 							})
