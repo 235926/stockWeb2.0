@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-14 17:19:21
+ * @LastEditTime: 2022-07-15 12:01:02
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -109,6 +109,45 @@ export const getBusinessBasicInfoDetails = (data) => {
 export const getBusinessBasicInfoGetEditData = (data) => {
 	return request({
 		url: '/CMPY_BASE_INFO.getEditData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 股东信息添加
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessGdAdd = (data) => {
+	return request({
+		url: '/CMPY_GD.saveData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 股东信息修改
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessGdEdit = (data) => {
+	return request({
+		url: '/CMPY_GD.updateData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 股东信息删除
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessGdDel = (data) => {
+	return request({
+		url: '/CMPY_GD.updateData.do',
 		method: 'get',
 		params: data,
 	})

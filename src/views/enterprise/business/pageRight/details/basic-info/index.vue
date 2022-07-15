@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-14 18:30:57
+ * @LastEditTime: 2022-07-15 14:23:02
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -153,12 +153,11 @@
 				<el-form-item prop="MANAGE_TEAM" label="管理团队">
 					<el-cascader
 						v-model="form.MANAGE_TEAM"
-						:options="options"
+						:options="MANAGE_TEAM"
 						:props="props"
 						:show-all-levels="false"
 						:clearable="true"
 						:placeholder="isDisabled('MANAGE_TEAM') ? ' ' : '请选择'"
-						@visible-change="onGetOaData($event, 'MANAGE_TEAM')"
 					>
 						<template #default="{ node, data }">
 							<span>{{ data.NAME }}</span>
@@ -242,7 +241,8 @@
 						resize="none"
 						:placeholder="isDisabled('OPERATE_SCOPE') ? '' : '请输入'"
 						:disabled="isDisabled('OPERATE_SCOPE')"
-					></el-input>
+					>
+					</el-input>
 				</el-form-item>
 
 				<el-form-item prop="LAND_NAME" label="地块名称">
@@ -339,7 +339,7 @@
 								<el-popconfirm
 									confirm-button-text="确定"
 									cancel-button-text="取消"
-									:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
+									:title="`您确定要删除'${scope.row.GD_NAME}'吗?`"
 									placement="left"
 									@confirm="onDelete(scope)"
 								>
@@ -691,19 +691,28 @@
 		<div class="btn-group" v-if="!$route.query.isAside">
 			<el-button type="primary" @click="onSave">保存</el-button>
 		</div>
+
+		<!-- 添加/修改页面 -->
+		<Add ref="addRef" title="添加" />
+		<Edit ref="editRef" title="修改" />
 	</div>
 </template>
 
 <script>
-import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData } from '@/api/index.js' // api
+import {
+	getBusinessBasicInfoDetails,
+	getBusinessBasicInfoGetEditData,
+	getOaData,
+	getBusinessGdDel,
+} from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'basicInfo',
 	// 局部注册的组件
 	components: {
 		BusinessListHeader: () => import('@/views/component/BusinessListHeader/index.vue'), // 列表头部
-		FormStyleOne: () => import('@/components/CustomStyles/form/form-style-one.vue'), // form 样式一
-		TableRenderLoop: () => import('@/components/CustomStyles/table/table-render-loop.vue'), // form 样式一
+		Add: () => import('./add.vue'), // 添加
+		Edit: () => import('./edit.vue'), // 修改
 	},
 	// 组件状态值
 	data() {
@@ -712,7 +721,8 @@ export default {
 			tableData: [], // 股东信息
 			loading: false, // 加载状态
 			EDIT_WORD: '', // 可编辑字段
-			options: [], // OA 角色/字典
+			options: [], // OA 角色/字典、
+			MANAGE_TEAM: [], // 管理团队
 			// cascader 配置选项
 			props: {
 				value: 'ID', // 绑定 ID
@@ -740,26 +750,43 @@ export default {
 	created() {
 		this.onGetBusinessBasicInfoDetails()
 	},
+	mounted() {
+		// 监听添加/修改/删除操作
+		this.bus.$on('getBusinessBasicInfoAddEditDel', () => {
+			this.onGetBusinessBasicInfoDetails(1)
+		})
+	},
 	// 组件方法
 	methods: {
 		/**
 		 * @description: 获取信息详情
 		 * @return {*}
 		 */
-		onGetBusinessBasicInfoDetails() {
+		onGetBusinessBasicInfoDetails(type) {
 			this.loading = true
 
 			const params = {
 				CMPY_BASE_CODE: this.$route.query.id,
 			}
 			getBusinessBasicInfoDetails(params).then((res) => {
-				this.form = res.DATA
+				if (type !== 1) {
+					this.form = res.DATA
+				}
 				this.tableData = res.GD_DATA
 
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
 			})
+
+			if (type !== 1) {
+				// 获取管理团队
+				getOaData({
+					dictId: 'STOCK_MANAGE_TEAM',
+				}).then((res) => {
+					this.MANAGE_TEAM = res.bean._DATA_
+				})
+			}
 		},
 
 		/**
@@ -812,8 +839,8 @@ export default {
 		 * @description: 股东信息添加
 		 * @return {*}
 		 */
-		onAdd(type) {
-			// this.$refs.addRef.openDialog(type)
+		onAdd() {
+			this.$refs.addRef.openDialog()
 		},
 
 		/**
@@ -821,7 +848,7 @@ export default {
 		 * @return {*}
 		 */
 		onEdit(scope) {
-			// this.$refs.editRef.openDialog(scope.row, type)
+			this.$refs.editRef.openDialog(scope.row)
 		},
 
 		/**
@@ -829,16 +856,16 @@ export default {
 		 * @return {*}
 		 */
 		onDelete(scope) {
-			// const params = {
-			// 	USER_CODE: scope.row.USER_CODE,
-			// 	S_FLAG: 2,
-			// }
-			// getBusinessMainStaffDel(params).then((res) => {
-			// 	if (res._MSG_.includes('OK,')) {
-			// 		this.$message.success('删除成功')
-			// 		this.onGetBusinessMainStaff()
-			// 	}
-			// })
+			const params = {
+				GD_CODE: scope.row.GD_CODE,
+				S_FLAG: 2,
+			}
+			getBusinessGdDel(params).then((res) => {
+				if (res._MSG_.includes('OK,')) {
+					this.$message.success('删除成功')
+					this.onGetBusinessBasicInfoDetails(1)
+				}
+			})
 		},
 
 		/**
@@ -848,6 +875,10 @@ export default {
 		onSave() {
 			console.log(this.form)
 		},
+	},
+	// 页面销毁
+	destroyed() {
+		this.bus.$off('getBusinessBasicInfoAddEditDel')
 	},
 }
 </script>
@@ -865,6 +896,7 @@ export default {
 	bottom: 0;
 	left: 320px;
 	right: 20px;
+	z-index: 999;
 
 	.el-button {
 		min-width: 100px;

@@ -1,7 +1,7 @@
 <!--
  * @Description: dialog 模板
  * @Date: 2022-06-15 18:11:26
- * @LastEditTime: 2022-07-08 14:02:09
+ * @LastEditTime: 2022-07-15 14:06:12
 -->
 <template>
 	<el-dialog
@@ -67,7 +67,6 @@ export default {
 		 */
 		openDialog() {
 			this.isShowDialog = true
-			this.onGetPartyInfoTree()
 		},
 
 		/**

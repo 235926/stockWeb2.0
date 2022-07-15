@@ -89,7 +89,11 @@
 						</template>
 					</el-table-column>
 
-					<el-table-column label="序号" type="index" width="55" />
+					<el-table-column type="index" label="序号" width="55">
+						<template slot-scope="scope">
+							<span>{{ (NOWPAGE - 1) * SHOWNUM + scope.$index + 1 }}</span>
+						</template>
+					</el-table-column>
 
 					<el-table-column prop="TAST_TYPE" label="业务类型">
 						<template slot-scope="scope">
