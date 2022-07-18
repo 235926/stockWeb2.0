@@ -1,7 +1,7 @@
 <!--
  * @Description: 党组织信息管理 - 右侧内容
  * @Date: 2022-06-15 12:29:14
- * @LastEditTime: 2022-07-06 12:27:50
+ * @LastEditTime: 2022-07-18 18:29:14
 -->
 <template>
 	<div class="right">
@@ -22,32 +22,31 @@
 			<el-table-column label="序号" type="index" width="55" />
 			<el-table-column prop="INFO_NAME" label="党组织名称" />
 			<el-table-column prop="INFO_LEVEL" label="级别" width="80" />
-			<el-table-column label="操作" width="180">
-				<template #default="scope">
-					<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
+
+			<el-table-column label="操作" class-name="operation" width="200">
+				<template slot-scope="scope">
+					<el-button class="mr20" type="text" @click="onEdit(scope)">
 						<span class="span-svg-icon edit">
 							<SvgIcon name="edit" color="#fff" />
 						</span>
 						<span class="edit">修改</span>
-					</div>
-					<div class="flex-center-inline c-pointer">
-						<el-popconfirm
-							confirm-button-text="确定"
-							cancel-button-text="取消"
-							:title="`您确定要删除'${scope.row.INFO_NAME}'吗?`"
-							placement="left"
-							@confirm="onDelete(scope)"
-						>
-							<template slot="reference">
-								<div class="flex-row-center">
-									<span class="span-svg-icon close">
-										<SvgIcon name="close" color="#fff" />
-									</span>
-									<span class="del">删除</span>
-								</div>
-							</template>
-						</el-popconfirm>
-					</div>
+					</el-button>
+					<el-popconfirm
+						confirm-button-text="确定"
+						cancel-button-text="取消"
+						:title="`您确定要删除'${scope.row.INFO_NAME}'吗?`"
+						placement="left"
+						@confirm="onDelete(scope)"
+					>
+						<template slot="reference">
+							<el-button type="text">
+								<span class="span-svg-icon close">
+									<SvgIcon name="close" color="#fff" />
+								</span>
+								<span class="del">删除</span>
+							</el-button>
+						</template>
+					</el-popconfirm>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -59,7 +58,12 @@
 </template>
 
 <script>
-import { getPartyInfoRightList, getPartyInfoisHaveLower, getPartyInfoDelete, getPartyInfoUpdateSort } from '@/api/index.js' // api
+import {
+	getPartyInfoRightList,
+	getPartyInfoisHaveLower,
+	getPartyInfoDelete,
+	getPartyInfoUpdateSort,
+} from '@/api/index.js' // api
 import Sortable from 'sortablejs' // 拖拽插件
 export default {
 	name: 'partyInfoRight',
@@ -72,7 +76,7 @@ export default {
 			tableData: [], // 数据列表
 			loading: false, // 加载状态
 			leftId: '', // 点击左侧ID
-			sortable: null
+			sortable: null,
 		}
 	},
 	mounted() {
@@ -97,8 +101,8 @@ export default {
 				this.tableData = res.listData
 
 				this.$nextTick(() => {
-	        		this.initSortable()
-	      		})
+					this.initSortable()
+				})
 
 				setTimeout(() => {
 					this.loading = false
@@ -107,11 +111,11 @@ export default {
 		},
 
 		// 初始化拖拽
-		initSortable  ()  {
+		initSortable() {
 			const tbody = this.$refs.tableRef.$el.querySelectorAll('.el-table__body-wrapper tbody')[0]
-		    Sortable.create(tbody, {
-		        onEnd: ({newIndex, oldIndex}) => {
-		          	// 当前拖拽的对象
+			Sortable.create(tbody, {
+				onEnd: ({ newIndex, oldIndex }) => {
+					// 当前拖拽的对象
 					const targetRow = this.tableData.splice(oldIndex, 1)[0]
 					this.tableData.splice(newIndex, 0, targetRow)
 
@@ -133,8 +137,8 @@ export default {
 							this.bus.$emit('partyInfoSortable', this.leftId)
 						}
 					})
-		        }
-		      })
+				},
+			})
 		},
 
 		/**
@@ -174,8 +178,6 @@ export default {
 					this.$message.error('请先删除子级，在删除当前级')
 				}
 			})
-
-
 		},
 	},
 	// 页面销毁

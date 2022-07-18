@@ -24,7 +24,7 @@
 					:width="item.width"
 					show-overflow-tooltip
 				>
-					<template #default="scope">
+					<template slot-scope="scope">
 						{{ scope.row[scope.column.property] }}
 					</template>
 				</el-table-column>

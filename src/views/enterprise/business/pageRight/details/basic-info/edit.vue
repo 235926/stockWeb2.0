@@ -1,7 +1,7 @@
 <!--
  * @Description: 股东信息修改
  * @Date: 2022-07-15 11:58:21
- * @LastEditTime: 2022-07-15 14:25:16
+ * @LastEditTime: 2022-07-18 18:13:20
 -->
 <template>
 	<el-dialog
@@ -28,7 +28,7 @@
 				</el-form-item>
 
 				<el-form-item prop="GD_TYPE" label="股东类型">
-					<el-select v-model="state.form.GD_TYPE" placeholder="请选择">
+					<el-select v-model="form.GD_TYPE" placeholder="请选择">
 						<el-option label="我方" value="1"></el-option>
 						<el-option label="外部" value="2"></el-option>
 					</el-select>

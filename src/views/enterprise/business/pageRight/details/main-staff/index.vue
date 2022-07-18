@@ -1,7 +1,7 @@
 <!--
  * @Description: 主要人员
  * @Date: 2022-06-18 12:06:57
- * @LastEditTime: 2022-07-18 10:30:21
+ * @LastEditTime: 2022-07-18 18:27:36
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -15,7 +15,7 @@
 					:header-cell-style="{ 'text-align': 'center' }"
 					:cell-style="{ 'text-align': 'center' }"
 				>
-					<el-table-column label="序号" type="index" align="center" width="55" />
+					<el-table-column label="序号" type="index" width="55" />
 
 					<el-table-column
 						v-for="item in UP_DATA_HEAD"
@@ -24,37 +24,40 @@
 						:property="item.key"
 						:show-overflow-tooltip="true"
 					>
-						<template #default="scope">
+						<template slot-scope="scope">
 							{{ scope.row[scope.column.property] }}
 						</template>
 					</el-table-column>
 
-					<!-- <el-table-column label="操作" v-if="!$route.query?.isAside">
-						<template #default="scope">
-							<div class="flex-center-inline c-pointer" @click="onEdit(scope, 1)">
+					<!-- <el-table-column label="操作" v-if="!$route.query?.isAside" class-name="operation">
+						<template slot-scope="scope">
+							<el-button
+								class="mr20"
+								type="text"
+								@click="onEdit(scope, 1)"
+								:disabled="isDisabled('DJG_INFO')"
+							>
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>
 								<span class="edit">修改</span>
-							</div>
-							<div class="flex-center-inline c-pointer">
-								<el-popconfirm
-									confirm-button-text="确定"
-									cancel-button-text="取消"
-									:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
-									placement="left"
-									@confirm="onDelete(scope)"
-								>
-									<template slot="reference">
-										<div class="flex-row-center">
-											<span class="span-svg-icon close">
-												<SvgIcon name="close" color="#fff" />
-											</span>
-											<span class="del">删除</span>
-										</div>
-									</template>
-								</el-popconfirm>
-							</div>
+							</el-button>
+							<el-popconfirm
+								confirm-button-text="确定"
+								cancel-button-text="取消"
+								:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
+								placement="left"
+								@confirm="onDelete(scope)"
+							>
+								<template slot="reference">
+									<el-button type="text" :disabled="isDisabled('DJG_INFO')">
+										<span class="span-svg-icon close">
+											<SvgIcon name="close" color="#fff" />
+										</span>
+										<span class="del">删除</span>
+									</el-button>
+								</template>
+							</el-popconfirm>
 						</template>
 					</el-table-column> -->
 				</el-table>
@@ -75,7 +78,7 @@
 					:header-cell-style="{ 'text-align': 'center' }"
 					:cell-style="{ 'text-align': 'center' }"
 				>
-					<el-table-column label="序号" type="index" align="center" width="55" />
+					<el-table-column label="序号" type="index" width="55" />
 
 					<el-table-column
 						v-for="item in DOWN_DATA_HEAD"
@@ -84,42 +87,45 @@
 						:property="item.key"
 						:show-overflow-tooltip="true"
 					>
-						<template #default="scope">
+						<template slot-scope="scope">
 							{{ scope.row[scope.column.property] }}
 						</template>
 					</el-table-column>
 
-					<el-table-column label="操作" v-if="!$route.query?.isAside">
-						<template #default="scope">
-							<div class="flex-center-inline c-pointer" @click="onEdit(scope, 2)">
+					<el-table-column label="操作" v-if="!$route.query?.isAside" class-name="operation">
+						<template slot-scope="scope">
+							<el-button
+								class="mr20"
+								type="text"
+								@click="onEdit(scope, 2)"
+								:disabled="isDisabled('DJG_INFO')"
+							>
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>
-								<span class="edit()">修改</span>
-							</div>
-							<div class="flex-center-inline c-pointer">
-								<el-popconfirm
-									confirm-button-text="确定"
-									cancel-button-text="取消"
-									:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
-									placement="left"
-									@confirm="onDelete(scope)"
-								>
-									<template slot="reference">
-										<div class="flex-row-center">
-											<span class="span-svg-icon close">
-												<SvgIcon name="close" color="#fff" />
-											</span>
-											<span class="del">删除</span>
-										</div>
-									</template>
-								</el-popconfirm>
-							</div>
+								<span class="edit">修改</span>
+							</el-button>
+							<el-popconfirm
+								confirm-button-text="确定"
+								cancel-button-text="取消"
+								:title="`您确定要删除'${scope.row.USER_NAME}'吗?`"
+								placement="left"
+								@confirm="onDelete(scope)"
+							>
+								<template slot="reference">
+									<el-button type="text" :disabled="isDisabled('DJG_INFO')">
+										<span class="span-svg-icon close">
+											<SvgIcon name="close" color="#fff" />
+										</span>
+										<span class="del">删除</span>
+									</el-button>
+								</template>
+							</el-popconfirm>
 						</template>
 					</el-table-column>
 				</el-table>
 				<div class="table-btn" v-if="!$route.query?.isAside">
-					<el-button round @click="onAdd(2)">添加</el-button>
+					<el-button round @click="onAdd(2)" :disabled="isDisabled('DJG_INFO')">添加</el-button>
 				</div>
 			</div>
 			<el-divider />
@@ -132,7 +138,7 @@
 </template>
 
 <script>
-import { getBusinessMainStaff, getBusinessMainStaffDel } from '@/api/index.js' // api
+import { getBusinessMainStaff, getBusinessMainStaffDel, getBusinessBasicInfoGetEditData } from '@/api/index.js' // api
 
 export default {
 	// 组件名称
@@ -147,6 +153,7 @@ export default {
 	data() {
 		return {
 			tableData: {}, // 数据列表
+			EDIT_WORD: '', // 可编辑字段
 			// 工商注册头部
 			UP_DATA_HEAD: [
 				{ label: '股东名称', key: 'USER_NAME' },
@@ -164,6 +171,19 @@ export default {
 			],
 			loading: false, // 加载状态
 		}
+	},
+	// 侦听器
+	watch: {
+		// 监听路由的变化
+		$route: {
+			handler(to) {
+				if (!to.query.isAside) {
+					this.onGetBusinessBasicInfoGetEditData()
+				}
+			},
+			deep: true, // 深度监听
+			immediate: true, // 不管数据是否发生变化都监听一次
+		},
 	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {
@@ -197,6 +217,32 @@ export default {
 					this.loading = false
 				}, 500)
 			})
+		},
+
+		/**
+		 * @description: 获取可编辑字段
+		 * @return {*}
+		 */
+		onGetBusinessBasicInfoGetEditData() {
+			getBusinessBasicInfoGetEditData().then((res) => {
+				this.EDIT_WORD = res.EDIT_WORD
+			})
+		},
+
+		/**
+		 * @description: 判断是否可编辑
+		 * @return {*}
+		 */
+		isDisabled(code) {
+			if (this.EDIT_WORD !== '') {
+				const arr = this.EDIT_WORD?.split(',')
+				arr.pop() // 删除最后一个因为逗号转换的空字符串
+				return !arr.some((item) => {
+					return code === item
+				})
+			} else {
+				return true
+			}
 		},
 
 		/**

@@ -1,7 +1,7 @@
 /*
  * @Description: 页面通用样式
  * @Date: 2022-06-11 14:12:03
- * @LastEditTime: 2022-07-14 15:29:48
+ * @LastEditTime: 2022-07-18 18:21:05
  */
 
 // 主体内容边框
@@ -84,12 +84,17 @@
 		}
 
 		// table 表格 操作/删除部分
-		.flex-center-inline {
-			position: relative;
-			top: 3px;
+		.operation {
+			.el-button {
+				> span {
+					display: inline-flex;
+					align-items: center;
+				}
 
-			& + .flex-center-inline {
-				margin-left: 20px;
+				&.is-disabled {
+					color: #c0c4cc;
+					cursor: not-allowed;
+				}
 			}
 
 			.span-svg-icon {
@@ -102,8 +107,8 @@
 				border-radius: 50%;
 				margin-right: 5px;
 
-				.svg-color {
-					color: #fff;
+				.svg-icon {
+					margin-right: 0;
 				}
 
 				&.edit {
@@ -113,10 +118,6 @@
 				&.close {
 					background: #f3737e;
 				}
-			}
-
-			> span {
-				line-height: 1;
 			}
 		}
 

@@ -22,7 +22,7 @@
 					:align="item.align"
 					:width="item.width"
 				>
-					<template #default="scope">
+					<template slot-scope="scope">
 						{{ scope.row[scope.column.property] }}
 					</template>
 				</el-table-column>

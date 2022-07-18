@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-15 14:23:02
+ * @LastEditTime: 2022-07-18 18:18:27
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -12,8 +12,8 @@
 				<el-form-item prop="CMPY_NAME" label="公司名称">
 					<el-input
 						v-model="form.CMPY_NAME"
-						:placeholder="isDisabled('COLLECTION_MONEY') ? '' : '请输入'"
-						:disabled="isDisabled('COLLECTION_MONEY')"
+						:placeholder="isDisabled('CMPY_NAME') ? '' : '请输入'"
+						:disabled="isDisabled('CMPY_NAME')"
 					></el-input>
 				</el-form-item>
 
@@ -158,6 +158,7 @@
 						:show-all-levels="false"
 						:clearable="true"
 						:placeholder="isDisabled('MANAGE_TEAM') ? ' ' : '请选择'"
+						:disabled="isDisabled('MANAGE_TEAM')"
 					>
 						<template #default="{ node, data }">
 							<span>{{ data.NAME }}</span>
@@ -327,37 +328,40 @@
 					<el-table-column :show-overflow-tooltip="true" prop="HJ_CG_RATIO" label="会计口径持股比例(%)" />
 					<el-table-column :show-overflow-tooltip="true" prop="YS_CG_RATIO" label="预算口径持股比例(%)" />
 
-					<el-table-column label="操作" v-if="!$route.query?.isAside">
-						<template #default="scope">
-							<div class="flex-center-inline c-pointer" @click="onEdit(scope)">
+					<el-table-column label="操作" v-if="!$route.query?.isAside" class-name="operation">
+						<template slot-scope="scope">
+							<el-button
+								class="mr20"
+								type="text"
+								@click="onEdit(scope)"
+								:disabled="isDisabled('STOCK_INFO')"
+							>
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>
-								<span class="edit()">修改</span>
-							</div>
-							<div class="flex-center-inline c-pointer">
-								<el-popconfirm
-									confirm-button-text="确定"
-									cancel-button-text="取消"
-									:title="`您确定要删除'${scope.row.GD_NAME}'吗?`"
-									placement="left"
-									@confirm="onDelete(scope)"
-								>
-									<template slot="reference">
-										<div class="flex-row-center">
-											<span class="span-svg-icon close">
-												<SvgIcon name="close" color="#fff" />
-											</span>
-											<span class="del">删除</span>
-										</div>
-									</template>
-								</el-popconfirm>
-							</div>
+								<span class="edit">修改</span>
+							</el-button>
+							<el-popconfirm
+								confirm-button-text="确定"
+								cancel-button-text="取消"
+								:title="`您确定要删除'${scope.row.GD_NAME}'吗?`"
+								placement="left"
+								@confirm="onDelete(scope)"
+							>
+								<template slot="reference">
+									<el-button type="text" :disabled="isDisabled('STOCK_INFO')">
+										<span class="span-svg-icon close">
+											<SvgIcon name="close" color="#fff" />
+										</span>
+										<span class="del">删除</span>
+									</el-button>
+								</template>
+							</el-popconfirm>
 						</template>
 					</el-table-column>
 				</el-table>
 				<div class="table-btn" v-if="!$route.query?.isAside">
-					<el-button round @click="onAdd(2)">添加</el-button>
+					<el-button round @click="onAdd(2)" :disabled="isDisabled('STOCK_INFO')">添加</el-button>
 				</div>
 			</div>
 			<el-divider />
