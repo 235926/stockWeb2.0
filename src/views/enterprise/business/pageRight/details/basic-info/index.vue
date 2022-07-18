@@ -442,14 +442,6 @@
 					</el-select>
 				</el-form-item>
 
-				<el-form-item prop="PLEDGEE" label="是否并表">
-					<el-input
-						v-model="form.PLEDGEE"
-						:placeholder="isDisabled('PLEDGEE') ? '' : '请输入'"
-						:disabled="isDisabled('PLEDGEE')"
-					></el-input>
-				</el-form-item>
-
 				<el-form-item prop="YIELD_RATIO" label="出质比例">
 					<el-input
 						v-model="form.YIELD_RATIO"
@@ -482,6 +474,21 @@
 					></el-input>
 				</el-form-item>
 
+				<el-form-item
+					prop="FROZEN_EXPLAIN"
+					label="司法冻结情况说明"
+					:style="$route.query.isAside ? 'width:100%' : 'width: calc(100% - 20px)'"
+				>
+					<el-input
+						v-model="form.FROZEN_EXPLAIN"
+						type="textarea"
+						:rows="3"
+						resize="none"
+						:placeholder="isDisabled('FROZEN_EXPLAIN') ? '' : '请输入'"
+						:disabled="isDisabled('FROZEN_EXPLAIN')"
+					></el-input>
+				</el-form-item>
+
 				<el-form-item prop="S_STOCK_FROZEN" label="冻结标识">
 					<el-select
 						v-model="form.S_STOCK_FROZEN"
@@ -498,21 +505,6 @@
 						/>
 					</el-select>
 				</el-form-item>
-
-				<el-form-item
-					prop="FROZEN_EXPLAIN"
-					label="司法冻结情况说明"
-					:style="$route.query.isAside ? 'width:100%' : 'width: calc(100% - 20px)'"
-				>
-					<el-input
-						v-model="form.FROZEN_EXPLAIN"
-						type="textarea"
-						:rows="3"
-						resize="none"
-						:placeholder="isDisabled('FROZEN_EXPLAIN') ? '' : '请输入'"
-						:disabled="isDisabled('FROZEN_EXPLAIN')"
-					></el-input>
-				</el-form-item>
 			</el-form>
 			<el-divider />
 		</div>
@@ -522,20 +514,11 @@
 			<BusinessListHeader title="党组织信息" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="PARTY_NAME" label="党组织名称">
-					<el-select
-						v-model="form.S_STOCK_FROZEN"
-						:clearable="true"
-						:placeholder="isDisabled('PARTY_NAME') ? ' ' : '请选择'"
+					<el-input
+						v-model="form.PARTY_NAME"
+						:placeholder="isDisabled('PARTY_NAME') ? '' : '请输入'"
 						:disabled="isDisabled('PARTY_NAME')"
-						@visible-change="onGetOaData($event, 'PARTY_NAME')"
-					>
-						<el-option
-							v-for="item in options"
-							:key="item.ITEM_CODE"
-							:label="item.ITEM_NAME"
-							:value="item.ITEM_CODE"
-						/>
-					</el-select>
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="STAY_PARTY_NAME" label="所属党组织名称">

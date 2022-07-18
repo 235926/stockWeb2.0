@@ -1,7 +1,7 @@
 <!--
  * @Description: 占有页面
  * @Date: 2022-06-16 21:20:52
- * @LastEditTime: 2022-07-13 16:04:46
+ * @LastEditTime: 2022-07-18 10:32:59
 -->
 <template>
 	<el-dialog
@@ -38,15 +38,27 @@
 					/>
 				</el-form-item>
 
-				<el-form-item prop="CMPY_BELONG_NAME" label="上级股权公司">
-					<el-input v-model="form.CMPY_BELONG_NAME" :disabled="true" />
+				<el-form-item prop="CMPY_BASE_CODE" label="上级股权公司">
+					<el-cascader
+						v-model="form.CMPY_BASE_CODE"
+						:options="parent"
+						:props="parentProps"
+						:show-all-levels="false"
+						:clearable="true"
+						placeholder="请选择"
+					>
+						<template #default="{ node, data }">
+							<span>{{ data.CMPY_NAME }}</span>
+							<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+						</template>
+					</el-cascader>
 				</el-form-item>
 
 				<el-form-item prop="ODEPT_CODE" label="管理团队">
 					<el-cascader
 						v-model="form.ODEPT_CODE"
 						:options="team"
-						:props="props"
+						:props="teamProps"
 						:show-all-levels="false"
 						:clearable="true"
 						placeholder="请选择"
@@ -68,7 +80,7 @@
 </template>
 
 <script>
-import { getOaData, getBusinessSendOwn } from '@/api/index.js' // api
+import { getBusinessLeftTree, getOaData, getBusinessSendOwn } from '@/api/index.js' // api
 
 export default {
 	// 组件名称
@@ -98,9 +110,18 @@ export default {
 		return {
 			form: {}, // 表单
 			options: [], // OA 角色/字典
+			parent: [], // 上级股权公司
+			// 上级股权公司 cascader 配置选项
+			parentProps: {
+				value: 'CMPY_BASE_CODE', // 绑定 ID
+				label: 'CMPY_NAME', // 显示 label
+				children: 'children', // 指定选项的子选项为选项对象的某个属性值
+				checkStrictly: true, // 单选，否则只能选择最后一级
+				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
 			team: [], // 管理团队
-			// cascader 配置选项
-			props: {
+			// team cascader 配置选项
+			teamProps: {
 				value: 'ID', // 绑定 ID
 				label: 'NAME', // 显示 label
 				children: 'CHILD', // 指定选项的子选项为选项对象的某个属性值
@@ -111,7 +132,7 @@ export default {
 			rules: {
 				FOUND_TYPE: [{ required: true, trigger: 'change', message: '请选择任务类型' }],
 				CMPY_NAME: [{ required: true, trigger: 'blur', message: '请输入占有公司名称' }],
-				CMPY_BELONG_NAME: [{ required: true, trigger: 'blur', message: '请输入上级股权公司' }],
+				CMPY_BASE_CODE: [{ required: true, trigger: 'blur', message: '请选择上级股权公司' }],
 				ODEPT_CODE: [{ required: true, trigger: 'change', message: '请选择管理团队' }],
 			},
 		}
@@ -119,8 +140,7 @@ export default {
 	mounted() {
 		// 监听侧坐导航栏点击获取右侧列表数据
 		this.bus.$on('possessionRef', (data) => {
-			this.form.CMPY_BELONG = data.CMPY_BASE_CODE
-			this.form.CMPY_BELONG_NAME = data.CMPY_NAME
+			this.form.CMPY_BASE_CODE = data.CMPY_BASE_CODE
 			this.onGetOaData()
 		})
 	},
@@ -138,8 +158,15 @@ export default {
 					this.options = res.bean._DATA_
 				}
 			})
+
+			// 获取管理团队
 			getOaData({ dictId: 'SY_ORG_ODEPT_ALL' }).then((res) => {
 				this.team = res.bean._DATA_
+			})
+
+			// 获取上级党组织
+			getBusinessLeftTree().then((res) => {
+				this.parent = res.treeData
 			})
 		},
 

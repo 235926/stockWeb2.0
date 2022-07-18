@@ -28,16 +28,10 @@
 				</el-form-item>
 
 				<el-form-item prop="GD_TYPE" label="股东类型">
-					<el-input
-						v-model="form.GD_TYPE"
-						type="textarea"
-						placeholder="请输入"
-						maxlength="40"
-						autosize
-						show-word-limit
-						resize="none"
-						oninput="value=value.replace(/[^\d.]/g,'')"
-					></el-input>
+					<el-select v-model="state.form.GD_TYPE" placeholder="请选择">
+						<el-option label="我方" value="1"></el-option>
+						<el-option label="外部" value="2"></el-option>
+					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="GS_CG_RATIO" label="工商持股比例(%)">
@@ -109,7 +103,7 @@ export default {
 			// 表单验证
 			rules: {
 				GD_NAME: [{ required: true, trigger: 'blur', message: '请输入股东名称' }],
-				GD_TYPE: [{ required: true, trigger: 'blur', message: '请输入股东类型' }],
+				GD_TYPE: [{ required: true, trigger: 'blur', message: '请选择股东类型' }],
 				GS_CG_RATIO: [{ required: true, trigger: 'blur', message: '请输入工商持股比例' }],
 				YS_CG_RATIO: [{ required: true, trigger: 'blur', message: '请输入预算持股比例' }],
 				HJ_CG_RATIO: [{ required: true, trigger: 'blur', message: '请输入会计持股比例' }],

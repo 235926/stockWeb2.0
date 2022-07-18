@@ -1,7 +1,7 @@
 <!--
  * @Description: 主要人员
  * @Date: 2022-06-18 12:06:57
- * @LastEditTime: 2022-07-14 17:44:02
+ * @LastEditTime: 2022-07-18 10:30:21
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -29,7 +29,7 @@
 						</template>
 					</el-table-column>
 
-					<el-table-column label="操作" v-if="!$route.query?.isAside">
+					<!-- <el-table-column label="操作" v-if="!$route.query?.isAside">
 						<template #default="scope">
 							<div class="flex-center-inline c-pointer" @click="onEdit(scope, 1)">
 								<span class="span-svg-icon edit">
@@ -56,11 +56,11 @@
 								</el-popconfirm>
 							</div>
 						</template>
-					</el-table-column>
+					</el-table-column> -->
 				</el-table>
-				<div class="table-btn" v-if="!$route.query?.isAside">
+				<!-- <div class="table-btn" v-if="!$route.query?.isAside">
 					<el-button round @click="onAdd(1)">添加</el-button>
-				</div>
+				</div> -->
 			</div>
 			<el-divider />
 		</div>
