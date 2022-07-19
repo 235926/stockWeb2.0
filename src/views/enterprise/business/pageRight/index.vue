@@ -194,6 +194,7 @@
 						path: '/enterprise/business/details',
 						query: {
 							isAside: true,
+							CMPY_NAME: row.CMPY_NAME,
 							id: row.CMPY_BASE_CODE,
 						},
 					})
@@ -209,8 +210,8 @@
 			onOpenDialog(item) {
 				switch (item) {
 					case 'possessionRef':
-						if (JSON.stringify(this.selectionRow) == '{}') {
-							this.$message.warning('请先勾选要占有的对象')
+						if (JSON.stringify(this.selectionRow) === '{}') {
+							this.possessionVisible = true
 						} else {
 							this.bus.$emit('possessionRef', this.selectionRow)
 							this.possessionVisible = true

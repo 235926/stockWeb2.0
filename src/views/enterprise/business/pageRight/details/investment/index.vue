@@ -41,7 +41,7 @@ export default {
 	data() {
 		return {
 			tableHeader: [
-				{ label: '被投资企业', key: 'CMPY_NAME' },
+				{ label: '对外投资企业', key: 'CMPY_NAME' },
 				{ label: '被投资企业法定代表人/负责人', key: 'LEGAL_AGENT' },
 				{ label: '成立日期', key: 'BUSINESS_DATE' },
 				{ label: '投资占比', key: 'GS_CG_RATIO' },

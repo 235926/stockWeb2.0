@@ -38,9 +38,9 @@
 					/>
 				</el-form-item>
 
-				<el-form-item prop="CMPY_BASE_CODE" label="上级股权公司">
+				<el-form-item prop="CMPY_BELONG" label="上级股权公司">
 					<el-cascader
-						v-model="form.CMPY_BASE_CODE"
+						v-model="form.CMPY_BELONG"
 						:options="parent"
 						:props="parentProps"
 						:show-all-levels="false"
@@ -132,7 +132,7 @@ export default {
 			rules: {
 				FOUND_TYPE: [{ required: true, trigger: 'change', message: '请选择任务类型' }],
 				CMPY_NAME: [{ required: true, trigger: 'blur', message: '请输入占有公司名称' }],
-				CMPY_BASE_CODE: [{ required: true, trigger: 'blur', message: '请选择上级股权公司' }],
+				CMPY_BELONG: [{ required: true, trigger: 'blur', message: '请选择上级股权公司' }],
 				ODEPT_CODE: [{ required: true, trigger: 'change', message: '请选择管理团队' }],
 			},
 		}
@@ -140,7 +140,9 @@ export default {
 	mounted() {
 		// 监听侧坐导航栏点击获取右侧列表数据
 		this.bus.$on('possessionRef', (data) => {
-			this.form.CMPY_BASE_CODE = data.CMPY_BASE_CODE
+			if(data){
+				this.form.CMPY_BELONG = data.CMPY_BASE_CODE
+			}
 			this.onGetOaData()
 		})
 	},
@@ -151,6 +153,7 @@ export default {
 		 * @return {*}
 		 */
 		onGetOaData() {
+			// 获取任务类型
 			getOaData({ dictId: 'STOCK_FOUND_TYPE' }).then((res) => {
 				if (res.bean._MSG_?.indexOf('ERROR,') == 0) {
 					this.$message.error(res.bean._MSG_)
@@ -160,7 +163,7 @@ export default {
 			})
 
 			// 获取管理团队
-			getOaData({ dictId: 'SY_ORG_ODEPT_ALL' }).then((res) => {
+			getOaData({ dictId: 'STOCK_MANAGE_TEAM' }).then((res) => {
 				this.team = res.bean._DATA_
 			})
 
