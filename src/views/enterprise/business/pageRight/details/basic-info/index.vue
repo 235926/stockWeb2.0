@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-19 17:18:28
+ * @LastEditTime: 2022-07-20 09:44:47
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -36,7 +36,6 @@
 				<el-form-item prop="CMPY_TYPE" label="公司状况">
 					<el-select
 						v-model="form.CMPY_TYPE"
-						:clearable="true"
 						:placeholder="isDisabled('CMPY_TYPE') ? ' ' : '请选择'"
 						:disabled="isDisabled('CMPY_TYPE')"
 						@visible-change="onGetOaData($event, 'CMPY_TYPE')"
@@ -80,7 +79,6 @@
 				<el-form-item prop="OPERATE_TERM" label="经营期限">
 					<el-select
 						v-model="form.OPERATE_TERM"
-						:clearable="true"
 						:placeholder="isDisabled('OPERATE_TERM') ? ' ' : '请选择'"
 						:disabled="isDisabled('OPERATE_TERM')"
 						@visible-change="onGetOaData($event, 'OPERATE_TERM')"
@@ -92,7 +90,6 @@
 				<el-form-item prop="LOG_TYPE" label="登记注册类型">
 					<el-select
 						v-model="form.LOG_TYPE"
-						:clearable="true"
 						:placeholder="isDisabled('LOG_TYPE') ? ' ' : '请选择'"
 						:disabled="isDisabled('LOG_TYPE')"
 						@visible-change="onGetOaData($event, 'LOG_TYPE')"
@@ -104,7 +101,6 @@
 				<el-form-item prop="MANAGE_LEVEL" label="管理层级">
 					<el-select
 						v-model="form.MANAGE_LEVEL"
-						:clearable="true"
 						:placeholder="isDisabled('MANAGE_LEVEL') ? ' ' : '请选择'"
 						:disabled="isDisabled('MANAGE_LEVEL')"
 						@visible-change="onGetOaData($event, 'MANAGE_LEVEL')"
@@ -116,7 +112,6 @@
 				<el-form-item prop="RIGHT_LEVEL" label="产权层级">
 					<el-select
 						v-model="form.RIGHT_LEVEL"
-						:clearable="true"
 						:placeholder="isDisabled('RIGHT_LEVEL') ? ' ' : '请选择'"
 						:disabled="isDisabled('RIGHT_LEVEL')"
 						@visible-change="onGetOaData($event, 'RIGHT_LEVEL')"
@@ -131,7 +126,6 @@
 						:options="MANAGE_TEAM"
 						:props="props"
 						:show-all-levels="false"
-						:clearable="true"
 						:placeholder="isDisabled('MANAGE_TEAM') ? ' ' : '请选择'"
 						:disabled="isDisabled('MANAGE_TEAM')"
 					>
@@ -145,7 +139,6 @@
 				<el-form-item prop="S_SUPERVISION" label="国资监管范围">
 					<el-select
 						v-model="form.S_SUPERVISION"
-						:clearable="true"
 						:placeholder="isDisabled('S_SUPERVISION') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_SUPERVISION')"
 						@visible-change="onGetOaData($event, 'S_SUPERVISION')"
@@ -157,7 +150,6 @@
 				<el-form-item prop="S_CHENGFA" label="是否城发体系">
 					<el-select
 						v-model="form.S_CHENGFA"
-						:clearable="true"
 						:placeholder="isDisabled('S_CHENGFA') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_CHENGFA')"
 						@visible-change="onGetOaData($event, 'S_CHENGFA')"
@@ -169,7 +161,6 @@
 				<el-form-item prop="CMPY_ATTRIBUTE" label="公司属性(公司职能)">
 					<el-select
 						v-model="form.CMPY_ATTRIBUTE"
-						:clearable="true"
 						:placeholder="isDisabled('CMPY_ATTRIBUTE') ? ' ' : '请选择'"
 						:disabled="isDisabled('CMPY_ATTRIBUTE')"
 						@visible-change="onGetOaData($event, 'CMPY_ATTRIBUTE')"
@@ -209,7 +200,6 @@
 				<el-form-item prop="CMPY_USE" label="公司用途">
 					<el-select
 						v-model="form.CMPY_USE"
-						:clearable="true"
 						:placeholder="isDisabled('CMPY_USE') ? ' ' : '请选择'"
 						:disabled="isDisabled('CMPY_USE')"
 						@visible-change="onGetOaData($event, 'CMPY_USE')"
@@ -221,7 +211,6 @@
 				<el-form-item prop="S_SHARE" label="是否分红">
 					<el-select
 						v-model="form.S_SHARE"
-						:clearable="true"
 						:placeholder="isDisabled('S_SHARE') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_SHARE')"
 						@visible-change="onGetOaData($event, 'S_SHARE')"
@@ -233,7 +222,6 @@
 				<el-form-item prop="S_OPERATE" label="是否操盘">
 					<el-select
 						v-model="form.S_OPERATE"
-						:clearable="true"
 						:placeholder="isDisabled('S_OPERATE') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_OPERATE')"
 						@visible-change="onGetOaData($event, 'S_OPERATE')"
@@ -322,7 +310,6 @@
 				<el-form-item prop="FCR_TYPE" label="税控机类型">
 					<el-select
 						v-model="form.FCR_TYPE"
-						:clearable="true"
 						:placeholder="isDisabled('FCR_TYPE') ? ' ' : '请选择'"
 						:disabled="isDisabled('FCR_TYPE')"
 						@visible-change="onGetOaData($event, 'FCR_TYPE')"
@@ -342,7 +329,6 @@
 				<el-form-item prop="MAX_QUOTA" label="增值税专用发票最高限额">
 					<el-select
 						v-model="form.MAX_QUOTA"
-						:clearable="true"
 						:placeholder="isDisabled('MAX_QUOTA') ? ' ' : '请选择'"
 						:disabled="isDisabled('MAX_QUOTA')"
 						@visible-change="onGetOaData($event, 'MAX_QUOTA')"
@@ -354,7 +340,6 @@
 				<el-form-item prop="S_MERGE_CHART" label="是否并表">
 					<el-select
 						v-model="form.S_MERGE_CHART"
-						:clearable="true"
 						:placeholder="isDisabled('S_MERGE_CHART') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_MERGE_CHART')"
 						@visible-change="onGetOaData($event, 'S_MERGE_CHART')"
@@ -413,7 +398,6 @@
 				<el-form-item prop="S_STOCK_FROZEN" label="冻结标识">
 					<el-select
 						v-model="form.S_STOCK_FROZEN"
-						:clearable="true"
 						:placeholder="isDisabled('S_STOCK_FROZEN') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_STOCK_FROZEN')"
 						@visible-change="onGetOaData($event, 'S_STOCK_FROZEN')"
@@ -440,7 +424,6 @@
 				<el-form-item prop="STAY_PARTY_NAME" label="所属党组织名称">
 					<el-select
 						v-model="form.STAY_PARTY_NAME"
-						:clearable="true"
 						:placeholder="isDisabled('STAY_PARTY_NAME') ? ' ' : '请选择'"
 						:disabled="isDisabled('STAY_PARTY_NAME')"
 						@visible-change="onGetOaData($event, 'STAY_PARTY_NAME')"
@@ -468,7 +451,6 @@
 				<el-form-item prop="PARTY_CHAPTER" label="“党建入章”情况">
 					<el-select
 						v-model="form.PARTY_CHAPTER"
-						:clearable="true"
 						:placeholder="isDisabled('PARTY_CHAPTER') ? ' ' : '请选择'"
 						:disabled="isDisabled('PARTY_CHAPTER')"
 						@visible-change="onGetOaData($event, 'PARTY_CHAPTER')"
@@ -487,7 +469,6 @@
 				<el-form-item prop="S_SET_DIRECTOR" label="是否建立董事会">
 					<el-select
 						v-model="form.S_SET_DIRECTOR"
-						:clearable="true"
 						:placeholder="isDisabled('S_SET_DIRECTOR') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_SET_DIRECTOR')"
 						@visible-change="onGetOaData($event, 'S_SET_DIRECTOR')"
@@ -499,9 +480,8 @@
 				<el-form-item prop="S_SET_RULE" label="是否建立《董事会议事规则》">
 					<el-select
 						v-model="form.S_SET_RULE"
-						:clearable="true"
-						:placeholder="isDisabled('S_SET_RULE') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_SET_RULE') === false && form.S_SET_DIRECTOR !== '2' ? false : true"
+						:placeholder="isMainDisabled('S_SET_RULE') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_SET_RULE')"
 						@visible-change="onGetOaData($event, 'S_SET_RULE')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -511,9 +491,8 @@
 				<el-form-item prop="S_EQUAL" label="董事会设立情况是否与章程规定一致">
 					<el-select
 						v-model="form.S_EQUAL"
-						:clearable="true"
-						:placeholder="isDisabled('S_EQUAL') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_EQUAL') === false && form.S_SET_DIRECTOR !== '2' ? false : true"
+						:placeholder="isMainDisabled('S_EQUAL') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_EQUAL')"
 						@visible-change="onGetOaData($event, 'S_EQUAL')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -523,9 +502,8 @@
 				<el-form-item prop="S_SIX_RULE" label="董事会议事规则是否明确六项职权">
 					<el-select
 						v-model="form.S_SIX_RULE"
-						:clearable="true"
-						:placeholder="isDisabled('S_SIX_RULE') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_SIX_RULE') === false && form.S_SET_DIRECTOR !== '2' ? false : true"
+						:placeholder="isMainDisabled('S_SIX_RULE') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_SIX_RULE')"
 						@visible-change="onGetOaData($event, 'S_SIX_RULE')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -535,9 +513,8 @@
 				<el-form-item prop="S_WORKABLE_SET" label="落实董事会六项职权">
 					<el-select
 						v-model="form.S_WORKABLE_SET"
-						:clearable="true"
-						:placeholder="isDisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_DIRECTOR_CMPY') === false && form.S_SET_DIRECTOR !== '2' ? false : true"
+						:placeholder="isMainDisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_WORKABLE_SET')"
 						@visible-change="onGetOaData($event, 'S_WORKABLE_SET')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -547,9 +524,8 @@
 				<el-form-item prop="S_DIRECTOR_CMPY" label="是否属于应建立董事会的公司">
 					<el-select
 						v-model="form.S_DIRECTOR_CMPY"
-						:clearable="true"
-						:placeholder="isDisabled('S_DIRECTOR_CMPY') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_DIRECTOR_CMPY') === false && form.S_SET_DIRECTOR !== '2' ? false : true"
+						:placeholder="isMainDisabled('S_DIRECTOR_CMPY') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_DIRECTOR_CMPY')"
 						@visible-change="onGetOaData($event, 'S_DIRECTOR_CMPY')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -560,11 +536,8 @@
 				<el-form-item prop="S_DIRECTOR_MAJORITY" label="董事会外部董事是否应占多数">
 					<el-select
 						v-model="form.S_DIRECTOR_MAJORITY"
-						:clearable="true"
-						:placeholder="isDisabled('S_DIRECTOR_MAJORITY') ? ' ' : '请选择'"
-						:disabled="
-							isDisabled('S_DIRECTOR_MAJORITY') === false && form.S_SET_DIRECTOR !== '2' && form.S_DIRECTOR_CMPY !== '2' ? false : true
-						"
+						:placeholder="isMainDisabled('S_DIRECTOR_MAJORITY') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_DIRECTOR_MAJORITY')"
 						@visible-change="onGetOaData($event, 'S_DIRECTOR_MAJORITY')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -575,11 +548,8 @@
 				<el-form-item prop="S_DIRECTOR_OCCUPY" label="董事会外部董事是否已占多数">
 					<el-select
 						v-model="form.S_DIRECTOR_OCCUPY"
-						:clearable="true"
-						:placeholder="isDisabled('S_DIRECTOR_OCCUPY') ? ' ' : '请选择'"
-						:disabled="
-							isDisabled('S_DIRECTOR_OCCUPY') === false && form.S_SET_DIRECTOR !== '2' && form.S_DIRECTOR_CMPY !== '2' ? false : true
-						"
+						:placeholder="isMainDisabled('S_DIRECTOR_OCCUPY') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_DIRECTOR_OCCUPY')"
 						@visible-change="onGetOaData($event, 'S_DIRECTOR_OCCUPY')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -589,13 +559,8 @@
 				<el-form-item prop="S_DIRECTOR_INSTITUTION" label="是否建立《董事会授权管理制度》">
 					<el-select
 						v-model="form.S_DIRECTOR_INSTITUTION"
-						:clearable="true"
-						:placeholder="isDisabled('S_DIRECTOR_INSTITUTION') ? ' ' : '请选择'"
-						:disabled="
-							isDisabled('S_DIRECTOR_INSTITUTION') === false && form.S_SET_DIRECTOR !== '2' && form.S_DIRECTOR_CMPY !== '2'
-								? false
-								: true
-						"
+						:placeholder="isMainDisabled('S_DIRECTOR_INSTITUTION') ? ' ' : '请选择'"
+						:disabled="isMainDisabled('S_DIRECTOR_INSTITUTION')"
 						@visible-change="onGetOaData($event, 'S_DIRECTOR_INSTITUTION')"
 					>
 						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
@@ -743,6 +708,41 @@ export default {
 		isDisabled(code) {
 			if (this.EDIT_WORD !== '') {
 				return !this.EDIT_WORD.includes(code)
+			} else {
+				return true
+			}
+		},
+
+		/**
+		 * @description: 董事会管理信息 - 判断是否可编辑
+		 * @return {*}
+		 */
+		isMainDisabled(code) {
+			// 先判断自身是否可编辑
+			if (!this.isDisabled(code)) {
+				switch (code) {
+					// '董事会外部董事是否应占多数'：当 '是否属于应建立董事会的公司' 为 '是' 的情况下方可选择；
+					case 'S_DIRECTOR_MAJORITY':
+						if (this.form.S_DIRECTOR_CMPY === '1' || this.form.S_DIRECTOR_CMPY === '是') {
+							return false
+						} else {
+							return true
+						}
+					// '董事会外部董事是否已占多数'：当 '是否属于应建立董事会的公司' 为 '是' 的情况下方可选择
+					case 'S_DIRECTOR_OCCUPY':
+						if (this.form.S_DIRECTOR_CMPY === '1' || this.form.S_DIRECTOR_CMPY === '是') {
+							return false
+						} else {
+							return true
+						}
+					// 首先判断 '是否建立董事会' 是否选择 '是'，如果选择 '是'，董事会其他信息才可编辑，如果选择 '否'，董事会其他信息都不可编辑
+					default:
+						if (this.form.S_SET_DIRECTOR === '1' || this.form.S_SET_DIRECTOR === '是') {
+							return false
+						} else {
+							return true
+						}
+				}
 			} else {
 				return true
 			}

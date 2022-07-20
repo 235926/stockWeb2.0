@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-19 17:23:30
+ * @LastEditTime: 2022-07-20 09:46:44
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -241,6 +241,19 @@ export const getBusinessInvestment = (data) => {
 export const getBusinessTaskList = (data) => {
 	return request({
 		url: '/CMPY_TAST.query.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 任务列表 - 任务类型
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessTaskListGetRoleType = (data) => {
+	return request({
+		url: '/COMPAY_FIELD_EDIT.getRoleType.do',
 		method: 'get',
 		params: data,
 	})
