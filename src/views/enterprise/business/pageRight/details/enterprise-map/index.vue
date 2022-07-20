@@ -11,21 +11,17 @@
 
 <script>
 import G6 from '@antv/g6'
+import { Local } from '@/utils/storage.js' // 浏览器存储
 export default {
 	// 组件名称
 	name: 'enterpriseMap',
-	// 组件参数 接收来自父组件的数据
-	props: {},
 	// 组件状态值
 	data() {
 		return {}
 	},
-	// 侦听器
-	watch: {},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {},
 	// 组件挂载后，此方法执行后，页面显示
 	mounted() {
+		console.log(Local.get('enterpriseMapList'))
 		this.init()
 	},
 	// 组件方法
@@ -182,22 +178,6 @@ export default {
 					if (!container || !container.scrollWidth || !container.scrollHeight) return
 					graph.changeSize(container.scrollWidth, container.scrollHeight)
 				}
-		},
-
-		/**
-		 * @description: 过滤文字换行
-		 * @param {*} name
-		 * @return {*}
-		 */
-		filterTextWrap(name) {
-			let index = name.indexOf('（')
-			let prev = name.slice(0, index)
-			let next = name.slice(index)
-			let str = `
-				<div>${prev}</div>
-				<div>${next}</div>
-			`
-			return str
 		},
 	},
 }

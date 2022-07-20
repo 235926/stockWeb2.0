@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-20 09:46:44
+ * @LastEditTime: 2022-07-20 16:19:17
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -202,6 +202,19 @@ export const getBusinessMainStaffEdit = (data) => {
 export const getBusinessMainStaffDel = (data) => {
 	return request({
 		url: '/CMPY_MAIN_USER.deleteData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 企业图谱
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessEnterpriseMap = (data) => {
+	return request({
+		url: '/CMPY_BASE_INFO.getImgData.do',
 		method: 'get',
 		params: data,
 	})

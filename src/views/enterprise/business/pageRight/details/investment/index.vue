@@ -63,7 +63,7 @@ export default {
 		 */
 		onGetBusinessInvestment() {
 			const params = {
-				CMPY_CODE: this.$route.query.id,
+				CMPY_NAME: this.$route.query.CMPY_NAME,
 			}
 			getBusinessInvestment(params).then((res) => {
 				this.tableData = res._DATA_

@@ -587,6 +587,8 @@
 
 <script>
 import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData, getBusinessGdDel } from '@/api/index.js' // api
+import { Local } from '@/utils/storage.js' // 浏览器存储
+
 export default {
 	// 组件名称
 	name: 'basicInfo',
@@ -655,6 +657,7 @@ export default {
 					this.form = res.DATA
 				}
 				this.tableData = res.GD_DATA
+				Local.set('enterpriseMapList', res.DATA)
 
 				setTimeout(() => {
 					this.loading = false

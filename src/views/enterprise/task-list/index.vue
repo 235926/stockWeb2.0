@@ -1,7 +1,7 @@
 <!--
  * @Description: 任务列表
  * @Date: 2022-06-14 18:43:15
- * @LastEditTime: 2022-07-20 11:09:44
+ * @LastEditTime: 2022-07-20 11:16:26
 -->
 <template>
 	<div class="page-container">
@@ -42,7 +42,7 @@
 
 						<el-col :span="11">
 							<el-form-item prop="THIS_TYPE" label="任务状态">
-								<el-select v-model="form.THIS_TYPE" :clearable="true">
+								<el-select v-model="form.THIS_TYPE" :clearable="true" @visible-change="onGetOaData($event, 'THIS_TYPE')">
 									<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 								</el-select>
 							</el-form-item>
@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import { getBusinessTaskList, getBusinessTaskListGetRoleType } from '@/api/index.js' // api
+import { getBusinessTaskList, getOaData, getBusinessTaskListGetRoleType } from '@/api/index.js' // api
 export default {
 	name: 'enterpriseTaskList',
 	components: {
@@ -190,8 +190,28 @@ export default {
 		 */
 		onTaskType() {
 			getBusinessTaskListGetRoleType().then((res) => {
-				state.TAST_TYPE = res._DATA_
+				this.TAST_TYPE = res._DATA_
 			})
+		},
+
+		/**
+		 * @description: 获取 OA 角色/字典 - 任务状态
+		 * @return {*}
+		 */
+		onGetOaData(val, id) {
+			const params = {
+				dictId: `STOCK_${id}`,
+			}
+			if (val) {
+				this.options = []
+				getOaData(params).then((res) => {
+					if (res.bean._MSG_?.indexOf('ERROR,') == 0) {
+						this.$message.error(res.bean._MSG_)
+					} else {
+						this.options = res.bean._DATA_
+					}
+				})
+			}
 		},
 
 		// 切换每页条数
