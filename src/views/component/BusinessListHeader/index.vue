@@ -1,10 +1,10 @@
 <!--
  * @Description: 业务办理 - 列表头部
  * @Date: 2022-06-18 14:43:25
- * @LastEditTime: 2022-07-12 14:12:57
+ * @LastEditTime: 2022-07-22 18:57:53
 -->
 <template>
-	<div class="business-list-header flex-column plr20" :class="{ background: background }">
+	<div class="business-list-header flex-column" :class="{ background: background }">
 		<div class="flex">
 			<div class="name flex-column">
 				<span class="title">{{ title }}</span>

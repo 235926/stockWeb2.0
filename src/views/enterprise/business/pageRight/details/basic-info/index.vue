@@ -1,13 +1,13 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-22 14:23:19
+ * @LastEditTime: 2022-07-22 18:58:54
 -->
 <template>
 	<div class="business-details" v-loading="loading">
 		<!-- 基础信息 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="基础信息" :background="false" />
+			<BusinessListHeader title="基础信息" :background="false" class="plr20" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="CMPY_NAME" label="公司名称">
 					<el-input
@@ -226,7 +226,7 @@
 
 		<!-- 股东信息 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="股东信息" />
+			<BusinessListHeader title="股东信息" class="plr20" />
 			<div class="ml20 mr20">
 				<el-table
 					ref="tableRef"
@@ -280,7 +280,7 @@
 
 		<!-- 财务管理信息 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="财务管理信息" />
+			<BusinessListHeader title="财务管理信息" class="plr20" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="COLLECTION_MONEY" label="实收资本(万元)">
 					<el-input
@@ -400,7 +400,7 @@
 
 		<!-- 党组织信息 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="党组织信息" />
+			<BusinessListHeader title="党组织信息" class="plr20" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="PARTY_NAME" label="党组织名称">
 					<el-input
@@ -462,7 +462,7 @@
 
 		<!-- 董事会管理信息 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="董事会管理信息" />
+			<BusinessListHeader title="董事会管理信息" class="plr20" />
 			<el-form label-width="170px" :class="$route.query.isAside ? 'form-style-one' : 'form-style-two'">
 				<el-form-item prop="S_SET_DIRECTOR" label="是否建立董事会">
 					<el-select
@@ -597,7 +597,7 @@
 
 		<!-- 附件 -->
 		<div class="business-details-item pb70">
-			<BusinessListHeader title="附件" />
+			<BusinessListHeader title="附件" class="plr20" />
 		</div>
 
 		<div class="btn-group" v-if="!$route.query.isAside">
@@ -611,7 +611,13 @@
 </template>
 
 <script>
-import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData, getBusinessGdDel, getBusinessBasicInfoEdit } from '@/api/index.js' // api
+import {
+	getBusinessBasicInfoDetails,
+	getBusinessLeftTree,
+	getBusinessBasicInfoGetEditData,
+	getBusinessGdDel,
+	getBusinessBasicInfoEdit,
+} from '@/api/index.js' // api
 import { Local } from '@/utils/storage.js' // 浏览器存储
 
 export default {
@@ -649,19 +655,6 @@ export default {
 			},
 		}
 	},
-	// 侦听器
-	watch: {
-		// 监听路由的变化
-		$route: {
-			handler(to) {
-				if (!to.query.isAside) {
-					this.onGetBusinessBasicInfoGetEditData()
-				}
-			},
-			deep: true, // 深度监听
-			immediate: true, // 不管数据是否发生变化都监听一次
-		},
-	},
 	computed: {
 		// 获取 OA 角色/字典
 		dictionary() {
@@ -671,6 +664,12 @@ export default {
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {
 		this.onGetBusinessBasicInfoDetails()
+		this.onGetBusinessLeftTree()
+
+		// 编辑页的时候获取编辑权限
+		if (!this.$route.query.isAside) {
+			this.onGetBusinessBasicInfoGetEditData()
+		}
 	},
 	mounted() {
 		// 监听添加/修改/删除操作
@@ -701,6 +700,17 @@ export default {
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
+			})
+		},
+
+		/**
+		 * @description: 获取上级党组织
+		 * @return {*}
+		 */
+		onGetBusinessLeftTree() {
+			// 获取上级党组织
+			getBusinessLeftTree().then((res) => {
+				this.parent = res.treeData
 			})
 		},
 

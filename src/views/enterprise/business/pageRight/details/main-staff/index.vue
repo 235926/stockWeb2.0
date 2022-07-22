@@ -1,13 +1,13 @@
 <!--
  * @Description: 主要人员
  * @Date: 2022-06-18 12:06:57
- * @LastEditTime: 2022-07-18 18:27:36
+ * @LastEditTime: 2022-07-22 18:59:03
 -->
 <template>
 	<div class="business-details" v-loading="loading">
 		<!-- 工商注册 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="工商注册" :background="false" />
+			<BusinessListHeader title="工商注册" :background="false" class="plr20" />
 			<div class="mlr20">
 				<el-table
 					:data="tableData.UP_DATA"
@@ -70,7 +70,7 @@
 
 		<!-- 审批情况 -->
 		<div class="business-details-item">
-			<BusinessListHeader title="审批情况" />
+			<BusinessListHeader title="审批情况" class="plr20" />
 			<div class="mlr20">
 				<el-table
 					:data="tableData.DOWN_DATA"
@@ -94,12 +94,7 @@
 
 					<el-table-column label="操作" v-if="!$route.query?.isAside" class-name="operation">
 						<template slot-scope="scope">
-							<el-button
-								class="mr20"
-								type="text"
-								@click="onEdit(scope, 2)"
-								:disabled="isDisabled('DJG_INFO')"
-							>
+							<el-button class="mr20" type="text" @click="onEdit(scope, 2)" :disabled="isDisabled('DJG_INFO')">
 								<span class="span-svg-icon edit">
 									<SvgIcon name="edit" color="#fff" />
 								</span>

@@ -208,6 +208,7 @@
 			 */
 			onOpenDialog(item) {
 				switch (item) {
+					// 占有
 					case 'possessionRef':
 						if (JSON.stringify(this.selectionRow) === '{}') {
 							this.possessionVisible = true
@@ -216,8 +217,17 @@
 							this.possessionVisible = true
 						}
 						break
+					// 变更
+					case 'changeRef':
+						if (JSON.stringify(this.selectionRow) === '{}') {
+							this.$message.warning('请先勾选要变更的对象')
+						} else {
+							proxy.$refs[item].openDialog()
+						}
+						break
+					// 编辑
 					case 'editRef':
-						if (JSON.stringify(this.selectionRow) == '{}') {
+						if (JSON.stringify(this.selectionRow) === '{}') {
 							this.$message.warning('请先勾选要编辑的对象')
 						} else {
 							this.$router.push({
