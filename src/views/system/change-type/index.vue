@@ -1,7 +1,7 @@
 <!--
  * @Description: 变更类型维护
  * @Date: 2022-06-14 18:51:44
- * @LastEditTime: 2022-07-12 18:41:03
+ * @LastEditTime: 2022-07-22 14:11:21
 -->
 <template>
 	<div class="page-container">
@@ -49,13 +49,11 @@
 				<el-table-column prop="LINK_ROLE" label="变更角色" width="200">
 					<template slot-scope="scope">
 						<el-select v-model="scope.row.LINK_ROLE" placeholder="请选择" class="border-none">
-							<el-option v-for="item in options" :key="item.ID" :label="item.NAME" :value="item.ID">
-							</el-option>
+							<el-option v-for="item in dictionary.SY_ORG_ROLE_STOCK" :key="item.ID" :label="item.NAME" :value="item.ID" />
 						</el-select>
 					</template>
 				</el-table-column>
 			</el-table>
-
 			<div class="btn mt30 mb10 flex-center">
 				<el-button round @click="onAdd">新增</el-button>
 				<el-button round @click="onSave">保存</el-button>
@@ -69,7 +67,7 @@
 </template>
 
 <script>
-import { getChangeType, updateChangeType, deleteChangeTypeList, getOaData } from '@/api/index.js' // api
+import { getChangeType, updateChangeType, deleteChangeTypeList } from '@/api/index.js' // api
 import { isStrEmpty } from '@/utils/tools.js' // 工具方法
 export default {
 	name: 'systemChangeType',
@@ -80,17 +78,21 @@ export default {
 	},
 	data() {
 		return {
-			tableData: [],
-			options: [], // 变更角色
+			tableData: [], // 数据列表
 			selection: [], // 选中的数据
 			fieldScope: {}, // 选中传给子组件
 			loading: false, // 加载状态
 		}
 	},
+	computed: {
+		// 获取 OA 角色/字典
+		dictionary() {
+			return this.$store.getters?.dictionary
+		},
+	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
 	created() {
 		this.onGetChangeType()
-		this.onGetOaData()
 	},
 	methods: {
 		/**
@@ -107,19 +109,6 @@ export default {
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
-			})
-		},
-
-		/**
-		 * @description: 获取 OA 角色
-		 * @return {*}
-		 */
-		onGetOaData() {
-			const params = {
-				dictId: 'SY_ORG_ROLE_STOCK',
-			}
-			getOaData(params).then((res) => {
-				this.options = res.bean._DATA_
 			})
 		},
 

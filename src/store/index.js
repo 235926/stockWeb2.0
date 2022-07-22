@@ -1,10 +1,12 @@
 /*
  * @Description: vuex
  * @Date: 2022-06-09 16:54:40
- * @LastEditTime: 2022-06-09 16:54:46
+ * @LastEditTime: 2022-07-22 13:50:17
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedstate from 'vuex-persistedstate' // 存储vuex
+import getters from './getters.js'
 
 Vue.use(Vuex)
 
@@ -17,4 +19,14 @@ let modules = moduleFn.keys().reduce((p, c) => {
 	return p
 }, {})
 
-export default new Vuex.Store({ modules })
+export default new Vuex.Store({
+	modules,
+	getters,
+	plugins: [
+		createPersistedstate({
+			key: 'dictionary',
+			paths: ['dictionary'],
+			storege: window.loaclStorege,
+		}),
+	],
+})

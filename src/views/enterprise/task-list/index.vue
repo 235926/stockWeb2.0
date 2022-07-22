@@ -1,7 +1,7 @@
 <!--
  * @Description: 任务列表
  * @Date: 2022-06-14 18:43:15
- * @LastEditTime: 2022-07-20 11:16:26
+ * @LastEditTime: 2022-07-22 14:14:39
 -->
 <template>
 	<div class="page-container">
@@ -28,12 +28,12 @@
 
 						<el-col :span="11">
 							<el-form-item prop="START_TIME" label="派单时间">
-								<el-date-picker v-model="form.START_TIME" type="date" value-format="YYYY-MM-DD" placeholder="请选择" />
+								<el-date-picker v-model="form.START_TIME" type="date" value-format="yyyy-MM-dd" placeholder="请选择" />
 								<span class="flex-center width50">到</span>
 								<el-date-picker
 									v-model="form.END_TIME"
 									type="date"
-									value-format="YYYY-MM-DD"
+									value-format="yyyy-MM-dd"
 									:disabled-date="disabledDate"
 									placeholder="请选择"
 								/>
@@ -42,8 +42,13 @@
 
 						<el-col :span="11">
 							<el-form-item prop="THIS_TYPE" label="任务状态">
-								<el-select v-model="form.THIS_TYPE" :clearable="true" @visible-change="onGetOaData($event, 'THIS_TYPE')">
-									<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+								<el-select v-model="form.THIS_TYPE" :clearable="true">
+									<el-option
+										v-for="item in dictionary.STOCK_THIS_TYPE"
+										:key="item.ITEM_CODE"
+										:label="item.ITEM_NAME"
+										:value="item.ITEM_CODE"
+									/>
 								</el-select>
 							</el-form-item>
 						</el-col>
@@ -117,7 +122,7 @@
 </template>
 
 <script>
-import { getBusinessTaskList, getOaData, getBusinessTaskListGetRoleType } from '@/api/index.js' // api
+import { getBusinessTaskList, getBusinessTaskListGetRoleType } from '@/api/index.js' // api
 export default {
 	name: 'enterpriseTaskList',
 	components: {
@@ -126,9 +131,8 @@ export default {
 	data() {
 		return {
 			form: {}, // 表单
-			options: [], // OA 角色/字典
-			TAST_TYPE: [], // 任务类型
 			tableData: [], // 数据列表
+			TAST_TYPE: [], // 任务类型
 			NOWPAGE: 1, // 当前页
 			SHOWNUM: 10, // 每页条数
 			ALLNUM: 0, // 总条数
@@ -136,6 +140,7 @@ export default {
 		}
 	},
 	computed: {
+		// 设置禁用时间
 		pickerOptions() {
 			let _this = this
 			return {
@@ -144,6 +149,11 @@ export default {
 					return time.getTime() < startDate.getTime()
 				},
 			}
+		},
+
+		// 获取 OA 角色/字典
+		dictionary() {
+			return this.$store.getters?.dictionary
 		},
 	},
 	created() {
@@ -192,26 +202,6 @@ export default {
 			getBusinessTaskListGetRoleType().then((res) => {
 				this.TAST_TYPE = res._DATA_
 			})
-		},
-
-		/**
-		 * @description: 获取 OA 角色/字典 - 任务状态
-		 * @return {*}
-		 */
-		onGetOaData(val, id) {
-			const params = {
-				dictId: `STOCK_${id}`,
-			}
-			if (val) {
-				this.options = []
-				getOaData(params).then((res) => {
-					if (res.bean._MSG_?.indexOf('ERROR,') == 0) {
-						this.$message.error(res.bean._MSG_)
-					} else {
-						this.options = res.bean._DATA_
-					}
-				})
-			}
 		},
 
 		// 切换每页条数

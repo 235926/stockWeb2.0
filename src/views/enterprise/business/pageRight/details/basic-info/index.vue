@@ -1,7 +1,7 @@
 <!--
  * @Description: 基本信息
  * @Date: 2022-06-17 21:19:30
- * @LastEditTime: 2022-07-20 09:44:47
+ * @LastEditTime: 2022-07-22 14:23:19
 -->
 <template>
 	<div class="business-details" v-loading="loading">
@@ -34,22 +34,19 @@
 				</el-form-item>
 
 				<el-form-item prop="CMPY_TYPE" label="公司状况">
-					<el-select
-						v-model="form.CMPY_TYPE"
-						:placeholder="isDisabled('CMPY_TYPE') ? ' ' : '请选择'"
-						:disabled="isDisabled('CMPY_TYPE')"
-						@visible-change="onGetOaData($event, 'CMPY_TYPE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.CMPY_TYPE" :placeholder="isDisabled('CMPY_TYPE') ? ' ' : '请选择'" :disabled="isDisabled('CMPY_TYPE')">
+						<el-option v-for="item in dictionary.STOCK_CMPY_TYPE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="BUSINESS_DATE" label="工商成立日期">
-					<el-input
+					<el-date-picker
 						v-model="form.BUSINESS_DATE"
+						type="date"
+						value-format="yyyy-MM-dd"
 						:placeholder="isDisabled('BUSINESS_DATE') ? '' : '请输入'"
 						:disabled="isDisabled('BUSINESS_DATE')"
-					></el-input>
+					/>
 				</el-form-item>
 
 				<el-form-item prop="LOG_MONEY_TYPE" label="注册资本币种">
@@ -81,20 +78,19 @@
 						v-model="form.OPERATE_TERM"
 						:placeholder="isDisabled('OPERATE_TERM') ? ' ' : '请选择'"
 						:disabled="isDisabled('OPERATE_TERM')"
-						@visible-change="onGetOaData($event, 'OPERATE_TERM')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_OPERATE_TERM"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="LOG_TYPE" label="登记注册类型">
-					<el-select
-						v-model="form.LOG_TYPE"
-						:placeholder="isDisabled('LOG_TYPE') ? ' ' : '请选择'"
-						:disabled="isDisabled('LOG_TYPE')"
-						@visible-change="onGetOaData($event, 'LOG_TYPE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.LOG_TYPE" :placeholder="isDisabled('LOG_TYPE') ? ' ' : '请选择'" :disabled="isDisabled('LOG_TYPE')">
+						<el-option v-for="item in dictionary.STOCK_LOG_TYPE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
@@ -103,9 +99,13 @@
 						v-model="form.MANAGE_LEVEL"
 						:placeholder="isDisabled('MANAGE_LEVEL') ? ' ' : '请选择'"
 						:disabled="isDisabled('MANAGE_LEVEL')"
-						@visible-change="onGetOaData($event, 'MANAGE_LEVEL')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_MANAGE_LEVEL"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -114,17 +114,21 @@
 						v-model="form.RIGHT_LEVEL"
 						:placeholder="isDisabled('RIGHT_LEVEL') ? ' ' : '请选择'"
 						:disabled="isDisabled('RIGHT_LEVEL')"
-						@visible-change="onGetOaData($event, 'RIGHT_LEVEL')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_RIGHT_LEVEL"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="MANAGE_TEAM" label="管理团队">
 					<el-cascader
 						v-model="form.MANAGE_TEAM"
-						:options="MANAGE_TEAM"
-						:props="props"
+						:options="dictionary.STOCK_MANAGE_TEAM"
+						:props="propsTeam"
 						:show-all-levels="false"
 						:placeholder="isDisabled('MANAGE_TEAM') ? ' ' : '请选择'"
 						:disabled="isDisabled('MANAGE_TEAM')"
@@ -141,20 +145,19 @@
 						v-model="form.S_SUPERVISION"
 						:placeholder="isDisabled('S_SUPERVISION') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_SUPERVISION')"
-						@visible-change="onGetOaData($event, 'S_SUPERVISION')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_SUPERVISION"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_CHENGFA" label="是否城发体系">
-					<el-select
-						v-model="form.S_CHENGFA"
-						:placeholder="isDisabled('S_CHENGFA') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_CHENGFA')"
-						@visible-change="onGetOaData($event, 'S_CHENGFA')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.S_CHENGFA" :placeholder="isDisabled('S_CHENGFA') ? ' ' : '请选择'" :disabled="isDisabled('S_CHENGFA')">
+						<el-option v-for="item in dictionary.STOCK_S_CHENGFA" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
@@ -163,9 +166,13 @@
 						v-model="form.CMPY_ATTRIBUTE"
 						:placeholder="isDisabled('CMPY_ATTRIBUTE') ? ' ' : '请选择'"
 						:disabled="isDisabled('CMPY_ATTRIBUTE')"
-						@visible-change="onGetOaData($event, 'CMPY_ATTRIBUTE')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_CMPY_ATTRIBUTE"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -185,8 +192,7 @@
 						resize="none"
 						:placeholder="isDisabled('OPERATE_SCOPE') ? '' : '请输入'"
 						:disabled="isDisabled('OPERATE_SCOPE')"
-					>
-					</el-input>
+					></el-input>
 				</el-form-item>
 
 				<el-form-item prop="LAND_NAME" label="地块名称">
@@ -198,35 +204,20 @@
 				</el-form-item>
 
 				<el-form-item prop="CMPY_USE" label="公司用途">
-					<el-select
-						v-model="form.CMPY_USE"
-						:placeholder="isDisabled('CMPY_USE') ? ' ' : '请选择'"
-						:disabled="isDisabled('CMPY_USE')"
-						@visible-change="onGetOaData($event, 'CMPY_USE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.CMPY_USE" :placeholder="isDisabled('CMPY_USE') ? ' ' : '请选择'" :disabled="isDisabled('CMPY_USE')">
+						<el-option v-for="item in dictionary.STOCK_CMPY_USE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_SHARE" label="是否分红">
-					<el-select
-						v-model="form.S_SHARE"
-						:placeholder="isDisabled('S_SHARE') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_SHARE')"
-						@visible-change="onGetOaData($event, 'S_SHARE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.S_SHARE" :placeholder="isDisabled('S_SHARE') ? ' ' : '请选择'" :disabled="isDisabled('S_SHARE')">
+						<el-option v-for="item in dictionary.STOCK_S_SHARE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_OPERATE" label="是否操盘">
-					<el-select
-						v-model="form.S_OPERATE"
-						:placeholder="isDisabled('S_OPERATE') ? ' ' : '请选择'"
-						:disabled="isDisabled('S_OPERATE')"
-						@visible-change="onGetOaData($event, 'S_OPERATE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.S_OPERATE" :placeholder="isDisabled('S_OPERATE') ? ' ' : '请选择'" :disabled="isDisabled('S_OPERATE')">
+						<el-option v-for="item in dictionary.STOCK_S_OPERATE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -308,13 +299,8 @@
 				</el-form-item>
 
 				<el-form-item prop="FCR_TYPE" label="税控机类型">
-					<el-select
-						v-model="form.FCR_TYPE"
-						:placeholder="isDisabled('FCR_TYPE') ? ' ' : '请选择'"
-						:disabled="isDisabled('FCR_TYPE')"
-						@visible-change="onGetOaData($event, 'FCR_TYPE')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.FCR_TYPE" :placeholder="isDisabled('FCR_TYPE') ? ' ' : '请选择'" :disabled="isDisabled('FCR_TYPE')">
+						<el-option v-for="item in dictionary.STOCK_FCR_TYPE" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
@@ -327,13 +313,8 @@
 				</el-form-item>
 
 				<el-form-item prop="MAX_QUOTA" label="增值税专用发票最高限额">
-					<el-select
-						v-model="form.MAX_QUOTA"
-						:placeholder="isDisabled('MAX_QUOTA') ? ' ' : '请选择'"
-						:disabled="isDisabled('MAX_QUOTA')"
-						@visible-change="onGetOaData($event, 'MAX_QUOTA')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.MAX_QUOTA" :placeholder="isDisabled('MAX_QUOTA') ? ' ' : '请选择'" :disabled="isDisabled('MAX_QUOTA')">
+						<el-option v-for="item in dictionary.STOCK_MAX_QUOTA" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
@@ -342,9 +323,13 @@
 						v-model="form.S_MERGE_CHART"
 						:placeholder="isDisabled('S_MERGE_CHART') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_MERGE_CHART')"
-						@visible-change="onGetOaData($event, 'S_MERGE_CHART')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_MERGE_CHART"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -400,9 +385,13 @@
 						v-model="form.S_STOCK_FROZEN"
 						:placeholder="isDisabled('S_STOCK_FROZEN') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_STOCK_FROZEN')"
-						@visible-change="onGetOaData($event, 'S_STOCK_FROZEN')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_STOCK_FROZEN"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -422,14 +411,19 @@
 				</el-form-item>
 
 				<el-form-item prop="STAY_PARTY_NAME" label="所属党组织名称">
-					<el-select
+					<el-cascader
 						v-model="form.STAY_PARTY_NAME"
-						:placeholder="isDisabled('STAY_PARTY_NAME') ? ' ' : '请选择'"
-						:disabled="isDisabled('STAY_PARTY_NAME')"
-						@visible-change="onGetOaData($event, 'STAY_PARTY_NAME')"
+						:options="parent"
+						:props="parentProps"
+						:show-all-levels="false"
+						:clearable="true"
+						placeholder="请选择"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
-					</el-select>
+						<template #default="{ node, data }">
+							<span>{{ data.CMPY_NAME }}</span>
+							<span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+						</template>
+					</el-cascader>
 				</el-form-item>
 
 				<el-form-item prop="PRACTICE_NUM" label="从业人员数(劳动关系)">
@@ -453,9 +447,13 @@
 						v-model="form.PARTY_CHAPTER"
 						:placeholder="isDisabled('PARTY_CHAPTER') ? ' ' : '请选择'"
 						:disabled="isDisabled('PARTY_CHAPTER')"
-						@visible-change="onGetOaData($event, 'PARTY_CHAPTER')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_PARTY_CHAPTER"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -471,9 +469,13 @@
 						v-model="form.S_SET_DIRECTOR"
 						:placeholder="isDisabled('S_SET_DIRECTOR') ? ' ' : '请选择'"
 						:disabled="isDisabled('S_SET_DIRECTOR')"
-						@visible-change="onGetOaData($event, 'S_SET_DIRECTOR')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_SET_DIRECTOR"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -482,20 +484,19 @@
 						v-model="form.S_SET_RULE"
 						:placeholder="isMainDisabled('S_SET_RULE') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_SET_RULE')"
-						@visible-change="onGetOaData($event, 'S_SET_RULE')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_SET_RULE"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
 				<el-form-item prop="S_EQUAL" label="董事会设立情况是否与章程规定一致">
-					<el-select
-						v-model="form.S_EQUAL"
-						:placeholder="isMainDisabled('S_EQUAL') ? ' ' : '请选择'"
-						:disabled="isMainDisabled('S_EQUAL')"
-						@visible-change="onGetOaData($event, 'S_EQUAL')"
-					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+					<el-select v-model="form.S_EQUAL" :placeholder="isMainDisabled('S_EQUAL') ? ' ' : '请选择'" :disabled="isMainDisabled('S_EQUAL')">
+						<el-option v-for="item in dictionary.STOCK_S_EQUAL" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
 					</el-select>
 				</el-form-item>
 
@@ -504,9 +505,13 @@
 						v-model="form.S_SIX_RULE"
 						:placeholder="isMainDisabled('S_SIX_RULE') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_SIX_RULE')"
-						@visible-change="onGetOaData($event, 'S_SIX_RULE')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_SIX_RULE"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -515,9 +520,13 @@
 						v-model="form.S_WORKABLE_SET"
 						:placeholder="isMainDisabled('S_WORKABLE_SET') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_WORKABLE_SET')"
-						@visible-change="onGetOaData($event, 'S_WORKABLE_SET')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_WORKABLE_SET"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -526,9 +535,13 @@
 						v-model="form.S_DIRECTOR_CMPY"
 						:placeholder="isMainDisabled('S_DIRECTOR_CMPY') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_DIRECTOR_CMPY')"
-						@visible-change="onGetOaData($event, 'S_DIRECTOR_CMPY')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_DIRECTOR_CMPY"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -538,9 +551,13 @@
 						v-model="form.S_DIRECTOR_MAJORITY"
 						:placeholder="isMainDisabled('S_DIRECTOR_MAJORITY') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_DIRECTOR_MAJORITY')"
-						@visible-change="onGetOaData($event, 'S_DIRECTOR_MAJORITY')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_DIRECTOR_MAJORITY"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -550,9 +567,13 @@
 						v-model="form.S_DIRECTOR_OCCUPY"
 						:placeholder="isMainDisabled('S_DIRECTOR_OCCUPY') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_DIRECTOR_OCCUPY')"
-						@visible-change="onGetOaData($event, 'S_DIRECTOR_OCCUPY')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_DIRECTOR_OCCUPY"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 
@@ -561,9 +582,13 @@
 						v-model="form.S_DIRECTOR_INSTITUTION"
 						:placeholder="isMainDisabled('S_DIRECTOR_INSTITUTION') ? ' ' : '请选择'"
 						:disabled="isMainDisabled('S_DIRECTOR_INSTITUTION')"
-						@visible-change="onGetOaData($event, 'S_DIRECTOR_INSTITUTION')"
 					>
-						<el-option v-for="item in options" :key="item.ITEM_CODE" :label="item.ITEM_NAME" :value="item.ITEM_CODE" />
+						<el-option
+							v-for="item in dictionary.STOCK_S_DIRECTOR_INSTITUTION"
+							:key="item.ITEM_CODE"
+							:label="item.ITEM_NAME"
+							:value="item.ITEM_CODE"
+						/>
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -586,7 +611,7 @@
 </template>
 
 <script>
-import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData, getBusinessGdDel } from '@/api/index.js' // api
+import { getBusinessBasicInfoDetails, getBusinessBasicInfoGetEditData, getOaData, getBusinessGdDel, getBusinessBasicInfoEdit } from '@/api/index.js' // api
 import { Local } from '@/utils/storage.js' // 浏览器存储
 
 export default {
@@ -603,15 +628,22 @@ export default {
 		return {
 			form: {}, // 表单对象
 			tableData: [], // 股东信息
+			parent: [], // 上级股权公司
 			loading: false, // 加载状态
 			EDIT_WORD: '', // 可编辑字段
-			options: [], // OA 角色/字典、
-			MANAGE_TEAM: [], // 管理团队
-			// cascader 配置选项
-			props: {
+			// 管理团队 cascader 配置选项
+			propsTeam: {
 				value: 'ID', // 绑定 ID
 				label: 'NAME', // 显示 label
 				children: 'CHILD', // 指定选项的子选项为选项对象的某个属性值
+				checkStrictly: true, // 单选，否则只能选择最后一级
+				emitPath: false, // 只返回当前选中的节点，父级节点不返回
+			},
+			// 所属党组织 cascader 配置选项
+			parentProps: {
+				value: 'CMPY_BASE_CODE', // 绑定 ID
+				label: 'CMPY_NAME', // 显示 label
+				children: 'children', // 指定选项的子选项为选项对象的某个属性值
 				checkStrictly: true, // 单选，否则只能选择最后一级
 				emitPath: false, // 只返回当前选中的节点，父级节点不返回
 			},
@@ -628,6 +660,12 @@ export default {
 			},
 			deep: true, // 深度监听
 			immediate: true, // 不管数据是否发生变化都监听一次
+		},
+	},
+	computed: {
+		// 获取 OA 角色/字典
+		dictionary() {
+			return this.$store.getters?.dictionary
 		},
 	},
 	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
@@ -657,21 +695,13 @@ export default {
 					this.form = res.DATA
 				}
 				this.tableData = res.GD_DATA
+				// 存储给其他子页面使用
 				Local.set('enterpriseMapList', res.DATA)
 
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
 			})
-
-			if (type !== 1) {
-				// 获取管理团队
-				getOaData({
-					dictId: 'STOCK_MANAGE_TEAM',
-				}).then((res) => {
-					this.MANAGE_TEAM = res.bean._DATA_
-				})
-			}
 		},
 
 		/**
@@ -682,26 +712,6 @@ export default {
 			getBusinessBasicInfoGetEditData().then((res) => {
 				this.EDIT_WORD = res.EDIT_WORD
 			})
-		},
-
-		/**
-		 * @description: 获取 OA 角色/字典
-		 * @return {*}
-		 */
-		onGetOaData(val, id) {
-			const params = {
-				dictId: `STOCK_${id}`,
-			}
-			if (val) {
-				this.options = []
-				getOaData(params).then((res) => {
-					if (res.bean._MSG_?.indexOf('ERROR,') == 0) {
-						this.$message.error(res.bean._MSG_)
-					} else {
-						this.options = res.bean._DATA_
-					}
-				})
-			}
 		},
 
 		/**
@@ -789,7 +799,13 @@ export default {
 		 * @return {*}
 		 */
 		onSave() {
-			console.log(this.form)
+			Object.assign(this.form, { CMPY_CODE: this.$route.query.id })
+			getBusinessBasicInfoEdit(this.form).then((res) => {
+				if (res._MSG_.includes('OK,')) {
+					this.$message.success('保存成功')
+					this.onGetBusinessBasicInfoDetails()
+				}
+			})
 		},
 	},
 	// 页面销毁

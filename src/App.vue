@@ -1,7 +1,7 @@
 <!--
  * @Description: 入口页面
  * @Date: 2022-06-08 14:44:01
- * @LastEditTime: 2022-07-14 11:50:05
+ * @LastEditTime: 2022-07-22 14:07:34
 -->
 <template>
 	<div id="app">
@@ -14,15 +14,12 @@
 </template>
 
 <script>
-import { login } from '@/api/index.js' // api
+import { login, getOaData } from '@/api/index.js' // api
 import { Local } from '@/utils/storage.js' // 浏览器存储
 export default {
 	name: 'app',
 	components: {
 		SystemConfig: () => import('@/components/SystemConfig/drawer.vue'), // main 头部
-	},
-	data() {
-		return {}
 	},
 	// 计算属性
 	computed: {
@@ -73,7 +70,28 @@ export default {
 		 */
 		onLogin() {
 			login().then((res) => {
-				Local.set('token', res.USER_TOKEN)
+				if (res._MSG_.includes('OK,')) {
+					Local.set('token', res.USER_TOKEN)
+					this.onGetOaData()
+				}
+			})
+		},
+
+		/**
+		 * @description: 获取 OA 角色/字典
+		 * @description: 对应获取 src/pinia/dictionary.js 中字段字典
+		 * @return {*}
+		 */
+		onGetOaData() {
+			const dictionary = this.$store.state.dictionary.dictionary
+			Object.keys(dictionary).map((item) => {
+				if (dictionary[item].length <= 0) {
+					getOaData({ dictId: item }).then((res) => {
+						const data = {}
+						data[item] = res.bean._DATA_
+						this.$store.dispatch('dictionary/setDictionary', data)
+					})
+				}
 			})
 		},
 	},

@@ -1,16 +1,10 @@
 <!--
  * @Description: 变更类型维护 - 新增
  * @Date: 2022-06-15 23:00:02
- * @LastEditTime: 2022-07-14 17:01:38
+ * @LastEditTime: 2022-07-22 14:11:26
 -->
 <template>
-	<el-dialog
-		:visible.sync="isShowDialog"
-		:width="width + 'px'"
-		:destroy-on-close="true"
-		:close-on-click-modal="false"
-		:before-close="onCancel"
-	>
+	<el-dialog :visible.sync="isShowDialog" :width="width + 'px'" :destroy-on-close="true" :close-on-click-modal="false" :before-close="onCancel">
 		<span slot="title" class="dialog-header">{{ title }}</span>
 
 		<el-scrollbar>
@@ -38,7 +32,7 @@
 				</el-form-item>
 				<el-form-item prop="LINK_ROLE" label="变更角色">
 					<el-select v-model="form.LINK_ROLE" placeholder="请选择">
-						<el-option label="区域一" value="shanghai"></el-option>
+						<el-option v-for="item in dictionary.SY_ORG_ROLE_STOCK" :key="item.ID" :label="item.NAME" :value="item.ID" />
 					</el-select>
 				</el-form-item>
 			</el-form>
@@ -52,7 +46,7 @@
 </template>
 
 <script>
-import { addChangeType, getChangeTypeField, getOaData } from '@/api/index.js' // api
+import { addChangeType, getChangeTypeField } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: 'partyInfoRightAdd',
@@ -84,6 +78,12 @@ export default {
 			},
 		}
 	},
+	computed: {
+		// 获取 OA 角色/字典
+		dictionary() {
+			return this.$store.getters?.dictionary
+		},
+	},
 	// 组件方法
 	methods: {
 		/**
@@ -93,19 +93,6 @@ export default {
 		onGetChangeTypeField() {
 			getChangeTypeField().then((res) => {
 				this.fieldData = res.EDIT_DATA
-			})
-		},
-
-		/**
-		 * @description: 获取 OA 角色
-		 * @return {*}
-		 */
-		onGetOaData() {
-			const params = {
-				dictId: 'SY_ORG_ROLE_STOCK',
-			}
-			getOaData(params).then((res) => {
-				this.options = res.bean._DATA_
 			})
 		},
 

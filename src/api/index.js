@@ -1,7 +1,7 @@
 /*
  * @Description: 接口文档
  * @Date: 2022-06-06 06:05:03
- * @LastEditTime: 2022-07-20 16:19:17
+ * @LastEditTime: 2022-07-22 08:45:32
  */
 import request from '@/plugin/axios.js' // axios
 
@@ -148,6 +148,19 @@ export const getBusinessGdEdit = (data) => {
 export const getBusinessGdDel = (data) => {
 	return request({
 		url: '/CMPY_GD.updateData.do',
+		method: 'get',
+		params: data,
+	})
+}
+
+/**
+ * @description: 企业信息管理 - 业务办理 - 基本信息编辑保存
+ * @param {*} data
+ * @return {*}
+ */
+export const getBusinessBasicInfoEdit = (data) => {
+	return request({
+		url: '/CMPY_BASE_INFO.updateCmpy.do',
 		method: 'get',
 		params: data,
 	})

@@ -131,7 +131,7 @@
 				}
 				getBusinessrightQuery(params).then((res) => {
 					this.tableData = res._DATA_
-					this.ALLNUM = ++res._PAGE_.ALLNUM
+					this.ALLNUM = Number(res._PAGE_.ALLNUM)
 
 					setTimeout(() => {
 						this.loading = false
@@ -194,7 +194,6 @@
 						path: '/enterprise/business/details',
 						query: {
 							isAside: true,
-							CMPY_NAME: row.CMPY_NAME,
 							id: row.CMPY_BASE_CODE,
 						},
 					})

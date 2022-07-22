@@ -6,22 +6,11 @@
 <template>
 	<div class="business-details">
 		<div class="business-details-item mlr20">
-			<el-table
-				:data="tableData"
-				:border="true"
-				:header-cell-style="{ 'text-align': 'center' }"
-				:cell-style="{ 'text-align': 'center' }"
-			>
+			<el-table :data="tableData" :border="true" :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }">
 				<el-table-column label="序号" type="index" width="55" />
 
 				<!-- 设置表头数据源，并循环渲染出来，自定义绑定  property 对应列内容的字段名 -->
-				<el-table-column
-					v-for="item in tableHeader"
-					:key="item.key"
-					:label="item.label"
-					:property="item.key"
-					show-overflow-tooltip
-				>
+				<el-table-column v-for="item in tableHeader" :key="item.key" :label="item.label" :property="item.key" show-overflow-tooltip>
 					<template slot-scope="scope">
 						{{ scope.row[scope.column.property] }}
 					</template>
@@ -33,6 +22,7 @@
 
 <script>
 import { getBusinessInvestment } from '@/api/index.js' // api
+import { Local } from '@/utils/storage.js' // 浏览器存储
 
 export default {
 	// 组件名称
@@ -63,7 +53,7 @@ export default {
 		 */
 		onGetBusinessInvestment() {
 			const params = {
-				CMPY_NAME: this.$route.query.CMPY_NAME,
+				CMPY_NAME: Local.get('enterpriseMapList').CMPY_NAME,
 			}
 			getBusinessInvestment(params).then((res) => {
 				this.tableData = res._DATA_

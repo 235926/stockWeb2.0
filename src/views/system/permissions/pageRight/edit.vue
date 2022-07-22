@@ -1,7 +1,7 @@
 <!--
  * @Description: 编辑
  * @Date: 2022-07-08 22:54:06
- * @LastEditTime: 2022-07-12 18:41:31
+ * @LastEditTime: 2022-07-22 14:10:57
 -->
 <template>
 	<div class="permissions-edit" v-loading="loading">
@@ -31,7 +31,7 @@
 				<el-col :span="12">
 					<el-form-item prop="LINK_ROLE" label="可维护的角色">
 						<el-select v-model="form.LINK_ROLE" placeholder="请选择维护的角色">
-							<el-option v-for="item in ROLE_DATA" :key="item.ID" :label="item.NAME" :value="item.ID" />
+							<el-option v-for="item in dictionary.SY_ORG_ROLE_STOCK" :key="item.ID" :label="item.NAME" :value="item.ID" />
 						</el-select>
 					</el-form-item>
 				</el-col>
@@ -41,12 +41,7 @@
 		<el-divider />
 
 		<div class="pl20 pr20">
-			<el-table
-				:data="tableData"
-				:border="true"
-				:header-cell-style="{ 'text-align': 'center' }"
-				:cell-style="{ 'text-align': 'center' }"
-			>
+			<el-table :data="tableData" :border="true" :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }">
 				<el-table-column label="序号" type="index" width="55" />
 				<el-table-column prop="CMPY_FIELD_NAME" label="企业信息内容" />
 				<el-table-column prop="S_EDIT" label="可编辑" width="180">
@@ -67,7 +62,7 @@
 </template>
 
 <script>
-import { getPermissionsRightList, getOaData, getPermissionseUpdate, getPermissionsDelete } from '@/api/index.js' // api
+import { getPermissionsRightList, getPermissionseUpdate, getPermissionsDelete } from '@/api/index.js' // api
 export default {
 	// 组件名称
 	name: '',
@@ -76,7 +71,6 @@ export default {
 		return {
 			form: {}, // 表单
 			tableData: [], // 数据列表
-			ROLE_DATA: [], // 可维护的角色
 			EDIT_FIELD_NAME: [], // 可编辑选中
 			rules: {
 				EDIT_NAME: [{ required: true, trigger: 'blur', message: '请输入编辑权限标题' }],
@@ -86,10 +80,12 @@ export default {
 			loading: false, // 加载状态
 		}
 	},
-	// 组件实例创建完成，属性已绑定，但DOM还未生成，$ el属性还不存在
-	created() {},
-	// 组件挂载后，此方法执行后，页面显示
-	mounted() {},
+	computed: {
+		// 获取 OA 角色/字典
+		dictionary() {
+			return this.$store.getters?.dictionary
+		},
+	},
 	// 组件方法
 	methods: {
 		/**
@@ -115,24 +111,10 @@ export default {
 						this.EDIT_FIELD_NAME.push(item.CMPY_FIELD_CODE)
 					}
 				})
-				this.onGetOaData()
 
 				setTimeout(() => {
 					this.loading = false
 				}, 500)
-			})
-		},
-
-		/**
-		 * @description: 获取 OA 角色
-		 * @return {*}
-		 */
-		onGetOaData() {
-			const params = {
-				dictId: 'SY_ORG_ROLE_STOCK',
-			}
-			getOaData(params).then((res) => {
-				this.ROLE_DATA = res.bean._DATA_
 			})
 		},
 
